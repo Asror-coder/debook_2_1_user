@@ -1916,7 +1916,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_clickaway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-clickaway */ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1994,24 +1995,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
- // import { mixin as clickaway } from 'vue-clickaway';
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Header',
-  // mixins: [ clickaway ],
+  mixins: [vue_clickaway__WEBPACK_IMPORTED_MODULE_0__.mixin],
   data: function data() {
     return {
       showSports: false,
@@ -2019,28 +2007,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showClubs: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('clubSearch', ['searchedClubs'])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)('clubSearch', ['searchedClubs'])), {}, {
     user: function user() {
       if (localStorage.getItem('user')) {
         return JSON.parse(localStorage.getItem('user')).user;
       } else return null;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('clubSearch', ['searchClubName'])), {}, {
-    goToClubPage: function goToClubPage() {
-      console.log("id"); //remove
-      // if (localStorage.getItem('search')) {
-      //     var search_request = JSON.parse(localStorage.getItem('search'))
-      //     if(search_request.date && search_request.start_time && search_request.end_time) {
-      //         this.clubSearch.partnerId = this.club[0].id
-      //         this.clubSearch.sport_type = search_request.sport_type
-      //         this.clubSearch.date = search_request.date
-      //         this.clubSearch.start_time = search_request.start_time
-      //         this.clubSearch.end_time = search_request.end_time
-      //         localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
-      //     }
-      // }
-      // this.$router.push({name:'Club', params: { clubId: id}})
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)('clubSearch', ['searchClubName'])), {}, {
+    goToClubPage: function goToClubPage(id) {
+      // console.log(id);    //remove
+      if (localStorage.getItem('search')) {
+        var search_request = JSON.parse(localStorage.getItem('search'));
+
+        if (search_request.date && search_request.start_time && search_request.end_time) {
+          this.clubSearch.partnerId = this.club[0].id;
+          this.clubSearch.sport_type = search_request.sport_type;
+          this.clubSearch.date = search_request.date;
+          this.clubSearch.start_time = search_request.start_time;
+          this.clubSearch.end_time = search_request.end_time;
+          localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch));
+        }
+      }
+
+      this.away();
+      this.$router.push({
+        name: 'Club',
+        params: {
+          clubId: id
+        }
+      });
+    },
+    away: function away() {
+      this.showClubs = false;
+    },
+    focused: function focused() {
+      this.showClubs = true;
     }
   }),
   watch: {
@@ -20181,9 +20183,9 @@ var runtime = (function (exports) {
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
   var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
+  define(IteratorPrototype, iteratorSymbol, function () {
     return this;
-  };
+  });
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
@@ -20197,8 +20199,9 @@ var runtime = (function (exports) {
 
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
@@ -20312,9 +20315,9 @@ var runtime = (function (exports) {
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
-  };
+  });
   exports.AsyncIterator = AsyncIterator;
 
   // Note that simple async functions are implemented on top of
@@ -20507,13 +20510,13 @@ var runtime = (function (exports) {
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  define(Gp, iteratorSymbol, function() {
     return this;
-  };
+  });
 
-  Gp.toString = function() {
+  define(Gp, "toString", function() {
     return "[object Generator]";
-  };
+  });
 
   function pushTryEntry(locs) {
     var entry = { tryLoc: locs[0] };
@@ -20832,16 +20835,114 @@ try {
 } catch (accidentalStrictMode) {
   // This module should not be running in strict mode, so the above
   // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
   // strict mode using a global Function call. This could conceivably fail
   // if a Content Security Policy forbids using Function, but in that case
   // the proper solution is to fix the accidental strict mode problem. If
   // you've misconfigured your bundler to force strict mode and applied a
   // CSP to forbid Function, and you're not willing to fix either of those
   // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-clickaway/dist/vue-clickaway.common.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+Vue = 'default' in Vue ? Vue['default'] : Vue;
+
+var version = '2.2.2';
+
+var compatible = (/^2\./).test(Vue.version);
+if (!compatible) {
+  Vue.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + Vue.version);
+}
+
+
+
+// @SECTION: implementation
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+
+  var vm = vnode.context;
+
+  var callback = binding.value;
+  if (typeof callback !== 'function') {
+    if (true) {
+      Vue.util.warn(
+        'v-' + binding.name + '="' +
+        binding.expression + '" expects a function value, ' +
+        'got ' + callback
+      );
+    }
+    return;
+  }
+
+  // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+  var initialMacrotaskEnded = false;
+  setTimeout(function() {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function(ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind,
+};
+
+var mixin = {
+  directives: { onClickaway: directive },
+};
+
+exports.version = version;
+exports.directive = directive;
+exports.mixin = mixin;
 
 /***/ }),
 
@@ -21293,12 +21394,15 @@ var render = function() {
         _c(
           "li",
           {
-            staticClass: "mr-10 relative inline-block text-left",
-            on: {
-              blur: function($event) {
-                _vm.showClubs = false
+            directives: [
+              {
+                name: "on-clickaway",
+                rawName: "v-on-clickaway",
+                value: _vm.away,
+                expression: "away"
               }
-            }
+            ],
+            staticClass: "mr-10 relative inline-block text-left"
           },
           [
             _c("input", {
@@ -21315,9 +21419,7 @@ var render = function() {
               attrs: { type: "text", name: "clubName", placeholder: "search" },
               domProps: { value: _vm.clubName },
               on: {
-                focus: function($event) {
-                  _vm.showClubs = true
-                },
+                focus: _vm.focused,
                 input: function($event) {
                   if ($event.target.composing) {
                     return
@@ -21328,53 +21430,50 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
-              _vm.showClubs
-                ? _c(
-                    "ul",
+              _c(
+                "div",
+                {
+                  directives: [
                     {
-                      staticClass:
-                        "absolute py-1 w-56 rounded-md shadow-lg bg-white focus:outline-none",
-                      on: {
-                        click: function($event) {
-                          _vm.showClubs = false
-                        }
-                      }
-                    },
-                    [
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showClubs,
+                      expression: "showClubs"
+                    }
+                  ],
+                  staticClass:
+                    "absolute py-1 w-48 rounded-md shadow-lg bg-white focus:outline-none"
+                },
+                [
+                  _vm.searchedClubs.length == 0
+                    ? _c("div", [
+                        _c(
+                          "p",
+                          { staticClass: "w-full p-1 hover:bg-gray-100" },
+                          [_vm._v("No clubs")]
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.searchedClubs, function(club) {
+                    return _c("div", { key: club.id, staticClass: "w-full" }, [
                       _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass:
-                                "text-gray-700 block px-4 py-2 hover:bg-gray-100",
-                              attrs: { to: "/clubs/tennis" }
-                            },
-                            [_vm._v("Tennis")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass:
-                                "text-gray-700 block px-4 py-2 hover:bg-gray-100",
-                              attrs: { to: "/clubs/padel" }
-                            },
-                            [_vm._v("Padel")]
-                          )
-                        ],
-                        1
+                        "button",
+                        {
+                          staticClass: "focus:outline-none hover:bg-gray-100",
+                          on: {
+                            click: function($event) {
+                              return _vm.goToClubPage(club.partner_id)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(club.name))]
                       )
-                    ]
-                  )
-                : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              )
             ])
           ],
           1

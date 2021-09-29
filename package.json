@@ -13,10 +13,10 @@
         "@types/vue-clickaway": "^2.2.0",
         "autoprefixer": "^10.2.5",
         "axios": "^0.21.1",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.31",
         "lodash": "^4.17.19",
         "postcss": "^8.2.10",
-        "tailwindcss": "^2.1.1",
+        "tailwindcss": "^2.2.16",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12",
         "webpack-cli": "^4.6.0"

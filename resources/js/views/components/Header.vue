@@ -32,40 +32,27 @@
             </ul>
 
             <ul class="flex items-center mr-6">
-                <li class="mr-10 relative inline-block text-left" @blur="showClubs = false">
+
+                <!-- Club search -->
+                <li class="mr-10 relative inline-block text-left" v-on-clickaway="away">
                     <input type="text" name="clubName" placeholder="search" v-model="clubName"
-                        class="bg-gray-100 rounded-md p-1 shadow-sm focus:outline-none" @focus="showClubs = true">
-                    <!-- <input type="text" name="clubName" placeholder="search" v-model="clubName"
-                        class="bg-gray-100 rounded-md p-1 shadow-sm focus:outline-none"> -->
+                        class="bg-gray-100 rounded-md p-1 shadow-sm focus:outline-none" @focus="focused">
 
                     <transition name="fade">
 
-                        <ul v-if="showClubs" @click="showClubs = false" class="absolute py-1 w-56 rounded-md shadow-lg bg-white focus:outline-none">
+                        <div v-show="showClubs" class="absolute py-1 w-48 rounded-md shadow-lg bg-white focus:outline-none">
+                            <div v-if="searchedClubs.length == 0">
+                                <p class="w-full p-1 hover:bg-gray-100">No clubs</p>
+                            </div>
 
-                            <li><router-link to='/clubs/tennis' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Tennis</router-link></li>
-                            <li><router-link to='/clubs/padel' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Padel</router-link></li>
-                            <!-- <li><router-link to='/clubs/squash' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Squash</router-link></li> -->
-                        </ul>
-
+                            <div v-for="club in searchedClubs" :key="club.id" class="w-full">
+                                <button @click="goToClubPage(club.partner_id)" class="focus:outline-none hover:bg-gray-100">{{club.name}}</button>
+                            </div>
+                        </div>
                     </transition>
-
-                    <!-- <transition name="fade">
-                        <ul v-show="showClubs" class="absolute shadow-md w-full">
-                            <li>
-                                <router-link to='/dashboard' class="w-full p-1 hover:bg-gray-100 focus:outline-none">No clubs</router-link>
-                            </li>
-                        </ul> -->
-                        <!-- <div v-if="searchedClubs.length == 0">No clubs
-                            <router-link to='/dashboard' class="w-full p-1 hover:bg-gray-100 focus:outline-none">No clubs</router-link>
-                        </div> -->
-
-                        <!-- <div v-else v-for="club in searchedClubs" :key="club.id"> -->
-                            <!-- <button @click="goToClubPage(club.id)"
-                                class="w-full focus:">{{club.name}}</button> -->
-                            <!-- <router-link to='/dashboard' class="w-full p-1 hover:bg-gray-100 focus:outline-none">{{club.name}}</router-link>
-                        </div> -->
-                    <!-- </transition> -->
                 </li>
+
+                <!-- Login -->
                 <li v-if="!user">
                     <router-link to='/login' class="p-3 hover:bg-gray-100 focus:outline-none">
                         Login
@@ -84,11 +71,11 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-// import { mixin as clickaway } from 'vue-clickaway';
+import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
     name: 'Header',
-    // mixins: [ clickaway ],
+    mixins: [ clickaway ],
     data() {
         return {
             showSports: false,
@@ -106,23 +93,31 @@ export default {
     },
     methods: {
         ...mapActions('clubSearch',['searchClubName']),
-        goToClubPage() {
-            console.log("id");    //remove
-            // if (localStorage.getItem('search')) {
-            //     var search_request = JSON.parse(localStorage.getItem('search'))
+        goToClubPage(id) {
+            // console.log(id);    //remove
+            if (localStorage.getItem('search')) {
+                var search_request = JSON.parse(localStorage.getItem('search'))
 
-            //     if(search_request.date && search_request.start_time && search_request.end_time) {
-            //         this.clubSearch.partnerId = this.club[0].id
-            //         this.clubSearch.sport_type = search_request.sport_type
-            //         this.clubSearch.date = search_request.date
-            //         this.clubSearch.start_time = search_request.start_time
-            //         this.clubSearch.end_time = search_request.end_time
+                if(search_request.date && search_request.start_time && search_request.end_time) {
+                    this.clubSearch.partnerId = this.club[0].id
+                    this.clubSearch.sport_type = search_request.sport_type
+                    this.clubSearch.date = search_request.date
+                    this.clubSearch.start_time = search_request.start_time
+                    this.clubSearch.end_time = search_request.end_time
 
-            //         localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
-            //     }
-            // }
+                    localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
+                }
+            }
 
-            // this.$router.push({name:'Club', params: { clubId: id}})
+            this.away()
+
+            this.$router.push({name:'Club', params: { clubId: id}})
+        },
+        away() {
+            this.showClubs = false
+        },
+        focused() {
+            this.showClubs = true
         }
     },
     watch: {
