@@ -68,6 +68,7 @@ export default {
                 date: '',
                 start_time: '',
                 end_time: '',
+                surface: ''
             },
             sports: [],
             openTimes: [],
@@ -89,7 +90,7 @@ export default {
                 this.message = "Date cannot be in the past! Please change chosen date."
             }
             else {
-                localStorage.setItem('clubSearch', JSON.stringify(this.form))
+                sessionStorage.setItem('clubSearch', JSON.stringify(this.form))
                 this.$emit('search-venue', this.form)
             }
         },
@@ -132,8 +133,8 @@ export default {
             return true
         },
         checkLocalStorage() {
-            if(localStorage.getItem('clubSearch')) {
-                var clubSearch = JSON.parse(localStorage.getItem('clubSearch'))
+            if(sessionStorage.getItem('clubSearch')) {
+                var clubSearch = JSON.parse(sessionStorage.getItem('clubSearch'))
 
                 if (clubSearch.partnerId == this.clubId) {
                     this.form.sport_type = clubSearch.sport_type.charAt(0).toUpperCase() + clubSearch.sport_type.slice(1)

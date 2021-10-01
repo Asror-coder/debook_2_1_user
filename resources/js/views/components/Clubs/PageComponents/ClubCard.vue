@@ -27,8 +27,8 @@ export default {
     },
     methods: {
         goToClubPage() {
-            if (localStorage.getItem('search')) {
-                var search_request = JSON.parse(localStorage.getItem('search'))
+            if (sessionStorage.getItem('search')) {
+                var search_request = JSON.parse(sessionStorage.getItem('search'))
 
                 if(search_request.date && search_request.start_time && search_request.end_time) {
                     this.clubSearch.partnerId = this.club[0].id
@@ -37,7 +37,7 @@ export default {
                     this.clubSearch.start_time = search_request.start_time
                     this.clubSearch.end_time = search_request.end_time
 
-                    localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
+                    sessionStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
                 }
             }
 

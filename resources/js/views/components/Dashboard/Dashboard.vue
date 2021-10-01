@@ -5,7 +5,14 @@
             <div class="flex flex-row my-5 ">
                 <div class="flex-none text-2xl font-bold">{{user.name}} {{user.lastname}}</div>
                 <div class="flex-grow"></div>
-                <button class="flex-none text-gray-600 hover:text-black focus:outline-none" @click.prevent="logout">Logout</button>
+                <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-5"
+                    @click="toggleShowProfile"> Profile </button>
+                <button class="flex-none text-gray-600 hover:text-black focus:outline-none"
+                    @click.prevent="logout"> Logout </button>
+            </div>
+
+            <div v-show="showProfile">
+                <Profile />
             </div>
 
             <div v-show="this.activeBookings.length > 0" class="">
@@ -34,15 +41,18 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import BookingCard from './BookingCard'
+import Profile from './Profile.vue'
 
 export default {
     name: 'Dashboard',
     components: {
-        BookingCard
+        BookingCard,
+        Profile
     },
     data() {
         return {
-            user: Object
+            user: Object,
+            showProfile: false
         };
     },
     methods: {
@@ -50,6 +60,9 @@ export default {
         ...mapActions('bookings',['fetchBookings']),
         async logout() {
             await this.logoutUser()
+        },
+        toggleShowProfile() {
+            this.showProfile = !this.showProfile
         }
     },
     computed: mapGetters('bookings',['activeBookings','notActiveBookings']),

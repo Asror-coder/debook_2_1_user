@@ -70,15 +70,15 @@ export default {
         ...mapActions('clubs',['getClubs']),
         async fetchSport(sport) {
 
-            if (localStorage.getItem('search')) {
-                var search_request = JSON.parse(localStorage.getItem('search'));
+            if (sessionStorage.getItem('search')) {
+                var search_request = JSON.parse(sessionStorage.getItem('search'));
 
                 if (search_request.sport_type == sport) this.changeRequest(search_request)
                 else this.destroyRequest(sport)
             }
             else {
                 this.request.sport_type = sport
-                localStorage.setItem('search', JSON.stringify(this.request))
+                sessionStorage.setItem('search', JSON.stringify(this.request))
             }
 
             this.sport = sport
@@ -95,7 +95,7 @@ export default {
             if(newRequest.indoor) this.request.indoor = newRequest.indoor
             if(newRequest.maxPrice) this.request.maxPrice = newRequest.maxPrice
 
-            localStorage.setItem('search', JSON.stringify(this.request))
+            sessionStorage.setItem('search', JSON.stringify(this.request))
 
             if(newRequest.sport_type && newRequest.sport_type != this.sport)
                 this.$router.push({ name:'Clubs', params: { sport: newRequest.sport_type}}).catch(err => {});
@@ -112,7 +112,7 @@ export default {
             this.request.indoor = null
             this.request.maxPrice = ''
 
-            localStorage.setItem('search', JSON.stringify(this.request))
+            sessionStorage.setItem('search', JSON.stringify(this.request))
 
             await this.getClubs(this.request)
         }

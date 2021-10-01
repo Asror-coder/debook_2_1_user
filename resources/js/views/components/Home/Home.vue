@@ -18,8 +18,8 @@ export default {
     },
     methods: {
         search(request) {
-            localStorage.setItem('search', JSON.stringify(request))
-            this.$router.push({ name:'Clubs', params: { sport: request.sport_type}})
+            sessionStorage.setItem('search', JSON.stringify(request))
+            this.$router.push({ name:'Clubs', params: {sport: request.sport_type} })
         }
     }
 }

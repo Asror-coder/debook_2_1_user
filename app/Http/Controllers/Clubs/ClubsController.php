@@ -16,14 +16,7 @@ class ClubsController extends Controller
     public function getClubs(Request $request) {
         $clubs_sql = 'SELECT DISTINCT partner_id AS id
                         FROM venues
-                        WHERE `status` = 1 AND';
-
-        $services = ClubsController::getServiceId($request);
-
-        for ($i=0; $i < count($services); $i++) {
-            if ($i == 0) $clubs_sql = $clubs_sql.' service_id = '.$services[$i]->id;
-            else $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id;
-        }
+                        WHERE `status` = 1';
 
         if ($request->city) {
             $clubs_sql = 'SELECT t2.id
@@ -83,8 +76,8 @@ class ClubsController extends Controller
 
     static function getServiceId($request) {
         $sql = 'SELECT id
-        FROM services
-        WHERE sport_type = "'.$request->sport_type.'"';
+                FROM services
+                WHERE sport_type = "'.$request->sport_type.'"';
 
         if (is_numeric($request->indoor) && ((int)$request->indoor === 0 || (int)$request->indoor === 1))
             $sql = $sql.' AND indoor = '.(int)$request->indoor;
@@ -160,17 +153,27 @@ class ClubsController extends Controller
 
     //check availabke venues at a given club
     public function getAvailableVenues($id, Request $request) {
-        $venues = DB::select('Select t1.id AS venue_id,
-                                     t1.name,
-                                     t2.surface,
-                                     t2.indoor
+
+        $services = ClubsController::getServiceId($request);
+
+        $services_sql = 'SELECT *
+                         FROM services
+                         WHERE ';
+
+        for ($i=0; $i < count($services); $i++) {
+            if ($i == 0) $services_sql = $services_sql.' id = '.$services[$i]->id;
+            else $services_sql = $services_sql.' OR id = '.$services[$i]->id;
+        }
+
+        $venues = DB::select('SELECT t1.id AS venue_id,
+                                        t1.name,
+                                        t2.surface,
+                                        t2.indoor
                                 FROM venues t1
-                                INNER JOIN (SELECT *
-                                            FROM services
-                                            WHERE sport_type = ?) t2
+                                INNER JOIN ('.$services_sql.') t2
                                         ON t1.service_id = t2.id
-                                WHERE t1.partner_id = ?
-                                AND t1.status = 1', [$request->sport_type, $id]);
+                                WHERE t1.partner_id = '.$id.' AND
+                                    t1.status = 1');
 
         $venueController = new VenueController;
         $venuePriceController = new VenuePriceController;

@@ -137,11 +137,11 @@ export default {
         }
     },
     async mounted() {
-        if(!JSON.parse(localStorage.getItem('newBooking')) || !JSON.parse(localStorage.getItem('user'))) {
+        if(!JSON.parse(sessionStorage.getItem('newBooking')) || !JSON.parse(localStorage.getItem('user'))) {
             this.$router.push('/notfound')
         }
         else {
-            this.booking = JSON.parse(localStorage.getItem('newBooking'))
+            this.booking = JSON.parse(sessionStorage.getItem('newBooking'))
             this.user = JSON.parse(localStorage.getItem('user')).user
 
             if(this.booking.venueId != this.$route.params.venueId) this.$router.push('/notfound')
