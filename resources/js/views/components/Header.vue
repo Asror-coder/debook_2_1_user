@@ -7,7 +7,7 @@
                 </li>
                 <li @mouseover="showSports = true" @mouseleave="showSports = false" class="relative inline-block text-left" >
 
-                    <a href="" class="p-3 hover:bg-gray-100 focus:outline-none">Sports</a>
+                    <div class="p-3 hover:bg-gray-100 focus:outline-none">Sports</div>
 
                     <transition name="fade">
 

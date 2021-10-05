@@ -21283,11 +21283,8 @@ var render = function() {
           },
           [
             _c(
-              "a",
-              {
-                staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                attrs: { href: "" }
-              },
+              "div",
+              { staticClass: "p-3 hover:bg-gray-100 focus:outline-none" },
               [_vm._v("Sports")]
             ),
             _vm._v(" "),
