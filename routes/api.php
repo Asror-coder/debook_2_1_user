@@ -53,7 +53,6 @@ Route::prefix('/venue')->group(function() {
     Route::get('/{id}', [VenueController::class, 'show']);
 });
 
-// Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
 Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
     Route::post('/newbooking', [BookingController::class, 'store']);
     Route::get('/active/{userId}', [BookingController::class, 'getActiveBookings']);

@@ -8,10 +8,6 @@ use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-
-use function PHPUnit\Framework\isEmpty;
-
 class BookingController extends Controller
 {
     /**
@@ -35,10 +31,14 @@ class BookingController extends Controller
     {
         $bookings = Booking::where('user_id', $userId)
                       ->where('status_id', '!=', 1)
-                      ->get();
+                      ->paginate(5);
 
-        if (sizeof($bookings) == 0) return $bookings;
-        else return BookingController::getFullInformation($bookings);
+        if ($bookings->count() == 0) return $bookings;
+        else {
+            $fullInfo[0] = BookingController::getFullInformation($bookings);
+            $fullInfo[1] = $bookings;
+            return $fullInfo;
+        }
     }
 
     static function getFullInformation($bookings) {

@@ -2293,7 +2293,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   activeBookings: [],
-  notActiveBookings: []
+  notActiveBookings: [],
+  notActiveBookingsPage: null
 };
 var getters = {
   activeBookings: function activeBookings(state) {
@@ -2301,10 +2302,13 @@ var getters = {
   },
   notActiveBookings: function notActiveBookings(state) {
     return state.notActiveBookings;
+  },
+  notActiveBookingsPage: function notActiveBookingsPage(state) {
+    return state.notActiveBookingsPage;
   }
 };
 var actions = {
-  fetchBookings: function fetchBookings(_ref, userId) {
+  fetchActiveBookings: function fetchActiveBookings(_ref, userId) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2315,19 +2319,9 @@ var actions = {
               _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/active/".concat(userId)).then(function (response) {
                 if (response.data.length > 0) commit('setActiveBookings', response.data);
-              })["catch"](function (error) {
-                console.log(error.response.data.message); //REMOVE
               });
 
             case 3:
-              _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/notactive/".concat(userId)).then(function (response) {
-                if (response.data.length > 0) commit('setNotActiveBookings', response.data);
-              })["catch"](function (error) {
-                console.log(error.response.data.message); //REMOVE
-              });
-
-            case 5:
             case "end":
               return _context.stop();
           }
@@ -2335,7 +2329,7 @@ var actions = {
       }, _callee);
     }))();
   },
-  addBooking: function addBooking(_ref2, request) {
+  fetchNotActiveBookings: function fetchNotActiveBookings(_ref2, userId) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -2344,8 +2338,11 @@ var actions = {
             case 0:
               commit = _ref2.commit;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/newbooking", request).then(function (response) {
-                if (state.activeBookings) commit('newActiveBooking', response.data);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/notactive/".concat(userId)).then(function (response) {
+                if (response.data[0].length > 0) {
+                  commit('setNotActiveBookings', response.data[0]);
+                  commit('setNotActiveBookingsPage', response.data[1]);
+                }
               });
 
             case 3:
@@ -2355,17 +2352,65 @@ var actions = {
         }
       }, _callee2);
     }))();
+  },
+  changeNotActiveBookings: function changeNotActiveBookings(_ref3, url) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (response) {
+                if (response.data[0].length > 0) {
+                  commit('setNotActiveBookings', response.data[0]);
+                  commit('setNotActiveBookingsPage', response.data[1]);
+                }
+              });
+
+            case 3:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  addBooking: function addBooking(_ref4, request) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/newbooking", request).then(function (response) {
+                if (state.activeBookings) commit('newActiveBooking', response.data);
+              });
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
   }
 };
 var mutations = {
   setActiveBookings: function setActiveBookings(state, bookings) {
     return state.activeBookings = bookings;
   },
+  newActiveBooking: function newActiveBooking(state, booking) {
+    return state.activeBookings.unshift(booking);
+  },
   setNotActiveBookings: function setNotActiveBookings(state, bookings) {
     return state.notActiveBookings = bookings;
   },
-  newActiveBooking: function newActiveBooking(state, booking) {
-    return state.activeBookings.unshift(booking);
+  setNotActiveBookingsPage: function setNotActiveBookingsPage(state, pageInfo) {
+    return state.notActiveBookingsPage = pageInfo;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

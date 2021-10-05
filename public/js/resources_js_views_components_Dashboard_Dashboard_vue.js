@@ -88,6 +88,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Button',
+  props: {
+    text: String,
+    textStyle: String
+  },
+  methods: {
+    onClick: function onClick() {
+      this.$emit('btn-click');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -100,9 +131,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _BookingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookingCard */ "./resources/js/views/components/Dashboard/BookingCard.vue");
-/* harmony import */ var _Profile_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Profile.vue */ "./resources/js/views/components/Dashboard/Profile.vue");
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
+/* harmony import */ var _Profile_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Profile.vue */ "./resources/js/views/components/Dashboard/Profile.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -155,6 +187,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -162,15 +217,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'Dashboard',
   components: {
     BookingCard: _BookingCard__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Profile: _Profile_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Button: _Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Profile: _Profile_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       user: Object,
-      showProfile: false
+      showProfile: false,
+      showPassed: false
     };
   },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('bookings', ['fetchBookings'])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('bookings', ['fetchActiveBookings', 'fetchNotActiveBookings', 'changeNotActiveBookings'])), {}, {
     logout: function logout() {
       var _this = this;
 
@@ -192,9 +249,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     toggleShowProfile: function toggleShowProfile() {
       this.showProfile = !this.showProfile;
+    },
+    toggleShowPassed: function toggleShowPassed() {
+      this.showPassed = !this.showPassed;
     }
   }),
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings']),
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage']),
   mounted: function mounted() {
     var _this2 = this;
 
@@ -205,9 +265,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             case 0:
               _this2.user = JSON.parse(localStorage.getItem('user')).user;
 
-              _this2.fetchBookings(_this2.user.id);
+              _this2.fetchActiveBookings(_this2.user.id);
 
-            case 2:
+              _this2.fetchNotActiveBookings(_this2.user.id);
+
+            case 3:
             case "end":
               return _context2.stop();
           }
@@ -305,6 +367,44 @@ component.options.__file = "resources/js/views/components/Dashboard/BookingCard.
 
 /***/ }),
 
+/***/ "./resources/js/views/components/Dashboard/Button.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue?vue&type=template&id=6daedff7& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
+/* harmony import */ var _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/components/Dashboard/Button.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/components/Dashboard/Dashboard.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/views/components/Dashboard/Dashboard.vue ***!
@@ -396,6 +496,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -438,6 +553,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=template&id=9be0a3d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=template&id=6daedff7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
 
 
 /***/ }),
@@ -607,6 +738,41 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "focus:outline-none",
+      on: {
+        click: function($event) {
+          return _vm.onClick()
+        }
+      }
+    },
+    [_c("div", { class: _vm.textStyle }, [_vm._v(_vm._s(_vm.text))])]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42& ***!
@@ -633,11 +799,33 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "flex-grow" }),
         _vm._v(" "),
+        _vm.showPassed
+          ? _c(
+              "button",
+              {
+                staticClass:
+                  "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
+                on: { click: _vm.toggleShowPassed }
+              },
+              [_vm._v(" Upcoming bookings ")]
+            )
+          : !_vm.showPassed
+          ? _c(
+              "button",
+              {
+                staticClass:
+                  "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
+                on: { click: _vm.toggleShowPassed }
+              },
+              [_vm._v(" Passed bookings ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "button",
           {
             staticClass:
-              "flex-none text-gray-600 hover:text-black focus:outline-none px-5",
+              "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
             on: { click: _vm.toggleShowProfile }
           },
           [_vm._v(" Profile ")]
@@ -647,7 +835,7 @@ var render = function() {
           "button",
           {
             staticClass:
-              "flex-none text-gray-600 hover:text-black focus:outline-none",
+              "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -675,75 +863,145 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
+      !_vm.showPassed
+        ? _c(
+            "div",
             {
-              name: "show",
-              rawName: "v-show",
-              value: this.activeBookings.length > 0,
-              expression: "this.activeBookings.length > 0"
-            }
-          ]
-        },
-        [
-          _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-            _vm._v("Upcomming bookings")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.activeBookings, function(activeBooking) {
-            return _c(
-              "div",
-              { key: activeBooking[0].id },
-              [_c("BookingCard", { attrs: { booking: activeBooking } })],
-              1
-            )
-          })
-        ],
-        2
-      ),
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: this.activeBookings.length > 0,
+                  expression: "this.activeBookings.length > 0"
+                }
+              ]
+            },
+            [
+              _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+                _vm._v("Upcomming bookings")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.activeBookings, function(activeBooking) {
+                return _c(
+                  "div",
+                  { key: activeBooking[0].id },
+                  [_c("BookingCard", { attrs: { booking: activeBooking } })],
+                  1
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c("hr", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.notActiveBookings.length > 0,
-            expression: "this.notActiveBookings.length > 0"
-          }
-        ],
-        staticClass: "my-4 border-gray-300"
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
+      _vm.showPassed
+        ? _c(
+            "div",
             {
-              name: "show",
-              rawName: "v-show",
-              value: this.notActiveBookings.length > 0,
-              expression: "this.notActiveBookings.length > 0"
-            }
-          ]
-        },
-        [
-          _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-            _vm._v("Passed bookings")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.notActiveBookings, function(notActiveBooking) {
-            return _c(
-              "div",
-              { key: notActiveBooking[0].id },
-              [_c("BookingCard", { attrs: { booking: notActiveBooking } })],
-              1
-            )
-          })
-        ],
-        2
-      )
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: this.notActiveBookings.length > 0,
+                  expression: "this.notActiveBookings.length > 0"
+                }
+              ]
+            },
+            [
+              _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+                _vm._v("Passed bookings")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.notActiveBookings, function(notActiveBooking) {
+                return _c(
+                  "div",
+                  { key: notActiveBooking[0].id },
+                  [_c("BookingCard", { attrs: { booking: notActiveBooking } })],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-row mt-5" }, [
+                _c("div", { staticClass: "flex-grow" }),
+                _vm._v(" "),
+                _vm.notActiveBookingsPage
+                  ? _c(
+                      "div",
+                      { staticClass: "flex flex-row text-lg" },
+                      _vm._l(_vm.notActiveBookingsPage.links, function(
+                        page,
+                        index
+                      ) {
+                        return _c(
+                          "div",
+                          { key: index, staticClass: "mx-3" },
+                          [
+                            page.label == "&laquo; Previous" && page.url
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: "prev",
+                                    textStyle: "text-gray-400"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changeNotActiveBookings(
+                                        page.url
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            page.label != "&laquo; Previous" &&
+                            page.label != "Next &raquo;"
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: page.label,
+                                    textStyle:
+                                      page.label ==
+                                      _vm.notActiveBookingsPage.current_page
+                                        ? "text-black"
+                                        : "text-gray-400"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changeNotActiveBookings(
+                                        page.url
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            page.label == "Next &raquo;" && page.url
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: "next",
+                                    textStyle: "text-gray-400"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changeNotActiveBookings(
+                                        page.url
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex-grow" })
+              ])
+            ],
+            2
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-span-1" })
