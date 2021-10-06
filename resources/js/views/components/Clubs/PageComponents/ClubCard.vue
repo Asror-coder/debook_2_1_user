@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row p-3 rounded-lg shadow-lg text-lg">
-        <div class="flex-none">{{ this.club[2].name }}</div>
-        <div class="flex-none text-gray-600 ml-4">{{ this.club[1].city }}</div>
+        <div class="flex-none">{{ this.club.name }}</div>
+        <div class="flex-none text-gray-600 ml-4">{{ this.club.city }}</div>
         <div class="flex-grow"></div>
         <button class="flex-none text-blue-600 hover:text-blue-900  focus:outline-none"
             @click="goToClubPage">more</button>
@@ -12,7 +12,7 @@
 export default {
     name: 'ClubCard',
     props: {
-        club: Array
+        club: null
     },
     data() {
         return {
@@ -31,7 +31,7 @@ export default {
                 var search_request = JSON.parse(sessionStorage.getItem('search'))
 
                 if(search_request.date && search_request.start_time && search_request.end_time) {
-                    this.clubSearch.partnerId = this.club[0].id
+                    this.clubSearch.partnerId = this.club.partner_id
                     this.clubSearch.sport_type = search_request.sport_type
                     this.clubSearch.date = search_request.date
                     this.clubSearch.start_time = search_request.start_time
@@ -41,7 +41,7 @@ export default {
                 }
             }
 
-            this.$router.push({name:'Club', params: { clubId: this.club[0].id}})
+            this.$router.push({name:'Club', params: { clubId: this.club.partner_id}})
         }
     }
 }

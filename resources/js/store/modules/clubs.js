@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const state = {
-    clubs: [],
+    clubs: null,
     request: []
 }
 
@@ -17,33 +17,29 @@ const actions = {
 
         await axios.get(`/api/clubs/search`,{params: request}).then((response)=> {
             commit('setRequest', request)
-            if(response.data.length > 0)
+            if(response.data.data.length > 0)
                 commit('setClubs', response.data)
         }).catch((error) => {
             console.log(error.response.data.message);
         })
     },
-    // async searchClubName({ commit }, name) {
-    //     commit('destroyClubs')
+    async changePage({ commit }, url) {
+        commit('destroyClubs')
 
-    //     if (name) {
-    //         await axios.get(`/api/clubs/search/like/${name}`).then((response)=> {
-    //             if(response.data.length > 0) {
-    //                 // console.log(response.data);  //remove
-    //                 commit('setClubs', response.data)
-    //             }
-    //         }).catch((error) => {
-    //             console.log(error.response.data.message);
-    //         })
-    //     }
-    // }
+        await axios.get(url,{params: state.request}).then((response)=> {
+            if(response.data.data.length > 0)
+                commit('setClubs', response.data)
+        }).catch((error) => {
+            console.log(error.response.data.message);
+        })
+    }
 }
 
 const mutations = {
     setClubs: (state, clubs) => state.clubs = clubs,
     setRequest: (state, request) => state.request = request,
 
-    destroyClubs: (state) => state.clubs = [],
+    destroyClubs: (state) => state.clubs = null,
     destroyRequest: (state) => state.request = []
 }
 

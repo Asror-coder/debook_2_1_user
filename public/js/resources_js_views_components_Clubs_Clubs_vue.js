@@ -13,11 +13,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _PageComponents_ClubCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PageComponents/ClubCard */ "./resources/js/views/components/Clubs/PageComponents/ClubCard.vue");
 /* harmony import */ var _PageComponents_TopFilters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PageComponents/TopFilters */ "./resources/js/views/components/Clubs/PageComponents/TopFilters.vue");
 /* harmony import */ var _PageComponents_DateTimeFilters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PageComponents/DateTimeFilters */ "./resources/js/views/components/Clubs/PageComponents/DateTimeFilters.vue");
 /* harmony import */ var _PageComponents_SideFilters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PageComponents/SideFilters */ "./resources/js/views/components/Clubs/PageComponents/SideFilters.vue");
+/* harmony import */ var _Dashboard_Button_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Dashboard/Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -66,6 +67,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -77,7 +102,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ClubCard: _PageComponents_ClubCard__WEBPACK_IMPORTED_MODULE_1__["default"],
     TopFilters: _PageComponents_TopFilters__WEBPACK_IMPORTED_MODULE_2__["default"],
     DateTimeFilters: _PageComponents_DateTimeFilters__WEBPACK_IMPORTED_MODULE_3__["default"],
-    SideFilters: _PageComponents_SideFilters__WEBPACK_IMPORTED_MODULE_4__["default"]
+    SideFilters: _PageComponents_SideFilters__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Button: _Dashboard_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -95,8 +121,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)('clubs', ['clubs']),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('clubs', ['getClubs'])), {}, {
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)('clubs', ['clubs']),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)('clubs', ['getClubs', 'changePage'])), {}, {
     fetchSport: function fetchSport(sport) {
       var _this = this;
 
@@ -114,11 +140,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   sessionStorage.setItem('search', JSON.stringify(_this.request));
                 }
 
-                _this.sport = sport;
-                _context.next = 4;
-                return _this.getClubs(_this.request);
+                _this.sport = sport; // await this.getClubs(this.request)
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -225,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ClubCard',
   props: {
-    club: Array
+    club: null
   },
   data: function data() {
     return {
@@ -244,7 +268,7 @@ __webpack_require__.r(__webpack_exports__);
         var search_request = JSON.parse(sessionStorage.getItem('search'));
 
         if (search_request.date && search_request.start_time && search_request.end_time) {
-          this.clubSearch.partnerId = this.club[0].id;
+          this.clubSearch.partnerId = this.club.partner_id;
           this.clubSearch.sport_type = search_request.sport_type;
           this.clubSearch.date = search_request.date;
           this.clubSearch.start_time = search_request.start_time;
@@ -256,7 +280,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'Club',
         params: {
-          clubId: this.club[0].id
+          clubId: this.club.partner_id
         }
       });
     }
@@ -609,6 +633,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Button',
+  props: {
+    text: String,
+    textStyle: String
+  },
+  methods: {
+    onClick: function onClick() {
+      this.$emit('btn-click');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/views/components/Clubs/Clubs.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/views/components/Clubs/Clubs.vue ***!
@@ -799,6 +854,44 @@ component.options.__file = "resources/js/views/components/Clubs/PageComponents/T
 
 /***/ }),
 
+/***/ "./resources/js/views/components/Dashboard/Button.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue?vue&type=template&id=6daedff7& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
+/* harmony import */ var _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/components/Dashboard/Button.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/components/Clubs/Clubs.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
   !*** ./resources/js/views/components/Clubs/Clubs.vue?vue&type=script&lang=js& ***!
@@ -871,6 +964,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopFilters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TopFilters.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Clubs/PageComponents/TopFilters.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopFilters_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -954,6 +1062,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=template&id=6daedff7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Clubs/Clubs.vue?vue&type=template&id=1616c571&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Clubs/Clubs.vue?vue&type=template&id=1616c571& ***!
@@ -996,42 +1120,111 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "main",
-          { staticClass: "col-span-2" },
-          [
-            _c(
-              "div",
-              { staticClass: "flex flex-row my-3" },
-              [
-                _c("DateTimeFilters", {
-                  staticClass: "flex-none",
-                  attrs: {
-                    date: _vm.request.date,
-                    start: _vm.request.start_time,
-                    end: _vm.request.end_time
-                  },
-                  on: { changeRequest: _vm.changeRequest }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex-grow" }),
-                _vm._v(" "),
-                _vm._m(0)
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.clubs, function(club) {
-              return _c(
+        _c("main", { staticClass: "col-span-2" }, [
+          _c(
+            "div",
+            { staticClass: "flex flex-row my-3" },
+            [
+              _c("DateTimeFilters", {
+                staticClass: "flex-none",
+                attrs: {
+                  date: _vm.request.date,
+                  start: _vm.request.start_time,
+                  end: _vm.request.end_time
+                },
+                on: { changeRequest: _vm.changeRequest }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex-grow" }),
+              _vm._v(" "),
+              _vm._m(0)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.clubs
+            ? _c(
                 "div",
-                { key: club[0].partner_id },
-                [_c("ClubCard", { attrs: { club: club } })],
-                1
+                _vm._l(_vm.clubs.data, function(club) {
+                  return _c(
+                    "div",
+                    { key: club.partner_id },
+                    [_c("ClubCard", { attrs: { club: club } })],
+                    1
+                  )
+                }),
+                0
               )
-            })
-          ],
-          2
-        ),
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-row my-8" }, [
+            _c("div", { staticClass: "flex-grow" }),
+            _vm._v(" "),
+            _vm.clubs
+              ? _c(
+                  "div",
+                  { staticClass: "flex flex-row text-lg" },
+                  _vm._l(_vm.clubs.links, function(page, index) {
+                    return _c(
+                      "div",
+                      { key: index, staticClass: "mx-3" },
+                      [
+                        page.label == "&laquo; Previous" && page.url
+                          ? _c("Button", {
+                              attrs: {
+                                text: "prev",
+                                textStyle: "text-gray-400"
+                              },
+                              on: {
+                                "btn-click": function($event) {
+                                  return _vm.changePage(page.url)
+                                }
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        page.label != "&laquo; Previous" &&
+                        page.label != "Next &raquo;"
+                          ? _c("Button", {
+                              attrs: {
+                                text: page.label,
+                                textStyle:
+                                  page.label == _vm.clubs.current_page
+                                    ? "text-black"
+                                    : "text-gray-400"
+                              },
+                              on: {
+                                "btn-click": function($event) {
+                                  return _vm.changePage(page.url)
+                                }
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        page.label == "Next &raquo;" && page.url
+                          ? _c("Button", {
+                              attrs: {
+                                text: "next",
+                                textStyle: "text-gray-400"
+                              },
+                              on: {
+                                "btn-click": function($event) {
+                                  return _vm.changePage(page.url)
+                                }
+                              }
+                            })
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-grow" })
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-span-1" })
       ])
@@ -1082,12 +1275,10 @@ var render = function() {
     "div",
     { staticClass: "flex flex-row p-3 rounded-lg shadow-lg text-lg" },
     [
-      _c("div", { staticClass: "flex-none" }, [
-        _vm._v(_vm._s(this.club[2].name))
-      ]),
+      _c("div", { staticClass: "flex-none" }, [_vm._v(_vm._s(this.club.name))]),
       _vm._v(" "),
       _c("div", { staticClass: "flex-none text-gray-600 ml-4" }, [
-        _vm._v(_vm._s(this.club[1].city))
+        _vm._v(_vm._s(this.club.city))
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "flex-grow" }),
@@ -1948,6 +2139,41 @@ var render = function() {
       )
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "focus:outline-none",
+      on: {
+        click: function($event) {
+          return _vm.onClick()
+        }
+      }
+    },
+    [_c("div", { class: _vm.textStyle }, [_vm._v(_vm._s(_vm.text))])]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

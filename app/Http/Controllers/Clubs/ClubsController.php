@@ -32,6 +32,7 @@ class ClubsController extends Controller
         if ($request->date && $request->start_time && $request->end_time) {
             for ($i=0; $i < count($availableClubs); $i++) {
                 $availableVenues = $this->getAvailableVenues($availableClubs[$i]->id,$request);
+
                 if ($availableVenues) {
                     if ($request->maxPrice) {
                         $duration = $request->end_time - $request->start_time;
@@ -51,17 +52,27 @@ class ClubsController extends Controller
             }
         }
 
-        if ($availableClubs) {
-            $partnerAddressController = new PartnerAddressController;
-            $partnerDetailsController = new PartnerDetailsController;
+        for ($i = 0; $i < sizeof($availableClubs); $i++)
+            $clubsId[$i]= $availableClubs[$i]->id;
 
-            for ($i = 0; $i < sizeof($availableClubs); $i++) {
-                $clubs[$i][0] = $availableClubs[$i];
-                $clubs[$i][1] = $partnerAddressController->show($availableClubs[$i]->id)[0];
-                $clubs[$i][2] = $partnerDetailsController->show($availableClubs[$i]->id)[0];
-            }
-            return $clubs;
-        } else return $availableClubs;
+        //Object version withpagination
+        return DB::table('partner_details')
+                    ->join('partner_address','partner_details.partner_id','=','partner_address.partner_id')
+                    ->whereIn('partner_details.partner_id',$clubsId)
+                    ->paginate(5);
+
+        //Array version without pagination  !! MIGHT BE REMOVED !!
+        // if ($availableClubs) {
+        //     $partnerAddressController = new PartnerAddressController;
+        //     $partnerDetailsController = new PartnerDetailsController;
+
+        //     for ($i = 0; $i < sizeof($availableClubs); $i++) {
+        //         $clubs[$i][0] = $availableClubs[$i];
+        //         $clubs[$i][1] = $partnerAddressController->show($availableClubs[$i]->id)[0];
+        //         $clubs[$i][2] = $partnerDetailsController->show($availableClubs[$i]->id)[0];
+        //     }
+        //     return $clubs;
+        // } else return $availableClubs;
     }
 
     //checks max price for available venues

@@ -25,8 +25,31 @@
                 </div>
 
                 <!-- List of clubs -->
-                <div :key="club[0].partner_id" v-for="club in clubs" class="">
-                    <ClubCard :club="club" />
+                <div v-if="clubs">
+                    <div :key="club.partner_id" v-for="club in clubs.data">
+                        <ClubCard :club="club" />
+                    </div>
+                </div>
+
+                <!-- Pages -->
+                <div class="flex flex-row my-8">
+                    <div class="flex-grow"></div>
+                    <div class="flex flex-row text-lg" v-if="clubs">
+                        <div :key="index" v-for="(page, index) in clubs.links" class="mx-3">
+                            <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
+                                :textStyle="'text-gray-400'"
+                                @btn-click="changePage(page.url)"/>
+
+                            <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
+                                :textStyle="page.label == clubs.current_page ? 'text-black' : 'text-gray-400'"
+                                @btn-click="changePage(page.url)"/>
+
+                            <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
+                                :textStyle="'text-gray-400'"
+                                @btn-click="changePage(page.url)"/>
+                        </div>
+                    </div>
+                    <div class="flex-grow"></div>
                 </div>
             </main>
             <div class="col-span-1"></div>
@@ -40,6 +63,7 @@ import ClubCard from './PageComponents/ClubCard'
 import TopFilters from './PageComponents/TopFilters'
 import DateTimeFilters from './PageComponents/DateTimeFilters'
 import SideFilters from './PageComponents/SideFilters'
+import Button from '../Dashboard/Button.vue'
 
 export default {
     name: 'Clubs',
@@ -47,7 +71,8 @@ export default {
         ClubCard,
         TopFilters,
         DateTimeFilters,
-        SideFilters
+        SideFilters,
+        Button
     },
     data() {
         return {
@@ -67,7 +92,7 @@ export default {
     },
     computed: mapGetters('clubs',['clubs']),
     methods: {
-        ...mapActions('clubs',['getClubs']),
+        ...mapActions('clubs',['getClubs','changePage']),
         async fetchSport(sport) {
 
             if (sessionStorage.getItem('search')) {
@@ -83,7 +108,7 @@ export default {
 
             this.sport = sport
 
-            await this.getClubs(this.request)
+            // await this.getClubs(this.request)
         },
         async changeRequest(newRequest) {
             if(newRequest.sport_type) this.request.sport_type = newRequest.sport_type

@@ -2532,7 +2532,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var state = {
-  clubs: [],
+  clubs: null,
   request: []
 };
 var getters = {
@@ -2559,7 +2559,7 @@ var actions = {
                 params: request
               }).then(function (response) {
                 commit('setRequest', request);
-                if (response.data.length > 0) commit('setClubs', response.data);
+                if (response.data.data.length > 0) commit('setClubs', response.data);
               })["catch"](function (error) {
                 console.log(error.response.data.message);
               });
@@ -2571,20 +2571,33 @@ var actions = {
         }
       }, _callee);
     }))();
-  } // async searchClubName({ commit }, name) {
-  //     commit('destroyClubs')
-  //     if (name) {
-  //         await axios.get(`/api/clubs/search/like/${name}`).then((response)=> {
-  //             if(response.data.length > 0) {
-  //                 // console.log(response.data);  //remove
-  //                 commit('setClubs', response.data)
-  //             }
-  //         }).catch((error) => {
-  //             console.log(error.response.data.message);
-  //         })
-  //     }
-  // }
+  },
+  changePage: function changePage(_ref2, url) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              commit('destroyClubs');
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url, {
+                params: state.request
+              }).then(function (response) {
+                if (response.data.data.length > 0) commit('setClubs', response.data);
+              })["catch"](function (error) {
+                console.log(error.response.data.message);
+              });
 
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
 };
 var mutations = {
   setClubs: function setClubs(state, clubs) {
@@ -2594,7 +2607,7 @@ var mutations = {
     return state.request = request;
   },
   destroyClubs: function destroyClubs(state) {
-    return state.clubs = [];
+    return state.clubs = null;
   },
   destroyRequest: function destroyRequest(state) {
     return state.request = [];
