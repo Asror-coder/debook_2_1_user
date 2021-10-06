@@ -61,7 +61,7 @@ export default {
                 end_time: '',
                 surface: [],
                 indoor: null,
-                maxPrice: ''
+                maxPrice: 0
             }
         };
     },
@@ -110,7 +110,7 @@ export default {
             this.request.end_time = ''
             this.request.surface = []
             this.request.indoor = null
-            this.request.maxPrice = ''
+            this.request.maxPrice = 0
 
             sessionStorage.setItem('search', JSON.stringify(this.request))
 

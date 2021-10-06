@@ -2,7 +2,9 @@
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
         <main class="col-span-2">
-            <div class="flex flex-row my-5 ">
+
+                                            <!-- Dashboard header -->
+            <div class="flex flex-row my-5">
                 <div class="flex-none text-2xl font-bold">{{user.name}} {{user.lastname}}</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
@@ -15,10 +17,13 @@
                     @click.prevent="logout"> Logout </button>
             </div>
 
+
+                                            <!-- Profile -->
             <div v-show="showProfile">
                 <Profile />
             </div>
 
+                                            <!-- Upcomming bookings -->
             <div v-show="this.activeBookings.length > 0" v-if="!showPassed">
                 <div class="text-xl text-gray-500 font-bold">Upcomming bookings</div>
 
@@ -27,14 +32,17 @@
                 </div>
             </div>
 
+                                            <!-- Passed bookings -->
             <div v-show="this.notActiveBookings.length > 0" v-if="showPassed">
                 <div class="text-xl text-gray-500 font-bold">Passed bookings</div>
 
+                <!-- Bookings -->
                 <div :key="notActiveBooking[0].id" v-for="notActiveBooking in notActiveBookings">
                     <BookingCard :booking="notActiveBooking" />
                 </div>
 
-                <div class="flex flex-row mt-5">
+                <!-- Pages -->
+                <div class="flex flex-row my-8">
                     <div class="flex-grow"></div>
                     <div class="flex flex-row text-lg" v-if="notActiveBookingsPage">
                         <div :key="index" v-for="(page, index) in notActiveBookingsPage.links" class="mx-3">

@@ -5,6 +5,7 @@
         <div class="flex-grow w-screen">
             <router-view></router-view>
         </div>
+
         <Footer class="flex-none w-screen" />
     </div>
 </template>

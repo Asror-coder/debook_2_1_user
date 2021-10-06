@@ -209,6 +209,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -792,7 +800,7 @@ var render = function() {
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
     _c("main", { staticClass: "col-span-2" }, [
-      _c("div", { staticClass: "flex flex-row my-5 " }, [
+      _c("div", { staticClass: "flex flex-row my-5" }, [
         _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
           _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
         ]),
@@ -921,7 +929,7 @@ var render = function() {
                 )
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "flex flex-row mt-5" }, [
+              _c("div", { staticClass: "flex flex-row my-8" }, [
                 _c("div", { staticClass: "flex-grow" }),
                 _vm._v(" "),
                 _vm.notActiveBookingsPage

@@ -15,7 +15,6 @@
 
                             <li><router-link to='/clubs/tennis' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Tennis</router-link></li>
                             <li><router-link to='/clubs/padel' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Padel</router-link></li>
-                            <!-- <li><router-link to='/clubs/squash' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Squash</router-link></li> -->
                         </ul>
 
                     </transition>

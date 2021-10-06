@@ -91,7 +91,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         end_time: '',
         surface: [],
         indoor: null,
-        maxPrice: ''
+        maxPrice: 0
       }
     };
   },
@@ -175,7 +175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.request.end_time = '';
                 _this3.request.surface = [];
                 _this3.request.indoor = null;
-                _this3.request.maxPrice = '';
+                _this3.request.maxPrice = 0;
                 sessionStorage.setItem('search', JSON.stringify(_this3.request));
                 _context3.next = 11;
                 return _this3.getClubs(_this3.request);
@@ -500,7 +500,7 @@ __webpack_require__.r(__webpack_exports__);
     sport: '',
     passed_surface: Array,
     passed_indoor: null,
-    passed_maxPrice: ''
+    passed_maxPrice: 0
   },
   data: function data() {
     return {
@@ -1691,7 +1691,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "1" } }, [_vm._v("€20")]),
+          _c("label", { attrs: { for: "20" } }, [_vm._v("€20")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1713,7 +1713,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("€25")]),
+          _c("label", { attrs: { for: "25" } }, [_vm._v("€25")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1735,7 +1735,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("€30")]),
+          _c("label", { attrs: { for: "30" } }, [_vm._v("€30")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1757,7 +1757,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("€35")]),
+          _c("label", { attrs: { for: "35" } }, [_vm._v("€35")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1779,7 +1779,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("€40")]),
+          _c("label", { attrs: { for: "40" } }, [_vm._v("€40")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1801,7 +1801,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("€50")]),
+          _c("label", { attrs: { for: "50" } }, [_vm._v("€50")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1814,16 +1814,16 @@ var render = function() {
                 expression: "form.maxPrice"
               }
             ],
-            attrs: { type: "radio", value: "" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "") },
+            attrs: { type: "radio", value: "0" },
+            domProps: { checked: _vm._q(_vm.form.maxPrice, "0") },
             on: {
               change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "")
+                return _vm.$set(_vm.form, "maxPrice", "0")
               }
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "" } }, [_vm._v("Doesn't matter")]),
+          _c("label", { attrs: { for: "0" } }, [_vm._v("Doesn't matter")]),
           _vm._v(" "),
           _c("br")
         ])

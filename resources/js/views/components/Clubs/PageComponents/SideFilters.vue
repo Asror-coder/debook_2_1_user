@@ -50,19 +50,19 @@
 
                 <div class="ml-3" @change="changeRequest">
                     <input type="radio" value="20" v-model="form.maxPrice">
-                    <label for="1">€20</label> <br>
+                    <label for="20">€20</label> <br>
                     <input type="radio" value="25" v-model="form.maxPrice">
-                    <label for="0">€25</label> <br>
+                    <label for="25">€25</label> <br>
                     <input type="radio" value="30" v-model="form.maxPrice">
-                    <label for="0">€30</label> <br>
+                    <label for="30">€30</label> <br>
                     <input type="radio" value="35" v-model="form.maxPrice">
-                    <label for="0">€35</label> <br>
+                    <label for="35">€35</label> <br>
                     <input type="radio" value="40" v-model="form.maxPrice">
-                    <label for="0">€40</label> <br>
+                    <label for="40">€40</label> <br>
                     <input type="radio" value="50" v-model="form.maxPrice">
-                    <label for="0">€50</label> <br>
-                    <input type="radio" value="" v-model="form.maxPrice">
-                    <label for="">Doesn't matter</label> <br>
+                    <label for="50">€50</label> <br>
+                    <input type="radio" value="0" v-model="form.maxPrice">
+                    <label for="0">Doesn't matter</label> <br>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@ export default {
         sport: '',
         passed_surface: Array,
         passed_indoor: null,
-        passed_maxPrice: ''
+        passed_maxPrice: 0
     },
     data() {
         return {
