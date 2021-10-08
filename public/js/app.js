@@ -2227,6 +2227,18 @@ __webpack_require__.r(__webpack_exports__);
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/Register */ "./resources/js/views/components/Auth/Register.vue"));
     }
+  }, {
+    path: '/register/success',
+    name: 'RegisterSuccess',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_RegisterSuccess_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/RegisterSuccess */ "./resources/js/views/components/Auth/RegisterSuccess.vue"));
+    }
+  }, {
+    path: '/email/verify/success',
+    name: 'EmailVerify',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_EmailVerify_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/EmailVerify */ "./resources/js/views/components/Auth/EmailVerify.vue"));
+    }
   }]
 });
 
@@ -2293,12 +2305,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   activeBookings: [],
+  activeBookingsPage: null,
   notActiveBookings: [],
   notActiveBookingsPage: null
 };
 var getters = {
   activeBookings: function activeBookings(state) {
     return state.activeBookings;
+  },
+  activeBookingsPage: function activeBookingsPage(state) {
+    return state.activeBookingsPage;
   },
   notActiveBookings: function notActiveBookings(state) {
     return state.notActiveBookings;
@@ -2318,7 +2334,10 @@ var actions = {
               commit = _ref.commit;
               _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/active/".concat(userId)).then(function (response) {
-                if (response.data.length > 0) commit('setActiveBookings', response.data);
+                if (response.data[0]) {
+                  commit('setActiveBookings', response.data[0]);
+                  commit('setActiveBookingsPage', response.data[1]);
+                }
               });
 
             case 3:
@@ -2329,7 +2348,7 @@ var actions = {
       }, _callee);
     }))();
   },
-  fetchNotActiveBookings: function fetchNotActiveBookings(_ref2, userId) {
+  changeActiveBookings: function changeActiveBookings(_ref2, url) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -2338,10 +2357,10 @@ var actions = {
             case 0:
               commit = _ref2.commit;
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/notactive/".concat(userId)).then(function (response) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (response) {
                 if (response.data[0].length > 0) {
-                  commit('setNotActiveBookings', response.data[0]);
-                  commit('setNotActiveBookingsPage', response.data[1]);
+                  commit('setActiveBookings', response.data[0]);
+                  commit('setActiveBookingsPage', response.data[1]);
                 }
               });
 
@@ -2353,7 +2372,7 @@ var actions = {
       }, _callee2);
     }))();
   },
-  changeNotActiveBookings: function changeNotActiveBookings(_ref3, url) {
+  fetchNotActiveBookings: function fetchNotActiveBookings(_ref3, userId) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -2362,8 +2381,8 @@ var actions = {
             case 0:
               commit = _ref3.commit;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (response) {
-                if (response.data[0].length > 0) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/booking/notactive/".concat(userId)).then(function (response) {
+                if (response.data[0]) {
                   commit('setNotActiveBookings', response.data[0]);
                   commit('setNotActiveBookingsPage', response.data[1]);
                 }
@@ -2377,7 +2396,7 @@ var actions = {
       }, _callee3);
     }))();
   },
-  addBooking: function addBooking(_ref4, request) {
+  changeNotActiveBookings: function changeNotActiveBookings(_ref4, url) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -2386,8 +2405,11 @@ var actions = {
             case 0:
               commit = _ref4.commit;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/newbooking", request).then(function (response) {
-                if (state.activeBookings) commit('newActiveBooking', response.data);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (response) {
+                if (response.data[0].length > 0) {
+                  commit('setNotActiveBookings', response.data[0]);
+                  commit('setNotActiveBookingsPage', response.data[1]);
+                }
               });
 
             case 3:
@@ -2397,11 +2419,35 @@ var actions = {
         }
       }, _callee4);
     }))();
+  },
+  addBooking: function addBooking(_ref5, request) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref5.commit;
+              _context5.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/newbooking", request).then(function (response) {
+                if (state.activeBookings) commit('newActiveBooking', response.data);
+              });
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
   }
 };
 var mutations = {
   setActiveBookings: function setActiveBookings(state, bookings) {
     return state.activeBookings = bookings;
+  },
+  setActiveBookingsPage: function setActiveBookingsPage(state, pageInfo) {
+    return state.ActiveBookingsPage = pageInfo;
   },
   newActiveBooking: function newActiveBooking(state, booking) {
     return state.activeBookings.unshift(booking);
@@ -38218,7 +38264,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1,"resources_js_views_components_Auth_RegisterSuccess_vue":1,"resources_js_views_components_Auth_EmailVerify_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

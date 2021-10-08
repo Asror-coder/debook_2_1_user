@@ -138,9 +138,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 } else {
                   _this.request.sport_type = sport;
                   sessionStorage.setItem('search', JSON.stringify(_this.request));
+
+                  _this.getClubs(_this.request);
                 }
 
-                _this.sport = sport; // await this.getClubs(this.request)
+                _this.sport = sport;
 
               case 2:
               case "end":

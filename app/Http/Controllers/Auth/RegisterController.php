@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -29,7 +28,7 @@ class RegisterController extends Controller
         ]);
 
         //store user
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
@@ -37,12 +36,6 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        //sign the user in
-        // if (Auth::attempt($request->only('email','password'))) {
-        //     return response()->json(Auth::user(), 200);
-        // }
-        // throw ValidationException::withMessages([
-        //     'email' => ['The provided credentials are incorrect']
-        // ]);
+        event(new Registered($user));
     }
 }

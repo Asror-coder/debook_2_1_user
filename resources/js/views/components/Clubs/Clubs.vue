@@ -104,11 +104,10 @@ export default {
             else {
                 this.request.sport_type = sport
                 sessionStorage.setItem('search', JSON.stringify(this.request))
+                this.getClubs(this.request)
             }
 
             this.sport = sport
-
-            // await this.getClubs(this.request)
         },
         async changeRequest(newRequest) {
             if(newRequest.sport_type) this.request.sport_type = newRequest.sport_type

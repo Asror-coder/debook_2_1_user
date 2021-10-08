@@ -2,12 +2,14 @@ import axios from 'axios'
 
 const state = {
     activeBookings: [],
+    activeBookingsPage: null,
     notActiveBookings: [],
     notActiveBookingsPage: null
 }
 
 const getters = {
     activeBookings: (state) => state.activeBookings,
+    activeBookingsPage: (state) => state.activeBookingsPage,
     notActiveBookings: (state) => state.notActiveBookings,
     notActiveBookingsPage: (state) => state.notActiveBookingsPage
 }
@@ -15,13 +17,23 @@ const getters = {
 const actions = {
     async fetchActiveBookings({ commit }, userId) {
         await axios.get(`/api/booking/active/${userId}`).then((response)=> {
-            if(response.data.length > 0)
-                commit('setActiveBookings', response.data)
+            if(response.data[0]) {
+                commit('setActiveBookings', response.data[0])
+                commit('setActiveBookingsPage', response.data[1])
+            }
+        })
+    },
+    async changeActiveBookings({ commit }, url) {
+        await axios.get(url).then((response)=> {
+            if(response.data[0].length > 0) {
+                commit('setActiveBookings', response.data[0])
+                commit('setActiveBookingsPage', response.data[1])
+            }
         })
     },
     async fetchNotActiveBookings({ commit }, userId) {
         await axios.get(`/api/booking/notactive/${userId}`).then((response)=> {
-            if(response.data[0].length > 0) {
+            if(response.data[0]) {
                 commit('setNotActiveBookings', response.data[0])
                 commit('setNotActiveBookingsPage', response.data[1])
             }
@@ -44,7 +56,10 @@ const actions = {
 
 const mutations = {
     setActiveBookings: (state, bookings) => state.activeBookings = bookings,
+    setActiveBookingsPage: (state, pageInfo) => state.ActiveBookingsPage = pageInfo,
+
     newActiveBooking: (state, booking) => state.activeBookings.unshift(booking),
+
     setNotActiveBookings: (state, bookings) => state.notActiveBookings = bookings,
     setNotActiveBookingsPage: (state, pageInfo) => state.notActiveBookingsPage = pageInfo,
 }

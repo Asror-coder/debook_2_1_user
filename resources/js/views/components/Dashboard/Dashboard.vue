@@ -24,43 +24,74 @@
             </div>
 
                                             <!-- Upcomming bookings -->
-            <div v-show="this.activeBookings.length > 0" v-if="!showPassed">
+
+            <div v-if="!showPassed">
                 <div class="text-xl text-gray-500 font-bold">Upcomming bookings</div>
 
-                <div :key="activeBooking[0].id" v-for="activeBooking in activeBookings">
-                    <BookingCard :booking="activeBooking" />
+                <div v-if="this.activeBookings.length > 0">
+                    <!-- Bookings -->
+                    <div :key="activeBooking[0].id" v-for="activeBooking in activeBookings">
+                        <BookingCard :booking="activeBooking" />
+                    </div>
+
+                    <!-- Pages -->
+                    <div class="flex flex-row my-8">
+                        <div class="flex-grow"></div>
+                        <div class="flex flex-row text-lg" v-if="activeBookingsPage">
+                            <div :key="index" v-for="(page, index) in activeBookingsPage.links" class="mx-3">
+                                <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
+                                    :textStyle="'text-gray-400'"
+                                    @btn-click="changeActiveBookings(page.url)"/>
+
+                                <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
+                                    :textStyle="page.label == activeBookingsPage.current_page ? 'text-black' : 'text-gray-400'"
+                                    @btn-click="changeActiveBookings(page.url)"/>
+
+                                <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
+                                    :textStyle="'text-gray-400'"
+                                    @btn-click="changeActiveBookings(page.url)"/>
+                            </div>
+                        </div>
+                        <div class="flex-grow"></div>
+                    </div>
                 </div>
+                <div v-else class="text-lg text-gray-500"> No bookings yet</div>
             </div>
 
+
                                             <!-- Passed bookings -->
-            <div v-show="this.notActiveBookings.length > 0" v-if="showPassed">
+
+            <div v-if="showPassed">
                 <div class="text-xl text-gray-500 font-bold">Passed bookings</div>
 
-                <!-- Bookings -->
-                <div :key="notActiveBooking[0].id" v-for="notActiveBooking in notActiveBookings">
-                    <BookingCard :booking="notActiveBooking" />
-                </div>
-
-                <!-- Pages -->
-                <div class="flex flex-row my-8">
-                    <div class="flex-grow"></div>
-                    <div class="flex flex-row text-lg" v-if="notActiveBookingsPage">
-                        <div :key="index" v-for="(page, index) in notActiveBookingsPage.links" class="mx-3">
-                            <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
-                                :textStyle="'text-gray-400'"
-                                @btn-click="changeNotActiveBookings(page.url)"/>
-
-                            <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
-                                :textStyle="page.label == notActiveBookingsPage.current_page ? 'text-black' : 'text-gray-400'"
-                                @btn-click="changeNotActiveBookings(page.url)"/>
-
-                            <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
-                                :textStyle="'text-gray-400'"
-                                @btn-click="changeNotActiveBookings(page.url)"/>
-                        </div>
+                <div v-if="this.notActiveBookings.length > 0">
+                    <!-- Bookings -->
+                    <div :key="notActiveBooking[0].id" v-for="notActiveBooking in notActiveBookings">
+                        <BookingCard :booking="notActiveBooking" />
                     </div>
-                    <div class="flex-grow"></div>
+
+                    <!-- Pages -->
+                    <div class="flex flex-row my-8">
+                        <div class="flex-grow"></div>
+                        <div class="flex flex-row text-lg" v-if="notActiveBookingsPage">
+                            <div :key="index" v-for="(page, index) in notActiveBookingsPage.links" class="mx-3">
+                                <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
+                                    :textStyle="'text-gray-400'"
+                                    @btn-click="changeNotActiveBookings(page.url)"/>
+
+                                <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
+                                    :textStyle="page.label == notActiveBookingsPage.current_page ? 'text-black' : 'text-gray-400'"
+                                    @btn-click="changeNotActiveBookings(page.url)"/>
+
+                                <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
+                                    :textStyle="'text-gray-400'"
+                                    @btn-click="changeNotActiveBookings(page.url)"/>
+                            </div>
+                        </div>
+                        <div class="flex-grow"></div>
+                    </div>
                 </div>
+                <div v-else class="text-lg text-gray-500"> No bookings yet</div>
             </div>
 
         </main>
@@ -90,7 +121,8 @@ export default {
     },
     methods: {
         ...mapActions('user',['logoutUser']),
-        ...mapActions('bookings',['fetchActiveBookings','fetchNotActiveBookings','changeNotActiveBookings']),
+        ...mapActions('bookings',['fetchActiveBookings','fetchNotActiveBookings',
+                                  'changeNotActiveBookings','changeActiveBookings']),
         async logout() {
             await this.logoutUser()
         },
@@ -101,7 +133,8 @@ export default {
             this.showPassed = !this.showPassed
         }
     },
-    computed: mapGetters('bookings',['activeBookings','notActiveBookings', 'notActiveBookingsPage']),
+    computed: mapGetters('bookings',['activeBookings','notActiveBookings',
+                                     'notActiveBookingsPage','activeBookingsPage']),
     async mounted() {
         this.user = JSON.parse(localStorage.getItem('user')).user
         this.fetchActiveBookings(this.user.id)

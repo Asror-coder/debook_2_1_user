@@ -17,14 +17,27 @@ class BookingController extends Controller
      */
     public function getActiveBookings($userId)
     {
+        // $bookings = Booking::where('user_id', $userId)
+        //               ->where('status_id', 1)
+        //               ->orderBy('date', 'asc')
+        //               ->orderBy('start_time', 'asc')
+        //               ->get();
+
+        // if (!$bookings) return $bookings;
+        // else return BookingController::getFullInformation($bookings);
+
         $bookings = Booking::where('user_id', $userId)
                       ->where('status_id', 1)
                       ->orderBy('date', 'asc')
                       ->orderBy('start_time', 'asc')
-                      ->get();
+                      ->paginate(5);
 
-        if (!$bookings) return $bookings;
-        else return BookingController::getFullInformation($bookings);
+        if ($bookings->count() == 0) return $bookings;
+        else {
+            $fullInfo[0] = BookingController::getFullInformation($bookings);
+            $fullInfo[1] = $bookings;
+            return $fullInfo;
+        }
     }
 
     public function getNotActiveBookings($userId)

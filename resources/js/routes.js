@@ -59,5 +59,15 @@ export default {
             name: 'Register',
             component: () => import('./views/components/Auth/Register'),
         },
+        {
+            path: '/register/success',
+            name: 'RegisterSuccess',
+            component: () => import('./views/components/Auth/RegisterSuccess'),
+        },
+        {
+            path: '/email/verify/success',
+            name: 'EmailVerify',
+            component: () => import('./views/components/Auth/EmailVerify'),
+        },
     ]
 }

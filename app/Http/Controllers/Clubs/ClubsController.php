@@ -52,6 +52,7 @@ class ClubsController extends Controller
             }
         }
 
+        $clubsId = [];
         for ($i = 0; $i < sizeof($availableClubs); $i++)
             $clubsId[$i]= $availableClubs[$i]->id;
 
@@ -61,7 +62,7 @@ class ClubsController extends Controller
                     ->whereIn('partner_details.partner_id',$clubsId)
                     ->paginate(5);
 
-        //Array version without pagination  !! MIGHT BE REMOVED !!
+        //Array version without pagination  !! CHECK BEFORE REMOVING !!
         // if ($availableClubs) {
         //     $partnerAddressController = new PartnerAddressController;
         //     $partnerDetailsController = new PartnerDetailsController;

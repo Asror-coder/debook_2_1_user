@@ -217,6 +217,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -235,7 +266,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showPassed: false
     };
   },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('bookings', ['fetchActiveBookings', 'fetchNotActiveBookings', 'changeNotActiveBookings'])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('bookings', ['fetchActiveBookings', 'fetchNotActiveBookings', 'changeNotActiveBookings', 'changeActiveBookings'])), {}, {
     logout: function logout() {
       var _this = this;
 
@@ -262,7 +293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showPassed = !this.showPassed;
     }
   }),
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage']),
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage', 'activeBookingsPage']),
   mounted: function mounted() {
     var _this2 = this;
 
@@ -872,143 +903,222 @@ var render = function() {
       ),
       _vm._v(" "),
       !_vm.showPassed
-        ? _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: this.activeBookings.length > 0,
-                  expression: "this.activeBookings.length > 0"
-                }
-              ]
-            },
-            [
-              _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-                _vm._v("Upcomming bookings")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.activeBookings, function(activeBooking) {
-                return _c(
+        ? _c("div", [
+            _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+              _vm._v("Upcomming bookings")
+            ]),
+            _vm._v(" "),
+            this.activeBookings.length > 0
+              ? _c(
                   "div",
-                  { key: activeBooking[0].id },
-                  [_c("BookingCard", { attrs: { booking: activeBooking } })],
-                  1
+                  [
+                    _vm._l(_vm.activeBookings, function(activeBooking) {
+                      return _c(
+                        "div",
+                        { key: activeBooking[0].id },
+                        [
+                          _c("BookingCard", {
+                            attrs: { booking: activeBooking }
+                          })
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-row my-8" }, [
+                      _c("div", { staticClass: "flex-grow" }),
+                      _vm._v(" "),
+                      _vm.activeBookingsPage
+                        ? _c(
+                            "div",
+                            { staticClass: "flex flex-row text-lg" },
+                            _vm._l(_vm.activeBookingsPage.links, function(
+                              page,
+                              index
+                            ) {
+                              return _c(
+                                "div",
+                                { key: index, staticClass: "mx-3" },
+                                [
+                                  page.label == "&laquo; Previous" && page.url
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: "prev",
+                                          textStyle: "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  page.label != "&laquo; Previous" &&
+                                  page.label != "Next &raquo;"
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: page.label,
+                                          textStyle:
+                                            page.label ==
+                                            _vm.activeBookingsPage.current_page
+                                              ? "text-black"
+                                              : "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  page.label == "Next &raquo;" && page.url
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: "next",
+                                          textStyle: "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            }),
+                            0
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-grow" })
+                    ])
+                  ],
+                  2
                 )
-              })
-            ],
-            2
-          )
+              : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                  _vm._v(" No bookings yet")
+                ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.showPassed
-        ? _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: this.notActiveBookings.length > 0,
-                  expression: "this.notActiveBookings.length > 0"
-                }
-              ]
-            },
-            [
-              _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-                _vm._v("Passed bookings")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.notActiveBookings, function(notActiveBooking) {
-                return _c(
+        ? _c("div", [
+            _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+              _vm._v("Passed bookings")
+            ]),
+            _vm._v(" "),
+            this.notActiveBookings.length > 0
+              ? _c(
                   "div",
-                  { key: notActiveBooking[0].id },
-                  [_c("BookingCard", { attrs: { booking: notActiveBooking } })],
-                  1
+                  [
+                    _vm._l(_vm.notActiveBookings, function(notActiveBooking) {
+                      return _c(
+                        "div",
+                        { key: notActiveBooking[0].id },
+                        [
+                          _c("BookingCard", {
+                            attrs: { booking: notActiveBooking }
+                          })
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-row my-8" }, [
+                      _c("div", { staticClass: "flex-grow" }),
+                      _vm._v(" "),
+                      _vm.notActiveBookingsPage
+                        ? _c(
+                            "div",
+                            { staticClass: "flex flex-row text-lg" },
+                            _vm._l(_vm.notActiveBookingsPage.links, function(
+                              page,
+                              index
+                            ) {
+                              return _c(
+                                "div",
+                                { key: index, staticClass: "mx-3" },
+                                [
+                                  page.label == "&laquo; Previous" && page.url
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: "prev",
+                                          textStyle: "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeNotActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  page.label != "&laquo; Previous" &&
+                                  page.label != "Next &raquo;"
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: page.label,
+                                          textStyle:
+                                            page.label ==
+                                            _vm.notActiveBookingsPage
+                                              .current_page
+                                              ? "text-black"
+                                              : "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeNotActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  page.label == "Next &raquo;" && page.url
+                                    ? _c("Button", {
+                                        attrs: {
+                                          text: "next",
+                                          textStyle: "text-gray-400"
+                                        },
+                                        on: {
+                                          "btn-click": function($event) {
+                                            return _vm.changeNotActiveBookings(
+                                              page.url
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            }),
+                            0
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-grow" })
+                    ])
+                  ],
+                  2
                 )
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex flex-row my-8" }, [
-                _c("div", { staticClass: "flex-grow" }),
-                _vm._v(" "),
-                _vm.notActiveBookingsPage
-                  ? _c(
-                      "div",
-                      { staticClass: "flex flex-row text-lg" },
-                      _vm._l(_vm.notActiveBookingsPage.links, function(
-                        page,
-                        index
-                      ) {
-                        return _c(
-                          "div",
-                          { key: index, staticClass: "mx-3" },
-                          [
-                            page.label == "&laquo; Previous" && page.url
-                              ? _c("Button", {
-                                  attrs: {
-                                    text: "prev",
-                                    textStyle: "text-gray-400"
-                                  },
-                                  on: {
-                                    "btn-click": function($event) {
-                                      return _vm.changeNotActiveBookings(
-                                        page.url
-                                      )
-                                    }
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            page.label != "&laquo; Previous" &&
-                            page.label != "Next &raquo;"
-                              ? _c("Button", {
-                                  attrs: {
-                                    text: page.label,
-                                    textStyle:
-                                      page.label ==
-                                      _vm.notActiveBookingsPage.current_page
-                                        ? "text-black"
-                                        : "text-gray-400"
-                                  },
-                                  on: {
-                                    "btn-click": function($event) {
-                                      return _vm.changeNotActiveBookings(
-                                        page.url
-                                      )
-                                    }
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            page.label == "Next &raquo;" && page.url
-                              ? _c("Button", {
-                                  attrs: {
-                                    text: "next",
-                                    textStyle: "text-gray-400"
-                                  },
-                                  on: {
-                                    "btn-click": function($event) {
-                                      return _vm.changeNotActiveBookings(
-                                        page.url
-                                      )
-                                    }
-                                  }
-                                })
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      }),
-                      0
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex-grow" })
-              ])
-            ],
-            2
-          )
+              : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                  _vm._v(" No bookings yet")
+                ])
+          ])
         : _vm._e()
     ]),
     _vm._v(" "),

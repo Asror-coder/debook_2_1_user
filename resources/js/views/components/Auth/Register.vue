@@ -81,11 +81,12 @@ export default {
         ...mapActions('user',['loginUser']),
         async register() {
             await axios.post('/api/register', this.form).then((response) => {
-                this.loginUser({
-                    email: this.form.email,
-                    password: this.form.password
-                })
-                location.reload()
+                this.$router.push({ name: "RegisterSuccess"});
+                // this.loginUser({
+                //     email: this.form.email,
+                //     password: this.form.password
+                // })
+                // location.reload()
             }).catch((error) => {
                 this.errors = error.response.data.errors;
             })
