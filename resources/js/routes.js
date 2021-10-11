@@ -22,6 +22,8 @@ export default {
             name: 'Club',
             component: () => import('./views/components/Clubs/Club/Club')
         },
+
+        //Dashboard
         {
             path: '/dashboard',
             name: 'Dashboard',
@@ -39,6 +41,8 @@ export default {
                 next()
             }
         },
+
+        //New Booking
         {
             path: '/newbooking/:venueId',
             name: 'NewBooking',
@@ -49,11 +53,15 @@ export default {
             name: 'SuccessBooking',
             component: () => import('./views/components/Booking/SuccessBooking'),
         },
+
+        //Auth-Login
         {
             path: '/login',
             name: 'Login',
             component: () => import('./views/components/Auth/Login'),
         },
+
+        //Auth-Registration
         {
             path: '/register',
             name: 'Register',
@@ -68,6 +76,28 @@ export default {
             path: '/email/verify/success',
             name: 'EmailVerify',
             component: () => import('./views/components/Auth/EmailVerify'),
+        },
+
+        //Auth-Forgot Password
+        {
+            path: '/newpassword/request',
+            name: 'PwdResetRequest',
+            component: () => import('./views/components/Auth/PwdReset/PwdResetRequest'),
+        },
+        {
+            path: '/newpassword/request/sent',
+            name: 'PwdRequestSent',
+            component: () => import('./views/components/Auth/PwdReset/PwdRequestSent'),
+        },
+        {
+            path: '/newpassword/success',
+            name: 'PwdResetSuccess',
+            component: () => import('./views/components/Auth/PwdReset/PwdResetSuccess'),
+        },
+        {
+            path: '/newpassword/form/:token',
+            name: 'PwdResetForm',
+            component: () => import('./views/components/Auth/PwdReset/PwdResetForm'),
         },
     ]
 }

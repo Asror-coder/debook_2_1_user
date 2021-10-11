@@ -30,7 +30,7 @@
 
                 <div class="flex flex-row mt-5">
                     <div class="flex-none">
-                        <router-link to='#' class="p-3">Forgot your password?</router-link>
+                        <router-link to='/newpassword/request' class="p-3">Forgot your password?</router-link>
                     </div>
                     <div class="flex-grow"></div>
                     <div class="flex-none">

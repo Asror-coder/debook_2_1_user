@@ -381,9 +381,11 @@ var render = function() {
               "div",
               { staticClass: "flex-none" },
               [
-                _c("router-link", { staticClass: "p-3", attrs: { to: "#" } }, [
-                  _vm._v("Forgot your password?")
-                ])
+                _c(
+                  "router-link",
+                  { staticClass: "p-3", attrs: { to: "/newpassword/request" } },
+                  [_vm._v("Forgot your password?")]
+                )
               ],
               1
             ),

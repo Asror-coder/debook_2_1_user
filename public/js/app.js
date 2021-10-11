@@ -2182,7 +2182,8 @@ __webpack_require__.r(__webpack_exports__);
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Clubs_Club_Club_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Clubs/Club/Club */ "./resources/js/views/components/Clubs/Club/Club.vue"));
     }
-  }, {
+  }, //Dashboard
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: function component() {
@@ -2203,7 +2204,8 @@ __webpack_require__.r(__webpack_exports__);
 
       next();
     }
-  }, {
+  }, //New Booking
+  {
     path: '/newbooking/:venueId',
     name: 'NewBooking',
     component: function component() {
@@ -2215,13 +2217,15 @@ __webpack_require__.r(__webpack_exports__);
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Booking_SuccessBooking_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Booking/SuccessBooking */ "./resources/js/views/components/Booking/SuccessBooking.vue"));
     }
-  }, {
+  }, //Auth-Login
+  {
     path: '/login',
     name: 'Login',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/Login */ "./resources/js/views/components/Auth/Login.vue"));
     }
-  }, {
+  }, //Auth-Registration
+  {
     path: '/register',
     name: 'Register',
     component: function component() {
@@ -2238,6 +2242,31 @@ __webpack_require__.r(__webpack_exports__);
     name: 'EmailVerify',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_EmailVerify_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/EmailVerify */ "./resources/js/views/components/Auth/EmailVerify.vue"));
+    }
+  }, //Auth-Forgot Password
+  {
+    path: '/newpassword/request',
+    name: 'PwdResetRequest',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_PwdReset_PwdResetRequest_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/PwdReset/PwdResetRequest */ "./resources/js/views/components/Auth/PwdReset/PwdResetRequest.vue"));
+    }
+  }, {
+    path: '/newpassword/request/sent',
+    name: 'PwdRequestSent',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_PwdReset_PwdRequestSent_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/PwdReset/PwdRequestSent */ "./resources/js/views/components/Auth/PwdReset/PwdRequestSent.vue"));
+    }
+  }, {
+    path: '/newpassword/success',
+    name: 'PwdResetSuccess',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_PwdReset_PwdResetSuccess_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/PwdReset/PwdResetSuccess */ "./resources/js/views/components/Auth/PwdReset/PwdResetSuccess.vue"));
+    }
+  }, {
+    path: '/newpassword/form/:token',
+    name: 'PwdResetForm',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_PwdReset_PwdResetForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/PwdReset/PwdResetForm */ "./resources/js/views/components/Auth/PwdReset/PwdResetForm.vue"));
     }
   }]
 });
@@ -38264,7 +38293,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1,"resources_js_views_components_Auth_RegisterSuccess_vue":1,"resources_js_views_components_Auth_EmailVerify_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1,"resources_js_views_components_Auth_RegisterSuccess_vue":1,"resources_js_views_components_Auth_EmailVerify_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetRequest_vue":1,"resources_js_views_components_Auth_PwdReset_PwdRequestSent_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetSuccess_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetForm_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

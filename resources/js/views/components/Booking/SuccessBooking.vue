@@ -94,7 +94,7 @@ export default {
             }
         }
     },
-    async mounted() {
+    mounted() {
         if(!this.$route.params.booking) this.$router.push('/notfound')
         else this.booking = this.$route.params.booking
     }

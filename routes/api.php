@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Booking\BookingController;
 use App\Http\Controllers\Clubs\ClubsController;
@@ -48,6 +49,17 @@ Route::post('/email/verify/resend', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
 
+//Password reset
+Route::post('/forgot-password', [NewPasswordController::class, 'forgotPassword'])
+    ->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return redirect(env('FRONT_URL') . '/newpassword/form/'.$token);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [NewPasswordController::class, 'reset'])
+    ->middleware('guest')->name('password.update');
+
 //Services
 Route::prefix('/services')->group(function() {
     Route::get('/{id}', [ServiceController::class, 'show']);
@@ -64,7 +76,6 @@ Route::prefix('/clubs')->group(function() {
     Route::get('/club/{id}/opentime', [ClubsController::class, 'getClubOpenTime']);
     Route::get('/club/{id}/availablevenues', [ClubsController::class, 'getAvailableVenues']);
 });
-
 
 //Venue information
 Route::prefix('/venue')->group(function() {

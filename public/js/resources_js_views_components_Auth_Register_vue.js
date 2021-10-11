@@ -118,12 +118,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/register', _this.form).then(function (response) {
                   _this.$router.push({
                     name: "RegisterSuccess"
-                  }); // this.loginUser({
-                  //     email: this.form.email,
-                  //     password: this.form.password
-                  // })
-                  // location.reload()
-
+                  });
                 })["catch"](function (error) {
                   _this.errors = error.response.data.errors;
                 });
