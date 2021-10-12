@@ -44,14 +44,44 @@ export default {
 
         //New Booking
         {
-            path: '/newbooking/:venueId',
+            path: '/booking/new/:venueId',
             name: 'NewBooking',
             component: () => import('./views/components/Booking/NewBooking'),
         },
         {
-            path: '/newbooking/success',
+            path: '/booking/new/status/success',
             name: 'SuccessBooking',
             component: () => import('./views/components/Booking/SuccessBooking'),
+        },
+        {
+            path: '/booking/cancel/:id',
+            name: 'CancelBooking',
+            component: () => import('./views/components/Booking/CancelBooking'),
+            meta: {
+                auth: true
+            },
+            beforeEnter: (to, from, next) => {
+                const loggedIn = localStorage.getItem('user')
+
+                if (to.matched.some(record => record.meta.auth) && !loggedIn) next('/login')
+                else if (from.name != 'Dashboard') next({ name: 'NotFound' })
+                else next()
+            }
+        },
+        {
+            path: '/booking/cancel/status/success',
+            name: 'SuccessCancelBooking',
+            component: () => import('./views/components/Booking/SuccessCancelBooking'),
+            meta: {
+                auth: true
+            },
+            beforeEnter: (to, from, next) => {
+                const loggedIn = localStorage.getItem('user')
+
+                if (to.matched.some(record => record.meta.auth) && !loggedIn) next('/login')
+                else if (from.name != 'CancelBooking') next({ name: 'NotFound' })
+                else next()
+            }
         },
 
         //Auth-Login

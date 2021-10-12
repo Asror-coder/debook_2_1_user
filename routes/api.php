@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum','verified')->get('/authenticated', function () 
 // Auth
 Route::post('/login', [LoginController::class, 'login'])->name('api.login');
 Route::post('/register', [RegisterController::class, 'register']);
-// Route::post('/logout', [LogoutController::class, 'logout']);
+Route::post('/logout', [LogoutController::class, 'logout']);
 
 // Verify email
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, '__invoke'])
@@ -85,7 +85,9 @@ Route::prefix('/venue')->group(function() {
 
 //Booking information
 Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
-    Route::post('/newbooking', [BookingController::class, 'store']);
+    Route::get('/show/{id}', [BookingController::class, 'show']);
+    Route::put('/cancel/{id}', [BookingController::class, 'cancel']);
+    Route::post('/new', [BookingController::class, 'store']);
     Route::get('/active/{userId}', [BookingController::class, 'getActiveBookings']);
     Route::get('/notactive/{userId}', [BookingController::class, 'getNotActiveBookings']);
 });

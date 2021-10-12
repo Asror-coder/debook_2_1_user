@@ -1,7 +1,16 @@
 <template>
     <div class="grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2">
         <div>
-            <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>
+            <div class="flex flex-row">
+                <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>
+                <div v-if="bookingDetails.status_id == 1"
+                    class="px-3 text-green-600">active</div>
+                <div v-if="bookingDetails.status_id == 4"
+                    class="px-3 rounded-lg text-red-600">canceled</div>
+                <div class="flex-grow"></div>
+                <button @click="cancel" v-if="bookingDetails.status_id == 1"
+                    class="hover:text-red-700 mr-3">cancel</button>
+            </div>
             <div>
                 <span class="font-bold text-gray-500 mr-2">Venue: </span>
                 {{venue.name}} ({{service.surface}},
@@ -38,7 +47,9 @@
 </template>
 
 <script>
+import Button from './Button.vue'
 export default {
+  components: { Button },
     name: 'ClubCard',
     props: {
         booking: Array
@@ -76,6 +87,10 @@ export default {
                 else if (dateArr[1] == '11') return dateArr[2]+' November, '+dateArr[0]
                 else if (dateArr[1] == '12') return dateArr[2]+' December, '+dateArr[0]
             }
+        },
+        cancel() {
+            if (this.bookingDetails.status_id == 1)
+                this.$router.push({ name:'CancelBooking', params: {id: this.bookingDetails.id} })
         }
     },
     mounted() {

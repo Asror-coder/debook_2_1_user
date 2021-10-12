@@ -7,7 +7,11 @@ use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class BookingController extends Controller
 {
     /**
@@ -17,15 +21,6 @@ class BookingController extends Controller
      */
     public function getActiveBookings($userId)
     {
-        // $bookings = Booking::where('user_id', $userId)
-        //               ->where('status_id', 1)
-        //               ->orderBy('date', 'asc')
-        //               ->orderBy('start_time', 'asc')
-        //               ->get();
-
-        // if (!$bookings) return $bookings;
-        // else return BookingController::getFullInformation($bookings);
-
         $bookings = Booking::where('user_id', $userId)
                       ->where('status_id', 1)
                       ->orderBy('date', 'asc')
@@ -44,6 +39,8 @@ class BookingController extends Controller
     {
         $bookings = Booking::where('user_id', $userId)
                       ->where('status_id', '!=', 1)
+                      ->orderBy('date', 'desc')
+                      ->orderBy('start_time', 'desc')
                       ->paginate(5);
 
         if ($bookings->count() == 0) return $bookings;
@@ -112,22 +109,69 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        return DB::table('bookings')
+                ->join('venues','bookings.venue_id','=','venues.id')
+                ->join('services','venues.service_id','=','services.id')
+                ->join('partner_details','venues.partner_id','=','partner_details.partner_id')
+                ->select('bookings.*','venues.name as venueName','partner_details.name as clubName',
+                         'services.sport_type as sport','services.surface','services.indoor')
+                ->where('bookings.id','=',$id)
+                ->get();
     }
 
     /**
-     * Update the specified resource in storage.
+     * Cancel the specified booking in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cancelBooking($id)
+    public function cancel($id)
     {
-        //
+        $booking = Booking::find($id);
+
+        // if ($booking->user_id != Auth::user()->id) {
+        //     return response([
+        //         'message' => ['This booking does not belong to authorised user.']
+        //     ], 404);
+        // }
+
+        if ($this->canBeCanceled($booking)) {
+            $booking->update(['status_id' => 4]);
+            $booking->update(['updated_at' => Carbon::now()]);
+            return response([
+                'message' => ['Success']
+            ]);
+        }
+        else return response([
+            'message' => ['Booking cannot be canceled within 12 hours before the start time.']
+        ]);
     }
 
-    public function availableBookingSlot($venueId, Request $request) {
+    // This function checks whether booking is not being canceled within 12 hours before the booking start time.
+    private function canBeCanceled($booking)
+    {
+        $currentDate = Carbon::now()->toDateString();
+
+        if (Carbon::now()->toTimeString()[3] > 0)
+            $currentTime = Carbon::now()->toTimeString()[0].(Carbon::now()->toTimeString()[1]+1);
+        else $currentTime = Carbon::now()->toTimeString()[0].Carbon::now()->toTimeString()[1];
+
+        // starts before 12:00
+        if ($booking->start_time < 12) {
+            if (($currentDate >= $booking->date) ||
+                ($currentDate < $booking->date && $currentTime > $booking->start_time+12))
+                return false;
+        }
+        // starts after 12:00
+        else if ($currentDate >= $booking->date && $currentTime > $booking->start_time-12)
+            return false;
+
+        return true;
+    }
+
+    public function availableBookingSlot($venueId, Request $request)
+    {
         $bookings = Booking::where('venue_id', $venueId)
                            ->where('date', $request->date)
                            ->where('status_id', 1)

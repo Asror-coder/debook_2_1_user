@@ -21,7 +21,9 @@ const actions = {
         })
     },
     async logoutUser({commit}) {
-        commit('destroyUser');
+        await axios.post('/api/logout').then((response)=>{
+            commit('destroyUser');
+        })
     }
 }
 

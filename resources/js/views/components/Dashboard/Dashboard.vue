@@ -1,7 +1,6 @@
 <template>
     <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-1"></div>
-        <main class="col-span-2">
+        <main class="col-span-2 col-start-2">
 
                                             <!-- Dashboard header -->
             <div class="flex flex-row my-5">
@@ -95,7 +94,6 @@
             </div>
 
         </main>
-        <div class="col-span-1"></div>
     </div>
 </template>
 

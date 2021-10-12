@@ -16,6 +16,9 @@ const getters = {
 
 const actions = {
     async fetchActiveBookings({ commit }, userId) {
+        commit('destroyActiveBookings')
+        commit('destroyActiveBookingsPage')
+
         await axios.get(`/api/booking/active/${userId}`).then((response)=> {
             if(response.data[0]) {
                 commit('setActiveBookings', response.data[0])
@@ -32,6 +35,9 @@ const actions = {
         })
     },
     async fetchNotActiveBookings({ commit }, userId) {
+        commit('destroyNotActiveBookings')
+        commit('destroyNotActiveBookingsPage')
+
         await axios.get(`/api/booking/notactive/${userId}`).then((response)=> {
             if(response.data[0]) {
                 commit('setNotActiveBookings', response.data[0])
@@ -48,7 +54,7 @@ const actions = {
         })
     },
     async addBooking({ commit }, request) {
-        await axios.post(`/api/booking/newbooking`,request).then((response)=> {
+        await axios.post(`/api/booking/new`,request).then((response)=> {
             if(state.activeBookings) commit('newActiveBooking', response.data)
         })
     },
@@ -56,12 +62,18 @@ const actions = {
 
 const mutations = {
     setActiveBookings: (state, bookings) => state.activeBookings = bookings,
+    destroyActiveBookings: (state) => state.activeBookings = [],
+
     setActiveBookingsPage: (state, pageInfo) => state.ActiveBookingsPage = pageInfo,
+    destroyActiveBookingsPage: (state) => state.ActiveBookingsPage = null,
 
     newActiveBooking: (state, booking) => state.activeBookings.unshift(booking),
 
     setNotActiveBookings: (state, bookings) => state.notActiveBookings = bookings,
+    destroyNotActiveBookings: (state) => state.notActiveBookings = [],
+
     setNotActiveBookingsPage: (state, pageInfo) => state.notActiveBookingsPage = pageInfo,
+    destroyNotActiveBookingsPage: (state) => state.notActiveBookings = null,
 }
 
 export default {

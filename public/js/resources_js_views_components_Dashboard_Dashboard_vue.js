@@ -11,6 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
 //
 //
 //
@@ -50,7 +51,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Button: _Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   name: 'ClubCard',
   props: {
     booking: Array
@@ -75,6 +89,14 @@ __webpack_require__.r(__webpack_exports__);
         var dateArr = date.split('-');
         if (dateArr[1] == '01') return dateArr[2] + ' January, ' + dateArr[0];else if (dateArr[1] == '02') return dateArr[2] + ' February, ' + dateArr[0];else if (dateArr[1] == '03') return dateArr[2] + ' March, ' + dateArr[0];else if (dateArr[1] == '04') return dateArr[2] + ' April, ' + dateArr[0];else if (dateArr[1] == '05') return dateArr[2] + ' May, ' + dateArr[0];else if (dateArr[1] == '06') return dateArr[2] + ' June, ' + dateArr[0];else if (dateArr[1] == '07') return dateArr[2] + ' July, ' + dateArr[0];else if (dateArr[1] == '08') return dateArr[2] + ' August, ' + dateArr[0];else if (dateArr[1] == '09') return dateArr[2] + ' September, ' + dateArr[0];else if (dateArr[1] == '10') return dateArr[2] + ' October, ' + dateArr[0];else if (dateArr[1] == '11') return dateArr[2] + ' November, ' + dateArr[0];else if (dateArr[1] == '12') return dateArr[2] + ' December, ' + dateArr[0];
       }
+    },
+    cancel: function cancel() {
+      if (this.bookingDetails.status_id == 1) this.$router.push({
+        name: 'CancelBooking',
+        params: {
+          id: this.bookingDetails.id
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -147,8 +169,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -664,8 +684,35 @@ var render = function() {
     { staticClass: "grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2" },
     [
       _c("div", [
-        _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-          _vm._v(_vm._s(_vm.service.sport_type))
+        _c("div", { staticClass: "flex flex-row" }, [
+          _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+            _vm._v(_vm._s(_vm.service.sport_type))
+          ]),
+          _vm._v(" "),
+          _vm.bookingDetails.status_id == 1
+            ? _c("div", { staticClass: "px-3 text-green-600" }, [
+                _vm._v("active")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.bookingDetails.status_id == 4
+            ? _c("div", { staticClass: "px-3 rounded-lg text-red-600" }, [
+                _vm._v("canceled")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex-grow" }),
+          _vm._v(" "),
+          _vm.bookingDetails.status_id == 1
+            ? _c(
+                "button",
+                {
+                  staticClass: "hover:text-red-700 mr-3",
+                  on: { click: _vm.cancel }
+                },
+                [_vm._v("cancel")]
+              )
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", [
@@ -828,9 +875,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-    _c("div", { staticClass: "col-span-1" }),
-    _vm._v(" "),
-    _c("main", { staticClass: "col-span-2" }, [
+    _c("main", { staticClass: "col-span-2 col-start-2" }, [
       _c("div", { staticClass: "flex flex-row my-5" }, [
         _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
           _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
@@ -1120,9 +1165,7 @@ var render = function() {
                 ])
           ])
         : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-span-1" })
+    ])
   ])
 }
 var staticRenderFns = []

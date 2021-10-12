@@ -71,6 +71,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Login',
@@ -105,12 +107,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 if (!_this.loginError) {
                   location.reload();
                 } else {
-                  if (_this.loginError.response.data.message[0]) _this.messageError = _this.loginError.response.data.message[0];
-
                   if (_this.loginError.response.data.errors) {
                     if (_this.loginError.response.data.errors.email) _this.emailError = _this.loginError.response.data.errors.email[0];
                     if (_this.loginError.response.data.errors.password) _this.pwdError = _this.loginError.response.data.errors.password[0];
-                  }
+                  } else if (_this.loginError.response.data.message) _this.messageError = _this.loginError.response.data.message;
                 }
 
               case 6:
@@ -234,21 +234,23 @@ var render = function() {
             _vm._v("Log in to your account")
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.messageError,
-                  expression: "messageError"
-                }
-              ],
-              staticClass: "text-red-600"
-            },
-            [_vm._v(_vm._s(_vm.messageError))]
-          ),
+          _c("div", { staticClass: "w-full text-center mb-2" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.messageError,
+                    expression: "messageError"
+                  }
+                ],
+                staticClass: "text-red-600"
+              },
+              [_vm._v(_vm._s(_vm.messageError))]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "form",
@@ -328,12 +330,7 @@ var render = function() {
                   ],
                   staticClass: "text-red-600"
                 },
-                [
-                  _vm._v(
-                    _vm._s(_vm.pwdError) +
-                      ". If you forgot your password follow the link bellow."
-                  )
-                ]
+                [_vm._v(_vm._s(_vm.pwdError))]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "mb-4" }, [
