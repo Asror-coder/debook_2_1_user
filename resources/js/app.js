@@ -8,9 +8,9 @@ import routes from './routes';
 
 import store from './store'     //vuex
 
-// import vClickOutside from 'v-click-outside'
+import Trans from './trans';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter).use(Trans)
 
 const app = new Vue({
     el: '#app',

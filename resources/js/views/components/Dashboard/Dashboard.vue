@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-4 gap-4" v-if="translation">
         <main class="col-span-2 col-start-2">
 
                                             <!-- Dashboard header -->
@@ -7,13 +7,13 @@
                 <div class="flex-none text-2xl font-bold">{{user.name}} {{user.lastname}}</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
-                    @click="toggleShowPassed" v-if="showPassed"> Upcoming bookings </button>
+                    @click="toggleShowPassed" v-if="showPassed"> {{ translation.dashboard.upcomming }} </button>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
-                    @click="toggleShowPassed" v-else-if="!showPassed"> Passed bookings </button>
+                    @click="toggleShowPassed" v-else-if="!showPassed"> {{ translation.dashboard.passed }} </button>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
-                    @click="toggleShowProfile"> Profile </button>
+                    @click="toggleShowProfile"> {{ translation.dashboard.profile }} </button>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
-                    @click.prevent="logout"> Logout </button>
+                    @click.prevent="logout"> {{ translation.dashboard.logout }} </button>
             </div>
 
 
@@ -25,7 +25,7 @@
                                             <!-- Upcomming bookings -->
 
             <div v-if="!showPassed">
-                <div class="text-xl text-gray-500 font-bold">Upcomming bookings</div>
+                <div class="text-xl text-gray-500 font-bold"> {{ translation.dashboard.upcomming }}</div>
 
                 <div v-if="this.activeBookings.length > 0">
                     <!-- Bookings -->
@@ -54,14 +54,13 @@
                         <div class="flex-grow"></div>
                     </div>
                 </div>
-                <div v-else class="text-lg text-gray-500"> No bookings yet</div>
+                <div v-else class="text-lg text-gray-500"> {{ translation.dashboard.no_bookings }} </div>
             </div>
-
 
                                             <!-- Passed bookings -->
 
             <div v-if="showPassed">
-                <div class="text-xl text-gray-500 font-bold">Passed bookings</div>
+                <div class="text-xl text-gray-500 font-bold">{{ translation.dashboard.passed }}</div>
 
                 <div v-if="this.notActiveBookings.length > 0">
                     <!-- Bookings -->
@@ -90,7 +89,7 @@
                         <div class="flex-grow"></div>
                     </div>
                 </div>
-                <div v-else class="text-lg text-gray-500"> No bookings yet</div>
+                <div v-else class="text-lg text-gray-500"> {{ translation.dashboard.no_bookings }} </div>
             </div>
 
         </main>
@@ -131,8 +130,10 @@ export default {
             this.showPassed = !this.showPassed
         }
     },
-    computed: mapGetters('bookings',['activeBookings','notActiveBookings',
-                                     'notActiveBookingsPage','activeBookingsPage']),
+    computed: {
+        ...mapGetters('bookings',['activeBookings','notActiveBookings',
+                                     'notActiveBookingsPage','activeBookingsPage'])
+    },
     async mounted() {
         this.user = JSON.parse(localStorage.getItem('user')).user
         this.fetchActiveBookings(this.user.id)

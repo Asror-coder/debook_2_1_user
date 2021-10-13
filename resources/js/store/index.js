@@ -4,6 +4,7 @@ import user from './modules/user'
 import clubs from './modules/clubs'
 import bookings from './modules/bookings'
 import clubSearch from './modules/clubSearch'
+import translation from './modules/translation'
 
 //Load Vuex
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
         user,
         bookings,
         clubs,
-        clubSearch
+        clubSearch,
+        translation
     }
 })

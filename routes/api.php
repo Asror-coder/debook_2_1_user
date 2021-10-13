@@ -9,9 +9,8 @@ use App\Http\Controllers\Booking\BookingController;
 use App\Http\Controllers\Clubs\ClubsController;
 use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('lang/set/{locale}', [LocalizationController::class, 'index']);
+Route::get('lang/get', [LocalizationController::class, 'getLanguage']);
 
 Route::middleware('auth:sanctum','verified')->get('/user', function (Request $request) {
     return $request->user();

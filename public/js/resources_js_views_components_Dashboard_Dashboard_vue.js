@@ -110,37 +110,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Button',
-  props: {
-    text: String,
-    textStyle: String
-  },
-  methods: {
-    onClick: function onClick() {
-      this.$emit('btn-click');
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -169,7 +138,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -313,7 +281,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showPassed = !this.showPassed;
     }
   }),
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage', 'activeBookingsPage']),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage', 'activeBookingsPage'])),
   mounted: function mounted() {
     var _this2 = this;
 
@@ -426,44 +394,6 @@ component.options.__file = "resources/js/views/components/Dashboard/BookingCard.
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/Button.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Button.vue ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue?vue&type=template&id=6daedff7& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
-/* harmony import */ var _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/components/Dashboard/Button.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/views/components/Dashboard/Dashboard.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/views/components/Dashboard/Dashboard.vue ***!
@@ -555,21 +485,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -612,22 +527,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=template&id=9be0a3d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&");
-
-
-/***/ }),
-
-/***/ "./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_6daedff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=template&id=6daedff7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&");
 
 
 /***/ }),
@@ -824,41 +723,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Button.vue?vue&type=template&id=6daedff7& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "focus:outline-none",
-      on: {
-        click: function($event) {
-          return _vm.onClick()
-        }
-      }
-    },
-    [_c("div", { class: _vm.textStyle }, [_vm._v(_vm._s(_vm.text))])]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42& ***!
@@ -874,299 +738,318 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-    _c("main", { staticClass: "col-span-2 col-start-2" }, [
-      _c("div", { staticClass: "flex flex-row my-5" }, [
-        _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
-          _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex-grow" }),
-        _vm._v(" "),
-        _vm.showPassed
-          ? _c(
+  return _vm.translation
+    ? _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
+        _c("main", { staticClass: "col-span-2 col-start-2" }, [
+          _c("div", { staticClass: "flex flex-row my-5" }, [
+            _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
+              _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-grow" }),
+            _vm._v(" "),
+            _vm.showPassed
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
+                    on: { click: _vm.toggleShowPassed }
+                  },
+                  [
+                    _vm._v(
+                      " " + _vm._s(_vm.translation.dashboard.upcomming) + " "
+                    )
+                  ]
+                )
+              : !_vm.showPassed
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
+                    on: { click: _vm.toggleShowPassed }
+                  },
+                  [_vm._v(" " + _vm._s(_vm.translation.dashboard.passed) + " ")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
               "button",
               {
                 staticClass:
                   "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                on: { click: _vm.toggleShowPassed }
+                on: { click: _vm.toggleShowProfile }
               },
-              [_vm._v(" Upcoming bookings ")]
-            )
-          : !_vm.showPassed
-          ? _c(
+              [_vm._v(" " + _vm._s(_vm.translation.dashboard.profile) + " ")]
+            ),
+            _vm._v(" "),
+            _c(
               "button",
               {
                 staticClass:
                   "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                on: { click: _vm.toggleShowPassed }
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.logout($event)
+                  }
+                }
               },
-              [_vm._v(" Passed bookings ")]
+              [_vm._v(" " + _vm._s(_vm.translation.dashboard.logout) + " ")]
             )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-            on: { click: _vm.toggleShowProfile }
-          },
-          [_vm._v(" Profile ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.logout($event)
-              }
-            }
-          },
-          [_vm._v(" Logout ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
             {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.showProfile,
-              expression: "showProfile"
-            }
-          ]
-        },
-        [_c("Profile")],
-        1
-      ),
-      _vm._v(" "),
-      !_vm.showPassed
-        ? _c("div", [
-            _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-              _vm._v("Upcomming bookings")
-            ]),
-            _vm._v(" "),
-            this.activeBookings.length > 0
-              ? _c(
-                  "div",
-                  [
-                    _vm._l(_vm.activeBookings, function(activeBooking) {
-                      return _c(
-                        "div",
-                        { key: activeBooking[0].id },
-                        [
-                          _c("BookingCard", {
-                            attrs: { booking: activeBooking }
-                          })
-                        ],
-                        1
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex flex-row my-8" }, [
-                      _c("div", { staticClass: "flex-grow" }),
-                      _vm._v(" "),
-                      _vm.activeBookingsPage
-                        ? _c(
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showProfile,
+                  expression: "showProfile"
+                }
+              ]
+            },
+            [_c("Profile")],
+            1
+          ),
+          _vm._v(" "),
+          !_vm.showPassed
+            ? _c("div", [
+                _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+                  _vm._v(" " + _vm._s(_vm.translation.dashboard.upcomming))
+                ]),
+                _vm._v(" "),
+                this.activeBookings.length > 0
+                  ? _c(
+                      "div",
+                      [
+                        _vm._l(_vm.activeBookings, function(activeBooking) {
+                          return _c(
                             "div",
-                            { staticClass: "flex flex-row text-lg" },
-                            _vm._l(_vm.activeBookingsPage.links, function(
-                              page,
-                              index
-                            ) {
-                              return _c(
-                                "div",
-                                { key: index, staticClass: "mx-3" },
-                                [
-                                  page.label == "&laquo; Previous" && page.url
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: "prev",
-                                          textStyle: "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  page.label != "&laquo; Previous" &&
-                                  page.label != "Next &raquo;"
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: page.label,
-                                          textStyle:
-                                            page.label ==
-                                            _vm.activeBookingsPage.current_page
-                                              ? "text-black"
-                                              : "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  page.label == "Next &raquo;" && page.url
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: "next",
-                                          textStyle: "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            }),
-                            0
+                            { key: activeBooking[0].id },
+                            [
+                              _c("BookingCard", {
+                                attrs: { booking: activeBooking }
+                              })
+                            ],
+                            1
                           )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex-grow" })
-                    ])
-                  ],
-                  2
-                )
-              : _c("div", { staticClass: "text-lg text-gray-500" }, [
-                  _vm._v(" No bookings yet")
-                ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showPassed
-        ? _c("div", [
-            _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-              _vm._v("Passed bookings")
-            ]),
-            _vm._v(" "),
-            this.notActiveBookings.length > 0
-              ? _c(
-                  "div",
-                  [
-                    _vm._l(_vm.notActiveBookings, function(notActiveBooking) {
-                      return _c(
-                        "div",
-                        { key: notActiveBooking[0].id },
-                        [
-                          _c("BookingCard", {
-                            attrs: { booking: notActiveBooking }
-                          })
-                        ],
-                        1
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex flex-row my-8" }, [
+                          _c("div", { staticClass: "flex-grow" }),
+                          _vm._v(" "),
+                          _vm.activeBookingsPage
+                            ? _c(
+                                "div",
+                                { staticClass: "flex flex-row text-lg" },
+                                _vm._l(_vm.activeBookingsPage.links, function(
+                                  page,
+                                  index
+                                ) {
+                                  return _c(
+                                    "div",
+                                    { key: index, staticClass: "mx-3" },
+                                    [
+                                      page.label == "&laquo; Previous" &&
+                                      page.url
+                                        ? _c("Button", {
+                                            attrs: {
+                                              text: "prev",
+                                              textStyle: "text-gray-400"
+                                            },
+                                            on: {
+                                              "btn-click": function($event) {
+                                                return _vm.changeActiveBookings(
+                                                  page.url
+                                                )
+                                              }
+                                            }
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      page.label != "&laquo; Previous" &&
+                                      page.label != "Next &raquo;"
+                                        ? _c("Button", {
+                                            attrs: {
+                                              text: page.label,
+                                              textStyle:
+                                                page.label ==
+                                                _vm.activeBookingsPage
+                                                  .current_page
+                                                  ? "text-black"
+                                                  : "text-gray-400"
+                                            },
+                                            on: {
+                                              "btn-click": function($event) {
+                                                return _vm.changeActiveBookings(
+                                                  page.url
+                                                )
+                                              }
+                                            }
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      page.label == "Next &raquo;" && page.url
+                                        ? _c("Button", {
+                                            attrs: {
+                                              text: "next",
+                                              textStyle: "text-gray-400"
+                                            },
+                                            on: {
+                                              "btn-click": function($event) {
+                                                return _vm.changeActiveBookings(
+                                                  page.url
+                                                )
+                                              }
+                                            }
+                                          })
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                }),
+                                0
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-grow" })
+                        ])
+                      ],
+                      2
+                    )
+                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.translation.dashboard.no_bookings) +
+                          " "
                       )
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex flex-row my-8" }, [
-                      _c("div", { staticClass: "flex-grow" }),
-                      _vm._v(" "),
-                      _vm.notActiveBookingsPage
-                        ? _c(
-                            "div",
-                            { staticClass: "flex flex-row text-lg" },
-                            _vm._l(_vm.notActiveBookingsPage.links, function(
-                              page,
-                              index
-                            ) {
-                              return _c(
-                                "div",
-                                { key: index, staticClass: "mx-3" },
-                                [
-                                  page.label == "&laquo; Previous" && page.url
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: "prev",
-                                          textStyle: "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeNotActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  page.label != "&laquo; Previous" &&
-                                  page.label != "Next &raquo;"
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: page.label,
-                                          textStyle:
-                                            page.label ==
-                                            _vm.notActiveBookingsPage
-                                              .current_page
-                                              ? "text-black"
-                                              : "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeNotActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  page.label == "Next &raquo;" && page.url
-                                    ? _c("Button", {
-                                        attrs: {
-                                          text: "next",
-                                          textStyle: "text-gray-400"
-                                        },
-                                        on: {
-                                          "btn-click": function($event) {
-                                            return _vm.changeNotActiveBookings(
-                                              page.url
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            }),
-                            0
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex-grow" })
                     ])
-                  ],
-                  2
-                )
-              : _c("div", { staticClass: "text-lg text-gray-500" }, [
-                  _vm._v(" No bookings yet")
-                ])
-          ])
-        : _vm._e()
-    ])
-  ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showPassed
+            ? _c("div", [
+                _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
+                  _vm._v(_vm._s(_vm.translation.dashboard.passed))
+                ]),
+                _vm._v(" "),
+                this.notActiveBookings.length > 0
+                  ? _c(
+                      "div",
+                      [
+                        _vm._l(_vm.notActiveBookings, function(
+                          notActiveBooking
+                        ) {
+                          return _c(
+                            "div",
+                            { key: notActiveBooking[0].id },
+                            [
+                              _c("BookingCard", {
+                                attrs: { booking: notActiveBooking }
+                              })
+                            ],
+                            1
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex flex-row my-8" }, [
+                          _c("div", { staticClass: "flex-grow" }),
+                          _vm._v(" "),
+                          _vm.notActiveBookingsPage
+                            ? _c(
+                                "div",
+                                { staticClass: "flex flex-row text-lg" },
+                                _vm._l(
+                                  _vm.notActiveBookingsPage.links,
+                                  function(page, index) {
+                                    return _c(
+                                      "div",
+                                      { key: index, staticClass: "mx-3" },
+                                      [
+                                        page.label == "&laquo; Previous" &&
+                                        page.url
+                                          ? _c("Button", {
+                                              attrs: {
+                                                text: "prev",
+                                                textStyle: "text-gray-400"
+                                              },
+                                              on: {
+                                                "btn-click": function($event) {
+                                                  return _vm.changeNotActiveBookings(
+                                                    page.url
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        page.label != "&laquo; Previous" &&
+                                        page.label != "Next &raquo;"
+                                          ? _c("Button", {
+                                              attrs: {
+                                                text: page.label,
+                                                textStyle:
+                                                  page.label ==
+                                                  _vm.notActiveBookingsPage
+                                                    .current_page
+                                                    ? "text-black"
+                                                    : "text-gray-400"
+                                              },
+                                              on: {
+                                                "btn-click": function($event) {
+                                                  return _vm.changeNotActiveBookings(
+                                                    page.url
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        page.label == "Next &raquo;" && page.url
+                                          ? _c("Button", {
+                                              attrs: {
+                                                text: "next",
+                                                textStyle: "text-gray-400"
+                                              },
+                                              on: {
+                                                "btn-click": function($event) {
+                                                  return _vm.changeNotActiveBookings(
+                                                    page.url
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  }
+                                ),
+                                0
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-grow" })
+                        ])
+                      ],
+                      2
+                    )
+                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.translation.dashboard.no_bookings) +
+                          " "
+                      )
+                    ])
+              ])
+            : _vm._e()
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

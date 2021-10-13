@@ -51,6 +51,11 @@
                     </transition>
                 </li>
 
+                <li class="mr-10 w-9 text-center hover:shadow-lg text-white" v-if="lang">
+                    <button v-if="lang == 'nl'" @click="changeLang('en')" class="bg-red-500 w-full rounded-md">eng</button>
+                    <button v-if="lang == 'en'" @click="changeLang('nl')" class="bg-yellow-500 w-full rounded-md">nl</button>
+                </li>
+
                 <!-- Login -->
                 <li v-if="!user">
                     <router-link to='/login' class="p-3 hover:bg-gray-100 focus:outline-none">
@@ -71,15 +76,18 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { mixin as clickaway } from 'vue-clickaway';
+import Button from './Dashboard/Button.vue';
 
 export default {
+  components: { Button },
     name: 'Header',
     mixins: [ clickaway ],
     data() {
         return {
             showSports: false,
             clubName: '',
-            showClubs: false
+            showClubs: false,
+            lang: ''
         };
     },
     computed: {
@@ -92,10 +100,11 @@ export default {
     },
     methods: {
         ...mapActions('clubSearch',['searchClubName']),
+        ...mapActions('translation',['getTranslation']),
         goToClubPage(id) {
             // console.log(id);    //remove
-            if (localStorage.getItem('search')) {
-                var search_request = JSON.parse(localStorage.getItem('search'))
+            if (sessionStorage.getItem('search')) {
+                var search_request = JSON.parse(sessionStorage.getItem('search'))
 
                 if(search_request.date && search_request.start_time && search_request.end_time) {
                     this.clubSearch.partnerId = this.club[0].id
@@ -104,7 +113,7 @@ export default {
                     this.clubSearch.start_time = search_request.start_time
                     this.clubSearch.end_time = search_request.end_time
 
-                    localStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
+                    sessionStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
                 }
             }
 
@@ -117,6 +126,11 @@ export default {
         },
         focused() {
             this.showClubs = true
+        },
+        changeLang(newLang) {
+            this.lang = newLang
+            sessionStorage.setItem('lang', this.lang)
+            this.getTranslation(this.lang)
         }
     },
     watch: {
@@ -126,6 +140,10 @@ export default {
                 this.searchClubName(newVal)
             }
         }
-    }
+    },
+    mounted() {
+        if (sessionStorage.getItem('lang')) this.changeLang(sessionStorage.getItem('lang'))
+        else this.changeLang('en')
+    },
 }
 </script>
