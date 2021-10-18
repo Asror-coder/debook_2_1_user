@@ -90,9 +90,26 @@ class BookingController extends Controller
             $newBooking->start_time = $request->start_time;
             $newBooking->end_time = $request->end_time;
 
-            $newBooking->save();
+            $venue = DB::table('venues')->where('id',$request->venue_id)->first();
 
-            return $newBooking;
+            if (DB::table('partner_api')->where('partner_id',$venue->partner_id)->first()) {
+                $bookingApiController = new BookingApiController;
+                $apiResponse = json_decode($bookingApiController->book($newBooking));
+
+                if ($apiResponse->data->createReservation->id) {
+                    $newBooking->partner_booking_id = $apiResponse->data->createReservation->id;
+                    $newBooking->save();
+
+                    return $newBooking;
+                }
+                else return [
+                        'message' => 'The provided time slot is not available anymore.'
+                    ];
+            }
+            else {
+                $newBooking->save();
+                return $newBooking;
+            }
         }
         else {
             return [
@@ -130,18 +147,35 @@ class BookingController extends Controller
     {
         $booking = Booking::find($id);
 
-        // if ($booking->user_id != Auth::user()->id) {
-        //     return response([
-        //         'message' => ['This booking does not belong to authorised user.']
-        //     ], 404);
-        // }
+        if ($booking->user_id != Auth::user()->id) {
+            return response([
+                'message' => ['This booking does not belong to authorised user.']
+            ], 404);
+        }
 
         if ($this->canBeCanceled($booking)) {
-            $booking->update(['status_id' => 4]);
-            $booking->update(['updated_at' => Carbon::now()]);
-            return response([
-                'message' => ['Success']
-            ]);
+            if ($booking->partner_booking_id) {
+                $bookingApiController = new BookingApiController;
+                $apiResponse = json_decode($bookingApiController->cancel($booking));
+
+                if ($apiResponse->data->cancelReservation->cancelled) {
+                    $booking->update(['status_id' => 4]);
+                    $booking->update(['updated_at' => Carbon::now()]);
+                    return response([
+                        'message' => ['Success']
+                    ]);
+                }
+                else return response([
+                    'message' => ['Something went wrong with cancelation. Please, try again later.']
+                ]);
+            }
+            else {
+                $booking->update(['status_id' => 4]);
+                $booking->update(['updated_at' => Carbon::now()]);
+                return response([
+                    'message' => ['Success']
+                ]);
+            }
         }
         else return response([
             'message' => ['Booking cannot be canceled within 12 hours before the start time.']
@@ -174,7 +208,7 @@ class BookingController extends Controller
     {
         $bookings = Booking::where('venue_id', $venueId)
                            ->where('date', $request->date)
-                           ->where('status_id', 1)
+                           ->where('status_id', '!=', 3)
                            ->get();
 
         if (!$bookings) return true;

@@ -16,14 +16,12 @@
                     @click.prevent="logout"> {{ translation.dashboard.logout }} </button>
             </div>
 
-
                                             <!-- Profile -->
             <div v-show="showProfile">
                 <Profile />
             </div>
 
                                             <!-- Upcomming bookings -->
-
             <div v-if="!showPassed">
                 <div class="text-xl text-gray-500 font-bold"> {{ translation.dashboard.upcomming }}</div>
 
@@ -58,7 +56,6 @@
             </div>
 
                                             <!-- Passed bookings -->
-
             <div v-if="showPassed">
                 <div class="text-xl text-gray-500 font-bold">{{ translation.dashboard.passed }}</div>
 

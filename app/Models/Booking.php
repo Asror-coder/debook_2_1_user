@@ -18,6 +18,7 @@ class Booking extends Model
         'price',
         'date',
         'start_time',
-        'end_time'
+        'end_time',
+        'partner_booking_id'
     ];
 }
