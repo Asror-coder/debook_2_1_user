@@ -63,6 +63,7 @@ class ClubsController extends Controller
                     ->paginate(5);
 
         //Array version without pagination  !! CHECK BEFORE REMOVING !!
+
         // if ($availableClubs) {
         //     $partnerAddressController = new PartnerAddressController;
         //     $partnerDetailsController = new PartnerDetailsController;

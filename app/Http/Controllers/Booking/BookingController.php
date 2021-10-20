@@ -8,9 +8,12 @@ use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Carbon\Carbon;
+use Facade\FlareClient\Http\Response;
+use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class BookingController extends Controller
 {
@@ -39,6 +42,7 @@ class BookingController extends Controller
     {
         $bookings = Booking::where('user_id', $userId)
                       ->where('status_id', '!=', 1)
+                      ->where('status_id', '!=', 6)
                       ->orderBy('date', 'desc')
                       ->orderBy('start_time', 'desc')
                       ->paginate(5);
@@ -84,8 +88,7 @@ class BookingController extends Controller
 
             $newBooking->user_id = $request->user()->id;
             $newBooking->venue_id = $request->venue_id;
-            $newBooking->status_id = 1;
-            $newBooking->price = $request->price;
+            $newBooking->price = $request->price;           //check price before assigning
             $newBooking->date = $request->date;
             $newBooking->start_time = $request->start_time;
             $newBooking->end_time = $request->end_time;
@@ -98,6 +101,7 @@ class BookingController extends Controller
 
                 if ($apiResponse->data->createReservation->id) {
                     $newBooking->partner_booking_id = $apiResponse->data->createReservation->id;
+                    $newBooking->status_id = 1;     //CHANGE TO 6 AND MOVE UP
                     $newBooking->save();
 
                     return $newBooking;
@@ -107,8 +111,25 @@ class BookingController extends Controller
                     ];
             }
             else {
+                $newBooking->status_id = 6;         //MOVE UP
                 $newBooking->save();
-                return $newBooking;
+
+                $mollieController = new MollieController;
+                $payment = $mollieController->preparePayment(json_encode([
+                    'id' => $this->encryptBookingId($newBooking->id),
+                    'price' => $newBooking->price,
+                ]));
+
+                $payment_id = json_decode(json_encode($payment->original))->payment_id;
+                $url = json_decode(json_encode($payment->original))->url;
+
+                $this->setPaymentId($newBooking->id, $payment_id);
+
+                return $url;        //CHANGE
+                // return redirect()->away('Location: '.$url,303);
+                // return  redirect()->away($url,303)
+                //         ->header('Access-Control-Allow-Origin', '*')
+                //         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
             }
         }
         else {
@@ -116,6 +137,30 @@ class BookingController extends Controller
                 'message' => 'The provided time slot is not available anymore.'
             ];
         }
+    }
+
+    public function hasPaidBooking($payment_id) {
+        // change booking status_id to 1 (active)
+        $booking = Booking::where('payment_id',$payment_id)->first();
+        $booking->update(['status_id' => 1]);
+        $booking->update(['updated_at' => Carbon::now()]);
+
+        //send success email
+    }
+
+    public function hasRefundedBooking($payment_id) {
+        // change booking status_id to 7 (refunded)
+        $booking = Booking::where('payment_id',$payment_id)->first();
+        $booking->update(['status_id' => 7]);
+        $booking->update(['updated_at' => Carbon::now()]);
+    }
+
+    public function destroyBooking($payment_id) {
+        //cancel booking on partner side
+
+        //remove booking from DB
+        $booking = Booking::where('payment_id',$payment_id)->first();
+        $booking->delete();
     }
 
     /**
@@ -126,14 +171,34 @@ class BookingController extends Controller
      */
     public function show($id)
     {
+        if (!is_numeric($id)) $real_id = $this->decryptBookingId($id);
+        else $real_id = $id;
+
         return DB::table('bookings')
                 ->join('venues','bookings.venue_id','=','venues.id')
                 ->join('services','venues.service_id','=','services.id')
                 ->join('partner_details','venues.partner_id','=','partner_details.partner_id')
                 ->select('bookings.*','venues.name as venueName','partner_details.name as clubName',
-                         'services.sport_type as sport','services.surface','services.indoor')
-                ->where('bookings.id','=',$id)
+                         'services.sport_type as sport','services.surface','services.indoor','partner_details.phone',)
+                ->where('bookings.id','=',$real_id)
                 ->get();
+    }
+
+    public function getNewBooking($id)
+    {
+        $real_id = $this->decryptBookingId($id);
+
+        if (is_numeric($real_id)) return DB::table('bookings')
+                                        ->join('venues','bookings.venue_id','=','venues.id')
+                                        ->join('services','venues.service_id','=','services.id')
+                                        ->join('partner_details','venues.partner_id','=','partner_details.partner_id')
+                                        ->select('bookings.date','bookings.price','bookings.start_time','bookings.end_time',
+                                                'venues.name as venueName','partner_details.name as clubName','partner_details.phone',
+                                                'services.sport_type as sport','services.surface','services.indoor')
+                                        ->where('bookings.id','=',$real_id)
+                                        ->where('bookings.status_id','=',1)
+                                        ->get();
+        // else $real_id;
     }
 
     /**
@@ -170,6 +235,14 @@ class BookingController extends Controller
                 ]);
             }
             else {
+                if ($booking->payment_id) {
+                    $mollieController = new MollieController;
+                    $mollieController->refundPayment(json_encode([
+                        'payment_id' => $booking->payment_id,
+                        'price' => $booking->price,
+                    ]));
+                }
+
                 $booking->update(['status_id' => 4]);
                 $booking->update(['updated_at' => Carbon::now()]);
                 return response([
@@ -185,6 +258,8 @@ class BookingController extends Controller
     // This function checks whether booking is not being canceled within 12 hours before the booking start time.
     private function canBeCanceled($booking)
     {
+        if ($booking->status_id != 1) return false;
+
         $currentDate = Carbon::now()->toDateString();
 
         if (Carbon::now()->toTimeString()[3] > 0)
@@ -220,5 +295,36 @@ class BookingController extends Controller
             }
             return true;
         }
+    }
+
+    private function encryptBookingId ($id)
+    {
+        $value = $id * 34251258;
+        $ciphering = "AES-128-CTR";
+        $options = 0;
+        $encryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
+
+        return openssl_encrypt($value, $ciphering, $encryption_key, $options, env('ENC_DENC_IV'));
+    }
+
+    private function decryptBookingId ($value)
+    {
+        $ciphering = "AES-128-CTR";
+        $options = 0;
+        $encryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
+
+        $number = openssl_decrypt($value, $ciphering, $encryption_key, $options, env('ENC_DENC_IV'));
+
+        if (is_numeric($number)) return $number / 34251258;
+        else Response()->json([
+            'message' => 'non-numeric'
+        ]);
+    }
+
+    private function setPaymentId ($id, $payment_id)
+    {
+        $booking = Booking::find($id);
+        $booking->update(['payment_id' => $payment_id]);
+        $booking->update(['updated_at' => Carbon::now()]);
     }
 }

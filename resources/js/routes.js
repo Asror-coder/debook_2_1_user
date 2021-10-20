@@ -49,7 +49,7 @@ export default {
             component: () => import('./views/components/Booking/NewBooking'),
         },
         {
-            path: '/booking/new/status/success',
+            path: '/booking/new/success/:id',
             name: 'SuccessBooking',
             component: () => import('./views/components/Booking/SuccessBooking'),
         },
@@ -129,5 +129,12 @@ export default {
             name: 'PwdResetForm',
             component: () => import('./views/components/Auth/PwdReset/PwdResetForm'),
         },
+
+        //TEST
+        {
+            path: '/test/payment/success',
+            name: 'TestSuccess',
+            component: () => import('./views/components/TestSuccess')
+        }
     ]
 }

@@ -33,7 +33,7 @@ class VenuePriceController extends Controller
             }
         }
 
-        return $price;
+        return number_format($price,2);
     }
 
     static function isWeekday($date) {

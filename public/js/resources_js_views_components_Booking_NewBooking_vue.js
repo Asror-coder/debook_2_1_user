@@ -137,16 +137,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
               case 4:
-                localStorage.removeItem('newBooking');
-
-                _this.$router.push({
-                  name: 'SuccessBooking',
-                  params: {
-                    booking: _this.booking
-                  }
-                });
-
-              case 6:
               case "end":
                 return _context.stop();
             }
@@ -166,7 +156,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get("/api/venue/".concat(_this2.booking.venueId, "/checkavailability"), {
                   params: _this2.booking
                 }).then(function (response) {
-                  if (response.data != 1) _this2.isAvailable = false;
+                  if (response.data != 1) {
+                    _this2.isAvailable = false;
+                    sessionStorage.removeItem('newBooking');
+                  }
                 })["catch"](function (error) {
                   _this2.message = error.response.data.message;
                 });

@@ -2484,7 +2484,7 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Booking_NewBooking_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Booking/NewBooking */ "./resources/js/views/components/Booking/NewBooking.vue"));
     }
   }, {
-    path: '/booking/new/status/success',
+    path: '/booking/new/success/:id',
     name: 'SuccessBooking',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Booking_SuccessBooking_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Booking/SuccessBooking */ "./resources/js/views/components/Booking/SuccessBooking.vue"));
@@ -2573,6 +2573,13 @@ __webpack_require__.r(__webpack_exports__);
     name: 'PwdResetForm',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_components_Auth_PwdReset_PwdResetForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/Auth/PwdReset/PwdResetForm */ "./resources/js/views/components/Auth/PwdReset/PwdResetForm.vue"));
+    }
+  }, //TEST
+  {
+    path: '/test/payment/success',
+    name: 'TestSuccess',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_components_TestSuccess_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/components/TestSuccess */ "./resources/js/views/components/TestSuccess.vue"));
     }
   }]
 });
@@ -2772,7 +2779,10 @@ var actions = {
               commit = _ref5.commit;
               _context5.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/new", request).then(function (response) {
-                if (state.activeBookings) commit('newActiveBooking', response.data);
+                console.log(response.data); //remove
+
+                //remove
+                localStorage.removeItem('newBooking'); // if(state.activeBookings) commit('newActiveBooking', response.data)
               });
 
             case 3:
@@ -2792,10 +2802,10 @@ var mutations = {
     return state.activeBookings = [];
   },
   setActiveBookingsPage: function setActiveBookingsPage(state, pageInfo) {
-    return state.ActiveBookingsPage = pageInfo;
+    return state.activeBookingsPage = pageInfo;
   },
   destroyActiveBookingsPage: function destroyActiveBookingsPage(state) {
-    return state.ActiveBookingsPage = null;
+    return state.activeBookingsPage = null;
   },
   newActiveBooking: function newActiveBooking(state, booking) {
     return state.activeBookings.unshift(booking);
@@ -38885,7 +38895,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Booking_CancelBooking_vue":1,"resources_js_views_components_Booking_SuccessCancelBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1,"resources_js_views_components_Auth_RegisterSuccess_vue":1,"resources_js_views_components_Auth_EmailVerify_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetRequest_vue":1,"resources_js_views_components_Auth_PwdReset_PwdRequestSent_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetSuccess_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetForm_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_components_NotFound_vue":1,"resources_js_views_components_Home_Home_vue":1,"resources_js_views_components_Clubs_Clubs_vue":1,"resources_js_views_components_Clubs_Club_Club_vue":1,"resources_js_views_components_Dashboard_Dashboard_vue":1,"resources_js_views_components_Booking_NewBooking_vue":1,"resources_js_views_components_Booking_SuccessBooking_vue":1,"resources_js_views_components_Booking_CancelBooking_vue":1,"resources_js_views_components_Booking_SuccessCancelBooking_vue":1,"resources_js_views_components_Auth_Login_vue":1,"resources_js_views_components_Auth_Register_vue":1,"resources_js_views_components_Auth_RegisterSuccess_vue":1,"resources_js_views_components_Auth_EmailVerify_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetRequest_vue":1,"resources_js_views_components_Auth_PwdReset_PwdRequestSent_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetSuccess_vue":1,"resources_js_views_components_Auth_PwdReset_PwdResetForm_vue":1,"resources_js_views_components_TestSuccess_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

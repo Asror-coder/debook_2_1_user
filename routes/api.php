@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Booking\BookingController;
+use App\Http\Controllers\Booking\MollieController;
 use App\Http\Controllers\Clubs\ClubsController;
 use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
@@ -90,6 +91,12 @@ Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
     Route::get('/show/{id}', [BookingController::class, 'show']);
     Route::put('/cancel/{id}', [BookingController::class, 'cancel']);
     Route::post('/new', [BookingController::class, 'store']);
+    Route::get('/new/show/{id}', [BookingController::class, 'getNewBooking']);
     Route::get('/active/{userId}', [BookingController::class, 'getActiveBookings']);
     Route::get('/notactive/{userId}', [BookingController::class, 'getNotActiveBookings']);
+});
+
+//Venue information
+Route::prefix('/booking')->group(function() {
+    Route::post('payment/webhook', [MollieController::class, 'checkStatus']);
 });

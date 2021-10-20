@@ -5,7 +5,7 @@
                 <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>
                 <div v-if="bookingDetails.status_id == 1"
                     class="px-3 text-green-600">active</div>
-                <div v-if="bookingDetails.status_id == 4"
+                <div v-if="bookingDetails.status_id == 4 || bookingDetails.status_id == 7"
                     class="px-3 rounded-lg text-red-600">canceled</div>
                 <div class="flex-grow"></div>
                 <button @click="cancel" v-if="bookingDetails.status_id == 1"

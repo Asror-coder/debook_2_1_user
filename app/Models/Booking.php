@@ -19,6 +19,7 @@ class Booking extends Model
         'date',
         'start_time',
         'end_time',
-        'partner_booking_id'
+        'partner_booking_id',
+        'payment_id'
     ];
 }

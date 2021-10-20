@@ -100,13 +100,13 @@ export default {
                 start_time: this.booking.start_time,
                 end_time: this.booking.end_time
             })
-
-            localStorage.removeItem('newBooking')
-            this.$router.push({ name:'SuccessBooking', params: {booking: this.booking}})
         },
         async checkVenue() {
             await axios.get(`/api/venue/${this.booking.venueId}/checkavailability`,{params: this.booking}).then((response)=> {
-                if(response.data != 1) this.isAvailable = false
+                if(response.data != 1) {
+                    this.isAvailable = false
+                    sessionStorage.removeItem('newBooking')
+                }
             }).catch((error) => {
                 this.message = error.response.data.message;
             })

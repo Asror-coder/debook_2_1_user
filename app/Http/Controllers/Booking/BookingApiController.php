@@ -72,7 +72,6 @@ class BookingApiController extends Controller
 
         if ($err) return "cURL Error #:" . $err;
         else return $response;
-
     }
 
     public function cancel($booking) {

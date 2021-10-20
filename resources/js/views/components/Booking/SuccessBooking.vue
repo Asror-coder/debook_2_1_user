@@ -13,11 +13,11 @@
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                            {{booking.clubPhone}}
+                            {{booking.phone}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Sport: </span>
-                            {{booking.sport_type}}
+                            {{booking.sport}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Venue: </span>
@@ -69,6 +69,14 @@ export default {
         }
     },
     methods: {
+        async fetchBooking() {
+            await axios.get(`/api/booking/new/show/${this.$route.params.id}`).then((response)=> {
+                if (response.data && response.data.length > 0) this.booking = response.data[0]
+                else this.$router.push('/notfound')
+            }).catch((error) => {
+                console.log(error.response.data.message);
+            })
+        },
         changeTimeFormat(time) {
             if (time) {
                 if (time.toString().length > 1) return time+':00'
@@ -95,8 +103,8 @@ export default {
         }
     },
     mounted() {
-        if(!this.$route.params.booking) this.$router.push('/notfound')
-        else this.booking = this.$route.params.booking
+        if(!this.$route.params.id) this.$router.push('/notfound')
+        else this.fetchBooking()
     }
 };
 </script>

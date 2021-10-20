@@ -55,7 +55,9 @@ const actions = {
     },
     async addBooking({ commit }, request) {
         await axios.post(`/api/booking/new`,request).then((response)=> {
-            if(state.activeBookings) commit('newActiveBooking', response.data)
+            console.log(response.data);     //remove
+            localStorage.removeItem('newBooking')
+            // if(state.activeBookings) commit('newActiveBooking', response.data)
         })
     },
 }
@@ -64,8 +66,8 @@ const mutations = {
     setActiveBookings: (state, bookings) => state.activeBookings = bookings,
     destroyActiveBookings: (state) => state.activeBookings = [],
 
-    setActiveBookingsPage: (state, pageInfo) => state.ActiveBookingsPage = pageInfo,
-    destroyActiveBookingsPage: (state) => state.ActiveBookingsPage = null,
+    setActiveBookingsPage: (state, pageInfo) => state.activeBookingsPage = pageInfo,
+    destroyActiveBookingsPage: (state) => state.activeBookingsPage = null,
 
     newActiveBooking: (state, booking) => state.activeBookings.unshift(booking),
 
