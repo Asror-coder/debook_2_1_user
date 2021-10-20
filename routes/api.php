@@ -96,7 +96,7 @@ Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
     Route::get('/notactive/{userId}', [BookingController::class, 'getNotActiveBookings']);
 });
 
-//Venue information
-Route::prefix('/booking')->group(function() {
-    Route::post('payment/webhook', [MollieController::class, 'checkStatus']);
-});
+//Payment status webhook
+Route::post('/booking/payment/webhook', [MollieController::class, 'checkStatus']);
+
+// Route::get('test/{id}', [BookingController::class, 'prepareEmailInfo']);        //remove

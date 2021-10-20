@@ -6,13 +6,17 @@ use App\Http\Controllers\Clubs\ClubsController;
 use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Controller;
+use App\Mail\CancelBooking;
+use App\Mail\NewBooking;
 use App\Models\Booking;
+use App\Models\User;
 use Carbon\Carbon;
 use Facade\FlareClient\Http\Response;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class BookingController extends Controller
@@ -146,6 +150,9 @@ class BookingController extends Controller
         $booking->update(['updated_at' => Carbon::now()]);
 
         //send success email
+        $user = User::find($booking->user_id);
+
+        Mail::to($user->email)->send(new NewBooking($this->prepareEmailInfo($booking->id)));
     }
 
     public function hasRefundedBooking($payment_id) {
@@ -245,6 +252,11 @@ class BookingController extends Controller
 
                 $booking->update(['status_id' => 4]);
                 $booking->update(['updated_at' => Carbon::now()]);
+
+                $user = User::find($booking->user_id);
+
+                Mail::to($user->email)->send(new CancelBooking($this->prepareEmailInfo($booking->id)));
+
                 return response([
                     'message' => ['Success']
                 ]);
@@ -326,5 +338,45 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->update(['payment_id' => $payment_id]);
         $booking->update(['updated_at' => Carbon::now()]);
+    }
+
+    private function prepareEmailInfo($id)
+    {
+        $fullInfo = $this->show($id)[0];
+        $user = User::find($fullInfo->user_id);
+
+        if ($fullInfo->indoor == 1) $indoor = 'indoor';
+        else $indoor = 'outdoor';
+
+        return [
+            'username' => $user->name.' '.$user->lastname,
+            'clubName' => $fullInfo->clubName,
+            'sport' => $fullInfo->sport,
+            'venue' => $fullInfo->venueName,
+            'surface' => $fullInfo->surface,
+            'indoor' => $indoor,
+            'date' => $this->changeDate($fullInfo->date),
+            'start_time' => sprintf("%02d", $fullInfo->start_time).':00',
+            'end_time' => sprintf("%02d", $fullInfo->end_time).':00',
+            'price' => $fullInfo->price
+        ];
+    }
+
+    private function changeDate($date)
+    {
+        $dateArr = explode("-",$date);
+
+        if ($dateArr[1] == '01') return $dateArr[2]+' January, '.$dateArr[0];
+        else if ($dateArr[1] == '02') return $dateArr[2].' February, '.$dateArr[0];
+        else if ($dateArr[1] == '03') return $dateArr[2].' March, '.$dateArr[0];
+        else if ($dateArr[1] == '04') return $dateArr[2].' April, '.$dateArr[0];
+        else if ($dateArr[1] == '05') return $dateArr[2].' May, '.$dateArr[0];
+        else if ($dateArr[1] == '06') return $dateArr[2].' June, '.$dateArr[0];
+        else if ($dateArr[1] == '07') return $dateArr[2].' July, '.$dateArr[0];
+        else if ($dateArr[1] == '08') return $dateArr[2].' August, '.$dateArr[0];
+        else if ($dateArr[1] == '09') return $dateArr[2].' September, '.$dateArr[0];
+        else if ($dateArr[1] == '10') return $dateArr[2].' October, '.$dateArr[0];
+        else if ($dateArr[1] == '11') return $dateArr[2].' November, '.$dateArr[0];
+        else if ($dateArr[1] == '12') return $dateArr[2].' December, '.$dateArr[0];
     }
 }

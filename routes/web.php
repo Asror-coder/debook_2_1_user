@@ -1,5 +1,8 @@
 <?php
 
+use App\Mail\CancelBooking;
+use App\Mail\NewBooking;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{any}', App\Http\Controllers\PagesController::class)->where("any",".*");
+
+// Route::get('email', function(){
+//     return new CancelBooking();
+// });
