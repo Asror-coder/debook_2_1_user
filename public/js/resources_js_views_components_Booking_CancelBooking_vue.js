@@ -93,13 +93,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CancelBooking',
   data: function data() {
     return {
       id: this.$route.params.id,
-      user: null,
       booking: null,
       message: ''
     };
@@ -116,9 +118,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return axios.put("/api/booking/cancel/".concat(_this.id)).then(function (response) {
                   if (response.data.message[0] == 'Success') {
-                    _this.fetchActiveBookings(_this.user.id);
+                    _this.fetchActiveBookings();
 
-                    _this.fetchNotActiveBookings(_this.user.id);
+                    _this.fetchNotActiveBookings();
 
                     _this.$router.push({
                       name: 'SuccessCancelBooking',
@@ -159,15 +161,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.user = JSON.parse(localStorage.getItem('user')).user;
-              _context2.next = 3;
+              _context2.next = 2;
               return axios.get("/api/booking/show/".concat(_this2.id)).then(function (response) {
                 _this2.booking = response.data[0];
               })["catch"](function (error) {
                 _this2.message = error.response.data.message;
               });
 
-            case 3:
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -290,7 +291,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-        _vm.user
+        _vm.currentUser
           ? _c("div", { staticClass: "bg-blue-100 p-3" }, [
               _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
                 _vm._v("Information about you")
@@ -302,9 +303,9 @@ var render = function() {
                 ]),
                 _vm._v(
                   "\n                    " +
-                    _vm._s(_vm.user.name) +
+                    _vm._s(_vm.currentUser.name) +
                     " " +
-                    _vm._s(_vm.user.lastname) +
+                    _vm._s(_vm.currentUser.lastname) +
                     "\n                "
                 )
               ]),
@@ -315,7 +316,7 @@ var render = function() {
                 ]),
                 _vm._v(
                   "\n                    " +
-                    _vm._s(_vm.user.email) +
+                    _vm._s(_vm.currentUser.email) +
                     "\n                "
                 )
               ]),
@@ -326,7 +327,7 @@ var render = function() {
                 ]),
                 _vm._v(
                   "\n                    " +
-                    _vm._s(_vm.user.phone) +
+                    _vm._s(_vm.currentUser.phone) +
                     "\n                "
                 )
               ])
@@ -418,11 +419,36 @@ var render = function() {
               ])
             ])
           : _vm._e()
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-blue-100 p-3" }, [
+      _c("div", { staticClass: "text-lg font-bold text-gray-600 mb-2" }, [
+        _vm._v("Payment")
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "Dear customer, you will receive the full amount to your bank that you earlier paid with."
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "Please keep in mind that refund period might take up to 3 days."
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -15,10 +15,21 @@ const actions = {
         if (state.loginError) commit('destroyLoginError');
 
         await axios.post('/api/login', user).then((response)=>{
-            commit('setUser', response.data)
+            localStorage.setItem('user', JSON.stringify(response.data.token))
+            axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
+
+            commit('setUser', response.data.user)
         }).catch((error) => {
             commit('setLoginError', error);
         })
+    },
+    async getUser({commit}, token) {
+        localStorage.setItem('user', JSON.stringify(token))
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+
+        await axios.get('/api/authenticated/user').then((response) => {
+            commit('setUser', response.data)
+        });
     },
     async logoutUser({commit}) {
         await axios.post('/api/logout').then((response)=>{
@@ -30,8 +41,6 @@ const actions = {
 const mutations = {
     setUser(state, userData) {
         state.user = userData
-        localStorage.setItem('user', JSON.stringify(userData))
-        axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
     },
     destroyUser () {
         localStorage.removeItem('user')

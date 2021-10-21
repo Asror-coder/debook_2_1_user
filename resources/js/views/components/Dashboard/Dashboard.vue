@@ -4,7 +4,7 @@
 
                                             <!-- Dashboard header -->
             <div class="flex flex-row my-5">
-                <div class="flex-none text-2xl font-bold">{{user.name}} {{user.lastname}}</div>
+                <div class="flex-none text-2xl font-bold">{{currentUser.name}} {{currentUser.lastname}}</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none text-gray-600 hover:text-black focus:outline-none px-3"
                     @click="toggleShowPassed" v-if="showPassed"> {{ translation.dashboard.upcomming }} </button>
@@ -88,7 +88,6 @@
                 </div>
                 <div v-else class="text-lg text-gray-500"> {{ translation.dashboard.no_bookings }} </div>
             </div>
-
         </main>
     </div>
 </template>
@@ -108,7 +107,6 @@ export default {
     },
     data() {
         return {
-            user: Object,
             showProfile: false,
             showPassed: false
         };
@@ -132,9 +130,8 @@ export default {
                                      'notActiveBookingsPage','activeBookingsPage'])
     },
     async mounted() {
-        this.user = JSON.parse(localStorage.getItem('user')).user
-        this.fetchActiveBookings(this.user.id)
-        this.fetchNotActiveBookings(this.user.id)
+        this.fetchActiveBookings()
+        this.fetchNotActiveBookings()
     }
 }
 </script>

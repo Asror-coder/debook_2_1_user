@@ -15,11 +15,11 @@ const getters = {
 }
 
 const actions = {
-    async fetchActiveBookings({ commit }, userId) {
+    async fetchActiveBookings({ commit }) {
         commit('destroyActiveBookings')
         commit('destroyActiveBookingsPage')
 
-        await axios.get(`/api/booking/active/${userId}`).then((response)=> {
+        await axios.get(`/api/booking/active`).then((response)=> {
             if(response.data[0]) {
                 commit('setActiveBookings', response.data[0])
                 commit('setActiveBookingsPage', response.data[1])
@@ -34,11 +34,11 @@ const actions = {
             }
         })
     },
-    async fetchNotActiveBookings({ commit }, userId) {
+    async fetchNotActiveBookings({ commit }) {
         commit('destroyNotActiveBookings')
         commit('destroyNotActiveBookingsPage')
 
-        await axios.get(`/api/booking/notactive/${userId}`).then((response)=> {
+        await axios.get(`/api/booking/notactive`).then((response)=> {
             if(response.data[0]) {
                 commit('setNotActiveBookings', response.data[0])
                 commit('setNotActiveBookingsPage', response.data[1])

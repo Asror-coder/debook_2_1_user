@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Booking\BookingApiController;
 use App\Http\Controllers\Booking\BookingController;
 use App\Http\Controllers\Booking\MollieController;
 use App\Http\Controllers\Clubs\ClubsController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,12 +30,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('lang/set/{locale}', [LocalizationController::class, 'index']);
 Route::get('lang/get', [LocalizationController::class, 'getLanguage']);
 
-Route::middleware('auth:sanctum','verified')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum','verified')->get('/user', function (Request $request) {
+//     return Auth::user();
+// });
 
 Route::middleware('auth:sanctum','verified')->get('/authenticated', function () {
     return true;
+});
+
+Route::middleware('auth:sanctum','verified')->get('/authenticated/user', function () {
+    return Auth::user();
 });
 
 // Auth
@@ -92,11 +98,9 @@ Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
     Route::put('/cancel/{id}', [BookingController::class, 'cancel']);
     Route::post('/new', [BookingController::class, 'store']);
     Route::get('/new/show/{id}', [BookingController::class, 'getNewBooking']);
-    Route::get('/active/{userId}', [BookingController::class, 'getActiveBookings']);
-    Route::get('/notactive/{userId}', [BookingController::class, 'getNotActiveBookings']);
+    Route::get('/active', [BookingController::class, 'getActiveBookings']);
+    Route::get('/notactive', [BookingController::class, 'getNotActiveBookings']);
 });
 
 //Payment status webhook
 Route::post('/booking/payment/webhook', [MollieController::class, 'checkStatus']);
-
-// Route::get('test/{id}', [BookingController::class, 'prepareEmailInfo']);        //remove

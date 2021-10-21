@@ -25,7 +25,7 @@ class MollieController extends Controller
             ],
             "description" => "Order: ".json_decode($booking)->id,
             "redirectUrl" => "http://127.0.0.1:8000/booking/new/success/".json_decode($booking)->id,
-            "webhookUrl" => "http://cd2c-145-108-66-64.ngrok.io/api/booking/payment/webhook"
+            "webhookUrl" => "http://5c06-145-108-65-145.ngrok.io/api/booking/payment/webhook"       //change to deBook.nl
         ]);
 
         $payment = $mollie->payments->get($payment->id);

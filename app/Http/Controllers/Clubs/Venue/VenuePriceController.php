@@ -33,7 +33,7 @@ class VenuePriceController extends Controller
             }
         }
 
-        return number_format($price,2);
+        return number_format($price * env('DEBOOK_FEE'), 2);
     }
 
     static function isWeekday($date) {

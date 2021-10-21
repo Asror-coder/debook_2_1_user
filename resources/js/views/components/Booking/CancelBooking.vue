@@ -11,19 +11,19 @@
             <div v-if="message" class="text-red-600 my-2">{{ message }}</div>
 
             <div class="grid grid-cols-2 gap-4 my-4">
-                <div class="bg-blue-100 p-3" v-if="user">
+                <div class="bg-blue-100 p-3" v-if="currentUser">
                     <div class="text-lg font-bold text-gray-600">Information about you</div>
                     <div>
                         <span class="font-bold text-gray-500 mr-2">Name: </span>
-                        {{user.name}} {{user.lastname}}
+                        {{currentUser.name}} {{currentUser.lastname}}
                     </div>
                     <div>
                         <span class="font-bold text-gray-500 mr-2">Email: </span>
-                        {{user.email}}
+                        {{currentUser.email}}
                     </div>
                     <div>
                         <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                        {{user.phone}}
+                        {{currentUser.phone}}
                     </div>
                 </div>
 
@@ -58,9 +58,12 @@
                 </div>
             </div>
 
-            <!-- <div class="bg-blue-100 p-3">
-                <div class="text-lg font-bold text-gray-600">Payment</div>
-            </div> -->
+            <div class="bg-blue-100 p-3">
+                <div class="text-lg font-bold text-gray-600 mb-2">Payment</div>
+
+                <div>Dear customer, you will receive the full amount to your bank that you earlier paid with.</div>
+                <div>Please keep in mind that refund period might take up to 3 days.</div>
+            </div>
         </main>
     </div>
 </template>
@@ -73,7 +76,6 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            user: null,
             booking: null,
             message: ''
         }
@@ -83,8 +85,8 @@ export default {
         async cancel() {
             await axios.put(`/api/booking/cancel/${this.id}`).then((response)=> {
                 if (response.data.message[0] == 'Success') {
-                    this.fetchActiveBookings(this.user.id)
-                    this.fetchNotActiveBookings(this.user.id)
+                    this.fetchActiveBookings()
+                    this.fetchNotActiveBookings()
                     this.$router.push({ name:'SuccessCancelBooking', params: {booking: this.booking}});
                 }
                 else this.message = response.data.message[0];
@@ -118,8 +120,6 @@ export default {
         }
     },
     async mounted() {
-        this.user = JSON.parse(localStorage.getItem('user')).user
-
         await axios.get(`/api/booking/show/${this.id}`).then((response)=> {
             this.booking = response.data[0]
         }).catch((error) => {

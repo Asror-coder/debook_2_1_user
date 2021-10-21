@@ -47,11 +47,35 @@ export default {
             path: '/booking/new/:venueId',
             name: 'NewBooking',
             component: () => import('./views/components/Booking/NewBooking'),
+            meta: {
+                auth: true
+            },
+            beforeEnter: (to, from, next) => {
+                const loggedIn = localStorage.getItem('user')
+
+                if (to.matched.some(record => record.meta.auth) && !loggedIn) {
+                    next('/login')
+                    return
+                }
+                next()
+            }
         },
         {
             path: '/booking/new/success/:id',
             name: 'SuccessBooking',
             component: () => import('./views/components/Booking/SuccessBooking'),
+            meta: {
+                auth: true
+            },
+            beforeEnter: (to, from, next) => {
+                const loggedIn = localStorage.getItem('user')
+
+                if (to.matched.some(record => record.meta.auth) && !loggedIn) {
+                    next('/login')
+                    return
+                }
+                next()
+            }
         },
         {
             path: '/booking/cancel/:id',
@@ -63,9 +87,11 @@ export default {
             beforeEnter: (to, from, next) => {
                 const loggedIn = localStorage.getItem('user')
 
-                if (to.matched.some(record => record.meta.auth) && !loggedIn) next('/login')
-                else if (from.name != 'Dashboard') next({ name: 'NotFound' })
-                else next()
+                if (to.matched.some(record => record.meta.auth) && !loggedIn) {
+                    next('/login')
+                    return
+                }
+                next()
             }
         },
         {
@@ -128,13 +154,6 @@ export default {
             path: '/newpassword/form/:token',
             name: 'PwdResetForm',
             component: () => import('./views/components/Auth/PwdReset/PwdResetForm'),
-        },
-
-        //TEST
-        {
-            path: '/test/payment/success',
-            name: 'TestSuccess',
-            component: () => import('./views/components/TestSuccess')
         }
     ]
 }

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Booking;
 
 use App\Http\Controllers\Controller;
-use App\Models\PartnerApi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BookingApiController extends Controller
@@ -19,14 +17,8 @@ class BookingApiController extends Controller
         $api = DB::table('partner_api')->where('partner_id',$venue->partner_id)->first();
 
         $ciphering = "AES-128-CTR";
-        $options = 0;
-        $decryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
-
-        $username = openssl_decrypt ($api->username, $ciphering,
-                    $decryption_key, $options, env('ENC_DENC_IV'));
-
-        $password = openssl_decrypt ($api->password, $ciphering,
-        $decryption_key, $options, env('ENC_DENC_IV'));
+        $username = openssl_decrypt($api->username, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));
+        $password = openssl_decrypt($api->password, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));
 
         $newReservation = json_encode([
             'query' => trim('
@@ -80,14 +72,8 @@ class BookingApiController extends Controller
         $api = DB::table('partner_api')->where('partner_id',$venue->partner_id)->first();
 
         $ciphering = "AES-128-CTR";
-        $options = 0;
-        $decryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
-
-        $username = openssl_decrypt ($api->username, $ciphering,
-                    $decryption_key, $options, env('ENC_DENC_IV'));
-
-        $password = openssl_decrypt ($api->password, $ciphering,
-        $decryption_key, $options, env('ENC_DENC_IV'));
+        $username = openssl_decrypt($api->username, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));
+        $password = openssl_decrypt($api->password, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));
 
         $newReservation = json_encode([
             'query' => trim('

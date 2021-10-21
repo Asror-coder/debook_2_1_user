@@ -26,9 +26,9 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getActiveBookings($userId)
+    public function getActiveBookings()
     {
-        $bookings = Booking::where('user_id', $userId)
+        $bookings = Booking::where('user_id', Auth::user()->id)
                       ->where('status_id', 1)
                       ->orderBy('date', 'asc')
                       ->orderBy('start_time', 'asc')
@@ -42,9 +42,9 @@ class BookingController extends Controller
         }
     }
 
-    public function getNotActiveBookings($userId)
+    public function getNotActiveBookings()
     {
-        $bookings = Booking::where('user_id', $userId)
+        $bookings = Booking::where('user_id', Auth::user()->id)
                       ->where('status_id', '!=', 1)
                       ->where('status_id', '!=', 6)
                       ->orderBy('date', 'desc')
@@ -96,6 +96,7 @@ class BookingController extends Controller
             $newBooking->date = $request->date;
             $newBooking->start_time = $request->start_time;
             $newBooking->end_time = $request->end_time;
+            $newBooking->status_id = 6;
 
             $venue = DB::table('venues')->where('id',$request->venue_id)->first();
 
@@ -103,38 +104,30 @@ class BookingController extends Controller
                 $bookingApiController = new BookingApiController;
                 $apiResponse = json_decode($bookingApiController->book($newBooking));
 
-                if ($apiResponse->data->createReservation->id) {
+                if ($apiResponse->data->createReservation->id)
                     $newBooking->partner_booking_id = $apiResponse->data->createReservation->id;
-                    $newBooking->status_id = 1;     //CHANGE TO 6 AND MOVE UP
-                    $newBooking->save();
-
-                    return $newBooking;
-                }
                 else return [
                         'message' => 'The provided time slot is not available anymore.'
                     ];
             }
-            else {
-                $newBooking->status_id = 6;         //MOVE UP
-                $newBooking->save();
 
-                $mollieController = new MollieController;
-                $payment = $mollieController->preparePayment(json_encode([
-                    'id' => $this->encryptBookingId($newBooking->id),
-                    'price' => $newBooking->price,
-                ]));
+            $newBooking->save();
 
-                $payment_id = json_decode(json_encode($payment->original))->payment_id;
-                $url = json_decode(json_encode($payment->original))->url;
+            $mollieController = new MollieController;
+            $payment = $mollieController->preparePayment(json_encode([
+                'id' => $this->encryptBookingId($newBooking->id),
+                'price' => $newBooking->price,
+            ]));
 
-                $this->setPaymentId($newBooking->id, $payment_id);
+            $payment_id = json_decode(json_encode($payment->original))->payment_id;
+            $url = json_decode(json_encode($payment->original))->url;
 
-                return $url;        //CHANGE
-                // return redirect()->away('Location: '.$url,303);
-                // return  redirect()->away($url,303)
-                //         ->header('Access-Control-Allow-Origin', '*')
-                //         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-            }
+            $this->setPaymentId($newBooking->id, $payment_id);
+
+            return $url;        //CHANGE
+            // return  redirect()->away($url,303)
+            //         ->header('Access-Control-Allow-Origin', '*')
+            //         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         }
         else {
             return [
@@ -163,10 +156,15 @@ class BookingController extends Controller
     }
 
     public function destroyBooking($payment_id) {
+        $booking = Booking::where('payment_id',$payment_id)->first();
+
         //cancel booking on partner side
+        if ($booking->partner_booking_id) {
+            $bookingApiController = new BookingApiController;
+            $bookingApiController->cancel($booking);
+        }
 
         //remove booking from DB
-        $booking = Booking::where('payment_id',$payment_id)->first();
         $booking->delete();
     }
 
@@ -313,19 +311,14 @@ class BookingController extends Controller
     {
         $value = $id * 34251258;
         $ciphering = "AES-128-CTR";
-        $options = 0;
-        $encryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
 
-        return openssl_encrypt($value, $ciphering, $encryption_key, $options, env('ENC_DENC_IV'));
+        return openssl_encrypt($value, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));;
     }
 
     private function decryptBookingId ($value)
     {
         $ciphering = "AES-128-CTR";
-        $options = 0;
-        $encryption_key = openssl_digest(php_uname(), 'MD5', TRUE);
-
-        $number = openssl_decrypt($value, $ciphering, $encryption_key, $options, env('ENC_DENC_IV'));
+        $number = openssl_decrypt($value, $ciphering, env('ENC_DEC_KEY'), 0, env('ENC_DEC_IV'));
 
         if (is_numeric($number)) return $number / 34251258;
         else Response()->json([

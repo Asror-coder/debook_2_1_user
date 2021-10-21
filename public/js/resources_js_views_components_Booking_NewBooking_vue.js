@@ -103,13 +103,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'NewBooking',
   data: function data() {
     return {
       booking: Object,
-      user: Object,
       isAvailable: true,
       message: ''
     };
@@ -199,28 +200,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               _this3.$router.push('/notfound');
 
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
             case 4:
               _this3.booking = JSON.parse(sessionStorage.getItem('newBooking'));
-              _this3.user = JSON.parse(localStorage.getItem('user')).user;
 
               if (!(_this3.booking.venueId != _this3.$route.params.venueId)) {
-                _context3.next = 10;
+                _context3.next = 9;
                 break;
               }
 
               _this3.$router.push('/notfound');
 
-              _context3.next = 12;
+              _context3.next = 11;
               break;
 
-            case 10:
-              _context3.next = 12;
+            case 9:
+              _context3.next = 11;
               return _this3.checkVenue();
 
-            case 12:
+            case 11:
             case "end":
               return _context3.stop();
           }
@@ -342,7 +342,7 @@ var render = function() {
               "flex-none h-12 bg-green-500 text-white rounded px-8 focus:outline-none hover:shadow-lg",
             on: { click: _vm.book }
           },
-          [_vm._v(" Book ")]
+          [_vm._v(" Check out ")]
         )
       ]),
       _vm._v(" "),
@@ -372,9 +372,9 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.user.name) +
+                      _vm._s(_vm.currentUser.name) +
                       " " +
-                      _vm._s(_vm.user.lastname) +
+                      _vm._s(_vm.currentUser.lastname) +
                       "\n                    "
                   )
                 ]),
@@ -385,7 +385,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.user.email) +
+                      _vm._s(_vm.currentUser.email) +
                       "\n                    "
                   )
                 ]),
@@ -396,7 +396,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.user.phone) +
+                      _vm._s(_vm.currentUser.phone) +
                       "\n                    "
                   )
                 ])
@@ -512,9 +512,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-blue-100 p-3" }, [
-      _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+      _c("div", { staticClass: "text-lg font-bold text-gray-600 mb-3" }, [
         _vm._v("Payment")
-      ])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "Dear customer, our payment system currently only supports iDeal. "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Please keep this in mind before checking out.")])
     ])
   }
 ]

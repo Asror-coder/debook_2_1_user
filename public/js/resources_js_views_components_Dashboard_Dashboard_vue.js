@@ -232,7 +232,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -246,7 +245,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      user: Object,
       showProfile: false,
       showPassed: false
     };
@@ -287,13 +285,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.user = JSON.parse(localStorage.getItem('user')).user;
+              _this2.fetchActiveBookings();
 
-              _this2.fetchActiveBookings(_this2.user.id);
+              _this2.fetchNotActiveBookings();
 
-              _this2.fetchNotActiveBookings(_this2.user.id);
-
-            case 3:
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -337,7 +333,6 @@ __webpack_require__.r(__webpack_exports__);
   name: "Profile",
   data: function data() {
     return {
-      user: Object,
       phoneForm: false
     };
   },
@@ -345,9 +340,6 @@ __webpack_require__.r(__webpack_exports__);
     togglePhoneForm: function togglePhoneForm() {
       this.phoneForm = !this.phoneForm;
     }
-  },
-  mounted: function mounted() {
-    this.user = JSON.parse(localStorage.getItem('user')).user;
   }
 });
 
@@ -740,7 +732,11 @@ var render = function() {
         _c("main", { staticClass: "col-span-2 col-start-2" }, [
           _c("div", { staticClass: "flex flex-row my-5" }, [
             _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
-              _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
+              _vm._v(
+                _vm._s(_vm.currentUser.name) +
+                  " " +
+                  _vm._s(_vm.currentUser.lastname)
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex-grow" }),
@@ -1078,20 +1074,24 @@ var render = function() {
         _c("div", [_vm._v("Name")]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.lastname))
+          _vm._v(
+            _vm._s(_vm.currentUser.name) +
+              " " +
+              _vm._s(_vm.currentUser.lastname)
+          )
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
         _c("div", [_vm._v("Email")]),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.user.email))])
+        _c("div", [_vm._v(_vm._s(_vm.currentUser.email))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
         _c("div", [_vm._v("Phone")]),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.user.phone))])
+        _c("div", [_vm._v(_vm._s(_vm.currentUser.phone))])
       ])
     ]
   )

@@ -6,7 +6,7 @@
                 <div class="flex-none text-2xl font-bold">New Booking</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none h-12 bg-green-500 text-white rounded px-8 focus:outline-none hover:shadow-lg"
-                @click="book" v-show="isAvailable"> Book </button>
+                @click="book" v-show="isAvailable"> Check out </button>
             </div>
 
             <div v-if="!isAvailable" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
@@ -19,15 +19,15 @@
                         <div class="text-lg font-bold text-gray-600">Information about you</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Name: </span>
-                            {{user.name}} {{user.lastname}}
+                            {{currentUser.name}} {{currentUser.lastname}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Email: </span>
-                            {{user.email}}
+                            {{currentUser.email}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                            {{user.phone}}
+                            {{currentUser.phone}}
                         </div>
                     </div>
 
@@ -67,7 +67,9 @@
                 </div>
 
                 <div class="bg-blue-100 p-3">
-                    <div class="text-lg font-bold text-gray-600">Payment</div>
+                    <div class="text-lg font-bold text-gray-600 mb-3">Payment</div>
+                    <div>Dear customer, our payment system currently only supports iDeal. </div>
+                    <div>Please keep this in mind before checking out.</div>
                 </div>
             </div>
         </main>
@@ -83,7 +85,6 @@ export default {
     data() {
         return {
             booking: Object,
-            user: Object,
             isAvailable: true,
             message: ''
         }
@@ -142,7 +143,6 @@ export default {
         }
         else {
             this.booking = JSON.parse(sessionStorage.getItem('newBooking'))
-            this.user = JSON.parse(localStorage.getItem('user')).user
 
             if(this.booking.venueId != this.$route.params.venueId) this.$router.push('/notfound')
             else await this.checkVenue()

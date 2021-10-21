@@ -57,14 +57,14 @@
                 </li>
 
                 <!-- Login -->
-                <li v-if="!user">
+                <li v-if="!currentUser">
                     <router-link to='/login' class="p-3 hover:bg-gray-100 focus:outline-none">
                         Login
                     </router-link>
                 </li>
-                <li v-else-if="user">
+                <li v-else-if="currentUser">
                     <router-link to='/dashboard' class="p-3 hover:bg-gray-100 focus:outline-none">
-                        {{user.name}} {{user.lastname}}
+                        {{currentUser.name}} {{currentUser.lastname}}
                     </router-link>
                 </li>
             </ul>
@@ -91,18 +91,12 @@ export default {
         };
     },
     computed: {
-        ...mapGetters('clubSearch',['searchedClubs']),
-        user: function () {
-            if (localStorage.getItem('user')) {
-                return JSON.parse(localStorage.getItem('user')).user
-            } else return null
-        }
+        ...mapGetters('clubSearch',['searchedClubs'])
     },
     methods: {
         ...mapActions('clubSearch',['searchClubName']),
         ...mapActions('translation',['getTranslation']),
         goToClubPage(id) {
-            // console.log(id);    //remove
             if (sessionStorage.getItem('search')) {
                 var search_request = JSON.parse(sessionStorage.getItem('search'))
 
