@@ -93,7 +93,7 @@ export default {
                     price: venue.price
                 }
 
-                sessionStorage.setItem('newBooking', JSON.stringify(booking))
+                // sessionStorage.setItem('newBooking', JSON.stringify(booking))
                 this.$router.push({ name:'NewBooking', params: {venueId: venue.venue_id}})
             } else this.showLoginMessage = true
         }

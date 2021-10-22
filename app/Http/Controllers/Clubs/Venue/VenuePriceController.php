@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class VenuePriceController extends Controller
 {
-    public function calculatePrice($venueId, Request $request) {
+    public function calculatePrice($id, Request $request) {
 
         if (VenuePriceController::isWeekday($request->date)) $weekday = 1;
         else $weekday = 0;
 
-        $venuePrices = VenuePrice::where('venue_id', $venueId)
+        $venuePrices = VenuePrice::where('venue_id', $id)
                                 ->where('weekday', $weekday)
                                 ->orderBy('start_time', 'ASC')->get();
 

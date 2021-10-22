@@ -11,6 +11,7 @@ use App\Http\Controllers\Booking\MollieController;
 use App\Http\Controllers\Clubs\ClubsController;
 use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
+use App\Http\Controllers\Clubs\Venue\VenuePriceController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,8 @@ Route::prefix('/clubs')->group(function() {
 Route::prefix('/venue')->group(function() {
     Route::get('/{id}/checkavailability', [VenueController::class, 'checkAvailability']);
     Route::get('/{id}', [VenueController::class, 'show']);
+    Route::get('/{id}/full', [VenueController::class, 'getFullInfo']);
+    Route::get('{id}/price/calculate', [VenuePriceController::class, 'calculatePrice']);
 });
 
 //Booking information

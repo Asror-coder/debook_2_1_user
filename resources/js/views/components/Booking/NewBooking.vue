@@ -6,16 +6,20 @@
                 <div class="flex-none text-2xl font-bold">New Booking</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none h-12 bg-green-500 text-white rounded px-8 focus:outline-none hover:shadow-lg"
-                @click="book" v-show="isAvailable"> Check out </button>
+                @click="book" v-show="isAvailable && allowDateTime()"> Check out </button>
             </div>
 
             <div v-if="!isAvailable" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
                 We are sorry, but someone just booked this venue. Please try other time slots.
             </div>
 
+            <div v-if="!allowDateTime()" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
+                We are sorry, but it is too late to book this venue. Please try other time slots.
+            </div>
+
             <div v-else-if="isAvailable">
                 <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-blue-100 p-3" v-if="currentUser">
                         <div class="text-lg font-bold text-gray-600">Information about you</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Name: </span>
@@ -35,33 +39,33 @@
                         <div class="text-lg font-bold text-gray-600">Information about booking</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Club: </span>
-                            {{booking.clubName}}
+                            {{venue.clubName}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                            {{booking.clubPhone}}
+                            {{venue.phone}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Sport: </span>
-                            {{booking.sport_type}}
+                            {{venue.sport_type}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Venue: </span>
-                            {{booking.venueName}} ({{booking.surface}},
-                            <span v-if="booking.indoor == 1">indoor</span>
-                            <span v-if="booking.indoor == 0">outdoor</span>)
+                            {{venue.venueName}} ({{venue.surface}},
+                            <span v-if="venue.indoor == 1">indoor</span>
+                            <span v-if="venue.indoor == 0">outdoor</span>)
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Date: </span>
-                            {{changeDateFormat(booking.date)}}
+                            {{changeDateFormat(clubSearch.date)}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Time: </span>
-                            {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
+                            {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
                         </div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Price: </span>
-                            €{{booking.price}}
+                            €{{price}}
                         </div>
                     </div>
                 </div>
@@ -84,33 +88,40 @@ export default {
     name: 'NewBooking',
     data() {
         return {
-            booking: Object,
+            venue: Object,
+            clubSearch: Object,
+            price: '',
             isAvailable: true,
             message: ''
         }
     },
     methods: {
         ...mapActions('bookings',['addBooking']),
-        async book() {      //CHANGE ME
+        async book() {
             await this.checkVenue();
 
             await this.addBooking({
-                venue_id: this.booking.venueId,
-                price: this.booking.price,
-                date: this.booking.date,
-                start_time: this.booking.start_time,
-                end_time: this.booking.end_time
+                venue_id: this.venue.id,
+                date: this.clubSearch.date,
+                start_time: this.clubSearch.start_time,
+                end_time: this.clubSearch.end_time
             })
         },
         async checkVenue() {
-            await axios.get(`/api/venue/${this.booking.venueId}/checkavailability`,{params: this.booking}).then((response)=> {
-                if(response.data != 1) {
-                    this.isAvailable = false
-                    sessionStorage.removeItem('newBooking')
-                }
+            await axios.get(`/api/venue/${this.venue.id}/checkavailability`,{params: this.clubSearch}).then((response)=> {
+                if(response.data != 1) this.isAvailable = false
             }).catch((error) => {
                 this.message = error.response.data.message;
             })
+        },
+        allowDateTime() {
+            var today = new Date();
+            var currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+            if (this.clubSearch.date < currentDate) return false;
+            if (this.clubSearch.date == currentDate && this.clubSearch.start_time <= today.getHours()) return false;
+
+            return true
         },
         changeTimeFormat(time) {
             if (time) {
@@ -138,15 +149,27 @@ export default {
         }
     },
     async mounted() {
-        if(!JSON.parse(sessionStorage.getItem('newBooking')) || !JSON.parse(localStorage.getItem('user'))) {
-            this.$router.push('/notfound')
-        }
-        else {
-            this.booking = JSON.parse(sessionStorage.getItem('newBooking'))
+        if(!JSON.parse(localStorage.getItem('user'))) this.$router.push('/notfound');
+        if(!JSON.parse(sessionStorage.getItem('clubSearch'))) this.$router.push('/notfound');
 
-            if(this.booking.venueId != this.$route.params.venueId) this.$router.push('/notfound')
-            else await this.checkVenue()
-        }
+        this.clubSearch = JSON.parse(sessionStorage.getItem('clubSearch'))
+
+        await axios.get(`/api/authenticated`).then((response)=> {
+            if (!response.data) this.$router.push('/notfound')
+        }).catch((error) => {})
+
+        await axios.get(`/api/venue/${this.$route.params.venueId}/full`).then((response)=> {
+            if (response.data.length == 0) this.$router.push('/notfound')
+            if (response.data[0].partner_id != this.clubSearch.partnerId) this.$router.push('/notfound')
+
+            this.venue = response.data[0]
+        }).catch((error) => {})
+
+        this.checkVenue();
+
+        await axios.get(`/api/venue/${this.venue.id}/price/calculate`,{params: this.clubSearch}).then((response)=> {
+            this.price = response.data
+        }).catch((error) => {})
     }
 };
 </script>

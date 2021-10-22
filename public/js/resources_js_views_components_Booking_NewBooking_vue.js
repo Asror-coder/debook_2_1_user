@@ -105,12 +105,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'NewBooking',
   data: function data() {
     return {
-      booking: Object,
+      venue: Object,
+      clubSearch: Object,
+      price: '',
       isAvailable: true,
       message: ''
     };
@@ -130,11 +136,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 2:
                 _context.next = 4;
                 return _this.addBooking({
-                  venue_id: _this.booking.venueId,
-                  price: _this.booking.price,
-                  date: _this.booking.date,
-                  start_time: _this.booking.start_time,
-                  end_time: _this.booking.end_time
+                  venue_id: _this.venue.id,
+                  date: _this.clubSearch.date,
+                  start_time: _this.clubSearch.start_time,
+                  end_time: _this.clubSearch.end_time
                 });
 
               case 4:
@@ -154,13 +159,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get("/api/venue/".concat(_this2.booking.venueId, "/checkavailability"), {
-                  params: _this2.booking
+                return axios.get("/api/venue/".concat(_this2.venue.id, "/checkavailability"), {
+                  params: _this2.clubSearch
                 }).then(function (response) {
-                  if (response.data != 1) {
-                    _this2.isAvailable = false;
-                    sessionStorage.removeItem('newBooking');
-                  }
+                  if (response.data != 1) _this2.isAvailable = false;
                 })["catch"](function (error) {
                   _this2.message = error.response.data.message;
                 });
@@ -172,6 +174,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee2);
       }))();
+    },
+    allowDateTime: function allowDateTime() {
+      var today = new Date();
+      var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      if (this.clubSearch.date < currentDate) return false;
+      if (this.clubSearch.date == currentDate && this.clubSearch.start_time <= today.getHours()) return false;
+      return true;
     },
     changeTimeFormat: function changeTimeFormat(time) {
       if (time) {
@@ -193,34 +202,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              if (!(!JSON.parse(sessionStorage.getItem('newBooking')) || !JSON.parse(localStorage.getItem('user')))) {
-                _context3.next = 4;
-                break;
-              }
+              if (!JSON.parse(localStorage.getItem('user'))) _this3.$router.push('/notfound');
+              if (!JSON.parse(sessionStorage.getItem('clubSearch'))) _this3.$router.push('/notfound');
+              _this3.clubSearch = JSON.parse(sessionStorage.getItem('clubSearch'));
+              _context3.next = 5;
+              return axios.get("/api/authenticated").then(function (response) {
+                if (!response.data) _this3.$router.push('/notfound');
+              })["catch"](function (error) {});
 
-              _this3.$router.push('/notfound');
+            case 5:
+              _context3.next = 7;
+              return axios.get("/api/venue/".concat(_this3.$route.params.venueId, "/full")).then(function (response) {
+                if (response.data.length == 0) _this3.$router.push('/notfound');
+                if (response.data[0].partner_id != _this3.clubSearch.partnerId) _this3.$router.push('/notfound');
+                _this3.venue = response.data[0];
+              })["catch"](function (error) {});
 
-              _context3.next = 11;
-              break;
+            case 7:
+              _this3.checkVenue();
 
-            case 4:
-              _this3.booking = JSON.parse(sessionStorage.getItem('newBooking'));
+              _context3.next = 10;
+              return axios.get("/api/venue/".concat(_this3.venue.id, "/price/calculate"), {
+                params: _this3.clubSearch
+              }).then(function (response) {
+                _this3.price = response.data;
+              })["catch"](function (error) {});
 
-              if (!(_this3.booking.venueId != _this3.$route.params.venueId)) {
-                _context3.next = 9;
-                break;
-              }
-
-              _this3.$router.push('/notfound');
-
-              _context3.next = 11;
-              break;
-
-            case 9:
-              _context3.next = 11;
-              return _this3.checkVenue();
-
-            case 11:
+            case 10:
             case "end":
               return _context3.stop();
           }
@@ -334,8 +342,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.isAvailable,
-                expression: "isAvailable"
+                value: _vm.isAvailable && _vm.allowDateTime(),
+                expression: "isAvailable && allowDateTime()"
               }
             ],
             staticClass:
@@ -358,49 +366,73 @@ var render = function() {
               )
             ]
           )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.allowDateTime()
+        ? _c(
+            "div",
+            {
+              staticClass: "p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2"
+            },
+            [
+              _vm._v(
+                "\n            We are sorry, but it is too late to book this venue. Please try other time slots.\n        "
+              )
+            ]
+          )
         : _vm.isAvailable
         ? _c("div", [
             _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-              _c("div", { staticClass: "bg-blue-100 p-3" }, [
-                _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-                  _vm._v("Information about you")
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                    _vm._v("Name: ")
-                  ]),
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.currentUser.name) +
-                      " " +
-                      _vm._s(_vm.currentUser.lastname) +
-                      "\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                    _vm._v("Email: ")
-                  ]),
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.currentUser.email) +
-                      "\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                    _vm._v("Phone: ")
-                  ]),
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.currentUser.phone) +
-                      "\n                    "
-                  )
-                ])
-              ]),
+              _vm.currentUser
+                ? _c("div", { staticClass: "bg-blue-100 p-3" }, [
+                    _c(
+                      "div",
+                      { staticClass: "text-lg font-bold text-gray-600" },
+                      [_vm._v("Information about you")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "span",
+                        { staticClass: "font-bold text-gray-500 mr-2" },
+                        [_vm._v("Name: ")]
+                      ),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.currentUser.name) +
+                          " " +
+                          _vm._s(_vm.currentUser.lastname) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "span",
+                        { staticClass: "font-bold text-gray-500 mr-2" },
+                        [_vm._v("Email: ")]
+                      ),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.currentUser.email) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "span",
+                        { staticClass: "font-bold text-gray-500 mr-2" },
+                        [_vm._v("Phone: ")]
+                      ),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.currentUser.phone) +
+                          "\n                    "
+                      )
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "bg-blue-100 p-3" }, [
                 _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
@@ -413,7 +445,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.booking.clubName) +
+                      _vm._s(_vm.venue.clubName) +
                       "\n                    "
                   )
                 ]),
@@ -424,7 +456,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.booking.clubPhone) +
+                      _vm._s(_vm.venue.phone) +
                       "\n                    "
                   )
                 ]),
@@ -435,7 +467,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.booking.sport_type) +
+                      _vm._s(_vm.venue.sport_type) +
                       "\n                    "
                   )
                 ]),
@@ -446,16 +478,16 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.booking.venueName) +
+                      _vm._s(_vm.venue.venueName) +
                       " (" +
-                      _vm._s(_vm.booking.surface) +
+                      _vm._s(_vm.venue.surface) +
                       ",\n                        "
                   ),
-                  _vm.booking.indoor == 1
+                  _vm.venue.indoor == 1
                     ? _c("span", [_vm._v("indoor")])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.booking.indoor == 0
+                  _vm.venue.indoor == 0
                     ? _c("span", [_vm._v("outdoor")])
                     : _vm._e(),
                   _vm._v(")\n                    ")
@@ -467,7 +499,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.changeDateFormat(_vm.booking.date)) +
+                      _vm._s(_vm.changeDateFormat(_vm.clubSearch.date)) +
                       "\n                    "
                   )
                 ]),
@@ -478,9 +510,9 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
+                      _vm._s(_vm.changeTimeFormat(_vm.clubSearch.start_time)) +
                       " - " +
-                      _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
+                      _vm._s(_vm.changeTimeFormat(_vm.clubSearch.end_time)) +
                       "\n                    "
                   )
                 ]),
@@ -491,7 +523,7 @@ var render = function() {
                   ]),
                   _vm._v(
                     "\n                        €" +
-                      _vm._s(_vm.booking.price) +
+                      _vm._s(_vm.price) +
                       "\n                    "
                   )
                 ])

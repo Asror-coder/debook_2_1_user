@@ -59,7 +59,7 @@
             <div v-if="showPassed">
                 <div class="text-xl text-gray-500 font-bold">{{ translation.dashboard.passed }}</div>
 
-                <div v-if="this.notActiveBookings.length > 0">
+                <div v-if="this.notActiveBookings">
                     <!-- Bookings -->
                     <div :key="notActiveBooking[0].id" v-for="notActiveBooking in notActiveBookings">
                         <BookingCard :booking="notActiveBooking" />
@@ -127,7 +127,7 @@ export default {
     },
     computed: {
         ...mapGetters('bookings',['activeBookings','notActiveBookings',
-                                     'notActiveBookingsPage','activeBookingsPage'])
+                                   'notActiveBookingsPage','activeBookingsPage'])
     },
     async mounted() {
         this.fetchActiveBookings()

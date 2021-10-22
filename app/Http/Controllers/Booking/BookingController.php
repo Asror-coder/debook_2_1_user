@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Booking;
 use App\Http\Controllers\Clubs\ClubsController;
 use App\Http\Controllers\Clubs\ServiceController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
+use App\Http\Controllers\Clubs\Venue\VenuePriceController;
 use App\Http\Controllers\Controller;
 use App\Mail\CancelBooking;
 use App\Mail\NewBooking;
@@ -86,13 +87,14 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $venueController = new VenueController;
+        $venuePriceController = new VenuePriceController;
 
         if($venueController->checkAvailability($request->venue_id, $request)) {
             $newBooking = new Booking();
 
             $newBooking->user_id = $request->user()->id;
             $newBooking->venue_id = $request->venue_id;
-            $newBooking->price = $request->price;           //check price before assigning
+            $newBooking->price = $venuePriceController->calculatePrice($request->venue_id,$request);
             $newBooking->date = $request->date;
             $newBooking->start_time = $request->start_time;
             $newBooking->end_time = $request->end_time;
@@ -115,7 +117,7 @@ class BookingController extends Controller
 
             $mollieController = new MollieController;
             $payment = $mollieController->preparePayment(json_encode([
-                'id' => $this->encryptBookingId($newBooking->id),
+                'id' => $this->encryptBookingId($newBooking->id),  //Implement reservation numbers
                 'price' => $newBooking->price,
             ]));
 
@@ -193,16 +195,17 @@ class BookingController extends Controller
     {
         $real_id = $this->decryptBookingId($id);
 
-        if (is_numeric($real_id)) return DB::table('bookings')
-                                        ->join('venues','bookings.venue_id','=','venues.id')
-                                        ->join('services','venues.service_id','=','services.id')
-                                        ->join('partner_details','venues.partner_id','=','partner_details.partner_id')
-                                        ->select('bookings.date','bookings.price','bookings.start_time','bookings.end_time',
-                                                'venues.name as venueName','partner_details.name as clubName','partner_details.phone',
-                                                'services.sport_type as sport','services.surface','services.indoor')
-                                        ->where('bookings.id','=',$real_id)
-                                        ->where('bookings.status_id','=',1)
-                                        ->get();
+        if (is_numeric($real_id))
+            return DB::table('bookings')
+                ->join('venues','bookings.venue_id','=','venues.id')
+                ->join('services','venues.service_id','=','services.id')
+                ->join('partner_details','venues.partner_id','=','partner_details.partner_id')
+                ->select('bookings.date','bookings.price','bookings.start_time','bookings.end_time',
+                        'venues.name as venueName','partner_details.name as clubName','partner_details.phone',
+                        'services.sport_type as sport','services.surface','services.indoor')
+                ->where('bookings.id','=',$real_id)
+                // ->where('bookings.status_id','=',1)      //put it back
+                ->get();
         // else $real_id;
     }
 
@@ -228,37 +231,30 @@ class BookingController extends Controller
                 $bookingApiController = new BookingApiController;
                 $apiResponse = json_decode($bookingApiController->cancel($booking));
 
-                if ($apiResponse->data->cancelReservation->cancelled) {
-                    $booking->update(['status_id' => 4]);
-                    $booking->update(['updated_at' => Carbon::now()]);
+                if (!$apiResponse->data->cancelReservation->cancelled)
                     return response([
-                        'message' => ['Success']
+                        'message' => ['Something went wrong with cancelation. Please, try again later.']
                     ]);
-                }
-                else return response([
-                    'message' => ['Something went wrong with cancelation. Please, try again later.']
-                ]);
             }
-            else {
-                if ($booking->payment_id) {
-                    $mollieController = new MollieController;
-                    $mollieController->refundPayment(json_encode([
-                        'payment_id' => $booking->payment_id,
-                        'price' => $booking->price,
-                    ]));
-                }
 
-                $booking->update(['status_id' => 4]);
-                $booking->update(['updated_at' => Carbon::now()]);
-
-                $user = User::find($booking->user_id);
-
-                Mail::to($user->email)->send(new CancelBooking($this->prepareEmailInfo($booking->id)));
-
-                return response([
-                    'message' => ['Success']
-                ]);
+            if ($booking->payment_id) {
+                $mollieController = new MollieController;
+                $mollieController->refundPayment(json_encode([
+                    'payment_id' => $booking->payment_id,
+                    'price' => $booking->price,
+                ]));
             }
+
+            $booking->update(['status_id' => 4]);
+            $booking->update(['updated_at' => Carbon::now()]);
+
+            $user = User::find($booking->user_id);
+
+            Mail::to($user->email)->send(new CancelBooking($this->prepareEmailInfo($booking->id)));
+
+            return response([
+                'message' => ['Success']
+            ]);
         }
         else return response([
             'message' => ['Booking cannot be canceled within 12 hours before the start time.']

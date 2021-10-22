@@ -128,8 +128,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           start_time: this.searchRequest.start_time,
           end_time: this.searchRequest.end_time,
           price: venue.price
-        };
-        sessionStorage.setItem('newBooking', JSON.stringify(booking));
+        }; // sessionStorage.setItem('newBooking', JSON.stringify(booking))
+
         this.$router.push({
           name: 'NewBooking',
           params: {

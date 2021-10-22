@@ -930,7 +930,7 @@ var render = function() {
                   _vm._v(_vm._s(_vm.translation.dashboard.passed))
                 ]),
                 _vm._v(" "),
-                this.notActiveBookings.length > 0
+                this.notActiveBookings
                   ? _c(
                       "div",
                       [
