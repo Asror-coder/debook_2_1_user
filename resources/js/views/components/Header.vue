@@ -1,76 +1,77 @@
 <template>
-    <div>
-        <nav class="p-6 bg-white flex justify-between shadow-lg">
-            <ul class="flex items-center">
-                <li>
-                    <router-link to='/' class="p-3 mx-6 text-3xl"><span class="text-de">de</span><span class="text-book">Book</span></router-link>
-                </li>
-                <li @mouseover="showSports = true" @mouseleave="showSports = false" class="relative inline-block text-left" >
+    <nav class="py-6 bg-background shadow-lg flex flex-row">
+        <ul class="flex items-center">
+            <li>
+                <router-link to='/' class="p-3 mx-6 text-4xl"><span class="text-de">de</span><span class="text-book">Book</span></router-link>
+            </li>
+            <li @mouseover="showSports = true" @mouseleave="showSports = false" class="relative inline-block text-left" >
 
-                    <div class="p-3 hover:bg-gray-100 focus:outline-none">Sports</div>
+                <button class="nav-btn">Sports</button>
 
-                    <transition name="fade">
+                <transition name="fade">
 
-                        <ul v-if="showSports" @click="listOne = false" class="absolute py-1 w-56 rounded-md shadow-lg bg-white focus:outline-none">
+                    <ul v-if="showSports" @click="listOne = false" class="absolute w-56 shadow-lg bg-white focus:outline-none">
 
-                            <li><router-link to='/clubs/tennis' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Tennis</router-link></li>
-                            <li><router-link to='/clubs/padel' class="text-gray-700 block px-4 py-2 hover:bg-gray-100">Padel</router-link></li>
-                        </ul>
+                        <li><router-link to='/clubs/tennis' class="drop-down">Tennis</router-link></li>
+                        <li><router-link to='/clubs/padel' class="drop-down">Padel</router-link></li>
+                    </ul>
 
-                    </transition>
-                </li>
-                <li>
-                    <router-link to='#' class="p-3 hover:bg-gray-100 focus:outline-none">Events</router-link>
-                </li>
-                <li>
-                    <router-link to='#' class="p-3 hover:bg-gray-100 focus:outline-none">Explore</router-link>
-                </li>
-                <li>
-                    <router-link to='#' class="p-3 hover:bg-gray-100 focus:outline-none">About us</router-link>
-                </li>
-            </ul>
+                </transition>
+            </li>
+            <li>
+                <router-link to='#' class="nav-btn">Events</router-link>
+            </li>
+            <li>
+                <router-link to='#' class="nav-btn">Explore</router-link>
+            </li>
+            <li>
+                <router-link to='#' class="nav-btn">About us</router-link>
+            </li>
+        </ul>
 
-            <ul class="flex items-center mr-6">
+        <div class="flex-grow"></div>
 
-                <!-- Club search -->
-                <li class="mr-10 relative inline-block text-left" v-on-clickaway="away">
-                    <input type="text" name="clubName" placeholder="search" v-model="clubName"
-                        class="bg-gray-100 rounded-md p-1 shadow-sm focus:outline-none" @focus="focused">
+        <ul class="flex items-center flex-row-reverse">
+            <!-- Login -->
+            <li v-if="!currentUser">
+                <router-link to='/login' class="nav-btn mr-2">
+                    Login
+                </router-link>
+            </li>
+            <li v-else-if="currentUser">
+                <router-link to='/dashboard' class="nav-btn mr-2">
+                    {{currentUser.name}} {{currentUser.lastname}}
+                </router-link>
+            </li>
 
-                    <transition name="fade">
+            <!-- Language -->
+            <li class="mr-10 w-9 text-center hover:shadow-lg text-white" v-if="lang">
+                <button v-if="lang == 'nl'" @click="changeLang('en')" class="bg-red-500 w-full rounded-md">eng</button>
+                <button v-if="lang == 'en'" @click="changeLang('nl')" class="bg-yellow-500 w-full rounded-md">nl</button>
+            </li>
 
-                        <div v-show="showClubs" class="absolute py-1 w-48 rounded-md shadow-lg bg-white focus:outline-none">
-                            <div v-if="searchedClubs.length == 0">
-                                <p class="w-full p-1 hover:bg-gray-100">No clubs</p>
-                            </div>
+            <!-- Club search -->
+            <li class="mr-10 relative inline-block text-left" v-on-clickaway="away">
+                <div class="border-b border-teal-500 mb-2">
+                    <input type="text" name="clubName" placeholder="search" v-model="clubName" @focus="focused"
+                        class="bg-transparent border-none text-white leading-tight p-1 shadow-lg focus:outline-none placeholder-gray-400">
+                </div>
 
-                            <div v-for="club in searchedClubs" :key="club.id" class="w-full">
-                                <button @click="goToClubPage(club.partner_id)" class="focus:outline-none hover:bg-gray-100">{{club.name}}</button>
-                            </div>
+                <transition name="fade">
+
+                    <div v-show="showClubs" class="absolute w-48 shadow-lg bg-white focus:outline-none">
+                        <div v-if="searchedClubs.length == 0">
+                            <p class="w-full px-4 py-2">No clubs</p>
                         </div>
-                    </transition>
-                </li>
 
-                <li class="mr-10 w-9 text-center hover:shadow-lg text-white" v-if="lang">
-                    <button v-if="lang == 'nl'" @click="changeLang('en')" class="bg-red-500 w-full rounded-md">eng</button>
-                    <button v-if="lang == 'en'" @click="changeLang('nl')" class="bg-yellow-500 w-full rounded-md">nl</button>
-                </li>
-
-                <!-- Login -->
-                <li v-if="!currentUser">
-                    <router-link to='/login' class="p-3 hover:bg-gray-100 focus:outline-none">
-                        Login
-                    </router-link>
-                </li>
-                <li v-else-if="currentUser">
-                    <router-link to='/dashboard' class="p-3 hover:bg-gray-100 focus:outline-none">
-                        {{currentUser.name}} {{currentUser.lastname}}
-                    </router-link>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
+                        <div v-for="club in searchedClubs" :key="club.id" class="w-full">
+                            <button @click="goToClubPage(club.partner_id)" class="drop-down w-full">{{club.name}}</button>
+                        </div>
+                    </div>
+                </transition>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <script>

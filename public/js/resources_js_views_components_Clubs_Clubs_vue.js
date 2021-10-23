@@ -1175,7 +1175,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-row p-3 rounded-lg shadow-lg text-lg" },
+    {
+      staticClass:
+        "flex flex-row p-3 rounded-lg shadow-lg text-lg bg-white mb-2"
+    },
     [
       _c("div", { staticClass: "flex-none" }, [_vm._v(_vm._s(this.club.name))]),
       _vm._v(" "),

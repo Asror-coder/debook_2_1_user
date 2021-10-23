@@ -1,6 +1,8 @@
 <template>
-    <div class="flex flex-col w-10/12 bg-white p-6 rounded-lg shadow-xl">
-        <h1 class="text-2xl text-center pb-5">Wanna play sport?</h1>
+    <div class="flex flex-col w-10/12 bg-white bg-opacity-70 p-6 shadow-xl">
+        <div class="text-2xl text-center pb-5">
+            Wanna play sport?
+        </div>
 
         <div class="text-center text-red-700" v-if="message">{{message}}</div>
         <form action="" @submit.prevent="searchClubs" class="mx-10">
@@ -8,9 +10,9 @@
             <div class="flex flex-row mb-4">
                 <!-- Sport -->
                 <div class="flex-none">
-                    <label for="sport_type">Sport: </label>
+                    <label for="sport_type" class="text-xl text-gray-700">Sport: </label>
                     <select name="sport_type" id="sport_type" placeholder="Sport" v-model="form.sport_type"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                    class="bg-gray-100 border-2 p-1 focus:outline-none">
                         <option value="" disabled selected hidden>Choose a sport</option>
                         <option value="tennis">Tennis</option>
                         <option value="padel">Padel</option>
@@ -21,9 +23,9 @@
 
                 <!-- City -->
                 <div class="flex-none">
-                    <label for="city">City: </label>
+                    <label for="city" class="text-xl text-gray-700">City: </label>
                     <select name="city" id="city" placeholder="Sport" v-model="form.city"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                        class="bg-gray-100 border-2 p-1 focus:outline-none">
                         <option value="" disabled selected hidden>Choose your city</option>
                         <option value="Amsterdam">Amsterdam</option>
                         <option value="Harlem">Harlem</option>
@@ -32,23 +34,23 @@
             </div>
 
             <hr>
-            <div class="text-gray-400 text-md">Optional</div>
+            <div class="text-gray-700 text-md">Optional</div>
 
             <div class="flex flex-row mb-4">
                 <!-- Date -->
                 <div class="flex-none">
-                    <label for="date">Date: </label>
+                    <label for="date" class="text-xl text-gray-700">Date: </label>
                     <input type="date" name="date" placeholder="date"
-                        class="bg-gray-100 border-2 p-1 rounded focus:outline-none" v-model="form.date">
+                        class="bg-gray-100 border-2 focus:outline-none" v-model="form.date">
                 </div>
 
                 <div class="flex-grow"></div>
 
                  <!-- Time -->
                 <div class="flex-none">
-                    <label for="time">Time:</label>
+                    <label for="time" class="text-xl text-gray-700">Time:</label>
                     <select name="start-time" v-model="form.start_time"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                    class="bg-gray-100 border-2 p-1 focus:outline-none">
                         <option value="" disabled selected hidden>Start</option>
                         <option value="05">05:00</option>
                         <option value="06">06:00</option>
@@ -74,7 +76,7 @@
 
                     <label for="time">-</label>
                     <select name="end-time" v-model="form.end_time"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                    class="bg-gray-100 border-2 p-1 focus:outline-none">
                         <option value="" disabled selected hidden>End</option>
                         <option value="05">05:00</option>
                         <option value="06">06:00</option>

@@ -14,22 +14,22 @@ class ClubsController extends Controller
 {
     //get all available clubs according to the request
     public function getClubs(Request $request) {
-        $clubs_sql = 'SELECT DISTINCT partner_id AS id
-                        FROM venues
-                        WHERE `status` = 1';
-
-        if ($request->city) {
-            $clubs_sql = 'SELECT t2.id
-                          FROM partner_address t1
-                          INNER JOIN ('.$clubs_sql.') t2
-                          WHERE t1.city LIKE "%'.$request->city.'%"
-                            AND t1.partner_id = t2.id';
-        }
-
-        $availableClubs = DB::select($clubs_sql);
-
         //if date and time is set
         if ($request->date && $request->start_time && $request->end_time) {
+            $clubs_sql = 'SELECT DISTINCT partner_id AS id
+                            FROM venues
+                            WHERE `status` = 1';
+
+            if ($request->city) {
+                $clubs_sql = 'SELECT t2.id
+                            FROM partner_address t1
+                            INNER JOIN ('.$clubs_sql.') t2
+                            WHERE t1.city LIKE "%'.$request->city.'%"
+                                AND t1.partner_id = t2.id';
+            }
+
+            $availableClubs = DB::select($clubs_sql);
+
             for ($i=0; $i < count($availableClubs); $i++) {
                 $availableVenues = $this->getAvailableVenues($availableClubs[$i]->id,$request);
 
@@ -44,6 +44,30 @@ class ClubsController extends Controller
             }
         }
         else { //if date and time isn't set
+
+            $services = ClubsController::getServiceId($request);
+
+            $clubs_sql = 'SELECT DISTINCT partner_id AS id
+                            FROM venues
+                            WHERE `status` = 1
+                              AND (';
+
+            for ($i=0; $i < count($services); $i++) {
+                if ($i == 0) $clubs_sql = $clubs_sql.'service_id = '.$services[$i]->id;
+                else if ($i == count($services)-1) $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id.')';
+                else $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id;
+            }
+
+            if ($request->city) {
+                $clubs_sql = 'SELECT t2.id
+                            FROM partner_address t1
+                            INNER JOIN ('.$clubs_sql.') t2
+                            WHERE t1.city LIKE "%'.$request->city.'%"
+                                AND t1.partner_id = t2.id';
+            }
+
+            $availableClubs = DB::select($clubs_sql);
+
             if ($request->maxPrice) {
                 for ($i=0; $i < count($availableClubs); $i++) {
                     $lowestPrice = $this->getLowestPrice($availableClubs[$i]->id);
@@ -61,20 +85,6 @@ class ClubsController extends Controller
                     ->join('partner_address','partner_details.partner_id','=','partner_address.partner_id')
                     ->whereIn('partner_details.partner_id',$clubsId)
                     ->paginate(5);
-
-        //Array version without pagination  !! CHECK BEFORE REMOVING !!
-
-        // if ($availableClubs) {
-        //     $partnerAddressController = new PartnerAddressController;
-        //     $partnerDetailsController = new PartnerDetailsController;
-
-        //     for ($i = 0; $i < sizeof($availableClubs); $i++) {
-        //         $clubs[$i][0] = $availableClubs[$i];
-        //         $clubs[$i][1] = $partnerAddressController->show($availableClubs[$i]->id)[0];
-        //         $clubs[$i][2] = $partnerDetailsController->show($availableClubs[$i]->id)[0];
-        //     }
-        //     return $clubs;
-        // } else return $availableClubs;
     }
 
     //checks max price for available venues

@@ -28,7 +28,7 @@ class LoginController extends Controller
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response([
                 'message' => 'Invalid login details.'
-            ], 401);
+            ], 403);
         }
 
         if (!$user->email_verified_at) {

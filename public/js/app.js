@@ -2152,6 +2152,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Footer'
 });
@@ -2178,6 +2210,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -21949,17 +21982,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "footer",
+    {
+      staticClass: "h-56 bg-cover bg-right-top grid grid-cols-5 pt-10",
+      staticStyle: {
+        "background-image": "url('storage/images/footer-img.jpeg')"
+      }
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "ml-20" }, [
+        _c("div", { staticClass: "text-white text-lg" }, [
+          _vm._v("Who are we?")
+        ]),
+        _vm._v(" "),
+        _c("ul", [
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("About us")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("For clubs")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("Cookie settings")]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ml-20" }, [
+        _c("div", { staticClass: "text-white text-lg" }, [_vm._v("Discover")]),
+        _vm._v(" "),
+        _c("ul", [
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("Blog")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("Sport tips")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "footer-btn", attrs: { to: "#" } },
+                [_vm._v("Website navigation")]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", {}, [
-      _c("div", { staticClass: "my-4" }, [
-        _c("p", { staticClass: "text-center" }, [_vm._v("deBook © 2021")])
-      ])
+    return _c("div", { staticClass: "col-start-2 ml-20 text-white" }, [
+      _c("div", { staticClass: "text-xl" }, [_vm._v("Contacts:")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-lg" }, [_vm._v("asror@debook.nl")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "mt-4" }, [_vm._v("deBook © 2021")])
     ])
   }
 ]
@@ -21985,15 +22117,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("nav", { staticClass: "p-6 bg-white flex justify-between shadow-lg" }, [
+  return _c(
+    "nav",
+    { staticClass: "py-6 bg-background shadow-lg flex flex-row" },
+    [
       _c("ul", { staticClass: "flex items-center" }, [
         _c(
           "li",
           [
             _c(
               "router-link",
-              { staticClass: "p-3 mx-6 text-3xl", attrs: { to: "/" } },
+              { staticClass: "p-3 mx-6 text-4xl", attrs: { to: "/" } },
               [
                 _c("span", { staticClass: "text-de" }, [_vm._v("de")]),
                 _c("span", { staticClass: "text-book" }, [_vm._v("Book")])
@@ -22017,11 +22151,7 @@ var render = function() {
             }
           },
           [
-            _c(
-              "div",
-              { staticClass: "p-3 hover:bg-gray-100 focus:outline-none" },
-              [_vm._v("Sports")]
-            ),
+            _c("button", { staticClass: "nav-btn" }, [_vm._v("Sports")]),
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
               _vm.showSports
@@ -22029,7 +22159,7 @@ var render = function() {
                     "ul",
                     {
                       staticClass:
-                        "absolute py-1 w-56 rounded-md shadow-lg bg-white focus:outline-none",
+                        "absolute w-56 shadow-lg bg-white focus:outline-none",
                       on: {
                         click: function($event) {
                           _vm.listOne = false
@@ -22043,8 +22173,7 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              staticClass:
-                                "text-gray-700 block px-4 py-2 hover:bg-gray-100",
+                              staticClass: "drop-down",
                               attrs: { to: "/clubs/tennis" }
                             },
                             [_vm._v("Tennis")]
@@ -22059,8 +22188,7 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              staticClass:
-                                "text-gray-700 block px-4 py-2 hover:bg-gray-100",
+                              staticClass: "drop-down",
                               attrs: { to: "/clubs/padel" }
                             },
                             [_vm._v("Padel")]
@@ -22079,14 +22207,9 @@ var render = function() {
         _c(
           "li",
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                attrs: { to: "#" }
-              },
-              [_vm._v("Events")]
-            )
+            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
+              _vm._v("Events")
+            ])
           ],
           1
         ),
@@ -22094,14 +22217,9 @@ var render = function() {
         _c(
           "li",
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                attrs: { to: "#" }
-              },
-              [_vm._v("Explore")]
-            )
+            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
+              _vm._v("Explore")
+            ])
           ],
           1
         ),
@@ -22109,107 +22227,50 @@ var render = function() {
         _c(
           "li",
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                attrs: { to: "#" }
-              },
-              [_vm._v("About us")]
-            )
+            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
+              _vm._v("About us")
+            ])
           ],
           1
         )
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: "flex items-center mr-6" }, [
-        _c(
-          "li",
-          {
-            directives: [
-              {
-                name: "on-clickaway",
-                rawName: "v-on-clickaway",
-                value: _vm.away,
-                expression: "away"
-              }
-            ],
-            staticClass: "mr-10 relative inline-block text-left"
-          },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.clubName,
-                  expression: "clubName"
-                }
+      _c("div", { staticClass: "flex-grow" }),
+      _vm._v(" "),
+      _c("ul", { staticClass: "flex items-center flex-row-reverse" }, [
+        !_vm.currentUser
+          ? _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-btn mr-2", attrs: { to: "/login" } },
+                  [_vm._v("\n                Login\n            ")]
+                )
               ],
-              staticClass:
-                "bg-gray-100 rounded-md p-1 shadow-sm focus:outline-none",
-              attrs: { type: "text", name: "clubName", placeholder: "search" },
-              domProps: { value: _vm.clubName },
-              on: {
-                focus: _vm.focused,
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.clubName = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("transition", { attrs: { name: "fade" } }, [
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.showClubs,
-                      expression: "showClubs"
-                    }
-                  ],
-                  staticClass:
-                    "absolute py-1 w-48 rounded-md shadow-lg bg-white focus:outline-none"
-                },
-                [
-                  _vm.searchedClubs.length == 0
-                    ? _c("div", [
-                        _c(
-                          "p",
-                          { staticClass: "w-full p-1 hover:bg-gray-100" },
-                          [_vm._v("No clubs")]
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.searchedClubs, function(club) {
-                    return _c("div", { key: club.id, staticClass: "w-full" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "focus:outline-none hover:bg-gray-100",
-                          on: {
-                            click: function($event) {
-                              return _vm.goToClubPage(club.partner_id)
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(club.name))]
-                      )
-                    ])
-                  })
-                ],
-                2
-              )
-            ])
-          ],
-          1
-        ),
+              1
+            )
+          : _vm.currentUser
+          ? _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-btn mr-2", attrs: { to: "/dashboard" } },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.currentUser.name) +
+                        " " +
+                        _vm._s(_vm.currentUser.lastname) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
         _vm.lang
           ? _c(
@@ -22251,48 +22312,100 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        !_vm.currentUser
-          ? _c(
-              "li",
-              [
-                _c(
-                  "router-link",
+        _c(
+          "li",
+          {
+            directives: [
+              {
+                name: "on-clickaway",
+                rawName: "v-on-clickaway",
+                value: _vm.away,
+                expression: "away"
+              }
+            ],
+            staticClass: "mr-10 relative inline-block text-left"
+          },
+          [
+            _c("div", { staticClass: "border-b border-teal-500 mb-2" }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                    attrs: { to: "/login" }
-                  },
-                  [_vm._v("\n                    Login\n                ")]
-                )
-              ],
-              1
-            )
-          : _vm.currentUser
-          ? _c(
-              "li",
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "p-3 hover:bg-gray-100 focus:outline-none",
-                    attrs: { to: "/dashboard" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.currentUser.name) +
-                        " " +
-                        _vm._s(_vm.currentUser.lastname) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          : _vm._e()
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.clubName,
+                    expression: "clubName"
+                  }
+                ],
+                staticClass:
+                  "bg-transparent border-none text-white leading-tight p-1 shadow-lg focus:outline-none placeholder-gray-400",
+                attrs: {
+                  type: "text",
+                  name: "clubName",
+                  placeholder: "search"
+                },
+                domProps: { value: _vm.clubName },
+                on: {
+                  focus: _vm.focused,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.clubName = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showClubs,
+                      expression: "showClubs"
+                    }
+                  ],
+                  staticClass:
+                    "absolute w-48 shadow-lg bg-white focus:outline-none"
+                },
+                [
+                  _vm.searchedClubs.length == 0
+                    ? _c("div", [
+                        _c("p", { staticClass: "w-full px-4 py-2" }, [
+                          _vm._v("No clubs")
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.searchedClubs, function(club) {
+                    return _c("div", { key: club.id, staticClass: "w-full" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "drop-down w-full",
+                          on: {
+                            click: function($event) {
+                              return _vm.goToClubPage(club.partner_id)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(club.name))]
+                      )
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ],
+          1
+        )
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

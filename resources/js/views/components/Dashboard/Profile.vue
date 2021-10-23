@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col rounded-lg mb-4 p-2 shadow-lg">
+    <div class="flex flex-col rounded-lg mb-4 p-2 shadow-lg bg-white">
         <div class="grid grid-cols-4 gap-4">
             <div>Name</div>
             <div>{{currentUser.name}} {{currentUser.lastname}}</div>

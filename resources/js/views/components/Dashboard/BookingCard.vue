@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2">
+    <div class="grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2 bg-white">
         <div>
             <div class="flex flex-row">
                 <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>

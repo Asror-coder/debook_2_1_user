@@ -1,11 +1,13 @@
 <template>
-    <main class="grid grid-cols-4 gap-4">
-        <div class="col-span-1"></div>
-        <div class="col-span-2 flex justify-center ">
-            <SearchForm class="mt-20" @searchClubs="search"/>
-        </div>
-        <div class="col-span-1"></div>
-    </main>
+    <div>
+        <main class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('storage/images/main-page.jpg')">
+            <div class="col-span-1"></div>
+            <div class="col-span-2 flex justify-center ">
+                <SearchForm class="my-24" @searchClubs="search"/>
+            </div>
+            <div class="col-span-1"></div>
+        </main>
+    </div>
 </template>
 
 <script>

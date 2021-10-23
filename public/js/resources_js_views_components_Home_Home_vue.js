@@ -22,6 +22,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Home',
@@ -61,6 +63,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -390,22 +394,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { staticClass: "grid grid-cols-4 gap-4" }, [
-    _c("div", { staticClass: "col-span-1" }),
-    _vm._v(" "),
+  return _c("div", [
     _c(
-      "div",
-      { staticClass: "col-span-2 flex justify-center " },
+      "main",
+      {
+        staticClass: "grid grid-cols-4 gap-4 bg-cover",
+        staticStyle: {
+          "background-image": "url('storage/images/main-page.jpg')"
+        }
+      },
       [
-        _c("SearchForm", {
-          staticClass: "mt-20",
-          on: { searchClubs: _vm.search }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-span-1" })
+        _c("div", { staticClass: "col-span-1" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-span-2 flex justify-center " },
+          [
+            _c("SearchForm", {
+              staticClass: "my-24",
+              on: { searchClubs: _vm.search }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-span-1" })
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -432,10 +447,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-col w-10/12 bg-white p-6 rounded-lg shadow-xl" },
+    {
+      staticClass: "flex flex-col w-10/12 bg-white bg-opacity-70 p-6 shadow-xl"
+    },
     [
-      _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
-        _vm._v("Wanna play sport?")
+      _c("div", { staticClass: "text-2xl text-center pb-5" }, [
+        _vm._v("\n        Wanna play sport?\n    ")
       ]),
       _vm._v(" "),
       _vm.message
@@ -459,9 +476,14 @@ var render = function() {
         [
           _c("div", { staticClass: "flex flex-row mb-4" }, [
             _c("div", { staticClass: "flex-none" }, [
-              _c("label", { attrs: { for: "sport_type" } }, [
-                _vm._v("Sport: ")
-              ]),
+              _c(
+                "label",
+                {
+                  staticClass: "text-xl text-gray-700",
+                  attrs: { for: "sport_type" }
+                },
+                [_vm._v("Sport: ")]
+              ),
               _vm._v(" "),
               _c(
                 "select",
@@ -474,8 +496,7 @@ var render = function() {
                       expression: "form.sport_type"
                     }
                   ],
-                  staticClass:
-                    "bg-gray-100 border-2 p-1 rounded focus:outline-none",
+                  staticClass: "bg-gray-100 border-2 p-1 focus:outline-none",
                   attrs: {
                     name: "sport_type",
                     id: "sport_type",
@@ -527,7 +548,14 @@ var render = function() {
             _c("div", { staticClass: "flex-grow" }),
             _vm._v(" "),
             _c("div", { staticClass: "flex-none" }, [
-              _c("label", { attrs: { for: "city" } }, [_vm._v("City: ")]),
+              _c(
+                "label",
+                {
+                  staticClass: "text-xl text-gray-700",
+                  attrs: { for: "city" }
+                },
+                [_vm._v("City: ")]
+              ),
               _vm._v(" "),
               _c(
                 "select",
@@ -540,8 +568,7 @@ var render = function() {
                       expression: "form.city"
                     }
                   ],
-                  staticClass:
-                    "bg-gray-100 border-2 p-1 rounded focus:outline-none",
+                  staticClass: "bg-gray-100 border-2 p-1 focus:outline-none",
                   attrs: { name: "city", id: "city", placeholder: "Sport" },
                   on: {
                     change: function($event) {
@@ -591,13 +618,20 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c("div", { staticClass: "text-gray-400 text-md" }, [
+          _c("div", { staticClass: "text-gray-700 text-md" }, [
             _vm._v("Optional")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "flex flex-row mb-4" }, [
             _c("div", { staticClass: "flex-none" }, [
-              _c("label", { attrs: { for: "date" } }, [_vm._v("Date: ")]),
+              _c(
+                "label",
+                {
+                  staticClass: "text-xl text-gray-700",
+                  attrs: { for: "date" }
+                },
+                [_vm._v("Date: ")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -608,8 +642,7 @@ var render = function() {
                     expression: "form.date"
                   }
                 ],
-                staticClass:
-                  "bg-gray-100 border-2 p-1 rounded focus:outline-none",
+                staticClass: "bg-gray-100 border-2 focus:outline-none",
                 attrs: { type: "date", name: "date", placeholder: "date" },
                 domProps: { value: _vm.form.date },
                 on: {
@@ -626,7 +659,14 @@ var render = function() {
             _c("div", { staticClass: "flex-grow" }),
             _vm._v(" "),
             _c("div", { staticClass: "flex-none" }, [
-              _c("label", { attrs: { for: "time" } }, [_vm._v("Time:")]),
+              _c(
+                "label",
+                {
+                  staticClass: "text-xl text-gray-700",
+                  attrs: { for: "time" }
+                },
+                [_vm._v("Time:")]
+              ),
               _vm._v(" "),
               _c(
                 "select",
@@ -639,8 +679,7 @@ var render = function() {
                       expression: "form.start_time"
                     }
                   ],
-                  staticClass:
-                    "bg-gray-100 border-2 p-1 rounded focus:outline-none",
+                  staticClass: "bg-gray-100 border-2 p-1 focus:outline-none",
                   attrs: { name: "start-time" },
                   on: {
                     change: function($event) {
@@ -731,8 +770,7 @@ var render = function() {
                       expression: "form.end_time"
                     }
                   ],
-                  staticClass:
-                    "bg-gray-100 border-2 p-1 rounded focus:outline-none",
+                  staticClass: "bg-gray-100 border-2 p-1 focus:outline-none",
                   attrs: { name: "end-time" },
                   on: {
                     change: function($event) {

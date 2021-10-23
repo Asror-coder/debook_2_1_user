@@ -569,7 +569,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2" },
+    {
+      staticClass:
+        "grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2 bg-white"
+    },
     [
       _c("div", [
         _c("div", { staticClass: "flex flex-row" }, [
@@ -1068,7 +1071,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-col rounded-lg mb-4 p-2 shadow-lg" },
+    { staticClass: "flex flex-col rounded-lg mb-4 p-2 shadow-lg bg-white" },
     [
       _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
         _c("div", [_vm._v("Name")]),

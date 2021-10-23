@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row p-3 rounded-lg shadow-lg text-lg">
+    <div class="flex flex-row p-3 rounded-lg shadow-lg text-lg bg-white mb-2">
         <div class="flex-none">{{ this.club.name }}</div>
         <div class="flex-none text-gray-600 ml-4">{{ this.club.city }}</div>
         <div class="flex-grow"></div>
