@@ -121,7 +121,7 @@ var staticRenderFns = [
     return _c("main", { staticClass: "grid grid-cols-4" }, [
       _c(
         "div",
-        { staticClass: "col-start-2 col-span-2 mt-5 p-2 rounded-lg shadow-md" },
+        { staticClass: "col-start-2 col-span-2 mt-16 p-2 shadow-md bg-white" },
         [
           _c("div", { staticClass: "text-center text-2xl" }, [
             _vm._v("Congtrats, You have successfully reset your password!")

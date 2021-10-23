@@ -192,9 +192,7 @@ var render = function() {
     _c("main", { staticClass: "col-span-2 flex justify-center mt-16" }, [
       _c(
         "div",
-        {
-          staticClass: "flex flex-col w-10/12 bg-white p-6 rounded-lg shadow-xl"
-        },
+        { staticClass: "flex flex-col w-10/12 bg-white p-6 shadow-xl" },
         [
           _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
             _vm._v("Create new password")
@@ -235,7 +233,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "bg-gray-200 border-2 w-full p-2 rounded-lg focus:outline-none",
+                    "bg-gray-200 border-2 w-full p-2 focus:outline-none",
                   attrs: {
                     type: "text",
                     name: "email",
@@ -277,7 +275,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "bg-gray-200 border-2 w-full p-2 rounded-lg focus:outline-none",
+                    "bg-gray-200 border-2 w-full p-2 focus:outline-none",
                   attrs: {
                     type: "password",
                     name: "password",
@@ -316,7 +314,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "bg-gray-200 border-2 w-full p-2 rounded-lg focus:outline-none",
+                    "bg-gray-200 border-2 w-full p-2 focus:outline-none",
                   attrs: {
                     type: "password",
                     name: "password_confirmation",
@@ -344,7 +342,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "bg-blue-500 text-white p-2 rounded font-medium w-full",
+                      "bg-blue-500 text-white p-2 font-medium w-full",
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {

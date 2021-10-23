@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PageComponents_TopFilters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PageComponents/TopFilters */ "./resources/js/views/components/Clubs/PageComponents/TopFilters.vue");
 /* harmony import */ var _PageComponents_DateTimeFilters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PageComponents/DateTimeFilters */ "./resources/js/views/components/Clubs/PageComponents/DateTimeFilters.vue");
 /* harmony import */ var _PageComponents_SideFilters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PageComponents/SideFilters */ "./resources/js/views/components/Clubs/PageComponents/SideFilters.vue");
-/* harmony import */ var _Dashboard_Button_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Dashboard/Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
+/* harmony import */ var _Dashboard_components_Button_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Dashboard/components/Button.vue */ "./resources/js/views/components/Dashboard/components/Button.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -103,7 +103,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     TopFilters: _PageComponents_TopFilters__WEBPACK_IMPORTED_MODULE_2__["default"],
     DateTimeFilters: _PageComponents_DateTimeFilters__WEBPACK_IMPORTED_MODULE_3__["default"],
     SideFilters: _PageComponents_SideFilters__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Button: _Dashboard_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    Button: _Dashboard_components_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {

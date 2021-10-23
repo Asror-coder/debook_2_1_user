@@ -6,7 +6,7 @@
 /* Header */
 
 .nav-btn {
-    @apply p-3 hover:text-white focus:outline-none text-gray-400 text-xl;
+    @apply p-3 hover:text-white focus:outline-none text-dbGray text-xl;
 }
 
 .drop-down {
@@ -16,5 +16,11 @@
 /* Footer */
 
 .footer-btn {
-    @apply hover:text-white focus:outline-none text-gray-400 text-lg;
+    @apply hover:text-white focus:outline-none text-dbGray text-lg;
+}
+
+/* Dashboard */
+
+.dash-btn {
+    @apply flex-none text-dbGray hover:text-white focus:outline-none px-3;
 }

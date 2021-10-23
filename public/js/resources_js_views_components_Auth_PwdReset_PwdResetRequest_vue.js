@@ -182,9 +182,7 @@ var render = function() {
     _c("main", { staticClass: "col-span-2 flex justify-center mt-16" }, [
       _c(
         "div",
-        {
-          staticClass: "flex flex-col w-10/12 bg-white p-6 rounded-lg shadow-xl"
-        },
+        { staticClass: "flex flex-col w-10/12 bg-white p-6 shadow-xl" },
         [
           _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
             _vm._v("Reset your password")
@@ -242,7 +240,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "bg-gray-200 border-none p-2 rounded-lg w-full focus:outline-none",
+                    "bg-gray-200 border-none p-2 w-full focus:outline-none",
                   attrs: {
                     type: "text",
                     name: "email",
@@ -281,7 +279,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "bg-blue-500 text-white px-6 py-2 w-full rounded font-medium focus:outline-none",
+            "bg-blue-500 text-white px-6 py-2 w-full font-medium focus:outline-none",
           attrs: { type: "submit" }
         },
         [_vm._v("Send request")]

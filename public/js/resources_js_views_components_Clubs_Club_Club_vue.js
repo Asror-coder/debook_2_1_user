@@ -141,6 +141,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     this.fetchInfo(this.$route.params.clubId);
+  },
+  watch: {
+    '$route.params.clubId': {
+      handler: function handler(clubId) {
+        this.fetchInfo(clubId);
+      },
+      deep: true,
+      immediate: true
+    }
   }
 });
 

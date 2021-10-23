@@ -63,7 +63,7 @@ import ClubCard from './PageComponents/ClubCard'
 import TopFilters from './PageComponents/TopFilters'
 import DateTimeFilters from './PageComponents/DateTimeFilters'
 import SideFilters from './PageComponents/SideFilters'
-import Button from '../Dashboard/Button.vue'
+import Button from '../Dashboard/components/Button.vue'
 
 export default {
     name: 'Clubs',

@@ -100,6 +100,15 @@ export default {
     },
     created() {
         this.fetchInfo(this.$route.params.clubId)
+    },
+    watch: {
+        '$route.params.clubId': {
+            handler: function(clubId) {
+                this.fetchInfo(clubId)
+            },
+            deep: true,
+            immediate: true
+        },
     }
 }
 </script>

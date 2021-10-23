@@ -1,17 +1,174 @@
 "use strict";
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_components_Dashboard_Dashboard_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_BookingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BookingCard */ "./resources/js/views/components/Dashboard/components/BookingCard.vue");
+/* harmony import */ var _components_Bookings_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Bookings.vue */ "./resources/js/views/components/Dashboard/components/Bookings.vue");
+/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Button.vue */ "./resources/js/views/components/Dashboard/components/Button.vue");
+/* harmony import */ var _components_Profile_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Profile.vue */ "./resources/js/views/components/Dashboard/components/Profile.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Dashboard',
+  components: {
+    BookingCard: _components_BookingCard__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Profile: _components_Profile_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Bookings: _components_Bookings_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      showProfile: false,
+      showPassed: false
+    };
+  },
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('bookings', ['fetchActiveBookings', 'fetchNotActiveBookings', 'changeNotActiveBookings', 'changeActiveBookings'])), {}, {
+    logout: function logout() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.logoutUser();
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    toggleShowProfile: function toggleShowProfile() {
+      this.showProfile = !this.showProfile;
+    },
+    toggleShowPassed: function toggleShowPassed() {
+      this.showPassed = !this.showPassed;
+    }
+  }),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage', 'activeBookingsPage'])),
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this2.fetchActiveBookings();
+
+              _this2.fetchNotActiveBookings();
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/components/Button.vue");
 //
 //
 //
@@ -110,34 +267,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _BookingCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookingCard */ "./resources/js/views/components/Dashboard/BookingCard.vue");
-/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/Button.vue");
-/* harmony import */ var _Profile_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Profile.vue */ "./resources/js/views/components/Dashboard/Profile.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _BookingCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookingCard.vue */ "./resources/js/views/components/Dashboard/components/BookingCard.vue");
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/components/Button.vue");
 //
 //
 //
@@ -166,145 +307,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Dashboard',
+  name: 'Bookings',
   components: {
-    BookingCard: _BookingCard__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Button: _Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Profile: _Profile_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    BookingCard: _BookingCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Button: _Button_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  data: function data() {
-    return {
-      showProfile: false,
-      showPassed: false
-    };
-  },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('user', ['logoutUser'])), (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('bookings', ['fetchActiveBookings', 'fetchNotActiveBookings', 'changeNotActiveBookings', 'changeActiveBookings'])), {}, {
-    logout: function logout() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.logoutUser();
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    toggleShowProfile: function toggleShowProfile() {
-      this.showProfile = !this.showProfile;
-    },
-    toggleShowPassed: function toggleShowPassed() {
-      this.showPassed = !this.showPassed;
-    }
-  }),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('bookings', ['activeBookings', 'notActiveBookings', 'notActiveBookingsPage', 'activeBookingsPage'])),
-  mounted: function mounted() {
-    var _this2 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _this2.fetchActiveBookings();
-
-              _this2.fetchNotActiveBookings();
-
-            case 2:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
+  props: {
+    bookings: null,
+    pages: null
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -342,44 +364,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./resources/js/views/components/Dashboard/BookingCard.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/BookingCard.vue ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookingCard.vue?vue&type=template&id=9be0a3d8& */ "./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&");
-/* harmony import */ var _BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookingCard.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.render,
-  _BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/components/Dashboard/BookingCard.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
@@ -421,19 +405,19 @@ component.options.__file = "resources/js/views/components/Dashboard/Dashboard.vu
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/Profile.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Profile.vue ***!
-  \*************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/BookingCard.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/BookingCard.vue ***!
+  \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Profile.vue?vue&type=template&id=83799398& */ "./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398&");
-/* harmony import */ var _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Profile.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookingCard.vue?vue&type=template&id=09f48d15& */ "./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15&");
+/* harmony import */ var _BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookingCard.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -442,9 +426,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -454,23 +438,84 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/components/Dashboard/Profile.vue"
+component.options.__file = "resources/js/views/components/Dashboard/components/BookingCard.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/Bookings.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Bookings.vue ***!
+  \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bookings.vue?vue&type=template&id=453e6d44& */ "./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44&");
+/* harmony import */ var _Bookings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Bookings.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Bookings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/components/Dashboard/components/Bookings.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/components/Dashboard/components/Profile.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Profile.vue ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Profile.vue?vue&type=template&id=78ac8496& */ "./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496&");
+/* harmony import */ var _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Profile.vue?vue&type=script&lang=js& */ "./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/components/Dashboard/components/Profile.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
@@ -489,34 +534,48 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Profile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8& ***!
-  \************************************************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_9be0a3d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=template&id=9be0a3d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bookings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Bookings.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bookings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
+/***/ }),
+
+/***/ "./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Profile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -536,26 +595,260 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15& ***!
+  \***********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_83799398___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Profile.vue?vue&type=template&id=83799398& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingCard_vue_vue_type_template_id_09f48d15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingCard.vue?vue&type=template&id=09f48d15& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8&":
-/*!***************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/BookingCard.vue?vue&type=template&id=9be0a3d8& ***!
-  \***************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bookings_vue_vue_type_template_id_453e6d44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Bookings.vue?vue&type=template&id=453e6d44& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496& ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_78ac8496___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Profile.vue?vue&type=template&id=78ac8496& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.translation
+    ? _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
+        _c("main", { staticClass: "col-span-2 col-start-2" }, [
+          _c("div", { staticClass: "grid grid-cols-7 my-3" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-span-6" }, [
+              _c("div", { staticClass: "text-2xl text-white font-bold ml-2" }, [
+                _vm._v(
+                  _vm._s(_vm.currentUser.name) +
+                    " " +
+                    _vm._s(_vm.currentUser.lastname)
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex flex-row bg-gray-700 bg-opacity-80 shadow-lg rounded-2xl p-2 mt-1"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: !_vm.showPassed
+                        ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                        : "dash-btn",
+                      on: { click: _vm.toggleShowPassed }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(_vm.translation.dashboard.upcomming) + " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      class: _vm.showPassed
+                        ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                        : "dash-btn",
+                      on: { click: _vm.toggleShowPassed }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(_vm.translation.dashboard.passed) + " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-grow" }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "dash-btn",
+                      on: { click: _vm.toggleShowProfile }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(_vm.translation.dashboard.profile) + " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "dash-btn",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.logout($event)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        " " + _vm._s(_vm.translation.dashboard.logout) + " "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showProfile,
+                  expression: "showProfile"
+                }
+              ]
+            },
+            [_c("Profile")],
+            1
+          ),
+          _vm._v(" "),
+          !_vm.showPassed
+            ? _c("div", [
+                _c("div", { staticClass: "text-xl text-dbGray font-bold" }, [
+                  _vm._v(" " + _vm._s(_vm.translation.dashboard.upcomming))
+                ]),
+                _vm._v(" "),
+                this.activeBookings.length > 0
+                  ? _c(
+                      "div",
+                      [
+                        _c("Bookings", {
+                          attrs: {
+                            bookings: _vm.activeBookings,
+                            pages: _vm.activeBookingsPage
+                          },
+                          on: { changePage: _vm.changeActiveBookings }
+                        })
+                      ],
+                      1
+                    )
+                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.translation.dashboard.no_bookings) +
+                          " "
+                      )
+                    ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showPassed
+            ? _c("div", [
+                _c("div", { staticClass: "text-xl text-dbGray font-bold" }, [
+                  _vm._v(_vm._s(_vm.translation.dashboard.passed))
+                ]),
+                _vm._v(" "),
+                this.notActiveBookings
+                  ? _c(
+                      "div",
+                      [
+                        _c("Bookings", {
+                          attrs: {
+                            bookings: _vm.notActiveBookings,
+                            pages: _vm.notActiveBookingsPage
+                          },
+                          on: { changePage: _vm.changeNotActiveBookings }
+                        })
+                      ],
+                      1
+                    )
+                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.translation.dashboard.no_bookings) +
+                          " "
+                      )
+                    ])
+              ])
+            : _vm._e()
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-center" }, [
+      _c("img", {
+        staticClass: "h-20 rounded-3xl",
+        attrs: { src: "storage/images/default.png" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/BookingCard.vue?vue&type=template&id=09f48d15& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -715,10 +1008,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Dashboard.vue?vue&type=template&id=e2c94e42& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Bookings.vue?vue&type=template&id=453e6d44& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -730,322 +1023,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.translation
-    ? _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-        _c("main", { staticClass: "col-span-2 col-start-2" }, [
-          _c("div", { staticClass: "flex flex-row my-5" }, [
-            _c("div", { staticClass: "flex-none text-2xl font-bold" }, [
-              _vm._v(
-                _vm._s(_vm.currentUser.name) +
-                  " " +
-                  _vm._s(_vm.currentUser.lastname)
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex-grow" }),
-            _vm._v(" "),
-            _vm.showPassed
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                    on: { click: _vm.toggleShowPassed }
-                  },
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.bookings, function(booking) {
+        return _c(
+          "div",
+          { key: booking[0].id },
+          [_c("BookingCard", { attrs: { booking: booking } })],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex flex-row my-8" }, [
+        _c("div", { staticClass: "flex-grow" }),
+        _vm._v(" "),
+        _vm.pages
+          ? _c(
+              "div",
+              { staticClass: "flex flex-row text-lg" },
+              _vm._l(_vm.pages.links, function(page, index) {
+                return _c(
+                  "div",
+                  { key: index, staticClass: "mx-3" },
                   [
-                    _vm._v(
-                      " " + _vm._s(_vm.translation.dashboard.upcomming) + " "
-                    )
-                  ]
+                    page.label == "&laquo; Previous" && page.url
+                      ? _c("Button", {
+                          attrs: {
+                            text: "prev",
+                            textStyle: "text-gray-400 hover:text-white"
+                          },
+                          on: {
+                            "btn-click": function($event) {
+                              return _vm.$emit("changePage", page.url)
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    page.label != "&laquo; Previous" &&
+                    page.label != "Next &raquo;"
+                      ? _c("Button", {
+                          attrs: {
+                            text: page.label,
+                            textStyle:
+                              page.label == _vm.pages.current_page
+                                ? "text-white h-7 w-7 rounded-full bg-dashBtnBlue"
+                                : "text-gray-400 hover:text-white"
+                          },
+                          on: {
+                            "btn-click": function($event) {
+                              return _vm.$emit("changePage", page.url)
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    page.label == "Next &raquo;" && page.url
+                      ? _c("Button", {
+                          attrs: {
+                            text: "next",
+                            textStyle: "text-gray-400 hover:text-white"
+                          },
+                          on: {
+                            "btn-click": function($event) {
+                              return _vm.$emit("changePage", page.url)
+                            }
+                          }
+                        })
+                      : _vm._e()
+                  ],
+                  1
                 )
-              : !_vm.showPassed
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                    on: { click: _vm.toggleShowPassed }
-                  },
-                  [_vm._v(" " + _vm._s(_vm.translation.dashboard.passed) + " ")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                on: { click: _vm.toggleShowProfile }
-              },
-              [_vm._v(" " + _vm._s(_vm.translation.dashboard.profile) + " ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "flex-none text-gray-600 hover:text-black focus:outline-none px-3",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.logout($event)
-                  }
-                }
-              },
-              [_vm._v(" " + _vm._s(_vm.translation.dashboard.logout) + " ")]
+              }),
+              0
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.showProfile,
-                  expression: "showProfile"
-                }
-              ]
-            },
-            [_c("Profile")],
-            1
-          ),
-          _vm._v(" "),
-          !_vm.showPassed
-            ? _c("div", [
-                _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-                  _vm._v(" " + _vm._s(_vm.translation.dashboard.upcomming))
-                ]),
-                _vm._v(" "),
-                this.activeBookings.length > 0
-                  ? _c(
-                      "div",
-                      [
-                        _vm._l(_vm.activeBookings, function(activeBooking) {
-                          return _c(
-                            "div",
-                            { key: activeBooking[0].id },
-                            [
-                              _c("BookingCard", {
-                                attrs: { booking: activeBooking }
-                              })
-                            ],
-                            1
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "flex flex-row my-8" }, [
-                          _c("div", { staticClass: "flex-grow" }),
-                          _vm._v(" "),
-                          _vm.activeBookingsPage
-                            ? _c(
-                                "div",
-                                { staticClass: "flex flex-row text-lg" },
-                                _vm._l(_vm.activeBookingsPage.links, function(
-                                  page,
-                                  index
-                                ) {
-                                  return _c(
-                                    "div",
-                                    { key: index, staticClass: "mx-3" },
-                                    [
-                                      page.label == "&laquo; Previous" &&
-                                      page.url
-                                        ? _c("Button", {
-                                            attrs: {
-                                              text: "prev",
-                                              textStyle: "text-gray-400"
-                                            },
-                                            on: {
-                                              "btn-click": function($event) {
-                                                return _vm.changeActiveBookings(
-                                                  page.url
-                                                )
-                                              }
-                                            }
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      page.label != "&laquo; Previous" &&
-                                      page.label != "Next &raquo;"
-                                        ? _c("Button", {
-                                            attrs: {
-                                              text: page.label,
-                                              textStyle:
-                                                page.label ==
-                                                _vm.activeBookingsPage
-                                                  .current_page
-                                                  ? "text-black"
-                                                  : "text-gray-400"
-                                            },
-                                            on: {
-                                              "btn-click": function($event) {
-                                                return _vm.changeActiveBookings(
-                                                  page.url
-                                                )
-                                              }
-                                            }
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      page.label == "Next &raquo;" && page.url
-                                        ? _c("Button", {
-                                            attrs: {
-                                              text: "next",
-                                              textStyle: "text-gray-400"
-                                            },
-                                            on: {
-                                              "btn-click": function($event) {
-                                                return _vm.changeActiveBookings(
-                                                  page.url
-                                                )
-                                              }
-                                            }
-                                          })
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  )
-                                }),
-                                0
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex-grow" })
-                        ])
-                      ],
-                      2
-                    )
-                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
-                      _vm._v(
-                        " " +
-                          _vm._s(_vm.translation.dashboard.no_bookings) +
-                          " "
-                      )
-                    ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showPassed
-            ? _c("div", [
-                _c("div", { staticClass: "text-xl text-gray-500 font-bold" }, [
-                  _vm._v(_vm._s(_vm.translation.dashboard.passed))
-                ]),
-                _vm._v(" "),
-                this.notActiveBookings
-                  ? _c(
-                      "div",
-                      [
-                        _vm._l(_vm.notActiveBookings, function(
-                          notActiveBooking
-                        ) {
-                          return _c(
-                            "div",
-                            { key: notActiveBooking[0].id },
-                            [
-                              _c("BookingCard", {
-                                attrs: { booking: notActiveBooking }
-                              })
-                            ],
-                            1
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "flex flex-row my-8" }, [
-                          _c("div", { staticClass: "flex-grow" }),
-                          _vm._v(" "),
-                          _vm.notActiveBookingsPage
-                            ? _c(
-                                "div",
-                                { staticClass: "flex flex-row text-lg" },
-                                _vm._l(
-                                  _vm.notActiveBookingsPage.links,
-                                  function(page, index) {
-                                    return _c(
-                                      "div",
-                                      { key: index, staticClass: "mx-3" },
-                                      [
-                                        page.label == "&laquo; Previous" &&
-                                        page.url
-                                          ? _c("Button", {
-                                              attrs: {
-                                                text: "prev",
-                                                textStyle: "text-gray-400"
-                                              },
-                                              on: {
-                                                "btn-click": function($event) {
-                                                  return _vm.changeNotActiveBookings(
-                                                    page.url
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        page.label != "&laquo; Previous" &&
-                                        page.label != "Next &raquo;"
-                                          ? _c("Button", {
-                                              attrs: {
-                                                text: page.label,
-                                                textStyle:
-                                                  page.label ==
-                                                  _vm.notActiveBookingsPage
-                                                    .current_page
-                                                    ? "text-black"
-                                                    : "text-gray-400"
-                                              },
-                                              on: {
-                                                "btn-click": function($event) {
-                                                  return _vm.changeNotActiveBookings(
-                                                    page.url
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        page.label == "Next &raquo;" && page.url
-                                          ? _c("Button", {
-                                              attrs: {
-                                                text: "next",
-                                                textStyle: "text-gray-400"
-                                              },
-                                              on: {
-                                                "btn-click": function($event) {
-                                                  return _vm.changeNotActiveBookings(
-                                                    page.url
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    )
-                                  }
-                                ),
-                                0
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex-grow" })
-                        ])
-                      ],
-                      2
-                    )
-                  : _c("div", { staticClass: "text-lg text-gray-500" }, [
-                      _vm._v(
-                        " " +
-                          _vm._s(_vm.translation.dashboard.no_bookings) +
-                          " "
-                      )
-                    ])
-              ])
-            : _vm._e()
-        ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex-grow" })
       ])
-    : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1054,10 +1113,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/Profile.vue?vue&type=template&id=83799398& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/components/Dashboard/components/Profile.vue?vue&type=template&id=78ac8496& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
