@@ -90,6 +90,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -238,6 +240,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -248,15 +252,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ClubCard',
   props: {
-    club: null
+    id: null
   },
   data: function data() {
     return {
+      club: null,
       clubSearch: {
-        partnerId: null,
+        partnerId: this.id,
         sport_type: '',
         date: '',
         start_time: '',
@@ -270,7 +286,6 @@ __webpack_require__.r(__webpack_exports__);
         var search_request = JSON.parse(sessionStorage.getItem('search'));
 
         if (search_request.date && search_request.start_time && search_request.end_time) {
-          this.clubSearch.partnerId = this.club.partner_id;
           this.clubSearch.sport_type = search_request.sport_type;
           this.clubSearch.date = search_request.date;
           this.clubSearch.start_time = search_request.start_time;
@@ -282,10 +297,25 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'Club',
         params: {
-          clubId: this.club.partner_id
+          clubId: this.id
         }
       });
+    },
+    makeUrl: function makeUrl() {
+      return 'background-image: url("' + this.club.imageUrl + '")';
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var request = JSON.parse(sessionStorage.getItem('search'));
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clubs/club/".concat(this.id, "/search/info"), {
+      params: request
+    }).then(function (response) {
+      _this.club = response.data; // console.log(this.club.imageUrl);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
   }
 });
 
@@ -520,6 +550,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SideFilters',
   props: {
@@ -620,7 +654,6 @@ __webpack_require__.r(__webpack_exports__);
     passed_sport: {
       immediate: true,
       handler: function handler(newVal, oldVal) {
-        // console.log('In top filters: Old(',oldVal, ') -> New(',newVal,')');    //REMOVE
         this.form.sport_type = newVal;
       }
     },
@@ -1004,7 +1037,7 @@ var render = function() {
         on: { changeRequest: _vm.changeRequest }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "flex-none grid grid-cols-4 gap-4" }, [
+      _c("div", { staticClass: "flex-none grid grid-cols-4 gap-4 mt-3 mb-6" }, [
         _c(
           "div",
           { staticClass: "col-span-1" },
@@ -1025,7 +1058,7 @@ var render = function() {
         _c("main", { staticClass: "col-span-2" }, [
           _c(
             "div",
-            { staticClass: "flex flex-row my-3" },
+            { staticClass: "flex flex-row mt-3 mb-1" },
             [
               _c("DateTimeFilters", {
                 staticClass: "flex-none",
@@ -1045,13 +1078,25 @@ var render = function() {
           ),
           _vm._v(" "),
           _vm.clubs
+            ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
+                _vm._v(_vm._s(_vm.clubs.total) + " clubs")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.clubs
+            ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
+                _vm._v("no clubs")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.clubs
             ? _c(
                 "div",
                 _vm._l(_vm.clubs.data, function(club) {
                   return _c(
                     "div",
-                    { key: club.partner_id },
-                    [_c("ClubCard", { attrs: { club: club } })],
+                    { key: club.id },
+                    [_c("ClubCard", { attrs: { id: club.id } })],
                     1
                   )
                 }),
@@ -1062,7 +1107,7 @@ var render = function() {
           _c("div", { staticClass: "flex flex-row my-8" }, [
             _c("div", { staticClass: "flex-grow" }),
             _vm._v(" "),
-            _vm.clubs
+            _vm.clubs && _vm.clubs.last_page > 1
               ? _c(
                   "div",
                   { staticClass: "flex flex-row text-lg" },
@@ -1075,7 +1120,7 @@ var render = function() {
                           ? _c("Button", {
                               attrs: {
                                 text: "prev",
-                                textStyle: "text-gray-400"
+                                textStyle: "text-gray-400 hover:text-white"
                               },
                               on: {
                                 "btn-click": function($event) {
@@ -1092,8 +1137,8 @@ var render = function() {
                                 text: page.label,
                                 textStyle:
                                   page.label == _vm.clubs.current_page
-                                    ? "text-black"
-                                    : "text-gray-400"
+                                    ? "text-white h-7 w-7 rounded-full bg-dashBtnBlue"
+                                    : "text-gray-400 hover:text-white"
                               },
                               on: {
                                 "btn-click": function($event) {
@@ -1107,7 +1152,7 @@ var render = function() {
                           ? _c("Button", {
                               attrs: {
                                 text: "next",
-                                textStyle: "text-gray-400"
+                                textStyle: "text-gray-400 hover:text-white"
                               },
                               on: {
                                 "btn-click": function($event) {
@@ -1173,32 +1218,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "flex flex-row p-3 rounded-lg shadow-lg text-lg bg-white mb-2"
-    },
-    [
-      _c("div", { staticClass: "flex-none" }, [_vm._v(_vm._s(this.club.name))]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-none text-gray-600 ml-4" }, [
-        _vm._v(_vm._s(this.club.city))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-grow" }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "flex-none text-blue-600 hover:text-blue-900  focus:outline-none",
-          on: { click: _vm.goToClubPage }
-        },
-        [_vm._v("more")]
+  return _vm.club
+    ? _c(
+        "div",
+        { staticClass: "p-3 rounded-lg grid grid-cols-2 bg-white mb-2" },
+        [
+          _c("div", {
+            staticClass: "h-48 rounded-lg shadow-2xl bg-cover mr-3",
+            style: _vm.makeUrl()
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-col" }, [
+            _c("div", { staticClass: "text-3xl" }, [
+              _vm._v(_vm._s(_vm.club.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-gray-400" }, [
+              _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
+              _vm._v(_vm._s(_vm.club.city))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-grow" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex" }, [
+              _c("div", { staticClass: "flex-none flex" }, [
+                _c("span", { staticClass: "text-xl mt-1 mr-2 text-gray-600" }, [
+                  _vm._v("from")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-2xl" }, [
+                  _vm._v(" €" + _vm._s(_vm.club.price.toFixed(2)))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex-grow" }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none",
+                  on: { click: _vm.goToClubPage }
+                },
+                [_vm._v("more")]
+              )
+            ])
+          ])
+        ]
       )
-    ]
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1245,7 +1313,7 @@ var render = function() {
                 expression: "form.date"
               }
             ],
-            staticClass: "bg-gray-100 p-1 rounded focus:outline-none",
+            staticClass: "bg-gray-100 p-1 focus:outline-none",
             attrs: { type: "date", name: "date", placeholder: "Date" },
             domProps: { value: _vm.form.date },
             on: {
@@ -1271,7 +1339,7 @@ var render = function() {
                   expression: "form.start_time"
                 }
               ],
-              staticClass: "bg-gray-100 ml-2 p-1 rounded focus:outline-none",
+              staticClass: "bg-gray-100 ml-2 p-2 focus:outline-none",
               attrs: { name: "start-time" },
               on: {
                 change: function($event) {
@@ -1342,7 +1410,9 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("label", { attrs: { for: "time" } }, [_vm._v("-")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "time" } }, [
+            _vm._v("-")
+          ]),
           _vm._v(" "),
           _c(
             "select",
@@ -1355,7 +1425,7 @@ var render = function() {
                   expression: "form.end_time"
                 }
               ],
-              staticClass: "bg-gray-100 p-1 rounded focus:outline-none",
+              staticClass: "bg-gray-100 p-2 focus:outline-none",
               attrs: { name: "end-time" },
               on: {
                 change: function($event) {
@@ -1448,7 +1518,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "bg-gray-400 text-white ml-2 px-6 py-1 w-full rounded font-medium focus:outline-none",
+            "bg-gray-400 hover:bg-gray-500 text-white ml-3 px-6 py-1 text-lg w-full focus:outline-none",
           attrs: { type: "submit" }
         },
         [_vm._v("Search")]
@@ -1482,7 +1552,9 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-col mr-10 mt-5" }, [
       _c("div", [
-        _c("div", { staticClass: "text-gray-500" }, [_vm._v("Surface: ")]),
+        _c("div", { staticClass: "text-white" }, [_vm._v("Surface: ")]),
+        _vm._v(" "),
+        _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
         _vm.sport == "tennis"
           ? _c("div", { staticClass: "flex flex-col ml-3" }, [
@@ -1531,7 +1603,11 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "carpet" } }, [_vm._v("Carpet")])
+                _c(
+                  "label",
+                  { staticClass: "text-white", attrs: { for: "carpet" } },
+                  [_vm._v("Carpet")]
+                )
               ]),
               _vm._v(" "),
               _c("div", [
@@ -1579,7 +1655,11 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "clay" } }, [_vm._v("Clay")])
+                _c(
+                  "label",
+                  { staticClass: "text-white", attrs: { for: "clay" } },
+                  [_vm._v("Clay")]
+                )
               ]),
               _vm._v(" "),
               _c("div", [
@@ -1627,7 +1707,11 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "acrylic" } }, [_vm._v("Acrylic")])
+                _c(
+                  "label",
+                  { staticClass: "text-white", attrs: { for: "acrylic" } },
+                  [_vm._v("Acrylic")]
+                )
               ])
             ])
           : _vm.sport == "padel"
@@ -1681,18 +1765,20 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "concrete" } }, [
-                  _vm._v("Concrete")
-                ])
+                _c(
+                  "label",
+                  { staticClass: "text-white", attrs: { for: "concrete" } },
+                  [_vm._v("Concrete")]
+                )
               ])
             ])
           : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
-        _c("div", { staticClass: "text-gray-500" }, [
-          _vm._v("Indoor/Outdoor: ")
-        ]),
+        _c("div", { staticClass: "text-white" }, [_vm._v("Indoor/Outdoor: ")]),
+        _vm._v(" "),
+        _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
         _c("div", { staticClass: "ml-3", on: { change: _vm.changeRequest } }, [
           _c("input", {
@@ -1713,7 +1799,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "1" } }, [_vm._v("Indoor")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "1" } }, [
+            _vm._v("Indoor")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1735,7 +1823,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("Outdoor")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+            _vm._v("Outdoor")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1757,16 +1847,20 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "null" } }, [_vm._v("Doesn't matter")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "null" } }, [
+            _vm._v("Doesn't matter")
+          ]),
           _vm._v(" "),
           _c("br")
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
-        _c("div", { staticClass: "text-gray-500" }, [
+        _c("div", { staticClass: "text-white" }, [
           _vm._v("Max price(per hour): ")
         ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
         _c("div", { staticClass: "ml-3", on: { change: _vm.changeRequest } }, [
           _c("input", {
@@ -1787,7 +1881,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "20" } }, [_vm._v("€20")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "20" } }, [
+            _vm._v("€20")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1809,7 +1905,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "25" } }, [_vm._v("€25")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "25" } }, [
+            _vm._v("€25")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1831,7 +1929,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "30" } }, [_vm._v("€30")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "30" } }, [
+            _vm._v("€30")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1853,7 +1953,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "35" } }, [_vm._v("€35")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "35" } }, [
+            _vm._v("€35")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1875,7 +1977,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "40" } }, [_vm._v("€40")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "40" } }, [
+            _vm._v("€40")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1897,7 +2001,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "50" } }, [_vm._v("€50")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "50" } }, [
+            _vm._v("€50")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
@@ -1919,7 +2025,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "0" } }, [_vm._v("Doesn't matter")]),
+          _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+            _vm._v("Doesn't matter")
+          ]),
           _vm._v(" "),
           _c("br")
         ])
@@ -1949,101 +2057,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex-none flex justify-center mt-3" }, [
-    _c("div", [
+  return _c(
+    "div",
+    {
+      staticClass: "py-10 bg-cover flex",
+      staticStyle: {
+        "background-image":
+          "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')"
+      }
+    },
+    [
+      _c("div", { staticClass: "flex-grow" }),
+      _vm._v(" "),
       _c(
-        "select",
+        "div",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.sport_type,
-              expression: "form.sport_type"
-            }
-          ],
-          staticClass: "bg-gray-100 p-1 rounded focus:outline-none",
-          attrs: { name: "sport_type", id: "sport_type", placeholder: "Sport" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "sport_type",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              },
-              _vm.changeRequest
-            ]
-          }
-        },
-        [
-          _c("option", { attrs: { value: "tennis" } }, [_vm._v("Tennis")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "padel" } }, [_vm._v("Padel")])
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.city,
-              expression: "form.city"
-            }
-          ],
-          staticClass: "bg-gray-100 p-1 rounded focus:outline-none ml-3",
-          attrs: { name: "city", id: "city", placeholder: "Sport" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "city",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              },
-              _vm.changeRequest
-            ]
-          }
+          staticClass:
+            "flex-none flex justify-center bg-dbGray bg-opacity-70 p-6"
         },
         [
           _c(
-            "option",
-            { attrs: { value: "", disabled: "", selected: "", hidden: "" } },
-            [_vm._v("City")]
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.sport_type,
+                  expression: "form.sport_type"
+                }
+              ],
+              staticClass:
+                "bg-gray-100 shadow-2xl p-2 border-none focus:outline-none w-36 text-lg",
+              attrs: {
+                name: "sport_type",
+                id: "sport_type",
+                placeholder: "Sport"
+              },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "sport_type",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.changeRequest
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "tennis" } }, [_vm._v("Tennis")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "padel" } }, [_vm._v("Padel")])
+            ]
           ),
           _vm._v(" "),
-          _c("option", { attrs: { value: "Amsterdam" } }, [
-            _vm._v("Amsterdam")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Harlem" } }, [_vm._v("Harlem")])
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.city,
+                  expression: "form.city"
+                }
+              ],
+              staticClass:
+                "bg-gray-100 shadow-2xl p-2 border-none focus:outline-none ml-4 w-36 text-lg",
+              attrs: { name: "city", id: "city", placeholder: "Sport" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "city",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.changeRequest
+                ]
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { value: "", disabled: "", selected: "", hidden: "" }
+                },
+                [_vm._v("City")]
+              ),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Amsterdam" } }, [
+                _vm._v("Amsterdam")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Harlem" } }, [_vm._v("Harlem")])
+            ]
+          )
         ]
-      )
-    ])
-  ])
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex-grow" })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

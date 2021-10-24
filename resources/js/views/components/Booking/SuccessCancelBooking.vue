@@ -2,40 +2,39 @@
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
         <main class="col-span-2 my-5">
-            <div class="text-2xl font-bold">Your have canceled your booking</div>
-            <div class="text text-gray-500">Try to book some other venues or events</div>
+            <div class="text-2xl text-white font-bold">Your have canceled your booking</div>
+            <div class="text text-dbGray">Try to book some other venues or events</div>
             <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-white p-3">
                         <div class="text-lg font-bold text-gray-600">Information about canceled booking</div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Club: </span>
-                            {{booking.clubName}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Sport: </span>
-                            {{booking.sport}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Venue: </span>
-                            {{booking.venueName}} ({{booking.surface}},
-                            <span v-if="booking.indoor == 1">indoor</span>
-                            <span v-if="booking.indoor == 0">outdoor</span>)
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Date: </span>
-                            {{changeDateFormat(booking.date)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Time: </span>
-                            {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Price: </span>
-                            €{{booking.price}}
+
+                        <div class="grid grid-cols-3">
+                            <div>
+                                <div class="font-bold text-gray-500 mr-2">Club:</div>
+                                <div class="font-bold text-gray-500 mr-2">Sport:</div>
+                                <div class="font-bold text-gray-500 mr-2">Venue:</div>
+                                <div class="font-bold text-gray-500 mr-2">Date:</div>
+                                <div class="font-bold text-gray-500 mr-2">Time:</div>
+                                <div class="font-bold text-gray-500 mr-2">Price:</div>
+                            </div>
+                            <div class="col-span-2">
+                                <div> {{booking.clubName}} </div>
+                                <div> {{booking.sport}} </div>
+                                <div>
+                                    {{booking.venueName}} ({{booking.surface}},
+                                    <span v-if="booking.indoor == 1">indoor</span>
+                                    <span v-if="booking.indoor == 0">outdoor</span>)
+                                </div>
+                                <div>{{changeDateFormat(booking.date)}} </div>
+                                <div>
+                                    {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
+                                </div>
+                                <div>€{{booking.price}}</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-white p-3">
                         <div class="text-lg font-bold text-gray-600">Some Information</div>
                         <div class="mb-2">
                             <span class="font-bold text-gray-500 mr-2">About payment: </span>

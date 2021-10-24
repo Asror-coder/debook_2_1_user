@@ -1,13 +1,14 @@
 <template>
-    <div class="pt-4">
+    <div class="bg-white py-2 px-3 shadow-lg">
+        <!-- <div class="text-gray-500 text-xl">Wanna play sports?</div> -->
         <span class="text-center text-red-700" v-if="message">{{message}}</span>
         <form @submit.prevent="searchVenue">
-            <div class="flex flex-row bg-white p-4 rounded-lg shadow-lg">
+            <div class="flex flex-row">
 
                 <div class="flex-none">
                     <label for="sport_type">Sport:</label>
                     <select name="sport_type" id="sport_type" placeholder="Sport"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none" v-model="form.sport_type">
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none" v-model="form.sport_type">
                         <option value="" disabled selected hidden>Choose a sport</option>
                         <option :key="sport.sport_type" v-for="sport in sports">
                             {{ sport.sport_type }}
@@ -18,13 +19,13 @@
                 <div id='date' class="flex-none ml-3">
                     <label for="name">Date: </label>
                     <input type="date" name="date" placeholder="date"
-                        class="bg-gray-100 border-2 p-1 rounded focus:outline-none" v-model="form.date">
+                        class="border-2 border-gray-400 shadow-2xl p-1 focus:outline-none" v-model="form.date">
                 </div>
 
                 <div id='start_time' class="flex-none  ml-3">
                     <label for="cars">Time:</label>
                     <select name="start-time" v-model="form.start_time"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1  focus:outline-none">
                         <option value="" disabled selected hidden>Start</option>
                         <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                             {{ openTime.time }}
@@ -35,7 +36,7 @@
                 <div id='end_time' class="flex-none">
                     <label for="cars">-</label>
                     <select name="end-time" v-model="form.end_time"
-                    class="bg-gray-100 border-2 p-1 rounded focus:outline-none">
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1  focus:outline-none">
                         <option value="" disabled selected hidden>End</option>
                         <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                             {{ openTime.time }}
@@ -46,7 +47,7 @@
                 <div class="flex-grow"></div>
 
                 <div class="flex-none">
-                    <button class="bg-blue-500 border-2 text-white rounded py-1 px-5 focus:outline-none hover:shadow-lg"
+                    <button class="bg-dashBtnBlue border-none text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg"
                     type="submit" placeholder="Search"> Search </button>
                 </div>
             </div>

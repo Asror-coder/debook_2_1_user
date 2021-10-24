@@ -7,8 +7,14 @@ use App\Http\Controllers\Clubs\Partner\PartnerDetailsController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Clubs\Venue\VenuePriceController;
 use App\Http\Controllers\Controller;
+use App\Models\PartnerAddress;
+use App\Models\PartnerDetails;
+use App\Models\VenuePrice;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use function PHPSTORM_META\type;
 
 class ClubsController extends Controller
 {
@@ -44,7 +50,6 @@ class ClubsController extends Controller
             }
         }
         else { //if date and time isn't set
-
             $services = ClubsController::getServiceId($request);
 
             $clubs_sql = 'SELECT DISTINCT partner_id AS id
@@ -54,8 +59,9 @@ class ClubsController extends Controller
 
             for ($i=0; $i < count($services); $i++) {
                 if ($i == 0) $clubs_sql = $clubs_sql.'service_id = '.$services[$i]->id;
-                else if ($i == count($services)-1) $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id.')';
                 else $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id;
+
+                if ($i == count($services)-1) $clubs_sql = $clubs_sql.' OR service_id = '.$services[$i]->id.')';
             }
 
             if ($request->city) {
@@ -70,7 +76,7 @@ class ClubsController extends Controller
 
             if ($request->maxPrice) {
                 for ($i=0; $i < count($availableClubs); $i++) {
-                    $lowestPrice = $this->getLowestPrice($availableClubs[$i]->id);
+                    $lowestPrice = $this->getLowestPrice($availableClubs[$i]->id,$request);
                     if ($lowestPrice > $request->maxPrice) unset($availableClubs[$i]);
                 }
             }
@@ -81,10 +87,26 @@ class ClubsController extends Controller
             $clubsId[$i]= $availableClubs[$i]->id;
 
         //Object version withpagination
-        return DB::table('partner_details')
-                    ->join('partner_address','partner_details.partner_id','=','partner_address.partner_id')
-                    ->whereIn('partner_details.partner_id',$clubsId)
+        return DB::table('partners')
+                    // ->join('partner_address','partner_details.partner_id','=','partner_address.partner_id')
+                    ->whereIn('id',$clubsId)
+                    ->select('id')
                     ->paginate(5);
+    }
+
+    //returns clubs address, first uploaded image url, lowest venue price according to request
+    public function getSearchClubInfo($id, Request $request) {
+        $details = PartnerDetails::where('partner_id', $id)->first();
+        $address = PartnerAddress::where('partner_id', $id)->first();
+        $lowestPrice = $this->getLowestPrice($id, $request);
+        $imageUrl = DB::table('club_images')->where('partner_id',$id)->get();
+
+        return Response()->json([
+            "name" => $details->name,
+            "city" => $address->city,
+            "price" => $lowestPrice,
+            "imageUrl" => $imageUrl[0]->url
+        ]);
     }
 
     //checks max price for available venues
@@ -119,17 +141,19 @@ class ClubsController extends Controller
         return DB::select($sql);
     }
 
-    //Get club's general information
+    // Get club's general information
     public function getClub($id) {
         $partnerAddressController = new PartnerAddressController;
         $partnerDetailsController = new PartnerDetailsController;
 
         $club[0] = $partnerAddressController->show($id)[0];
         $club[1] = $partnerDetailsController->show($id)[0];
+        $club[2] = DB::table('club_images')->where('partner_id',$id)->get();
 
         return $club;
     }
 
+    // Get sports that clubs offer
     public function getClubSports($id) {
         return DB::select('SELECT DISTINCT sport_type
                             FROM services t1
@@ -140,8 +164,47 @@ class ClubsController extends Controller
                                     ON t1.id = t2.service_id', [$id]);
     }
 
-    public function getLowestPrice($id) {
-        $allPrices = DB::select('SELECT price
+    public function getLowestPrice($id, Request $request) {         //use getAvailableVenues() if possible
+        if($request->date && $request->start_time && $request->end_time) {
+            $services = ClubsController::getServiceId($request);
+
+            $services_sql = 'SELECT *
+                            FROM services
+                            WHERE ';
+
+            for ($i=0; $i < count($services); $i++) {
+                if ($i == 0) $services_sql = $services_sql.' id = '.$services[$i]->id;
+                else $services_sql = $services_sql.' OR id = '.$services[$i]->id;
+            }
+
+            $venues = DB::select('SELECT t1.id
+                                    FROM venues t1
+                                    INNER JOIN ('.$services_sql.') t2
+                                            ON t1.service_id = t2.id
+                                    WHERE t1.partner_id = '.$id.' AND
+                                        t1.status = 1');
+
+            $venueController = new VenueController;
+            $venuePriceController = new VenuePriceController;
+            $availableVenues = [];
+
+            foreach ($venues as $venue) {
+                if ($venueController->checkAvailability($venue->id, $request)) {
+                    $price = $venuePriceController->calculatePrice($venue->id, $request);
+                    $venue = (object) array_merge( (array)$venue, array( 'price' => $price ) );
+                    array_push($availableVenues,$venue);
+                }
+            }
+
+            $lowestPrice = $availableVenues[0]->price;
+
+            foreach ($availableVenues as $availableVenue)
+                if ($availableVenue->price < $lowestPrice) $lowestPrice = $availableVenue->price;
+
+            return $lowestPrice / ($request->end_time - $request->start_time);
+        }
+        else {
+            $allPrices = DB::select('SELECT price
                             FROM `venues` t1
                             INNER JOIN (SELECT venue_id, price
                                         FROM `venue_prices`
@@ -150,7 +213,8 @@ class ClubsController extends Controller
                             WHERE `partner_id` = ?
                             ORDER BY price ASC', [$id]);
 
-        return $allPrices[0]->price;
+            return $allPrices[0]->price * 1.07;
+        }
     }
 
     public function getClubOpenTime($id) {
@@ -174,7 +238,7 @@ class ClubsController extends Controller
         return $openTime;
     }
 
-    //check availabke venues at a given club
+    //check available venues at a given club
     public function getAvailableVenues($id, Request $request) {
 
         $services = ClubsController::getServiceId($request);

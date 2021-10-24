@@ -7,7 +7,15 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 
 import store from './store'     //vuex
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
+
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+// library.add(faHatWizard)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.config.productionTip = false
 
 import globalGetters from './globalGetters';
 

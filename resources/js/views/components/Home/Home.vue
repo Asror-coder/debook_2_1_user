@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('storage/images/main-page.jpg')">
+        <main class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')">
             <div class="col-span-1"></div>
             <div class="col-span-2 flex justify-center ">
                 <SearchForm class="my-24" @searchClubs="search"/>

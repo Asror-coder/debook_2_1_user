@@ -2,10 +2,10 @@
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
         <main class="col-span-2 my-5">
-            <div class="text-2xl font-bold">Your booking was successful</div>
-            <div class="text text-gray-500">Now, it can be seen in your dashboard</div>
+            <div class="text-2xl text-white font-bold">Your booking was successful</div>
+            <div class="text text-dbGray">Now, it can be seen in your dashboard</div>
             <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-white p-3">
                         <div class="text-lg font-bold text-gray-600">Information about booking</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Club: </span>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-white p-3">
                         <div class="text-lg font-bold text-gray-600">Some rules</div>
                         <div class="mb-2">
                             <span class="font-bold text-gray-500 mr-2">Be on time: </span>

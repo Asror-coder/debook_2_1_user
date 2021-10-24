@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col w-10/12 bg-white bg-opacity-70 p-6 shadow-xl">
-        <div class="text-2xl text-center pb-5">
+    <div class="flex flex-col w-10/12 bg-dbGray bg-opacity-70 p-6 shadow-xl">
+        <div class="text-2xl text-gray-400 font-bold text-center pb-5" style="text-shadow: 0.5px 0.5px 4px #222121">
             Wanna play sport?
         </div>
 

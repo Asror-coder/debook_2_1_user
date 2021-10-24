@@ -4,20 +4,22 @@
         <div class="flex flex-col mr-10 mt-5">
             <!-- Surface -->
             <div>
-                <div class="text-gray-500">Surface: </div>
+                <div class="text-white">Surface: </div>
+                <hr class=" border-gray-200 border-opacity-60 mb-1">
+
                 <!-- Tennis -->
                 <div v-if="sport == 'tennis'" class="flex flex-col ml-3">
                     <div>
                         <input type="checkbox" id="carpet" value="carpet" v-model="form.surface" @change="changeRequest">
-                        <label for="carpet">Carpet</label>
+                        <label class="text-white" for="carpet">Carpet</label>
                     </div>
                     <div>
                         <input type="checkbox" id="clay" value="clay" v-model="form.surface" @change="changeRequest">
-                        <label for="clay">Clay</label>
+                        <label class="text-white" for="clay">Clay</label>
                     </div>
                     <div>
                         <input type="checkbox" id="acrylic" value="acrylic" v-model="form.surface" @change="changeRequest">
-                        <label for="acrylic">Acrylic</label>
+                        <label class="text-white" for="acrylic">Acrylic</label>
                     </div>
                 </div>
 
@@ -25,44 +27,46 @@
                 <div v-else-if="sport == 'padel'" class="flex flex-col ml-3">
                     <div>
                         <input type="checkbox" id="concrete" value="concrete" v-model="form.surface" @change="changeRequest">
-                        <label for="concrete">Concrete</label>
+                        <label class="text-white" for="concrete">Concrete</label>
                     </div>
                 </div>
             </div>
 
             <!-- Indoor/Outdoor -->
             <div class="mt-5">
-                <div class="text-gray-500">Indoor/Outdoor: </div>
+                <div class="text-white">Indoor/Outdoor: </div>
+                <hr class=" border-gray-200 border-opacity-60 mb-1">
 
                 <div class="ml-3" @change="changeRequest">
                     <input type="radio" value="1" v-model="form.indoor">
-                    <label for="1">Indoor</label> <br>
+                    <label class="text-white" for="1">Indoor</label> <br>
                     <input type="radio" value="0" v-model="form.indoor">
-                    <label for="0">Outdoor</label> <br>
+                    <label class="text-white" for="0">Outdoor</label> <br>
                     <input type="radio" value="null" v-model="form.indoor">
-                    <label for="null">Doesn't matter</label> <br>
+                    <label class="text-white" for="null">Doesn't matter</label> <br>
                 </div>
             </div>
 
             <!-- Price -->
             <div class="mt-5">
-                <div class="text-gray-500">Max price(per hour): </div>
+                <div class="text-white">Max price(per hour): </div>
+                <hr class=" border-gray-200 border-opacity-60 mb-1">
 
                 <div class="ml-3" @change="changeRequest">
                     <input type="radio" value="20" v-model="form.maxPrice">
-                    <label for="20">€20</label> <br>
+                    <label class="text-white" for="20">€20</label> <br>
                     <input type="radio" value="25" v-model="form.maxPrice">
-                    <label for="25">€25</label> <br>
+                    <label class="text-white" for="25">€25</label> <br>
                     <input type="radio" value="30" v-model="form.maxPrice">
-                    <label for="30">€30</label> <br>
+                    <label class="text-white" for="30">€30</label> <br>
                     <input type="radio" value="35" v-model="form.maxPrice">
-                    <label for="35">€35</label> <br>
+                    <label class="text-white" for="35">€35</label> <br>
                     <input type="radio" value="40" v-model="form.maxPrice">
-                    <label for="40">€40</label> <br>
+                    <label class="text-white" for="40">€40</label> <br>
                     <input type="radio" value="50" v-model="form.maxPrice">
-                    <label for="50">€50</label> <br>
+                    <label class="text-white" for="50">€50</label> <br>
                     <input type="radio" value="0" v-model="form.maxPrice">
-                    <label for="0">Doesn't matter</label> <br>
+                    <label class="text-white" for="0">Doesn't matter</label> <br>
                 </div>
             </div>
         </div>

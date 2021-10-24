@@ -400,7 +400,8 @@ var render = function() {
       {
         staticClass: "grid grid-cols-4 gap-4 bg-cover",
         staticStyle: {
-          "background-image": "url('storage/images/main-page.jpg')"
+          "background-image":
+            "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')"
         }
       },
       [
@@ -448,12 +449,17 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "flex flex-col w-10/12 bg-white bg-opacity-70 p-6 shadow-xl"
+      staticClass: "flex flex-col w-10/12 bg-dbGray bg-opacity-70 p-6 shadow-xl"
     },
     [
-      _c("div", { staticClass: "text-2xl text-center pb-5" }, [
-        _vm._v("\n        Wanna play sport?\n    ")
-      ]),
+      _c(
+        "div",
+        {
+          staticClass: "text-2xl text-gray-400 font-bold text-center pb-5",
+          staticStyle: { "text-shadow": "0.5px 0.5px 4px #222121" }
+        },
+        [_vm._v("\n        Wanna play sport?\n    ")]
+      ),
       _vm._v(" "),
       _vm.message
         ? _c("div", { staticClass: "text-center text-red-700" }, [

@@ -33,7 +33,7 @@ class BookingController extends Controller
                       ->where('status_id', 1)
                       ->orderBy('date', 'asc')
                       ->orderBy('start_time', 'asc')
-                      ->paginate(5);
+                      ->paginate(6);
 
         if ($bookings->count() == 0) return $bookings;
         else {
@@ -50,7 +50,7 @@ class BookingController extends Controller
                       ->where('status_id', '!=', 6)
                       ->orderBy('date', 'desc')
                       ->orderBy('start_time', 'desc')
-                      ->paginate(5);
+                      ->paginate(6);
 
         if ($bookings->count() == 0) return $bookings;
         else {

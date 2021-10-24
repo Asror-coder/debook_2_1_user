@@ -1,23 +1,35 @@
 <template>
-    <div class="flex flex-row p-3 rounded-lg shadow-lg text-lg bg-white mb-2">
-        <div class="flex-none">{{ this.club.name }}</div>
-        <div class="flex-none text-gray-600 ml-4">{{ this.club.city }}</div>
-        <div class="flex-grow"></div>
-        <button class="flex-none text-blue-600 hover:text-blue-900  focus:outline-none"
-            @click="goToClubPage">more</button>
+    <div class="p-3 rounded-lg grid grid-cols-2 bg-white mb-2" v-if="club">
+        <div class="h-48 rounded-lg shadow-2xl bg-cover mr-3" :style="makeUrl()"></div>
+        <div class="flex flex-col">
+            <div class="text-3xl">{{ club.name }}</div>
+            <div class="text-gray-400"><i class="fas fa-map-marker-alt mr-1"></i>{{ club.city }}</div>
+            <div class="flex-grow"></div>
+            <div class="flex">
+                <div class="flex-none flex">
+                    <span class="text-xl mt-1 mr-2 text-gray-600">from</span>
+                    <div class="text-2xl"> €{{ club.price.toFixed(2) }}</div>
+                </div>
+                <div class="flex-grow"></div>
+                <button class="flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none"
+                    @click="goToClubPage">more</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'ClubCard',
     props: {
-        club: null
+        id: null
     },
     data() {
         return {
+            club: null,
             clubSearch: {
-                partnerId: null,
+                partnerId: this.id,
                 sport_type: '',
                 date: '',
                 start_time: '',
@@ -31,7 +43,6 @@ export default {
                 var search_request = JSON.parse(sessionStorage.getItem('search'))
 
                 if(search_request.date && search_request.start_time && search_request.end_time) {
-                    this.clubSearch.partnerId = this.club.partner_id
                     this.clubSearch.sport_type = search_request.sport_type
                     this.clubSearch.date = search_request.date
                     this.clubSearch.start_time = search_request.start_time
@@ -41,8 +52,21 @@ export default {
                 }
             }
 
-            this.$router.push({name:'Club', params: { clubId: this.club.partner_id}})
+            this.$router.push({name:'Club', params: { clubId: this.id}})
+        },
+        makeUrl() {
+            return 'background-image: url("'+this.club.imageUrl+'")'
         }
+    },
+    mounted() {
+        var request = JSON.parse(sessionStorage.getItem('search'))
+
+        axios.get(`/api/clubs/club/${this.id}/search/info`,{params: request}).then((response)=> {
+            this.club = response.data
+            // console.log(this.club.imageUrl);
+        }).catch((error) => {
+            console.log(error.response.data.message);
+        })
     }
 }
 </script>

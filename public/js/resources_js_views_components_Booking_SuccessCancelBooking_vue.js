@@ -68,7 +68,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SuccessCancelBooking',
   data: function data() {
@@ -184,98 +183,66 @@ var render = function() {
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
     _c("main", { staticClass: "col-span-2 my-5" }, [
-      _c("div", { staticClass: "text-2xl font-bold" }, [
+      _c("div", { staticClass: "text-2xl text-white font-bold" }, [
         _vm._v("Your have canceled your booking")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text text-gray-500" }, [
+      _c("div", { staticClass: "text text-dbGray" }, [
         _vm._v("Try to book some other venues or events")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-        _c("div", { staticClass: "bg-blue-100 p-3" }, [
+        _c("div", { staticClass: "bg-white p-3" }, [
           _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
             _vm._v("Information about canceled booking")
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Club: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.clubName) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Sport: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.sport) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Venue: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.venueName) +
-                " (" +
-                _vm._s(_vm.booking.surface) +
-                ",\n                        "
-            ),
-            _vm.booking.indoor == 1 ? _c("span", [_vm._v("indoor")]) : _vm._e(),
+          _c("div", { staticClass: "grid grid-cols-3" }, [
+            _vm._m(0),
             _vm._v(" "),
-            _vm.booking.indoor == 0
-              ? _c("span", [_vm._v("outdoor")])
-              : _vm._e(),
-            _vm._v(")\n                    ")
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Date: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.changeDateFormat(_vm.booking.date)) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Time: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
-                " - " +
-                _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Price: ")
-            ]),
-            _vm._v(
-              "\n                        €" +
-                _vm._s(_vm.booking.price) +
-                "\n                    "
-            )
+            _c("div", { staticClass: "col-span-2" }, [
+              _c("div", [_vm._v(" " + _vm._s(_vm.booking.clubName) + " ")]),
+              _vm._v(" "),
+              _c("div", [_vm._v(" " + _vm._s(_vm.booking.sport) + " ")]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "\n                                " +
+                    _vm._s(_vm.booking.venueName) +
+                    " (" +
+                    _vm._s(_vm.booking.surface) +
+                    ",\n                                "
+                ),
+                _vm.booking.indoor == 1
+                  ? _c("span", [_vm._v("indoor")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.booking.indoor == 0
+                  ? _c("span", [_vm._v("outdoor")])
+                  : _vm._e(),
+                _vm._v(")\n                            ")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(_vm._s(_vm.changeDateFormat(_vm.booking.date)) + " ")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "\n                                " +
+                    _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
+                    " - " +
+                    _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
+                    "\n                            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [_vm._v("€" + _vm._s(_vm.booking.price))])
+            ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(1)
       ])
     ]),
     _vm._v(" "),
@@ -287,7 +254,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-blue-100 p-3" }, [
+    return _c("div", [
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Club:")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Sport:")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Venue:")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Date:")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Time:")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+        _vm._v("Price:")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-white p-3" }, [
       _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
         _vm._v("Some Information")
       ]),

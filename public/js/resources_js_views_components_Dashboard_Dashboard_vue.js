@@ -349,8 +349,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Profile",
   data: function data() {
@@ -1130,35 +1128,44 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-col rounded-lg mb-4 p-2 shadow-lg bg-white" },
+    { staticClass: "rounded-lg mb-4 p-2 shadow-lg bg-white grid grid-cols-4" },
     [
-      _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-        _c("div", [_vm._v("Name")]),
-        _vm._v(" "),
+      _c("div", { staticClass: "text-xl font-bold text-gray-500" }, [
+        _vm._v("About you")
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", {}, [
         _c("div", [
           _vm._v(
             _vm._s(_vm.currentUser.name) +
               " " +
               _vm._s(_vm.currentUser.lastname)
           )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-        _c("div", [_vm._v("Email")]),
+        ]),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.currentUser.email))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-        _c("div", [_vm._v("Phone")]),
+        _c("div", [_vm._v(_vm._s(_vm.currentUser.email))]),
         _vm._v(" "),
         _c("div", [_vm._v(_vm._s(_vm.currentUser.phone))])
       ])
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("div", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Phone")])
+    ])
+  }
+]
 render._withStripped = true
 
 

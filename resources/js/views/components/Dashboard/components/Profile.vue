@@ -1,17 +1,15 @@
 <template>
-    <div class="flex flex-col rounded-lg mb-4 p-2 shadow-lg bg-white">
-        <div class="grid grid-cols-4 gap-4">
+    <div class="rounded-lg mb-4 p-2 shadow-lg bg-white grid grid-cols-4">
+        <div class="text-xl font-bold text-gray-500">About you</div>
+        <div class="">
             <div>Name</div>
-            <div>{{currentUser.name}} {{currentUser.lastname}}</div>
-        </div>
-        <div class="grid grid-cols-4 gap-4">
             <div>Email</div>
-            <div>{{currentUser.email}}</div>
-        </div>
-        <div class="grid grid-cols-4 gap-4">
             <div>Phone</div>
+        </div>
+        <div class="">
+            <div>{{currentUser.name}} {{currentUser.lastname}}</div>
+            <div>{{currentUser.email}}</div>
             <div>{{currentUser.phone}}</div>
-            <!-- <button class="hover:text-blue-900 text-blue-600 focus:outline-none">Change</button> -->
         </div>
     </div>
 </template>

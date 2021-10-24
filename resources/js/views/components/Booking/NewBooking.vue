@@ -3,10 +3,10 @@
         <div class="col-span-1"></div>
         <main class="col-span-2 my-5">
             <div class="flex flex-row">
-                <div class="flex-none text-2xl font-bold">New Booking</div>
+                <div class="flex-none text-dbGray text-2xl font-bold">New Booking</div>
                 <div class="flex-grow"></div>
-                <button class="flex-none h-12 bg-green-500 text-white rounded px-8 focus:outline-none hover:shadow-lg"
-                @click="book" v-show="isAvailable && allowDateTime()"> Check out </button>
+                <button class="flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600"
+                    @click="book" v-show="isAvailable && allowDateTime()"> Check out </button>
             </div>
 
             <div v-if="!isAvailable" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
@@ -19,58 +19,55 @@
 
             <div v-else-if="isAvailable">
                 <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-blue-100 p-3" v-if="currentUser">
+                    <div class="bg-white p-3" v-if="currentUser">
                         <div class="text-lg font-bold text-gray-600">Information about you</div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Name: </span>
-                            {{currentUser.name}} {{currentUser.lastname}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Email: </span>
-                            {{currentUser.email}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                            {{currentUser.phone}}
+
+                        <div class="grid grid-cols-3">
+                            <div>
+                                <div class="font-bold text-gray-500 mr-2">Name:</div>
+                                <div class="font-bold text-gray-500 mr-2">Email:</div>
+                                <div class="font-bold text-gray-500 mr-2">Phone:</div>
+                            </div>
+                            <div class="col-span-2">
+                                <div> {{currentUser.name}} {{currentUser.lastname}} </div>
+                                <div> {{currentUser.email}} </div>
+                                <div> {{currentUser.phone}} </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-blue-100 p-3">
+                    <div class="bg-white p-3">
                         <div class="text-lg font-bold text-gray-600">Information about booking</div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Club: </span>
-                            {{venue.clubName}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Phone: </span>
-                            {{venue.phone}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Sport: </span>
-                            {{venue.sport_type}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Venue: </span>
-                            {{venue.venueName}} ({{venue.surface}},
-                            <span v-if="venue.indoor == 1">indoor</span>
-                            <span v-if="venue.indoor == 0">outdoor</span>)
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Date: </span>
-                            {{changeDateFormat(clubSearch.date)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Time: </span>
-                            {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Price: </span>
-                            €{{price}}
+                        <div class="grid grid-cols-3">
+                            <div>
+                                <div class="font-bold text-gray-500 mr-2">Club:</div>
+                                <div class="font-bold text-gray-500 mr-2">Phone:</div>
+                                <div class="font-bold text-gray-500 mr-2">Sport:</div>
+                                <div class="font-bold text-gray-500 mr-2">Venue:</div>
+                                <div class="font-bold text-gray-500 mr-2">Date:</div>
+                                <div class="font-bold text-gray-500 mr-2">Time:</div>
+                                <div class="font-bold text-gray-500 mr-2">Price:</div>
+                            </div>
+                            <div class="col-span-2">
+                                <div> {{venue.clubName}} </div>
+                                <div> {{venue.phone}} </div>
+                                <div> {{venue.sport_type}} </div>
+                                <div>
+                                    {{venue.venueName}} ({{venue.surface}},
+                                    <span v-if="venue.indoor == 1">indoor</span>
+                                    <span v-if="venue.indoor == 0">outdoor</span>)
+                                </div>
+                                <div> {{changeDateFormat(clubSearch.date)}} </div>
+                                <div>
+                                    {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
+                                </div>
+                                <div>€{{price}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-blue-100 p-3">
+                <div class="bg-white p-3">
                     <div class="text-lg font-bold text-gray-600 mb-3">Payment</div>
                     <div>Dear customer, our payment system currently only supports iDeal. </div>
                     <div>Please keep this in mind before checking out.</div>

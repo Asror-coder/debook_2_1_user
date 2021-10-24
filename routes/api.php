@@ -85,6 +85,7 @@ Route::prefix('/clubs')->group(function() {
     Route::get('/club/{id}/sports', [ClubsController::class, 'getClubSports']);
     Route::get('/club/{id}/opentime', [ClubsController::class, 'getClubOpenTime']);
     Route::get('/club/{id}/availablevenues', [ClubsController::class, 'getAvailableVenues']);
+    Route::get('/club/{id}/search/info', [ClubsController::class, 'getSearchClubInfo']);
 });
 
 //Venue information

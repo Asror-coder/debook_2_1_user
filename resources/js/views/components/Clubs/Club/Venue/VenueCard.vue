@@ -9,7 +9,7 @@
             </div>
             <div class="flex-grow"></div>
             <div class="flex-none">€{{ this.venue.price }}</div>
-            <button class="flex-none bg-green-500 border-2 text-white rounded ml-4 py-1 px-5 focus:outline-none hover:shadow-lg"
+            <button class="flex-none bg-green-500 text-white ml-4 py-1 px-5 focus:outline-none hover:shadow-lg"
                 @click="book"> Book </button>
         </div>
         <hr class="border-gray-300">

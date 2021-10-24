@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Clubs\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Models\PartnerAddress;
-use Illuminate\Http\Request;
 
 class PartnerAddressController extends Controller
 {

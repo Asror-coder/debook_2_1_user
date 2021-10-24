@@ -3,7 +3,7 @@
         <!-- Top of the page: Image Background, Sport and Location -->
         <TopFilters :passed_sport="sport" :passed_city="request.city" @changeRequest="changeRequest"/>
 
-        <div class="flex-none grid grid-cols-4 gap-4">
+        <div class="flex-none grid grid-cols-4 gap-4 mt-3 mb-6">
              <!-- Side Filters: Surface, Inside/Outside and Price -->
             <div class="col-span-1">
                 <SideFilters :sport="sport" :passed_surface="request.surface" :passed_indoor="request.indoor"
@@ -12,7 +12,7 @@
 
             <main class="col-span-2">
                 <!-- Date, Start time, End time and Search button-->
-                <div class="flex flex-row my-3">
+                <div class="flex flex-row mt-3 mb-1">
                     <DateTimeFilters class="flex-none" @changeRequest="changeRequest"
                         :date="request.date" :start="request.start_time" :end="request.end_time"/>
 
@@ -24,29 +24,31 @@
                     </div>
                 </div>
 
+                <!-- Number of clubs -->
+                <div class="text-dbGray text-sm mb-3" v-if="clubs">{{clubs.total}} clubs</div>
+                <div class="text-dbGray text-sm mb-3" v-if="!clubs">no clubs</div>
+
                 <!-- List of clubs -->
                 <div v-if="clubs">
-                    <div :key="club.partner_id" v-for="club in clubs.data">
-                        <ClubCard :club="club" />
+                    <div :key="club.id" v-for="club in clubs.data">
+                        <ClubCard :id="club.id" />
                     </div>
                 </div>
 
                 <!-- Pages -->
                 <div class="flex flex-row my-8">
                     <div class="flex-grow"></div>
-                    <div class="flex flex-row text-lg" v-if="clubs">
+                    <div class="flex flex-row text-lg" v-if="clubs && clubs.last_page > 1">
                         <div :key="index" v-for="(page, index) in clubs.links" class="mx-3">
                             <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
-                                :textStyle="'text-gray-400'"
-                                @btn-click="changePage(page.url)"/>
+                                :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
 
                             <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
-                                :textStyle="page.label == clubs.current_page ? 'text-black' : 'text-gray-400'"
+                                :textStyle="page.label == clubs.current_page ? 'text-white h-7 w-7 rounded-full bg-dashBtnBlue' : 'text-gray-400 hover:text-white'"
                                 @btn-click="changePage(page.url)"/>
 
                             <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
-                                :textStyle="'text-gray-400'"
-                                @btn-click="changePage(page.url)"/>
+                                :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
                         </div>
                     </div>
                     <div class="flex-grow"></div>

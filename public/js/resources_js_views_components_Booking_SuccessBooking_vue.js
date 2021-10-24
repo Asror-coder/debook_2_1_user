@@ -219,16 +219,16 @@ var render = function() {
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
     _c("main", { staticClass: "col-span-2 my-5" }, [
-      _c("div", { staticClass: "text-2xl font-bold" }, [
+      _c("div", { staticClass: "text-2xl text-white font-bold" }, [
         _vm._v("Your booking was successful")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text text-gray-500" }, [
+      _c("div", { staticClass: "text text-dbGray" }, [
         _vm._v("Now, it can be seen in your dashboard")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-        _c("div", { staticClass: "bg-blue-100 p-3" }, [
+        _c("div", { staticClass: "bg-white p-3" }, [
           _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
             _vm._v("Information about booking")
           ]),
@@ -333,7 +333,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-blue-100 p-3" }, [
+    return _c("div", { staticClass: "bg-white p-3" }, [
       _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
         _vm._v("Some rules")
       ]),
