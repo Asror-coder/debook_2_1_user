@@ -28,7 +28,13 @@ class LocalizationController extends Controller
      */
     public function getLanguage() {
         return  response()->json([
-            'dashboard' => trans('dashboard')
+            'dashboard' => trans('dashboard'),
+            'header' => trans('header'),
+            'footer' => trans('footer'),
+            'home_search' => trans('home_search'),
+            'booking' => trans('booking'),
+            'clubs' => trans('clubs'),
+            'auth' => trans('auth')
         ]);
     }
 }

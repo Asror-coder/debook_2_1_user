@@ -327,7 +327,7 @@ var render = function() {
     _c("main", { staticClass: "col-span-2 my-5" }, [
       _c("div", { staticClass: "flex flex-row" }, [
         _c("div", { staticClass: "flex-none text-dbGray text-2xl font-bold" }, [
-          _vm._v("New Booking")
+          _vm._v(_vm._s(_vm.translation.booking.bookPage.title))
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex-grow" }),
@@ -347,7 +347,11 @@ var render = function() {
               "flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600",
             on: { click: _vm.book }
           },
-          [_vm._v(" Check out ")]
+          [
+            _vm._v(
+              " " + _vm._s(_vm.translation.booking.bookPage.checkOut) + " "
+            )
+          ]
         )
       ]),
       _vm._v(" "),
@@ -359,7 +363,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            We are sorry, but someone just booked this venue. Please try other time slots.\n        "
+                "\n            " +
+                  _vm._s(_vm.translation.booking.bookPage.notAvail) +
+                  "\n        "
               )
             ]
           )
@@ -373,7 +379,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            We are sorry, but it is too late to book this venue. Please try other time slots.\n        "
+                "\n            " +
+                  _vm._s(_vm.translation.booking.bookPage.late) +
+                  "\n        "
               )
             ]
           )
@@ -385,11 +393,37 @@ var render = function() {
                     _c(
                       "div",
                       { staticClass: "text-lg font-bold text-gray-600" },
-                      [_vm._v("Information about you")]
+                      [_vm._v(_vm._s(_vm.translation.booking.about_you))]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "grid grid-cols-3" }, [
-                      _vm._m(0),
+                      _c("div", [
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [_vm._v(_vm._s(_vm.translation.dashboard.name) + ":")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [
+                            _vm._v(
+                              _vm._s(_vm.translation.dashboard.email) + ":"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [
+                            _vm._v(
+                              _vm._s(_vm.translation.dashboard.phone) + ":"
+                            )
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-span-2" }, [
                         _c("div", [
@@ -416,11 +450,39 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "bg-white p-3" }, [
                 _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-                  _vm._v("Information about booking")
+                  _vm._v(_vm._s(_vm.translation.booking.about_booking))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "grid grid-cols-3" }, [
-                  _vm._m(1),
+                  _c("div", [
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v("Club:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v(_vm._s(_vm.translation.booking.phone) + ":")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v("Sport:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v(_vm._s(_vm.translation.booking.venue) + ":")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v(_vm._s(_vm.translation.booking.date) + ":")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v(_vm._s(_vm.translation.booking.time) + ":")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                      _vm._v(_vm._s(_vm.translation.booking.price) + ":")
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-span-2" }, [
                     _c("div", [_vm._v(" " + _vm._s(_vm.venue.clubName) + " ")]),
@@ -440,11 +502,15 @@ var render = function() {
                           ",\n                                "
                       ),
                       _vm.venue.indoor == 1
-                        ? _c("span", [_vm._v("indoor")])
+                        ? _c("span", [
+                            _vm._v(_vm._s(_vm.translation.booking.indoor))
+                          ])
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.venue.indoor == 0
-                        ? _c("span", [_vm._v("outdoor")])
+                        ? _c("span", [
+                            _vm._v(_vm._s(_vm.translation.booking.outdoor))
+                          ])
                         : _vm._e(),
                       _vm._v(")\n                            ")
                     ]),
@@ -477,7 +543,21 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _c("div", { staticClass: "bg-white p-3" }, [
+              _c(
+                "div",
+                { staticClass: "text-lg font-bold text-gray-600 mb-3" },
+                [_vm._v(_vm._s(_vm.translation.booking.payment))]
+              ),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(_vm._s(_vm.translation.booking.bookPage.infoIdeal))
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(_vm._s(_vm.translation.booking.bookPage.infoCheckout))
+              ])
+            ])
           ])
         : _vm._e()
     ]),
@@ -485,78 +565,7 @@ var render = function() {
     _c("div", { staticClass: "col-span-1" })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Name:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Email:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Phone:")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Club:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Phone:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Sport:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Venue:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Date:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Time:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Price:")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-white p-3" }, [
-      _c("div", { staticClass: "text-lg font-bold text-gray-600 mb-3" }, [
-        _vm._v("Payment")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v(
-          "Dear customer, our payment system currently only supports iDeal. "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", [_vm._v("Please keep this in mind before checking out.")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

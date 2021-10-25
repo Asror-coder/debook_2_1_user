@@ -4,25 +4,25 @@
             <div class="flex flex-row">
                 <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>
                 <div v-if="bookingDetails.status_id == 1"
-                    class="px-3 text-green-600">active</div>
+                    class="px-3 text-green-600">{{ translation.booking.active }}</div>
                 <div v-if="bookingDetails.status_id == 4 || bookingDetails.status_id == 7"
-                    class="px-3 rounded-lg text-red-600">canceled</div>
+                    class="px-3 rounded-lg text-red-600">{{ translation.booking.canceled }}</div>
                 <div class="flex-grow"></div>
                 <button @click="cancel" v-if="bookingDetails.status_id == 1"
-                    class="hover:text-red-700 mr-3">cancel</button>
+                    class="hover:text-red-700 mr-3">{{ translation.booking.cancelPage.cancel }}</button>
             </div>
             <div>
-                <span class="font-bold text-gray-500 mr-2">Venue: </span>
-                {{venue.name}} ({{service.surface}},
-                <span v-if="service.indoor == 1">indoor</span>
-                <span v-if="service.indoor == 0">outdoor</span>)
+                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}: </span>
+                {{ venue.name }} ({{ service.surface }},
+                <span v-if="service.indoor == 1">{{ translation.booking.indoor }}</span>
+                <span v-if="service.indoor == 0">{{ translation.booking.outdoor }}</span>)
             </div>
             <div>
-                <span class="font-bold text-gray-500 mr-2">Date: </span>
+                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}: </span>
                 {{changeDateFormat(bookingDetails.date)}}
             </div>
             <div>
-                <span class="font-bold text-gray-500 mr-2">Time: </span>
+                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}: </span>
                 {{changeTimeFormat(bookingDetails.start_time)}} - {{changeTimeFormat(bookingDetails.end_time)}}
             </div>
         </div>
@@ -32,14 +32,14 @@
                 <div class="text-lg font-bold text-gray-700">{{clubDetails.name}}</div>
                 <div class="flex-grow"></div>
                 <router-link v-if="this.venue.partner_id" :to="{ name:'Club', params: { clubId: this.venue.partner_id}}"
-                    class="flex-none text-xl text-blue-600 hover:text-blue-900 focus:outline-none">more</router-link>
+                    class="flex-none text-xl text-blue-600 hover:text-blue-900 focus:outline-none">{{ translation.clubs.more }}</router-link>
             </div>
             <div>
-                <span class="font-bold text-gray-500 mr-2">Phone: </span>
+                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}: </span>
                 {{clubDetails.phone}}
             </div>
             <div>
-                <span class="font-bold text-gray-500 mr-2">Address: </span>
+                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.address }}: </span>
                 {{clubAddress.city}}, {{clubAddress.street}}, {{clubAddress.house_num}}-{{clubAddress.house_add}}
             </div>
         </div>

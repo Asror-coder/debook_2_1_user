@@ -5228,6 +5228,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Footer'
 });
@@ -25037,120 +25038,119 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "footer",
-    {
-      staticClass: "h-56 bg-cover bg-right-top grid grid-cols-5 pt-10",
-      staticStyle: {
-        "background-image":
-          "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/footer-img.jpeg')"
-      }
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "ml-20" }, [
-        _c("div", { staticClass: "text-white text-lg" }, [
-          _vm._v("Who are we?")
-        ]),
-        _vm._v(" "),
-        _c("ul", [
-          _c(
-            "li",
-            [
-              _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("About us")]
-              )
-            ],
-            1
-          ),
+  return _vm.translation
+    ? _c(
+        "footer",
+        {
+          staticClass: "h-56 bg-cover bg-right-top grid grid-cols-5 pt-10",
+          staticStyle: {
+            "background-image":
+              "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/footer-img.jpeg')"
+          }
+        },
+        [
+          _c("div", { staticClass: "col-start-2 ml-20 text-white" }, [
+            _c("div", { staticClass: "text-xl" }, [
+              _vm._v(_vm._s(_vm.translation.footer.contacts) + ":")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-lg" }, [_vm._v("asror@debook.nl")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mt-4" }, [_vm._v("deBook © 2021")])
+          ]),
           _vm._v(" "),
-          _c(
-            "li",
-            [
+          _c("div", { staticClass: "ml-20" }, [
+            _c("div", { staticClass: "text-white text-lg" }, [
+              _vm._v(_vm._s(_vm.translation.footer.who))
+            ]),
+            _vm._v(" "),
+            _c("ul", [
               _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("For clubs")]
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.about_us))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.for_clubs))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.cookie))]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          ),
+            ])
+          ]),
           _vm._v(" "),
-          _c(
-            "li",
-            [
+          _c("div", { staticClass: "ml-20" }, [
+            _c("div", { staticClass: "text-white text-lg" }, [
+              _vm._v(_vm._s(_vm.translation.footer.discover))
+            ]),
+            _vm._v(" "),
+            _c("ul", [
               _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("Cookie settings")]
-              )
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "ml-20" }, [
-        _c("div", { staticClass: "text-white text-lg" }, [_vm._v("Discover")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c(
-            "li",
-            [
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.blog))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("Blog")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            [
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.tips))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("Sport tips")]
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "footer-btn", attrs: { to: "#" } },
+                    [_vm._v(_vm._s(_vm.translation.footer.navigation))]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            [
-              _c(
-                "router-link",
-                { staticClass: "footer-btn", attrs: { to: "#" } },
-                [_vm._v("Website navigation")]
-              )
-            ],
-            1
-          )
-        ])
-      ])
-    ]
-  )
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-start-2 ml-20 text-white" }, [
-      _c("div", { staticClass: "text-xl" }, [_vm._v("Contacts:")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-lg" }, [_vm._v("asror@debook.nl")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "mt-4" }, [_vm._v("deBook © 2021")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -25173,295 +25173,319 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("nav", { staticClass: "pt-6 pb-3 bg-background flex flex-row" }, [
-      _c("ul", { staticClass: "flex items-center" }, [
-        _c(
-          "li",
-          [
+  return _vm.translation
+    ? _c("div", [
+        _c("nav", { staticClass: "pt-6 pb-3 bg-background flex flex-row" }, [
+          _c("ul", { staticClass: "flex items-center" }, [
             _c(
-              "router-link",
-              { staticClass: "p-3 mx-6 text-4xl", attrs: { to: "/" } },
-              [
-                _c("span", { staticClass: "text-de" }, [_vm._v("de")]),
-                _c("span", { staticClass: "text-book" }, [_vm._v("Book")])
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "relative inline-block text-left",
-            on: {
-              mouseover: function($event) {
-                _vm.showSports = true
-              },
-              mouseleave: function($event) {
-                _vm.showSports = false
-              }
-            }
-          },
-          [
-            _c("button", { staticClass: "nav-btn" }, [_vm._v("Sports")]),
-            _vm._v(" "),
-            _c("transition", { attrs: { name: "fade" } }, [
-              _vm.showSports
-                ? _c(
-                    "ul",
-                    {
-                      staticClass:
-                        "absolute w-56 shadow-lg bg-white focus:outline-none",
-                      on: {
-                        click: function($event) {
-                          _vm.listOne = false
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "drop-down",
-                              attrs: { to: "/clubs/tennis" }
-                            },
-                            [_vm._v("Tennis")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "drop-down",
-                              attrs: { to: "/clubs/padel" }
-                            },
-                            [_vm._v("Padel")]
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                : _vm._e()
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
-              _vm._v("Events")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
-              _vm._v("Explore")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { staticClass: "nav-btn", attrs: { to: "#" } }, [
-              _vm._v("About us")
-            ])
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-grow" }),
-      _vm._v(" "),
-      _c("ul", { staticClass: "flex items-center flex-row-reverse" }, [
-        !_vm.currentUser
-          ? _c(
               "li",
               [
                 _c(
                   "router-link",
-                  { staticClass: "nav-btn mr-2", attrs: { to: "/login" } },
-                  [_vm._v("\n                    Login\n                ")]
-                )
-              ],
-              1
-            )
-          : _vm.currentUser
-          ? _c(
-              "li",
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-btn mr-2", attrs: { to: "/dashboard" } },
+                  { staticClass: "p-3 mx-6 text-4xl", attrs: { to: "/" } },
                   [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.currentUser.name) +
-                        " " +
-                        _vm._s(_vm.currentUser.lastname) +
-                        "\n                "
-                    )
+                    _c("span", { staticClass: "text-de" }, [_vm._v("de")]),
+                    _c("span", { staticClass: "text-book" }, [_vm._v("Book")])
                   ]
                 )
               ],
               1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.lang
-          ? _c(
+            ),
+            _vm._v(" "),
+            _c(
               "li",
               {
-                staticClass: "mr-10 w-9 text-center hover:shadow-lg text-white"
-              },
-              [
-                _vm.lang == "nl"
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "bg-red-500 w-full rounded-md",
-                        on: {
-                          click: function($event) {
-                            return _vm.changeLang("en")
-                          }
-                        }
-                      },
-                      [_vm._v("eng")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.lang == "en"
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "bg-yellow-500 w-full rounded-md",
-                        on: {
-                          click: function($event) {
-                            return _vm.changeLang("nl")
-                          }
-                        }
-                      },
-                      [_vm._v("nl")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            directives: [
-              {
-                name: "on-clickaway",
-                rawName: "v-on-clickaway",
-                value: _vm.away,
-                expression: "away"
-              }
-            ],
-            staticClass: "mr-10 relative inline-block text-left"
-          },
-          [
-            _c("div", { staticClass: "border-b border-teal-500 mb-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.clubName,
-                    expression: "clubName"
-                  }
-                ],
-                staticClass:
-                  "bg-transparent border-none text-white leading-tight p-1 shadow-lg focus:outline-none placeholder-gray-400",
-                attrs: {
-                  type: "text",
-                  name: "clubName",
-                  placeholder: "search"
-                },
-                domProps: { value: _vm.clubName },
+                staticClass: "relative inline-block text-left",
                 on: {
-                  focus: _vm.focused,
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.clubName = $event.target.value
+                  mouseover: function($event) {
+                    _vm.showSports = true
+                  },
+                  mouseleave: function($event) {
+                    _vm.showSports = false
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("transition", { attrs: { name: "fade" } }, [
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.showClubs,
-                      expression: "showClubs"
-                    }
-                  ],
-                  staticClass:
-                    "absolute w-48 shadow-lg bg-white focus:outline-none"
-                },
-                [
-                  _vm.searchedClubs.length == 0
-                    ? _c("div", [
-                        _c("p", { staticClass: "w-full px-4 py-2" }, [
-                          _vm._v("No clubs")
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.searchedClubs, function(club) {
-                    return _c("div", { key: club.id, staticClass: "w-full" }, [
-                      _c(
-                        "button",
+              },
+              [
+                _c("button", { staticClass: "nav-btn" }, [
+                  _vm._v(_vm._s(_vm.translation.header.sports))
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "fade" } }, [
+                  _vm.showSports
+                    ? _c(
+                        "ul",
                         {
-                          staticClass: "drop-down w-full",
+                          staticClass:
+                            "absolute w-56 shadow-lg bg-white focus:outline-none",
                           on: {
                             click: function($event) {
-                              return _vm.goToClubPage(club.partner_id)
+                              _vm.listOne = false
                             }
                           }
                         },
-                        [_vm._v(_vm._s(club.name))]
+                        [
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "drop-down",
+                                  attrs: { to: "/clubs/tennis" }
+                                },
+                                [_vm._v("Tennis")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "drop-down",
+                                  attrs: { to: "/clubs/padel" }
+                                },
+                                [_vm._v("Padel")]
+                              )
+                            ],
+                            1
+                          )
+                        ]
                       )
-                    ])
-                  })
+                    : _vm._e()
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-btn", attrs: { to: "#" } },
+                  [_vm._v(_vm._s(_vm.translation.header.events))]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-btn", attrs: { to: "#" } },
+                  [_vm._v(_vm._s(_vm.translation.header.explore))]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-btn", attrs: { to: "#" } },
+                  [_vm._v(_vm._s(_vm.translation.header.about_us))]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex-grow" }),
+          _vm._v(" "),
+          _c("ul", { staticClass: "flex items-center flex-row-reverse" }, [
+            !_vm.currentUser
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "nav-btn mr-2", attrs: { to: "/login" } },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.translation.header.login) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm.currentUser
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-btn mr-2",
+                        attrs: { to: "/dashboard" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.currentUser.name) +
+                            " " +
+                            _vm._s(_vm.currentUser.lastname) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.lang
+              ? _c(
+                  "li",
+                  {
+                    staticClass:
+                      "mr-10 w-9 text-center hover:shadow-lg text-white"
+                  },
+                  [
+                    _vm.lang == "nl"
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "bg-red-500 w-full rounded-md",
+                            on: {
+                              click: function($event) {
+                                return _vm.changeLang("en")
+                              }
+                            }
+                          },
+                          [_vm._v("eng")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.lang == "en"
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "bg-yellow-500 w-full rounded-md",
+                            on: {
+                              click: function($event) {
+                                return _vm.changeLang("nl")
+                              }
+                            }
+                          },
+                          [_vm._v("nl")]
+                        )
+                      : _vm._e()
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "on-clickaway",
+                    rawName: "v-on-clickaway",
+                    value: _vm.away,
+                    expression: "away"
+                  }
                 ],
-                2
-              )
-            ])
-          ],
-          1
-        )
+                staticClass: "mr-10 relative inline-block text-left"
+              },
+              [
+                _c("div", { staticClass: "border-b border-teal-500 mb-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.clubName,
+                        expression: "clubName"
+                      }
+                    ],
+                    staticClass:
+                      "bg-transparent border-none text-white leading-tight p-1 shadow-lg focus:outline-none placeholder-gray-400",
+                    attrs: {
+                      type: "text",
+                      name: "clubName",
+                      placeholder: _vm.translation.header.search
+                    },
+                    domProps: { value: _vm.clubName },
+                    on: {
+                      focus: _vm.focused,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.clubName = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("transition", { attrs: { name: "fade" } }, [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.showClubs,
+                          expression: "showClubs"
+                        }
+                      ],
+                      staticClass:
+                        "absolute w-48 shadow-lg bg-white focus:outline-none"
+                    },
+                    [
+                      _vm.searchedClubs.length == 0
+                        ? _c("div", [
+                            _c("p", { staticClass: "w-full px-4 py-2" }, [
+                              _vm._v(_vm._s(_vm.translation.header.no_clubs))
+                            ])
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(_vm.searchedClubs, function(club) {
+                        return _c(
+                          "div",
+                          { key: club.id, staticClass: "w-full" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "drop-down w-full",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.goToClubPage(club.partner_id)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(club.name))]
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: " border-gray-500 border-opacity-60" })
       ])
-    ]),
-    _vm._v(" "),
-    _c("hr", { staticClass: " border-gray-500 border-opacity-60" })
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42004,7 +42028,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/asror_akb/Programs/Laravel/deBook/debook_2_1_user"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/Users/asror_akb/Programs/Laravel/deBook/debook_2_1_user","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

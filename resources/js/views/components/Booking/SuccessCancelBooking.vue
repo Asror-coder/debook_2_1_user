@@ -1,29 +1,29 @@
 <template>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
-        <main class="col-span-2 my-5">
-            <div class="text-2xl text-white font-bold">Your have canceled your booking</div>
-            <div class="text text-dbGray">Try to book some other venues or events</div>
+        <main class="col-span-2 my-5" v-if="translation">
+            <div class="text-2xl text-white font-bold">{{ translation.booking.cancelSuccess.title }}</div>
+            <div class="text text-dbGray">{{ translation.booking.cancelSuccess.try }}</div>
             <div class="grid grid-cols-2 gap-4 my-4">
                     <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">Information about canceled booking</div>
+                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.cancelSuccess.infoBooking }}</div>
 
                         <div class="grid grid-cols-3">
                             <div>
                                 <div class="font-bold text-gray-500 mr-2">Club:</div>
                                 <div class="font-bold text-gray-500 mr-2">Sport:</div>
-                                <div class="font-bold text-gray-500 mr-2">Venue:</div>
-                                <div class="font-bold text-gray-500 mr-2">Date:</div>
-                                <div class="font-bold text-gray-500 mr-2">Time:</div>
-                                <div class="font-bold text-gray-500 mr-2">Price:</div>
+                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}:</div>
+                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}:</div>
+                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}:</div>
+                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}:</div>
                             </div>
                             <div class="col-span-2">
                                 <div> {{booking.clubName}} </div>
                                 <div> {{booking.sport}} </div>
                                 <div>
                                     {{booking.venueName}} ({{booking.surface}},
-                                    <span v-if="booking.indoor == 1">indoor</span>
-                                    <span v-if="booking.indoor == 0">outdoor</span>)
+                                    <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
+                                    <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
                                 </div>
                                 <div>{{changeDateFormat(booking.date)}} </div>
                                 <div>
@@ -35,18 +35,18 @@
                     </div>
 
                     <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">Some Information</div>
+                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.cancelSuccess.info }}</div>
                         <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">About payment: </span>
-                            Full refund of your booking will be made within 2 weeks.
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.cancelSuccess.payment }}: </span>
+                            {{ translation.booking.cancelSuccess.paymentInfo }}
                         </div>
                         <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">New booking: </span>
-                            If you canceled your booking because it doesn't fit in your schedule try other time slots.
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.cancelSuccess.newBooking }}: </span>
+                            {{ translation.booking.cancelSuccess.newBookingInfo }}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Different activities: </span>
-                            You can find venues for almost all sport activities in deBook. Don't hesitate and start searching now.
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.cancelSuccess.activities }}: </span>
+                            {{ translation.booking.cancelSuccess.activitiesInfo }}
                         </div>
                     </div>
                 </div>

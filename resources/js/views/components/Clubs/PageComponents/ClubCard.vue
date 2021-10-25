@@ -7,12 +7,12 @@
             <div class="flex-grow"></div>
             <div class="flex">
                 <div class="flex-none flex">
-                    <span class="text-xl mt-1 mr-2 text-gray-600">from</span>
+                    <span class="text-xl mt-1 mr-2 text-gray-600">{{ translation.clubs.from }}</span>
                     <div class="text-2xl"> €{{ club.price.toFixed(2) }}</div>
                 </div>
                 <div class="flex-grow"></div>
                 <button class="flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none"
-                    @click="goToClubPage">more</button>
+                    @click="goToClubPage">{{ translation.clubs.more }}</button>
             </div>
         </div>
     </div>

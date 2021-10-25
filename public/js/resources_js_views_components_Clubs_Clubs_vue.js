@@ -1028,175 +1028,175 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flex flex-col" },
-    [
-      _c("TopFilters", {
-        attrs: { passed_sport: _vm.sport, passed_city: _vm.request.city },
-        on: { changeRequest: _vm.changeRequest }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-none grid grid-cols-4 gap-4 mt-3 mb-6" }, [
-        _c(
-          "div",
-          { staticClass: "col-span-1" },
-          [
-            _c("SideFilters", {
-              attrs: {
-                sport: _vm.sport,
-                passed_surface: _vm.request.surface,
-                passed_indoor: _vm.request.indoor,
-                passed_maxPrice: _vm.request.maxPrice
-              },
-              on: { changeRequest: _vm.changeRequest }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("main", { staticClass: "col-span-2" }, [
+  return _vm.translation
+    ? _c(
+        "div",
+        { staticClass: "flex flex-col" },
+        [
+          _c("TopFilters", {
+            attrs: { passed_sport: _vm.sport, passed_city: _vm.request.city },
+            on: { changeRequest: _vm.changeRequest }
+          }),
+          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex flex-row mt-3 mb-1" },
+            { staticClass: "flex-none grid grid-cols-4 gap-4 mt-3 mb-6" },
             [
-              _c("DateTimeFilters", {
-                staticClass: "flex-none",
-                attrs: {
-                  date: _vm.request.date,
-                  start: _vm.request.start_time,
-                  end: _vm.request.end_time
-                },
-                on: { changeRequest: _vm.changeRequest }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex-grow" }),
-              _vm._v(" "),
-              _vm._m(0)
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm.clubs
-            ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
-                _vm._v(_vm._s(_vm.clubs.total) + " clubs")
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.clubs
-            ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
-                _vm._v("no clubs")
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.clubs
-            ? _c(
+              _c(
                 "div",
-                _vm._l(_vm.clubs.data, function(club) {
-                  return _c(
-                    "div",
-                    { key: club.id },
-                    [_c("ClubCard", { attrs: { id: club.id } })],
-                    1
-                  )
-                }),
-                0
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex flex-row my-8" }, [
-            _c("div", { staticClass: "flex-grow" }),
-            _vm._v(" "),
-            _vm.clubs && _vm.clubs.last_page > 1
-              ? _c(
+                { staticClass: "col-span-1" },
+                [
+                  _c("SideFilters", {
+                    attrs: {
+                      sport: _vm.sport,
+                      passed_surface: _vm.request.surface,
+                      passed_indoor: _vm.request.indoor,
+                      passed_maxPrice: _vm.request.maxPrice
+                    },
+                    on: { changeRequest: _vm.changeRequest }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("main", { staticClass: "col-span-2" }, [
+                _c(
                   "div",
-                  { staticClass: "flex flex-row text-lg" },
-                  _vm._l(_vm.clubs.links, function(page, index) {
-                    return _c(
+                  { staticClass: "flex flex-row mt-3 mb-1" },
+                  [
+                    _c("DateTimeFilters", {
+                      staticClass: "flex-none",
+                      attrs: {
+                        date: _vm.request.date,
+                        start: _vm.request.start_time,
+                        end: _vm.request.end_time
+                      },
+                      on: { changeRequest: _vm.changeRequest }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex-grow" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex-none" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-blue-500 text-white px-6 py-2 w-full rounded-xl font-medium focus:outline-none",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v(_vm._s(_vm.translation.clubs.map))]
+                      )
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm.clubs
+                  ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
+                      _vm._v(_vm._s(_vm.clubs.total) + " clubs")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.clubs
+                  ? _c("div", { staticClass: "text-dbGray text-sm mb-3" }, [
+                      _vm._v("no clubs")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.clubs
+                  ? _c(
                       "div",
-                      { key: index, staticClass: "mx-3" },
-                      [
-                        page.label == "&laquo; Previous" && page.url
-                          ? _c("Button", {
-                              attrs: {
-                                text: "prev",
-                                textStyle: "text-gray-400 hover:text-white"
-                              },
-                              on: {
-                                "btn-click": function($event) {
-                                  return _vm.changePage(page.url)
-                                }
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        page.label != "&laquo; Previous" &&
-                        page.label != "Next &raquo;"
-                          ? _c("Button", {
-                              attrs: {
-                                text: page.label,
-                                textStyle:
-                                  page.label == _vm.clubs.current_page
-                                    ? "text-white h-7 w-7 rounded-full bg-dashBtnBlue"
-                                    : "text-gray-400 hover:text-white"
-                              },
-                              on: {
-                                "btn-click": function($event) {
-                                  return _vm.changePage(page.url)
-                                }
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        page.label == "Next &raquo;" && page.url
-                          ? _c("Button", {
-                              attrs: {
-                                text: "next",
-                                textStyle: "text-gray-400 hover:text-white"
-                              },
-                              on: {
-                                "btn-click": function($event) {
-                                  return _vm.changePage(page.url)
-                                }
-                              }
-                            })
-                          : _vm._e()
-                      ],
-                      1
+                      _vm._l(_vm.clubs.data, function(club) {
+                        return _c(
+                          "div",
+                          { key: club.id },
+                          [_c("ClubCard", { attrs: { id: club.id } })],
+                          1
+                        )
+                      }),
+                      0
                     )
-                  }),
-                  0
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex-grow" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-span-1" })
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-none" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-blue-500 text-white px-6 py-1 w-full rounded font-medium focus:outline-none",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("Map")]
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-row my-8" }, [
+                  _c("div", { staticClass: "flex-grow" }),
+                  _vm._v(" "),
+                  _vm.clubs && _vm.clubs.last_page > 1
+                    ? _c(
+                        "div",
+                        { staticClass: "flex flex-row text-lg" },
+                        _vm._l(_vm.clubs.links, function(page, index) {
+                          return _c(
+                            "div",
+                            { key: index, staticClass: "mx-3" },
+                            [
+                              page.label == "prev" && page.url
+                                ? _c("Button", {
+                                    attrs: {
+                                      text: "prev",
+                                      textStyle:
+                                        "text-gray-400 hover:text-white"
+                                    },
+                                    on: {
+                                      "btn-click": function($event) {
+                                        return _vm.changePage(page.url)
+                                      }
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              page.label != "prev" && page.label != "next"
+                                ? _c("Button", {
+                                    attrs: {
+                                      text: page.label,
+                                      textStyle:
+                                        page.label == _vm.clubs.current_page
+                                          ? "text-white h-7 w-7 rounded-full bg-dashBtnBlue"
+                                          : "text-gray-400 hover:text-white"
+                                    },
+                                    on: {
+                                      "btn-click": function($event) {
+                                        return _vm.changePage(page.url)
+                                      }
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              page.label == "next" && page.url
+                                ? _c("Button", {
+                                    attrs: {
+                                      text: "next",
+                                      textStyle:
+                                        "text-gray-400 hover:text-white"
+                                    },
+                                    on: {
+                                      "btn-click": function($event) {
+                                        return _vm.changePage(page.url)
+                                      }
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-grow" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-span-1" })
+            ]
+          )
+        ],
+        1
       )
-    ])
-  }
-]
+    : _vm._e()
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1243,7 +1243,7 @@ var render = function() {
             _c("div", { staticClass: "flex" }, [
               _c("div", { staticClass: "flex-none flex" }, [
                 _c("span", { staticClass: "text-xl mt-1 mr-2 text-gray-600" }, [
-                  _vm._v("from")
+                  _vm._v(_vm._s(_vm.translation.clubs.from))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-2xl" }, [
@@ -1260,7 +1260,7 @@ var render = function() {
                     "flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none",
                   on: { click: _vm.goToClubPage }
                 },
-                [_vm._v("more")]
+                [_vm._v(_vm._s(_vm.translation.clubs.more))]
               )
             ])
           ])
@@ -1365,7 +1365,7 @@ var render = function() {
                 {
                   attrs: { value: "", disabled: "", selected: "", hidden: "" }
                 },
-                [_vm._v("Start Time")]
+                [_vm._v(_vm._s(_vm.translation.clubs.start))]
               ),
               _vm._v(" "),
               _c("option", { attrs: { value: "05" } }, [_vm._v("05:00")]),
@@ -1451,7 +1451,7 @@ var render = function() {
                 {
                   attrs: { value: "", disabled: "", selected: "", hidden: "" }
                 },
-                [_vm._v("End Time")]
+                [_vm._v(_vm._s(_vm.translation.clubs.end))]
               ),
               _vm._v(" "),
               _c("option", { attrs: { value: "05" } }, [_vm._v("05:00")]),
@@ -1497,7 +1497,17 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "flex-none" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-gray-400 hover:bg-gray-500 text-white ml-3 px-6 py-1 text-lg w-full focus:outline-none",
+              attrs: { type: "submit" }
+            },
+            [_vm._v(_vm._s(_vm.translation.clubs.search))]
+          )
+        ])
       ]),
       _vm._v(" "),
       _vm.message
@@ -1508,24 +1518,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-none" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-gray-400 hover:bg-gray-500 text-white ml-3 px-6 py-1 text-lg w-full focus:outline-none",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("Search")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1552,7 +1545,9 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-col mr-10 mt-5" }, [
       _c("div", [
-        _c("div", { staticClass: "text-white" }, [_vm._v("Surface: ")]),
+        _c("div", { staticClass: "text-white" }, [
+          _vm._v(_vm._s(_vm.translation.clubs.surface) + ": ")
+        ]),
         _vm._v(" "),
         _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
@@ -1606,7 +1601,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "text-white", attrs: { for: "carpet" } },
-                  [_vm._v("Carpet")]
+                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.carpet))]
                 )
               ]),
               _vm._v(" "),
@@ -1658,7 +1653,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "text-white", attrs: { for: "clay" } },
-                  [_vm._v("Clay")]
+                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.clay))]
                 )
               ]),
               _vm._v(" "),
@@ -1710,7 +1705,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "text-white", attrs: { for: "acrylic" } },
-                  [_vm._v("Acrylic")]
+                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.acrylic))]
                 )
               ])
             ])
@@ -1768,7 +1763,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "text-white", attrs: { for: "concrete" } },
-                  [_vm._v("Concrete")]
+                  [_vm._v(_vm._s(_vm.translation.clubs.padel.concrete))]
                 )
               ])
             ])
@@ -1776,7 +1771,14 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
-        _c("div", { staticClass: "text-white" }, [_vm._v("Indoor/Outdoor: ")]),
+        _c("div", { staticClass: "text-white" }, [
+          _vm._v(
+            _vm._s(_vm.translation.clubs.indoor) +
+              "/" +
+              _vm._s(_vm.translation.clubs.outdoor) +
+              ": "
+          )
+        ]),
         _vm._v(" "),
         _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
@@ -1800,7 +1802,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("label", { staticClass: "text-white", attrs: { for: "1" } }, [
-            _vm._v("Indoor")
+            _vm._v(_vm._s(_vm.translation.clubs.indoor))
           ]),
           _vm._v(" "),
           _c("br"),
@@ -1824,7 +1826,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
-            _vm._v("Outdoor")
+            _vm._v(_vm._s(_vm.translation.clubs.outdoor))
           ]),
           _vm._v(" "),
           _c("br"),
@@ -1848,7 +1850,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("label", { staticClass: "text-white", attrs: { for: "null" } }, [
-            _vm._v("Doesn't matter")
+            _vm._v(_vm._s(_vm.translation.clubs.d_matter))
           ]),
           _vm._v(" "),
           _c("br")
@@ -1857,7 +1859,13 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
         _c("div", { staticClass: "text-white" }, [
-          _vm._v("Max price(per hour): ")
+          _vm._v(
+            "Max " +
+              _vm._s(_vm.translation.clubs.price) +
+              "(per " +
+              _vm._s(_vm.translation.clubs.hour) +
+              "): "
+          )
         ]),
         _vm._v(" "),
         _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
@@ -2026,7 +2034,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
-            _vm._v("Doesn't matter")
+            _vm._v(_vm._s(_vm.translation.clubs.d_matter))
           ]),
           _vm._v(" "),
           _c("br")
@@ -2163,7 +2171,7 @@ var render = function() {
                 {
                   attrs: { value: "", disabled: "", selected: "", hidden: "" }
                 },
-                [_vm._v("City")]
+                [_vm._v(_vm._s(_vm.translation.clubs.city))]
               ),
               _vm._v(" "),
               _c("option", { attrs: { value: "Amsterdam" } }, [

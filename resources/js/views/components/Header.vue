@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="translation">
         <nav class="pt-6 pb-3 bg-background flex flex-row">
             <ul class="flex items-center">
                 <li>
@@ -7,7 +7,7 @@
                 </li>
                 <li @mouseover="showSports = true" @mouseleave="showSports = false" class="relative inline-block text-left" >
 
-                    <button class="nav-btn">Sports</button>
+                    <button class="nav-btn">{{ translation.header.sports }}</button>
 
                     <transition name="fade">
 
@@ -20,13 +20,13 @@
                     </transition>
                 </li>
                 <li>
-                    <router-link to='#' class="nav-btn">Events</router-link>
+                    <router-link to='#' class="nav-btn">{{ translation.header.events }}</router-link>
                 </li>
                 <li>
-                    <router-link to='#' class="nav-btn">Explore</router-link>
+                    <router-link to='#' class="nav-btn">{{ translation.header.explore }}</router-link>
                 </li>
                 <li>
-                    <router-link to='#' class="nav-btn">About us</router-link>
+                    <router-link to='#' class="nav-btn">{{ translation.header.about_us }}</router-link>
                 </li>
             </ul>
 
@@ -36,7 +36,7 @@
                 <!-- Login -->
                 <li v-if="!currentUser">
                     <router-link to='/login' class="nav-btn mr-2">
-                        Login
+                        {{ translation.header.login }}
                     </router-link>
                 </li>
                 <li v-else-if="currentUser">
@@ -54,7 +54,7 @@
                 <!-- Club search -->
                 <li class="mr-10 relative inline-block text-left" v-on-clickaway="away">
                     <div class="border-b border-teal-500 mb-2">
-                        <input type="text" name="clubName" placeholder="search" v-model="clubName" @focus="focused"
+                        <input type="text" name="clubName" :placeholder="translation.header.search" v-model="clubName" @focus="focused"
                             class="bg-transparent border-none text-white leading-tight p-1 shadow-lg focus:outline-none placeholder-gray-400">
                     </div>
 
@@ -62,7 +62,7 @@
 
                         <div v-show="showClubs" class="absolute w-48 shadow-lg bg-white focus:outline-none">
                             <div v-if="searchedClubs.length == 0">
-                                <p class="w-full px-4 py-2">No clubs</p>
+                                <p class="w-full px-4 py-2">{{ translation.header.no_clubs }}</p>
                             </div>
 
                             <div v-for="club in searchedClubs" :key="club.id" class="w-full">

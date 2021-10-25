@@ -6,10 +6,10 @@
             <div class="flex flex-row">
 
                 <div class="flex-none">
-                    <label for="sport_type">Sport:</label>
+                    <label for="sport_type">{{ translation.home_search.sport }}:</label>
                     <select name="sport_type" id="sport_type" placeholder="Sport"
                     class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none" v-model="form.sport_type">
-                        <option value="" disabled selected hidden>Choose a sport</option>
+                        <option value="" disabled selected hidden>{{ translation.home_search.choose_sport }}</option>
                         <option :key="sport.sport_type" v-for="sport in sports">
                             {{ sport.sport_type }}
                         </option>
@@ -17,16 +17,16 @@
                 </div>
 
                 <div id='date' class="flex-none ml-3">
-                    <label for="name">Date: </label>
+                    <label for="name">{{ translation.home_search.date }}: </label>
                     <input type="date" name="date" placeholder="date"
                         class="border-2 border-gray-400 shadow-2xl p-1 focus:outline-none" v-model="form.date">
                 </div>
 
                 <div id='start_time' class="flex-none  ml-3">
-                    <label for="cars">Time:</label>
+                    <label for="cars">{{ translation.home_search.time }}:</label>
                     <select name="start-time" v-model="form.start_time"
                     class="border-2 border-gray-400 shadow-2xl py-2 px-1  focus:outline-none">
-                        <option value="" disabled selected hidden>Start</option>
+                        <option value="" disabled selected hidden>{{ translation.home_search.start }}</option>
                         <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                             {{ openTime.time }}
                         </option>
@@ -37,7 +37,7 @@
                     <label for="cars">-</label>
                     <select name="end-time" v-model="form.end_time"
                     class="border-2 border-gray-400 shadow-2xl py-2 px-1  focus:outline-none">
-                        <option value="" disabled selected hidden>End</option>
+                        <option value="" disabled selected hidden>{{ translation.home_search.end }}</option>
                         <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                             {{ openTime.time }}
                         </option>
@@ -48,7 +48,7 @@
 
                 <div class="flex-none">
                     <button class="bg-dashBtnBlue border-none text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg"
-                    type="submit" placeholder="Search"> Search </button>
+                    type="submit" placeholder="Search">{{ translation.home_search.search }}</button>
                 </div>
             </div>
         </form>

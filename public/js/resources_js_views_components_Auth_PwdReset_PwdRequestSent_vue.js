@@ -21,6 +21,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'PwdRequestSent',
   mounted: function mounted() {
@@ -114,24 +116,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { staticClass: "grid grid-cols-4" }, [
-    _c(
-      "div",
-      { staticClass: "col-start-2 col-span-2 mt-16 p-2 shadow-md bg-white" },
-      [
-        _c("div", { staticClass: "text-center text-2xl" }, [
-          _vm._v("We have sent an email with a link to "),
-          _c("span", { staticClass: " text-de" }, [
-            _vm._v(_vm._s(_vm.$route.params.email))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-center mt-4 mx-8" }, [
-          _vm._v("You now can set your new password using that link.")
-        ])
-      ]
-    )
-  ])
+  return _vm.translation
+    ? _c("main", { staticClass: "grid grid-cols-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "col-start-2 col-span-2 mt-10 p-2 shadow-md bg-white"
+          },
+          [
+            _c("div", { staticClass: "text-center text-2xl" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.translation.auth.forgot.emailSent) +
+                  " "
+              ),
+              _c("span", { staticClass: " text-de" }, [
+                _vm._v(_vm._s(_vm.$route.params.email))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center mt-4 mx-8" }, [
+              _vm._v(_vm._s(_vm.translation.auth.forgot.newPasInfo))
+            ])
+          ]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -21,6 +21,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'PwdResetSuccess'
 });
@@ -111,32 +115,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.translation
+    ? _c("main", { staticClass: "grid grid-cols-4" }, [
+        _c(
+          "div",
+          { staticClass: "col-start-2 col-span-2 mt-10 p-2 bg-white" },
+          [
+            _c("div", { staticClass: "text-center text-2xl" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.translation.auth.forgot.success) +
+                  "\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center mt-4 mx-8" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.translation.auth.forgot.successInfo) +
+                  "\n        "
+              )
+            ])
+          ]
+        )
+      ])
+    : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("main", { staticClass: "grid grid-cols-4" }, [
-      _c(
-        "div",
-        { staticClass: "col-start-2 col-span-2 mt-16 p-2 shadow-md bg-white" },
-        [
-          _c("div", { staticClass: "text-center text-2xl" }, [
-            _vm._v("Congtrats, You have successfully reset your password!")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-center mt-4 mx-8" }, [
-            _vm._v(
-              "You now can use your new password to login to your account and enjoy our platform."
-            )
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

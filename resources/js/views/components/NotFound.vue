@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <div class="text-center text-2xl">This page was not found!</div>
-    </div>
+    <div class="text-center mt-10 text-white text-2xl">This page was not found!</div>
 </template>
 
 <script>

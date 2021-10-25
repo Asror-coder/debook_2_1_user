@@ -182,142 +182,155 @@ var render = function() {
   return _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
-    _c("main", { staticClass: "col-span-2 my-5" }, [
-      _c("div", { staticClass: "text-2xl text-white font-bold" }, [
-        _vm._v("Your have canceled your booking")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text text-dbGray" }, [
-        _vm._v("Try to book some other venues or events")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-        _c("div", { staticClass: "bg-white p-3" }, [
-          _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-            _vm._v("Information about canceled booking")
+    _vm.translation
+      ? _c("main", { staticClass: "col-span-2 my-5" }, [
+          _c("div", { staticClass: "text-2xl text-white font-bold" }, [
+            _vm._v(_vm._s(_vm.translation.booking.cancelSuccess.title))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "grid grid-cols-3" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-span-2" }, [
-              _c("div", [_vm._v(" " + _vm._s(_vm.booking.clubName) + " ")]),
-              _vm._v(" "),
-              _c("div", [_vm._v(" " + _vm._s(_vm.booking.sport) + " ")]),
-              _vm._v(" "),
-              _c("div", [
+          _c("div", { staticClass: "text text-dbGray" }, [
+            _vm._v(_vm._s(_vm.translation.booking.cancelSuccess.try))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
+            _c("div", { staticClass: "bg-white p-3" }, [
+              _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
                 _vm._v(
-                  "\n                                " +
-                    _vm._s(_vm.booking.venueName) +
-                    " (" +
-                    _vm._s(_vm.booking.surface) +
-                    ",\n                                "
-                ),
-                _vm.booking.indoor == 1
-                  ? _c("span", [_vm._v("indoor")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.booking.indoor == 0
-                  ? _c("span", [_vm._v("outdoor")])
-                  : _vm._e(),
-                _vm._v(")\n                            ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(_vm._s(_vm.changeDateFormat(_vm.booking.date)) + " ")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n                                " +
-                    _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
-                    " - " +
-                    _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
-                    "\n                            "
+                  _vm._s(_vm.translation.booking.cancelSuccess.infoBooking)
                 )
               ]),
               _vm._v(" "),
-              _c("div", [_vm._v("€" + _vm._s(_vm.booking.price))])
+              _c("div", { staticClass: "grid grid-cols-3" }, [
+                _c("div", [
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v("Club:")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v("Sport:")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v(_vm._s(_vm.translation.booking.venue) + ":")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v(_vm._s(_vm.translation.booking.date) + ":")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v(_vm._s(_vm.translation.booking.time) + ":")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                    _vm._v(_vm._s(_vm.translation.booking.price) + ":")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-2" }, [
+                  _c("div", [_vm._v(" " + _vm._s(_vm.booking.clubName) + " ")]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(" " + _vm._s(_vm.booking.sport) + " ")]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                                " +
+                        _vm._s(_vm.booking.venueName) +
+                        " (" +
+                        _vm._s(_vm.booking.surface) +
+                        ",\n                                "
+                    ),
+                    _vm.booking.indoor == 1
+                      ? _c("span", [
+                          _vm._v(_vm._s(_vm.translation.booking.indoor))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.booking.indoor == 0
+                      ? _c("span", [
+                          _vm._v(_vm._s(_vm.translation.booking.outdoor))
+                        ])
+                      : _vm._e(),
+                    _vm._v(")\n                            ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(_vm._s(_vm.changeDateFormat(_vm.booking.date)) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n                                " +
+                        _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
+                        " - " +
+                        _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
+                        "\n                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("€" + _vm._s(_vm.booking.price))])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bg-white p-3" }, [
+              _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+                _vm._v(_vm._s(_vm.translation.booking.cancelSuccess.info))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-2" }, [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.translation.booking.cancelSuccess.payment) + ": "
+                  )
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.translation.booking.cancelSuccess.paymentInfo) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-2" }, [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.translation.booking.cancelSuccess.newBooking) +
+                      ": "
+                  )
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(
+                      _vm.translation.booking.cancelSuccess.newBookingInfo
+                    ) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.translation.booking.cancelSuccess.activities) +
+                      ": "
+                  )
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(
+                      _vm.translation.booking.cancelSuccess.activitiesInfo
+                    ) +
+                    "\n                    "
+                )
+              ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
-    ]),
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "col-span-1" })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Club:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Sport:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Venue:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Date:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Time:")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-        _vm._v("Price:")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-white p-3" }, [
-      _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-        _vm._v("Some Information")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-2" }, [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("About payment: ")
-        ]),
-        _vm._v(
-          "\n                        Full refund of your booking will be made within 2 weeks.\n                    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-2" }, [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("New booking: ")
-        ]),
-        _vm._v(
-          "\n                        If you canceled your booking because it doesn't fit in your schedule try other time slots.\n                    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("Different activities: ")
-        ]),
-        _vm._v(
-          "\n                        You can find venues for almost all sport activities in deBook. Don't hesitate and start searching now.\n                    "
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col">
+    <div class="flex flex-col" v-if="translation">
         <!-- Top of the page: Image Background, Sport and Location -->
         <TopFilters :passed_sport="sport" :passed_city="request.city" @changeRequest="changeRequest"/>
 
@@ -19,8 +19,8 @@
                     <div class="flex-grow"></div>
 
                     <div class="flex-none">
-                        <button class="bg-blue-500 text-white px-6 py-1 w-full rounded font-medium focus:outline-none"
-                            type="submit">Map</button>
+                        <button class="bg-blue-500 text-white px-6 py-2 w-full rounded-xl font-medium focus:outline-none"
+                            type="submit">{{ translation.clubs.map }}</button>
                     </div>
                 </div>
 
@@ -40,14 +40,14 @@
                     <div class="flex-grow"></div>
                     <div class="flex flex-row text-lg" v-if="clubs && clubs.last_page > 1">
                         <div :key="index" v-for="(page, index) in clubs.links" class="mx-3">
-                            <Button :text="'prev'" v-if="page.label == '&laquo; Previous' && page.url"
+                            <Button :text="'prev'" v-if="page.label == 'prev' && page.url"
                                 :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
 
-                            <Button :text="page.label" v-if="page.label != '&laquo; Previous' && page.label != 'Next &raquo;'"
+                            <Button :text="page.label" v-if="page.label != 'prev' && page.label != 'next'"
                                 :textStyle="page.label == clubs.current_page ? 'text-white h-7 w-7 rounded-full bg-dashBtnBlue' : 'text-gray-400 hover:text-white'"
                                 @btn-click="changePage(page.url)"/>
 
-                            <Button :text="'next'" v-if="page.label == 'Next &raquo;' && page.url"
+                            <Button :text="'next'" v-if="page.label == 'next' && page.url"
                                 :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
                         </div>
                     </div>

@@ -1,22 +1,22 @@
 <template>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
-        <main class="col-span-2 flex justify-center mt-16">
+        <main class="col-span-2 flex justify-center mt-16" v-if="translation">
             <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">
-                <h1 class="text-2xl text-center pb-5">Reset your password</h1>
-                <div class="text-gray-600 mx-5 mb-2 text-center">Please enter your email address where a link to reset your password will be sent.</div>
+                <h1 class="text-2xl text-center pb-5">{{ translation.auth.forgot.requestTitle }}</h1>
+                <div class="text-gray-600 mx-5 mb-2 text-center">{{ translation.auth.forgot.requestInfo }}</div>
 
                 <form action="" @submit.prevent="sendRequest" class="mx-10">
                     <div class="text-red-600" v-show="emailError">{{ emailError }}</div>
                     <div class="mb-4">
                         <label for="email" class="sr-only">Email</label>
-                        <input type="text" name="email" id="email" placeholder="Your email" v-model="form.email"
+                        <input type="text" name="email" id="email" :placeholder="translation.auth.email" v-model="form.email"
                         class="bg-gray-200 border-none p-2 w-full focus:outline-none">
                     </div>
 
                     <div>
                         <button class="bg-blue-500 text-white px-6 py-2 w-full font-medium focus:outline-none"
-                        type="submit">Send request</button>
+                        type="submit">{{ translation.auth.forgot.send }}</button>
                     </div>
                 </form>
             </div>

@@ -10,7 +10,7 @@
 
             <select name="city" id="city" placeholder="Sport" v-model="form.city"
                 class="bg-gray-100 shadow-2xl p-2 border-none focus:outline-none ml-4 w-36 text-lg" @change="changeRequest">
-                <option value="" disabled selected hidden>City</option>
+                <option value="" disabled selected hidden>{{ translation.clubs.city }}</option>
                 <option value="Amsterdam">Amsterdam</option>
                 <option value="Harlem">Harlem</option>
             </select>

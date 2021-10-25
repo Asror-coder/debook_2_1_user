@@ -9,7 +9,7 @@
             <div class="flex-none">
                 <select name="start-time" v-model="form.start_time"
                 class="bg-gray-100 ml-2 p-2 focus:outline-none">
-                    <option value="" disabled selected hidden>Start Time</option>
+                    <option value="" disabled selected hidden>{{ translation.clubs.start }}</option>
                     <option value="05">05:00</option>
                     <option value="06">06:00</option>
                     <option value="07">07:00</option>
@@ -35,7 +35,7 @@
                 <label class="text-white" for="time">-</label>
                 <select name="end-time" v-model="form.end_time"
                 class="bg-gray-100 p-2 focus:outline-none">
-                    <option value="" disabled selected hidden>End Time</option>
+                    <option value="" disabled selected hidden>{{ translation.clubs.end }}</option>
                     <option value="05">05:00</option>
                     <option value="06">06:00</option>
                     <option value="07">07:00</option>
@@ -61,7 +61,7 @@
 
             <div class="flex-none">
                 <button class="bg-gray-400 hover:bg-gray-500 text-white ml-3 px-6 py-1 text-lg w-full focus:outline-none"
-                type="submit">Search</button>
+                type="submit">{{ translation.clubs.search }}</button>
             </div>
         </div>
         <div class="text-center text-red-700" v-if="message">{{message}}</div>

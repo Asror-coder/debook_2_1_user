@@ -220,17 +220,17 @@ var render = function() {
     _vm._v(" "),
     _c("main", { staticClass: "col-span-2 my-5" }, [
       _c("div", { staticClass: "text-2xl text-white font-bold" }, [
-        _vm._v("Your booking was successful")
+        _vm._v(_vm._s(_vm.translation.booking.bookSuccess.title))
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "text text-dbGray" }, [
-        _vm._v("Now, it can be seen in your dashboard")
+        _vm._v(_vm._s(_vm.translation.booking.bookSuccess.infoDash))
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
         _c("div", { staticClass: "bg-white p-3" }, [
           _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-            _vm._v("Information about booking")
+            _vm._v(_vm._s(_vm.translation.booking.about_booking))
           ]),
           _vm._v(" "),
           _c("div", [
@@ -246,7 +246,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Phone: ")
+              _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
             ]),
             _vm._v(
               "\n                        " +
@@ -268,7 +268,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Venue: ")
+              _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
             ]),
             _vm._v(
               "\n                        " +
@@ -277,17 +277,19 @@ var render = function() {
                 _vm._s(_vm.booking.surface) +
                 ",\n                        "
             ),
-            _vm.booking.indoor == 1 ? _c("span", [_vm._v("indoor")]) : _vm._e(),
+            _vm.booking.indoor == 1
+              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
+              : _vm._e(),
             _vm._v(" "),
             _vm.booking.indoor == 0
-              ? _c("span", [_vm._v("outdoor")])
+              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
               : _vm._e(),
             _vm._v(")\n                    ")
           ]),
           _vm._v(" "),
           _c("div", [
             _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Date: ")
+              _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
             ]),
             _vm._v(
               "\n                        " +
@@ -298,7 +300,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Time: ")
+              _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
             ]),
             _vm._v(
               "\n                        " +
@@ -311,7 +313,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Price: ")
+              _vm._v(_vm._s(_vm.translation.booking.price) + ": ")
             ]),
             _vm._v(
               "\n                        €" +
@@ -321,52 +323,53 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "bg-white p-3" }, [
+          _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+            _vm._v(_vm._s(_vm.translation.booking.bookSuccess.rules))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-2" }, [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.bookSuccess.time) + ": ")
+            ]),
+            _vm._v(
+              "\n                        " +
+                _vm._s(_vm.translation.booking.bookSuccess.timeRule) +
+                "\n                    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-2" }, [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(
+                _vm._s(_vm.translation.booking.bookSuccess.equipment) + ": "
+              )
+            ]),
+            _vm._v(
+              "\n                        " +
+                _vm._s(_vm.translation.booking.bookSuccess.equipmentRule) +
+                "\n                    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.bookSuccess.fun) + ": ")
+            ]),
+            _vm._v(
+              "\n                        " +
+                _vm._s(_vm.translation.booking.bookSuccess.funRule) +
+                "\n                    "
+            )
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-span-1" })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-white p-3" }, [
-      _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-        _vm._v("Some rules")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-2" }, [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("Be on time: ")
-        ]),
-        _vm._v(
-          "\n                        Please, come to the club at least 10 minutes before the actual start of your booking.\n                    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mb-2" }, [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("Bring all equipment: ")
-        ]),
-        _vm._v(
-          "\n                        Don't forget to bring all needed equipment with you.\n                    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-          _vm._v("Have fun: ")
-        ]),
-        _vm._v(
-          "\n                        Most importantly, have fun and enjoy the game!\n                    "
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

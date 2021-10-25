@@ -1,10 +1,10 @@
 <template>
     <div class="rounded-lg mb-4 p-2 shadow-lg bg-white grid grid-cols-4">
-        <div class="text-xl font-bold text-gray-500">About you</div>
+        <div class="text-xl font-bold text-gray-500">{{ translation.dashboard.about_you }}</div>
         <div class="">
-            <div>Name</div>
-            <div>Email</div>
-            <div>Phone</div>
+            <div>{{ translation.dashboard.name }}</div>
+            <div>{{ translation.dashboard.email }}</div>
+            <div>{{ translation.dashboard.phone }}</div>
         </div>
         <div class="">
             <div>{{currentUser.name}} {{currentUser.lastname}}</div>

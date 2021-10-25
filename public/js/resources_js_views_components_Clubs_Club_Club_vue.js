@@ -77,6 +77,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1252,212 +1259,243 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid-cols-5" }, [
-    _c("div", { staticClass: "col-span-1" }),
-    _vm._v(" "),
-    _c(
-      "main",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showClubInfo,
-            expression: "showClubInfo"
-          }
-        ],
-        staticClass: "col-span-3"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "w-full py-3 px-7 bg-dbGray bg-opacity-30 my-4" },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "text-white text-4xl",
-                staticStyle: { "text-shadow": "2px 2px 4px #222121" }
-              },
-              [_vm._v(_vm._s(_vm.clubDetails.name))]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "text-gray-400 text-md",
-                staticStyle: { "text-shadow": "2px 2px 4px #222121" }
-              },
-              [
-                _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                _vm._v(
-                  " " +
-                    _vm._s(_vm.clubAddress.city) +
-                    ", " +
-                    _vm._s(_vm.clubAddress.country) +
-                    "\n            "
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("SlideShow", {
-          staticClass: "mt-4",
-          attrs: { images: _vm.images, index: 0 }
-        }),
-        _vm._v(" "),
-        _c("SearchVenueForm", {
-          staticClass: "my-4",
-          attrs: { clubId: this.$route.params.clubId },
-          on: { "search-venue": _vm.searchVenue }
-        }),
+  return _vm.translation
+    ? _c("div", { staticClass: "grid grid-cols-5" }, [
+        _c("div", { staticClass: "col-span-1" }),
         _vm._v(" "),
         _c(
-          "div",
+          "main",
           {
             directives: [
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.showAvailableVenues,
-                expression: "showAvailableVenues"
+                value: _vm.showClubInfo,
+                expression: "showClubInfo"
               }
             ],
-            staticClass: "mb-4 px-3 pt-3 grid grid-cols-4 shadow-lg bg-white"
+            staticClass: "col-span-3"
           },
           [
-            _c("div", { staticClass: "text-xl text-gray-500" }, [
-              _vm._v("\n                Matching your search\n            ")
-            ]),
-            _vm._v(" "),
             _c(
               "div",
-              { staticClass: " col-span-3" },
+              { staticClass: "w-full py-3 px-7 bg-dbGray bg-opacity-30 my-4" },
               [
                 _c(
                   "div",
                   {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.showLoginMessage,
-                        expression: "showLoginMessage"
-                      }
-                    ],
-                    staticClass: "p-2 mb-2 bg-red-200 border-red-500 mt-2"
+                    staticClass: "text-white text-4xl",
+                    staticStyle: { "text-shadow": "2px 2px 4px #222121" }
                   },
-                  [_vm._v(" Please login first! ")]
+                  [_vm._v(_vm._s(_vm.clubDetails.name))]
                 ),
-                _vm._v(" "),
-                _vm._l(_vm.availableVenues, function(venue) {
-                  return _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.availableVenues,
-                          expression: "availableVenues"
-                        }
-                      ],
-                      key: venue.venue_id
-                    },
-                    [
-                      _c("VenueCard", {
-                        attrs: { venue: venue },
-                        on: { book: _vm.makeBooking }
-                      })
-                    ],
-                    1
-                  )
-                }),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.noVenuesMessage,
-                        expression: "noVenuesMessage"
-                      }
-                    ]
+                    staticClass: "text-gray-400 text-md",
+                    staticStyle: { "text-shadow": "2px 2px 4px #222121" }
                   },
-                  [_vm._v(" " + _vm._s(_vm.noVenuesMessage) + " ")]
+                  [
+                    _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.clubAddress.city) +
+                        ", " +
+                        _vm._s(_vm.clubAddress.country) +
+                        "\n            "
+                    )
+                  ]
                 )
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-full py-3 px-7 bg-dbGray bg-opacity-30 my-4" },
-          [
+              ]
+            ),
+            _vm._v(" "),
+            _c("SlideShow", {
+              staticClass: "mt-4",
+              attrs: { images: _vm.images, index: 0 }
+            }),
+            _vm._v(" "),
+            _c("SearchVenueForm", {
+              staticClass: "my-4",
+              attrs: { clubId: this.$route.params.clubId },
+              on: { "search-venue": _vm.searchVenue }
+            }),
+            _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "text-white text-xl",
-                staticStyle: { "text-shadow": "1px 1px 4px #222121" }
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showAvailableVenues,
+                    expression: "showAvailableVenues"
+                  }
+                ],
+                staticClass:
+                  "mb-4 px-3 pt-3 grid grid-cols-4 shadow-lg bg-white"
               },
-              [_vm._v("ABOUT")]
+              [
+                _c("div", { staticClass: "text-xl text-gray-500" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.translation.clubs.match) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: " col-span-3" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showLoginMessage,
+                            expression: "showLoginMessage"
+                          }
+                        ],
+                        staticClass: "p-2 mb-2 bg-red-200 border-red-500 mt-2"
+                      },
+                      [_vm._v(" Please login first! ")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.availableVenues, function(venue) {
+                      return _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.availableVenues,
+                              expression: "availableVenues"
+                            }
+                          ],
+                          key: venue.venue_id
+                        },
+                        [
+                          _c("VenueCard", {
+                            attrs: { venue: venue },
+                            on: { book: _vm.makeBooking }
+                          })
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.noVenuesMessage,
+                            expression: "noVenuesMessage"
+                          }
+                        ]
+                      },
+                      [_vm._v(" " + _vm._s(_vm.noVenuesMessage) + " ")]
+                    )
+                  ],
+                  2
+                )
+              ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "text-white my-2" }, [
-              _vm._v(_vm._s(_vm.clubDetails.description))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-white ml-2" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.clubAddress.street) +
-                    " " +
-                    _vm._s(_vm.clubAddress.house_num) +
-                    "-" +
-                    _vm._s(_vm.clubAddress.house_add) +
-                    ", " +
-                    _vm._s(_vm.clubAddress.city) +
-                    ", " +
-                    _vm._s(_vm.clubAddress.country) +
-                    "\n                "
-                )
-              ])
-            ])
-          ]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-span-1" })
-  ])
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8"
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "text-white text-xl",
+                    staticStyle: { "text-shadow": "1px 1px 4px #222121" }
+                  },
+                  [_vm._v(_vm._s(_vm.translation.clubs.about))]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-white my-2" }, [
+                  _vm._v(_vm._s(_vm.clubDetails.description))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "grid grid-cols-5" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "text-gray-400 text-md",
+                      staticStyle: { "text-shadow": "2px 2px 4px #222121" }
+                    },
+                    [
+                      _c("div", [
+                        _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.booking.address) + ":"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("i", { staticClass: "fas fa-phone mr-1" }),
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.dashboard.phone) + ":"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("i", { staticClass: "fas fa-envelope-open mr-2" }),
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.dashboard.email) + ":"
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-span-4 text-white" }, [
+                    _c("div", { staticClass: "text-white ml-2" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.clubAddress.street) +
+                          " " +
+                          _vm._s(_vm.clubAddress.house_num) +
+                          "-" +
+                          _vm._s(_vm.clubAddress.house_add) +
+                          ", " +
+                          _vm._s(_vm.clubAddress.city) +
+                          ", " +
+                          _vm._s(_vm.clubAddress.country) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-white ml-2" }, [
+                      _vm._v(_vm._s(_vm.clubDetails.phone))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-white ml-2" }, [
+                      _vm._v(_vm._s(_vm.clubDetails.email))
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-span-1" })
+      ])
+    : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "text-gray-400 text-md",
-        staticStyle: { "text-shadow": "2px 2px 4px #222121" }
-      },
-      [
-        _vm._v("\n                    Address: "),
-        _c("i", { staticClass: "fas fa-map-marker-alt" })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1595,7 +1633,9 @@ var render = function() {
       [
         _c("div", { staticClass: "flex flex-row" }, [
           _c("div", { staticClass: "flex-none" }, [
-            _c("label", { attrs: { for: "sport_type" } }, [_vm._v("Sport:")]),
+            _c("label", { attrs: { for: "sport_type" } }, [
+              _vm._v(_vm._s(_vm.translation.home_search.sport) + ":")
+            ]),
             _vm._v(" "),
             _c(
               "select",
@@ -1639,7 +1679,7 @@ var render = function() {
                   {
                     attrs: { value: "", disabled: "", selected: "", hidden: "" }
                   },
-                  [_vm._v("Choose a sport")]
+                  [_vm._v(_vm._s(_vm.translation.home_search.choose_sport))]
                 ),
                 _vm._v(" "),
                 _vm._l(_vm.sports, function(sport) {
@@ -1657,7 +1697,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "flex-none ml-3", attrs: { id: "date" } }, [
-            _c("label", { attrs: { for: "name" } }, [_vm._v("Date: ")]),
+            _c("label", { attrs: { for: "name" } }, [
+              _vm._v(_vm._s(_vm.translation.home_search.date) + ": ")
+            ]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -1687,7 +1729,9 @@ var render = function() {
             "div",
             { staticClass: "flex-none  ml-3", attrs: { id: "start_time" } },
             [
-              _c("label", { attrs: { for: "cars" } }, [_vm._v("Time:")]),
+              _c("label", { attrs: { for: "cars" } }, [
+                _vm._v(_vm._s(_vm.translation.home_search.time) + ":")
+              ]),
               _vm._v(" "),
               _c(
                 "select",
@@ -1734,7 +1778,7 @@ var render = function() {
                         hidden: ""
                       }
                     },
-                    [_vm._v("Start")]
+                    [_vm._v(_vm._s(_vm.translation.home_search.start))]
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.openTimes, function(openTime) {
@@ -1800,7 +1844,7 @@ var render = function() {
                   {
                     attrs: { value: "", disabled: "", selected: "", hidden: "" }
                   },
-                  [_vm._v("End")]
+                  [_vm._v(_vm._s(_vm.translation.home_search.end))]
                 ),
                 _vm._v(" "),
                 _vm._l(_vm.openTimes, function(openTime) {
@@ -1826,30 +1870,23 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "flex-grow" }),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "flex-none" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-dashBtnBlue border-none text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg",
+                attrs: { type: "submit", placeholder: "Search" }
+              },
+              [_vm._v(_vm._s(_vm.translation.home_search.search))]
+            )
+          ])
         ])
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-none" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-dashBtnBlue border-none text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg",
-          attrs: { type: "submit", placeholder: "Search" }
-        },
-        [_vm._v(" Search ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1882,9 +1919,9 @@ var render = function() {
           "\n            " + _vm._s(this.venue.surface) + ",\n            "
         ),
         this.venue.indoor == 1
-          ? _c("span", [_vm._v("indoor")])
+          ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
           : this.venue.indoor == 0
-          ? _c("span", [_vm._v("outdoor")])
+          ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
           : _vm._e()
       ]),
       _vm._v(" "),
@@ -1901,7 +1938,7 @@ var render = function() {
             "flex-none bg-green-500 text-white ml-4 py-1 px-5 focus:outline-none hover:shadow-lg",
           on: { click: _vm.book }
         },
-        [_vm._v(" Book ")]
+        [_vm._v(_vm._s(_vm.translation.booking.bookPage.btn))]
       )
     ]),
     _vm._v(" "),

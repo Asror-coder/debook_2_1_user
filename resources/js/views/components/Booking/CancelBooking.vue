@@ -2,23 +2,23 @@
     <div class="grid grid-cols-4 gap-4">
         <main class="col-span-2 col-start-2 mt-4">
             <div class="flex flex-row">
-                <div class="flex-none text-2xl text-white font-bold">Booking cancelation</div>
+                <div class="flex-none text-2xl text-white font-bold">{{ translation.booking.cancelPage.title }}</div>
                 <div class="flex-grow"></div>
                 <button class="flex-none h-8 bg-red-500 text-white px-8 focus:outline-none hover:bg-red-600"
-                    @click="cancel"> Cancel </button>
+                    @click="cancel"> {{ translation.booking.cancelPage.btn }} </button>
             </div>
 
             <div v-if="message" class="text-red-600 my-2">{{ message }}</div>
 
             <div class="grid grid-cols-2 gap-4 my-4">
                 <div class="bg-white p-3" v-if="currentUser">
-                    <div class="text-lg font-bold text-gray-600">Information about you</div>
+                    <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_you }}</div>
 
                     <div class="grid grid-cols-3">
                         <div>
-                            <div class="font-bold text-gray-500 mr-2">Name:</div>
-                            <div class="font-bold text-gray-500 mr-2">Email:</div>
-                            <div class="font-bold text-gray-500 mr-2">Phone:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.name }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.email }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.phone }}:</div>
                         </div>
                         <div class="col-span-2">
                             <div> {{currentUser.name}} {{currentUser.lastname}} </div>
@@ -29,24 +29,24 @@
                 </div>
 
                 <div class="bg-white p-3" v-if="booking">
-                    <div class="text-lg font-bold text-gray-600">Information about booking</div>
+                    <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
 
                     <div class="grid grid-cols-3">
                         <div>
                             <div class="font-bold text-gray-500 mr-2">Club:</div>
                             <div class="font-bold text-gray-500 mr-2">Sport:</div>
-                            <div class="font-bold text-gray-500 mr-2">Venue:</div>
-                            <div class="font-bold text-gray-500 mr-2">Date:</div>
-                            <div class="font-bold text-gray-500 mr-2">Time:</div>
-                            <div class="font-bold text-gray-500 mr-2">Price:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}:</div>
                         </div>
                         <div class="col-span-2">
                             <div> {{booking.clubName}} </div>
                             <div> {{booking.sport}} </div>
                             <div>
                                 {{booking.venueName}} ({{booking.surface}},
-                                <span v-if="booking.indoor == 1">indoor</span>
-                                <span v-if="booking.indoor == 0">outdoor</span>)
+                                <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
+                                <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
                             </div>
                             <div>{{changeDateFormat(booking.date)}} </div>
                             <div>
@@ -58,10 +58,10 @@
                 </div>
             </div>
             <div class="bg-white p-3">
-                <div class="text-lg font-bold text-gray-600 mb-2">Payment</div>
+                <div class="text-lg font-bold text-gray-600 mb-2">{{ translation.booking.payment }}</div>
 
-                <div>Dear customer, you will receive the full amount to your bank that you earlier paid with.</div>
-                <div>Please keep in mind that refund period might take up to 3 days.</div>
+                <div>{{ translation.booking.cancelPage.infoAmount }}</div>
+                <div>{{ translation.booking.cancelPage.infoDate }}</div>
             </div>
         </main>
     </div>

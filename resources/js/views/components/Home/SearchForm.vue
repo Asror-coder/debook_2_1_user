@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col w-10/12 bg-dbGray bg-opacity-70 p-6 shadow-xl">
+    <div class="flex flex-col w-10/12 bg-dbGray bg-opacity-70 p-6 shadow-xl" v-if="translation">
         <div class="text-2xl text-gray-400 font-bold text-center pb-5" style="text-shadow: 0.5px 0.5px 4px #222121">
-            Wanna play sport?
+            {{ translation.home_search.wanna}}
         </div>
 
         <div class="text-center text-red-700" v-if="message">{{message}}</div>
@@ -10,10 +10,10 @@
             <div class="flex flex-row mb-4">
                 <!-- Sport -->
                 <div class="flex-none">
-                    <label for="sport_type" class="text-xl text-gray-700">Sport: </label>
+                    <label for="sport_type" class="text-xl text-gray-700">{{ translation.home_search.sport}}: </label>
                     <select name="sport_type" id="sport_type" placeholder="Sport" v-model="form.sport_type"
-                    class="bg-gray-100 border-2 p-1 focus:outline-none">
-                        <option value="" disabled selected hidden>Choose a sport</option>
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
+                        <option value="" disabled selected hidden>{{ translation.home_search.choose_sport}}</option>
                         <option value="tennis">Tennis</option>
                         <option value="padel">Padel</option>
                     </select>
@@ -23,10 +23,10 @@
 
                 <!-- City -->
                 <div class="flex-none">
-                    <label for="city" class="text-xl text-gray-700">City: </label>
+                    <label for="city" class="text-xl text-gray-700">{{ translation.home_search.city}}: </label>
                     <select name="city" id="city" placeholder="Sport" v-model="form.city"
-                        class="bg-gray-100 border-2 p-1 focus:outline-none">
-                        <option value="" disabled selected hidden>Choose your city</option>
+                        class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
+                        <option value="" disabled selected hidden>{{ translation.home_search.choose_city }}</option>
                         <option value="Amsterdam">Amsterdam</option>
                         <option value="Harlem">Harlem</option>
                     </select>
@@ -34,24 +34,24 @@
             </div>
 
             <hr>
-            <div class="text-gray-700 text-md">Optional</div>
+            <div class="text-gray-700 text-md">{{ translation.home_search.optional }}</div>
 
             <div class="flex flex-row mb-4">
                 <!-- Date -->
                 <div class="flex-none">
-                    <label for="date" class="text-xl text-gray-700">Date: </label>
+                    <label for="date" class="text-xl text-gray-700">{{ translation.home_search.date }}: </label>
                     <input type="date" name="date" placeholder="date"
-                        class="bg-gray-100 border-2 focus:outline-none" v-model="form.date">
+                        class="border-2 border-gray-400 shadow-2xl py-1 px-1 focus:outline-none" v-model="form.date">
                 </div>
 
                 <div class="flex-grow"></div>
 
                  <!-- Time -->
                 <div class="flex-none">
-                    <label for="time" class="text-xl text-gray-700">Time:</label>
+                    <label for="time" class="text-xl text-gray-700">{{ translation.home_search.time }}:</label>
                     <select name="start-time" v-model="form.start_time"
-                    class="bg-gray-100 border-2 p-1 focus:outline-none">
-                        <option value="" disabled selected hidden>Start</option>
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
+                        <option value="" disabled selected hidden>{{ translation.home_search.start }}</option>
                         <option value="05">05:00</option>
                         <option value="06">06:00</option>
                         <option value="07">07:00</option>
@@ -76,8 +76,8 @@
 
                     <label for="time">-</label>
                     <select name="end-time" v-model="form.end_time"
-                    class="bg-gray-100 border-2 p-1 focus:outline-none">
-                        <option value="" disabled selected hidden>End</option>
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
+                        <option value="" disabled selected hidden>{{ translation.home_search.end }}</option>
                         <option value="05">05:00</option>
                         <option value="06">06:00</option>
                         <option value="07">07:00</option>
@@ -104,7 +104,7 @@
 
             <div>
                 <button class="bg-blue-500 text-white px-6 py-2 w-full rounded font-medium focus:outline-none"
-                type="submit">Search</button>
+                type="submit">{{ translation.home_search.search }}</button>
             </div>
         </form>
     </div>

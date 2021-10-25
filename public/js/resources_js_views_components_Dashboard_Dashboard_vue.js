@@ -873,13 +873,13 @@ var render = function() {
           _vm._v(" "),
           _vm.bookingDetails.status_id == 1
             ? _c("div", { staticClass: "px-3 text-green-600" }, [
-                _vm._v("active")
+                _vm._v(_vm._s(_vm.translation.booking.active))
               ])
             : _vm._e(),
           _vm._v(" "),
           _vm.bookingDetails.status_id == 4 || _vm.bookingDetails.status_id == 7
             ? _c("div", { staticClass: "px-3 rounded-lg text-red-600" }, [
-                _vm._v("canceled")
+                _vm._v(_vm._s(_vm.translation.booking.canceled))
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -892,14 +892,14 @@ var render = function() {
                   staticClass: "hover:text-red-700 mr-3",
                   on: { click: _vm.cancel }
                 },
-                [_vm._v("cancel")]
+                [_vm._v(_vm._s(_vm.translation.booking.cancelPage.cancel))]
               )
             : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", [
           _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v("Venue: ")
+            _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
           ]),
           _vm._v(
             "\n            " +
@@ -908,15 +908,19 @@ var render = function() {
               _vm._s(_vm.service.surface) +
               ",\n            "
           ),
-          _vm.service.indoor == 1 ? _c("span", [_vm._v("indoor")]) : _vm._e(),
+          _vm.service.indoor == 1
+            ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
+            : _vm._e(),
           _vm._v(" "),
-          _vm.service.indoor == 0 ? _c("span", [_vm._v("outdoor")]) : _vm._e(),
+          _vm.service.indoor == 0
+            ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
+            : _vm._e(),
           _vm._v(")\n        ")
         ]),
         _vm._v(" "),
         _c("div", [
           _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v("Date: ")
+            _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
           ]),
           _vm._v(
             "\n            " +
@@ -927,7 +931,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", [
           _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v("Time: ")
+            _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
           ]),
           _vm._v(
             "\n            " +
@@ -963,7 +967,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("more")]
+                  [_vm._v(_vm._s(_vm.translation.clubs.more))]
                 )
               : _vm._e()
           ],
@@ -972,7 +976,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", [
           _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v("Phone: ")
+            _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
           ]),
           _vm._v(
             "\n            " + _vm._s(_vm.clubDetails.phone) + "\n        "
@@ -981,7 +985,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", [
           _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v("Address: ")
+            _vm._v(_vm._s(_vm.translation.booking.address) + ": ")
           ]),
           _vm._v(
             "\n            " +
@@ -1045,7 +1049,7 @@ var render = function() {
                   "div",
                   { key: index, staticClass: "mx-3" },
                   [
-                    page.label == "&laquo; Previous" && page.url
+                    page.label == "prev" && page.url
                       ? _c("Button", {
                           attrs: {
                             text: "prev",
@@ -1059,8 +1063,7 @@ var render = function() {
                         })
                       : _vm._e(),
                     _vm._v(" "),
-                    page.label != "&laquo; Previous" &&
-                    page.label != "Next &raquo;"
+                    page.label != "prev" && page.label != "next"
                       ? _c("Button", {
                           attrs: {
                             text: page.label,
@@ -1077,7 +1080,7 @@ var render = function() {
                         })
                       : _vm._e(),
                     _vm._v(" "),
-                    page.label == "Next &raquo;" && page.url
+                    page.label == "next" && page.url
                       ? _c("Button", {
                           attrs: {
                             text: "next",
@@ -1131,10 +1134,16 @@ var render = function() {
     { staticClass: "rounded-lg mb-4 p-2 shadow-lg bg-white grid grid-cols-4" },
     [
       _c("div", { staticClass: "text-xl font-bold text-gray-500" }, [
-        _vm._v("About you")
+        _vm._v(_vm._s(_vm.translation.dashboard.about_you))
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", {}, [
+        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.name))]),
+        _vm._v(" "),
+        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.email))]),
+        _vm._v(" "),
+        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.phone))])
+      ]),
       _vm._v(" "),
       _c("div", {}, [
         _c("div", [
@@ -1152,20 +1161,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("div", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("div", [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("div", [_vm._v("Phone")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

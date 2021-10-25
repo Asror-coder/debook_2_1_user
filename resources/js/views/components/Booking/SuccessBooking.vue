@@ -2,17 +2,17 @@
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
         <main class="col-span-2 my-5">
-            <div class="text-2xl text-white font-bold">Your booking was successful</div>
-            <div class="text text-dbGray">Now, it can be seen in your dashboard</div>
+            <div class="text-2xl text-white font-bold">{{ translation.booking.bookSuccess.title }}</div>
+            <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
             <div class="grid grid-cols-2 gap-4 my-4">
                     <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">Information about booking</div>
+                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Club: </span>
                             {{booking.clubName}}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Phone: </span>
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}: </span>
                             {{booking.phone}}
                         </div>
                         <div>
@@ -20,38 +20,38 @@
                             {{booking.sport}}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Venue: </span>
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}: </span>
                             {{booking.venueName}} ({{booking.surface}},
-                            <span v-if="booking.indoor == 1">indoor</span>
-                            <span v-if="booking.indoor == 0">outdoor</span>)
+                            <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
+                            <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Date: </span>
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}: </span>
                             {{changeDateFormat(booking.date)}}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Time: </span>
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}: </span>
                             {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Price: </span>
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}: </span>
                             €{{booking.price}}
                         </div>
                     </div>
 
                     <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">Some rules</div>
+                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.bookSuccess.rules }}</div>
                         <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">Be on time: </span>
-                            Please, come to the club at least 10 minutes before the actual start of your booking.
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.time }}: </span>
+                            {{ translation.booking.bookSuccess.timeRule }}
                         </div>
                         <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">Bring all equipment: </span>
-                            Don't forget to bring all needed equipment with you.
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.equipment }}: </span>
+                            {{ translation.booking.bookSuccess.equipmentRule }}
                         </div>
                         <div>
-                            <span class="font-bold text-gray-500 mr-2">Have fun: </span>
-                            Most importantly, have fun and enjoy the game!
+                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.fun }}: </span>
+                            {{ translation.booking.bookSuccess.funRule }}
                         </div>
                     </div>
                 </div>
