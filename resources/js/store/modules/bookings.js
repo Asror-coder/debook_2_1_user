@@ -55,9 +55,9 @@ const actions = {
     },
     async addBooking({ commit }, request) {
         await axios.post(`/api/booking/new`,request).then((response)=> {
-            console.log(response.data);     //remove
             localStorage.removeItem('newBooking')
-            // if(state.activeBookings) commit('newActiveBooking', response.data)
+            // window.location.href = response.data;
+            window.location.assign(response.data)
         })
     },
 }

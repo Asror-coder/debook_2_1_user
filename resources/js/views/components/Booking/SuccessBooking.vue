@@ -1,11 +1,11 @@
 <template>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
-        <main class="col-span-2 my-5">
+        <main class="col-span-2 my-5" v-if="translation">
             <div class="text-2xl text-white font-bold">{{ translation.booking.bookSuccess.title }}</div>
             <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
             <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-white p-3">
+                    <div class="bg-white p-3" v-if="booking">
                         <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
                         <div>
                             <span class="font-bold text-gray-500 mr-2">Club: </span>

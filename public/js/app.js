@@ -5933,10 +5933,10 @@ var actions = {
               commit = _ref5.commit;
               _context5.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/booking/new", request).then(function (response) {
-                console.log(response.data); //remove
+                localStorage.removeItem('newBooking'); // window.location.href = response.data;
 
-                //remove
-                localStorage.removeItem('newBooking'); // if(state.activeBookings) commit('newActiveBooking', response.data)
+                // window.location.href = response.data;
+                window.location.assign(response.data);
               });
 
             case 3:

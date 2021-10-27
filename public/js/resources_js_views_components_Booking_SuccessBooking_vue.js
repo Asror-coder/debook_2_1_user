@@ -218,153 +218,179 @@ var render = function() {
   return _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
-    _c("main", { staticClass: "col-span-2 my-5" }, [
-      _c("div", { staticClass: "text-2xl text-white font-bold" }, [
-        _vm._v(_vm._s(_vm.translation.booking.bookSuccess.title))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text text-dbGray" }, [
-        _vm._v(_vm._s(_vm.translation.booking.bookSuccess.infoDash))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-        _c("div", { staticClass: "bg-white p-3" }, [
-          _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-            _vm._v(_vm._s(_vm.translation.booking.about_booking))
+    _vm.translation
+      ? _c("main", { staticClass: "col-span-2 my-5" }, [
+          _c("div", { staticClass: "text-2xl text-white font-bold" }, [
+            _vm._v(_vm._s(_vm.translation.booking.bookSuccess.title))
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Club: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.clubName) +
-                "\n                    "
-            )
+          _c("div", { staticClass: "text text-dbGray" }, [
+            _vm._v(_vm._s(_vm.translation.booking.bookSuccess.infoDash))
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.phone) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v("Sport: ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.sport) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.booking.venueName) +
-                " (" +
-                _vm._s(_vm.booking.surface) +
-                ",\n                        "
-            ),
-            _vm.booking.indoor == 1
-              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
+          _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
+            _vm.booking
+              ? _c("div", { staticClass: "bg-white p-3" }, [
+                  _c(
+                    "div",
+                    { staticClass: "text-lg font-bold text-gray-600" },
+                    [_vm._v(_vm._s(_vm.translation.booking.about_booking))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v("Club: ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.booking.clubName) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v(_vm._s(_vm.translation.booking.phone) + ": ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.booking.phone) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v("Sport: ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.booking.sport) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v(_vm._s(_vm.translation.booking.venue) + ": ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.booking.venueName) +
+                        " (" +
+                        _vm._s(_vm.booking.surface) +
+                        ",\n                        "
+                    ),
+                    _vm.booking.indoor == 1
+                      ? _c("span", [
+                          _vm._v(_vm._s(_vm.translation.booking.indoor))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.booking.indoor == 0
+                      ? _c("span", [
+                          _vm._v(_vm._s(_vm.translation.booking.outdoor))
+                        ])
+                      : _vm._e(),
+                    _vm._v(")\n                    ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v(_vm._s(_vm.translation.booking.date) + ": ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.changeDateFormat(_vm.booking.date)) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v(_vm._s(_vm.translation.booking.time) + ": ")]
+                    ),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
+                        " - " +
+                        _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-gray-500 mr-2" },
+                      [_vm._v(_vm._s(_vm.translation.booking.price) + ": ")]
+                    ),
+                    _vm._v(
+                      "\n                        €" +
+                        _vm._s(_vm.booking.price) +
+                        "\n                    "
+                    )
+                  ])
+                ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.booking.indoor == 0
-              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
-              : _vm._e(),
-            _vm._v(")\n                    ")
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.changeDateFormat(_vm.booking.date)) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.changeTimeFormat(_vm.booking.start_time)) +
-                " - " +
-                _vm._s(_vm.changeTimeFormat(_vm.booking.end_time)) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.price) + ": ")
-            ]),
-            _vm._v(
-              "\n                        €" +
-                _vm._s(_vm.booking.price) +
-                "\n                    "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "bg-white p-3" }, [
-          _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-            _vm._v(_vm._s(_vm.translation.booking.bookSuccess.rules))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mb-2" }, [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.bookSuccess.time) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.translation.booking.bookSuccess.timeRule) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mb-2" }, [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(
-                _vm._s(_vm.translation.booking.bookSuccess.equipment) + ": "
-              )
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.translation.booking.bookSuccess.equipmentRule) +
-                "\n                    "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-              _vm._v(_vm._s(_vm.translation.booking.bookSuccess.fun) + ": ")
-            ]),
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.translation.booking.bookSuccess.funRule) +
-                "\n                    "
-            )
+            _c("div", { staticClass: "bg-white p-3" }, [
+              _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+                _vm._v(_vm._s(_vm.translation.booking.bookSuccess.rules))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-2" }, [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.translation.booking.bookSuccess.time) + ": "
+                  )
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.translation.booking.bookSuccess.timeRule) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-2" }, [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(
+                    _vm._s(_vm.translation.booking.bookSuccess.equipment) + ": "
+                  )
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.translation.booking.bookSuccess.equipmentRule) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(_vm._s(_vm.translation.booking.bookSuccess.fun) + ": ")
+                ]),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.translation.booking.bookSuccess.funRule) +
+                    "\n                    "
+                )
+              ])
+            ])
           ])
         ])
-      ])
-    ]),
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "col-span-1" })
   ])
