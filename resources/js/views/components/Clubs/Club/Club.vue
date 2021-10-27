@@ -145,6 +145,13 @@ export default {
         '$route.params.clubId': {
             handler: function(clubId) {
                 this.fetchInfo(clubId)
+
+                if (!sessionStorage.getItem('clubSearch')) {
+                    this.noVenuesMessage = ''
+                    this.availableVenues = []
+                    this.showLoginMessage = false
+                    this.showAvailableVenues = false
+                }
             },
             deep: true,
             immediate: true

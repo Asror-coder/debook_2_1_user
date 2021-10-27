@@ -116,7 +116,7 @@ export default {
 
             var i;
             for (i = 0; i <= openHours; i++) {
-                this.openTimes[i] = {value: start + i, time: this.changeTimeFormat(start + i)};
+                this.openTimes[i] = {value: parseInt(start) + i, time: this.changeTimeFormat(parseInt(start) + i)};
             }
         },
         changeTimeFormat(time) {

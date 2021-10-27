@@ -187,6 +187,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     '$route.params.clubId': {
       handler: function handler(clubId) {
         this.fetchInfo(clubId);
+
+        if (!sessionStorage.getItem('clubSearch')) {
+          this.noVenuesMessage = '';
+          this.availableVenues = [];
+          this.showLoginMessage = false;
+          this.showAvailableVenues = false;
+        }
       },
       deep: true,
       immediate: true
@@ -441,8 +448,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       for (i = 0; i <= openHours; i++) {
         this.openTimes[i] = {
-          value: start + i,
-          time: this.changeTimeFormat(start + i)
+          value: parseInt(start) + i,
+          time: this.changeTimeFormat(parseInt(start) + i)
         };
       }
     },
