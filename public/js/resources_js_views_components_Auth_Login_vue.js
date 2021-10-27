@@ -226,7 +226,10 @@ var render = function() {
     "div",
     {
       staticClass: "grid grid-cols-4 gap-4 bg-cover",
-      staticStyle: { "background-image": "url('storage/images/login-bg.jpeg')" }
+      staticStyle: {
+        "background-image":
+          "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')"
+      }
     },
     [
       _c("div", { staticClass: "col-span-1" }),

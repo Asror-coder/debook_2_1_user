@@ -654,7 +654,10 @@ var render = function() {
     "div",
     {
       staticClass: "grid grid-cols-4 gap-4 bg-cover",
-      staticStyle: { "background-image": "url('storage/images/login-bg.jpeg')" }
+      staticStyle: {
+        "background-image":
+          "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')"
+      }
     },
     [
       _c("div", { staticClass: "col-span-1" }),
@@ -881,7 +884,7 @@ var render = function() {
                           type: "password",
                           name: "password",
                           id: "password",
-                          placeholder: _vm.translation.auth.register.pwd
+                          placeholder: _vm.translation.auth.pwd
                         },
                         domProps: { value: _vm.form.password },
                         on: {
@@ -920,7 +923,7 @@ var render = function() {
                           type: "password",
                           name: "password_confirmation",
                           id: "password_confirmation",
-                          placeholder: _vm.translation.auth.register.repPwd
+                          placeholder: _vm.translation.auth.repPwd
                         },
                         domProps: { value: _vm.form.password_confirmation },
                         on: {

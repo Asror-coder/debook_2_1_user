@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('storage/images/login-bg.jpeg')">
+    <div class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')">
         <div class="col-span-1"></div>
         <main class="col-span-2 flex justify-center my-28" v-if="translation">
             <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">

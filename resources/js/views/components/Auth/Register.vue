@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('storage/images/login-bg.jpeg')">
+    <div class="grid grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')">
         <div class="col-span-1"></div>
         <main class="col-span-2 flex justify-center my-4" v-if="translation">
             <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">
@@ -38,13 +38,13 @@
                     <div class="mb-4">
                         <label for="password" class="sr-only">Password</label>
                         <span class="w-full text-red-500" v-if="errors.password"> {{ errors.password[0] }} </span>
-                        <input type="password" name="password" id="password" :placeholder="translation.auth.register.pwd"
+                        <input type="password" name="password" id="password" :placeholder="translation.auth.pwd"
                         class="bg-gray-200 border-2 w-full p-2 focus:outline-none" v-model="form.password">
                     </div>
 
                     <div class="mb-4">
                         <label for="password_confirmation" class="sr-only">Password again</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" :placeholder="translation.auth.register.repPwd"
+                        <input type="password" name="password_confirmation" id="password_confirmation" :placeholder="translation.auth.repPwd"
                         class="bg-gray-200 border-2 w-full p-2 focus:outline-none" v-model="form.password_confirmation">
                     </div>
 

@@ -832,7 +832,10 @@ var staticRenderFns = [
     return _c("div", { staticClass: "flex justify-center" }, [
       _c("img", {
         staticClass: "h-20 rounded-3xl",
-        attrs: { src: "storage/images/default.png" }
+        attrs: {
+          src:
+            "https://debook.s3.eu-west-1.amazonaws.com/site_images/default.png"
+        }
       })
     ])
   }

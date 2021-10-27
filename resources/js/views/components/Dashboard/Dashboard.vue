@@ -5,7 +5,7 @@
                                             <!-- Dashboard header -->
             <div class="grid grid-cols-7 my-3">
                 <div class="flex justify-center">
-                    <img src="storage/images/default.png"  class="h-20 rounded-3xl">
+                    <img src="https://debook.s3.eu-west-1.amazonaws.com/site_images/default.png"  class="h-20 rounded-3xl">
                 </div>
 
                 <div class="col-span-6">
