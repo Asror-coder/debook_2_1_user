@@ -92,7 +92,14 @@ export default {
             showSports: false,
             clubName: '',
             showClubs: false,
-            lang: ''
+            lang: '',
+            // clubSearch: {
+            //     partnerId: '',
+            //     sport_type: '',
+            //     date: '',
+            //     start_time: '',
+            //     end_time: '',
+            // }
         };
     },
     computed: {
@@ -102,19 +109,21 @@ export default {
         ...mapActions('clubSearch',['searchClubName']),
         ...mapActions('translation',['getTranslation']),
         goToClubPage(id) {
-            if (sessionStorage.getItem('search')) {
-                var search_request = JSON.parse(sessionStorage.getItem('search'))
+            // if (sessionStorage.getItem('search')) {
+            //     var search_request = JSON.parse(sessionStorage.getItem('search'))
 
-                if(search_request.date && search_request.start_time && search_request.end_time) {
-                    this.clubSearch.partnerId = this.club[0].id
-                    this.clubSearch.sport_type = search_request.sport_type
-                    this.clubSearch.date = search_request.date
-                    this.clubSearch.start_time = search_request.start_time
-                    this.clubSearch.end_time = search_request.end_time
+            //     if(search_request.date && search_request.start_time && search_request.end_time) {
+            //         this.clubSearch.partnerId = id
+            //         this.clubSearch.sport_type = search_request.sport_type
+            //         this.clubSearch.date = search_request.date
+            //         this.clubSearch.start_time = search_request.start_time
+            //         this.clubSearch.end_time = search_request.end_time
 
-                    sessionStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
-                }
-            }
+            //         sessionStorage.setItem('clubSearch', JSON.stringify(this.clubSearch))
+            //     }
+            // }
+
+            if (sessionStorage.getItem('clubSearch')) sessionStorage.removeItem('clubSearch')
 
             this.away()
 
