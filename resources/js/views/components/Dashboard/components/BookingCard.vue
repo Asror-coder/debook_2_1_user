@@ -4,9 +4,9 @@
             <div class="flex flex-row">
                 <div class="text-lg font-bold text-gray-600">{{service.sport_type}}</div>
                 <div v-if="bookingDetails.status_id == 1"
-                    class="px-3 text-green-600">{{ translation.booking.active }}</div>
+                    class="px-3 text-green-600">{{ translation.booking.status.active }}</div>
                 <div v-if="bookingDetails.status_id == 4 || bookingDetails.status_id == 7"
-                    class="px-3 rounded-lg text-red-600">{{ translation.booking.canceled }}</div>
+                    class="px-3 rounded-lg text-red-600">{{ translation.booking.status.canceled }}</div>
                 <div class="flex-grow"></div>
                 <button @click="cancel" v-if="bookingDetails.status_id == 1"
                     class="hover:text-red-700 mr-3">{{ translation.booking.cancelPage.cancel }}</button>

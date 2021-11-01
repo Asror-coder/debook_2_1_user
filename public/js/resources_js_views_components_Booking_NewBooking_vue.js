@@ -174,7 +174,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     allowDateTime: function allowDateTime() {
       var today = new Date();
-      var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + ('0' + today.getDate()).slice(-2);
       if (this.clubSearch.date < currentDate) return false;
       if (this.clubSearch.date == currentDate && this.clubSearch.start_time <= today.getHours()) return false;
       return true;
@@ -324,76 +324,144 @@ var render = function() {
   return _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
     _c("div", { staticClass: "col-span-1" }),
     _vm._v(" "),
-    _c("main", { staticClass: "col-span-2 my-5" }, [
-      _c("div", { staticClass: "flex flex-row" }, [
-        _c("div", { staticClass: "flex-none text-dbGray text-2xl font-bold" }, [
-          _vm._v(_vm._s(_vm.translation.booking.bookPage.title))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex-grow" }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            directives: [
+    _vm.translation
+      ? _c("main", { staticClass: "col-span-2 my-5" }, [
+          _c("div", { staticClass: "flex flex-row" }, [
+            _c(
+              "div",
+              { staticClass: "flex-none text-dbGray text-2xl font-bold" },
+              [_vm._v(_vm._s(_vm.translation.booking.bookPage.title))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-grow" }),
+            _vm._v(" "),
+            _c(
+              "button",
               {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.isAvailable && _vm.allowDateTime(),
-                expression: "isAvailable && allowDateTime()"
-              }
-            ],
-            staticClass:
-              "flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600",
-            on: { click: _vm.book }
-          },
-          [
-            _vm._v(
-              " " + _vm._s(_vm.translation.booking.bookPage.checkOut) + " "
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.isAvailable && _vm.allowDateTime(),
+                    expression: "isAvailable && allowDateTime()"
+                  }
+                ],
+                staticClass:
+                  "flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600",
+                on: { click: _vm.book }
+              },
+              [
+                _vm._v(
+                  " " + _vm._s(_vm.translation.booking.bookPage.checkOut) + " "
+                )
+              ]
             )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      !_vm.isAvailable
-        ? _c(
-            "div",
-            {
-              staticClass: "p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2"
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.translation.booking.bookPage.notAvail) +
-                  "\n        "
+          ]),
+          _vm._v(" "),
+          !_vm.isAvailable
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2"
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.translation.booking.bookPage.notAvail) +
+                      "\n        "
+                  )
+                ]
               )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.allowDateTime()
-        ? _c(
-            "div",
-            {
-              staticClass: "p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2"
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.translation.booking.bookPage.late) +
-                  "\n        "
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.allowDateTime()
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2"
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.translation.booking.bookPage.late) +
+                      "\n        "
+                  )
+                ]
               )
-            ]
-          )
-        : _vm.isAvailable
-        ? _c("div", [
-            _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
-              _vm.currentUser
-                ? _c("div", { staticClass: "bg-white p-3" }, [
+            : _vm.isAvailable
+            ? _c("div", [
+                _c("div", { staticClass: "grid grid-cols-2 gap-4 my-4" }, [
+                  _vm.currentUser
+                    ? _c("div", { staticClass: "bg-white p-3" }, [
+                        _c(
+                          "div",
+                          { staticClass: "text-lg font-bold text-gray-600" },
+                          [_vm._v(_vm._s(_vm.translation.booking.about_you))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "grid grid-cols-3" }, [
+                          _c("div", [
+                            _c(
+                              "div",
+                              { staticClass: "font-bold text-gray-500 mr-2" },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.translation.dashboard.name) + ":"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "font-bold text-gray-500 mr-2" },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.translation.dashboard.email) + ":"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "font-bold text-gray-500 mr-2" },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.translation.dashboard.phone) + ":"
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-span-2" }, [
+                            _c("div", [
+                              _vm._v(
+                                " " +
+                                  _vm._s(_vm.currentUser.name) +
+                                  " " +
+                                  _vm._s(_vm.currentUser.lastname) +
+                                  " "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(" " + _vm._s(_vm.currentUser.email) + " ")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(" " + _vm._s(_vm.currentUser.phone) + " ")
+                            ])
+                          ])
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "bg-white p-3" }, [
                     _c(
                       "div",
                       { staticClass: "text-lg font-bold text-gray-600" },
-                      [_vm._v(_vm._s(_vm.translation.booking.about_you))]
+                      [_vm._v(_vm._s(_vm.translation.booking.about_booking))]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "grid grid-cols-3" }, [
@@ -401,166 +469,132 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "font-bold text-gray-500 mr-2" },
-                          [_vm._v(_vm._s(_vm.translation.dashboard.name) + ":")]
+                          [_vm._v("Club:")]
                         ),
                         _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "font-bold text-gray-500 mr-2" },
-                          [
-                            _vm._v(
-                              _vm._s(_vm.translation.dashboard.email) + ":"
-                            )
-                          ]
+                          [_vm._v(_vm._s(_vm.translation.booking.phone) + ":")]
                         ),
                         _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "font-bold text-gray-500 mr-2" },
-                          [
-                            _vm._v(
-                              _vm._s(_vm.translation.dashboard.phone) + ":"
-                            )
-                          ]
+                          [_vm._v("Sport:")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [_vm._v(_vm._s(_vm.translation.booking.venue) + ":")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [_vm._v(_vm._s(_vm.translation.booking.date) + ":")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [_vm._v(_vm._s(_vm.translation.booking.time) + ":")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-gray-500 mr-2" },
+                          [_vm._v(_vm._s(_vm.translation.booking.price) + ":")]
                         )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-span-2" }, [
                         _c("div", [
+                          _vm._v(" " + _vm._s(_vm.venue.clubName) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(" " + _vm._s(_vm.venue.phone) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(" " + _vm._s(_vm.venue.sport_type) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.venue.venueName) +
+                              " (" +
+                              _vm._s(_vm.venue.surface) +
+                              ",\n                                "
+                          ),
+                          _vm.venue.indoor == 1
+                            ? _c("span", [
+                                _vm._v(_vm._s(_vm.translation.booking.indoor))
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.venue.indoor == 0
+                            ? _c("span", [
+                                _vm._v(_vm._s(_vm.translation.booking.outdoor))
+                              ])
+                            : _vm._e(),
+                          _vm._v(")\n                            ")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
                           _vm._v(
                             " " +
-                              _vm._s(_vm.currentUser.name) +
-                              " " +
-                              _vm._s(_vm.currentUser.lastname) +
+                              _vm._s(
+                                _vm.changeDateFormat(_vm.clubSearch.date)
+                              ) +
                               " "
                           )
                         ]),
                         _vm._v(" "),
                         _c("div", [
-                          _vm._v(" " + _vm._s(_vm.currentUser.email) + " ")
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(
+                                _vm.changeTimeFormat(_vm.clubSearch.start_time)
+                              ) +
+                              " - " +
+                              _vm._s(
+                                _vm.changeTimeFormat(_vm.clubSearch.end_time)
+                              ) +
+                              "\n                            "
+                          )
                         ]),
                         _vm._v(" "),
-                        _c("div", [
-                          _vm._v(" " + _vm._s(_vm.currentUser.phone) + " ")
-                        ])
+                        _c("div", [_vm._v("€" + _vm._s(_vm.price))])
                       ])
                     ])
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "bg-white p-3" }, [
-                _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
-                  _vm._v(_vm._s(_vm.translation.booking.about_booking))
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "grid grid-cols-3" }, [
+                _c("div", { staticClass: "bg-white p-3" }, [
+                  _c(
+                    "div",
+                    { staticClass: "text-lg font-bold text-gray-600 mb-3" },
+                    [_vm._v(_vm._s(_vm.translation.booking.payment))]
+                  ),
+                  _vm._v(" "),
                   _c("div", [
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v("Club:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v(_vm._s(_vm.translation.booking.phone) + ":")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v("Sport:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v(_vm._s(_vm.translation.booking.venue) + ":")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v(_vm._s(_vm.translation.booking.date) + ":")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v(_vm._s(_vm.translation.booking.time) + ":")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
-                      _vm._v(_vm._s(_vm.translation.booking.price) + ":")
-                    ])
+                    _vm._v(_vm._s(_vm.translation.booking.bookPage.infoIdeal))
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-span-2" }, [
-                    _c("div", [_vm._v(" " + _vm._s(_vm.venue.clubName) + " ")]),
-                    _vm._v(" "),
-                    _c("div", [_vm._v(" " + _vm._s(_vm.venue.phone) + " ")]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(" " + _vm._s(_vm.venue.sport_type) + " ")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(_vm.venue.venueName) +
-                          " (" +
-                          _vm._s(_vm.venue.surface) +
-                          ",\n                                "
-                      ),
-                      _vm.venue.indoor == 1
-                        ? _c("span", [
-                            _vm._v(_vm._s(_vm.translation.booking.indoor))
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.venue.indoor == 0
-                        ? _c("span", [
-                            _vm._v(_vm._s(_vm.translation.booking.outdoor))
-                          ])
-                        : _vm._e(),
-                      _vm._v(")\n                            ")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        " " +
-                          _vm._s(_vm.changeDateFormat(_vm.clubSearch.date)) +
-                          " "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(
-                            _vm.changeTimeFormat(_vm.clubSearch.start_time)
-                          ) +
-                          " - " +
-                          _vm._s(
-                            _vm.changeTimeFormat(_vm.clubSearch.end_time)
-                          ) +
-                          "\n                            "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [_vm._v("€" + _vm._s(_vm.price))])
+                  _c("div", [
+                    _vm._v(
+                      _vm._s(_vm.translation.booking.bookPage.infoCheckout)
+                    )
                   ])
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bg-white p-3" }, [
-              _c(
-                "div",
-                { staticClass: "text-lg font-bold text-gray-600 mb-3" },
-                [_vm._v(_vm._s(_vm.translation.booking.payment))]
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(_vm._s(_vm.translation.booking.bookPage.infoIdeal))
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(_vm._s(_vm.translation.booking.bookPage.infoCheckout))
-              ])
-            ])
-          ])
-        : _vm._e()
-    ]),
+            : _vm._e()
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "col-span-1" })
   ])

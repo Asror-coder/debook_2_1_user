@@ -876,13 +876,13 @@ var render = function() {
           _vm._v(" "),
           _vm.bookingDetails.status_id == 1
             ? _c("div", { staticClass: "px-3 text-green-600" }, [
-                _vm._v(_vm._s(_vm.translation.booking.active))
+                _vm._v(_vm._s(_vm.translation.booking.status.active))
               ])
             : _vm._e(),
           _vm._v(" "),
           _vm.bookingDetails.status_id == 4 || _vm.bookingDetails.status_id == 7
             ? _c("div", { staticClass: "px-3 rounded-lg text-red-600" }, [
-                _vm._v(_vm._s(_vm.translation.booking.canceled))
+                _vm._v(_vm._s(_vm.translation.booking.status.canceled))
               ])
             : _vm._e(),
           _vm._v(" "),

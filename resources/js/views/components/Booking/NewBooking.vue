@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-1"></div>
-        <main class="col-span-2 my-5">
+        <main class="col-span-2 my-5" v-if="translation">
             <div class="flex flex-row">
                 <div class="flex-none text-dbGray text-2xl font-bold">{{ translation.booking.bookPage.title }}</div>
                 <div class="flex-grow"></div>
@@ -113,9 +113,9 @@ export default {
         },
         allowDateTime() {
             var today = new Date();
-            var currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            var currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+('0' + today.getDate()).slice(-2);
 
-            if (this.clubSearch.date < currentDate) return false;
+            if (this.clubSearch.date < currentDate) return false
             if (this.clubSearch.date == currentDate && this.clubSearch.start_time <= today.getHours()) return false;
 
             return true
