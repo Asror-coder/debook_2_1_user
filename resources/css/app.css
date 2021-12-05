@@ -24,3 +24,7 @@
 .dash-btn {
     @apply flex-none text-dbGray hover:text-white focus:outline-none px-3;
 }
+
+input[type="search"] {
+    -webkit-appearance: none;
+}

@@ -225,7 +225,7 @@ class ClubsController extends Controller
                                 FROM `venue_times` t1
                                 INNER JOIN (SELECT id
                                             FROM `venues`
-                                            WHERE `partner_id` = 4
+                                            WHERE `partner_id` = ?
                                             AND `status` = 1) t2
                                         ON t1.venue_id = t2.id', [$id]);
 

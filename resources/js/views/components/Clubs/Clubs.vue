@@ -3,7 +3,7 @@
         <!-- Top of the page: Image Background, Sport and Location -->
         <TopFilters :passed_sport="sport" :passed_city="request.city" @changeRequest="changeRequest"/>
 
-        <div class="flex-none grid grid-cols-4 gap-4 mt-3 mb-6">
+        <div class="flex-none hidden md:grid grid-cols-4 gap-4 mt-3 mb-6">
              <!-- Side Filters: Surface, Inside/Outside and Price -->
             <div class="col-span-1">
                 <SideFilters :sport="sport" :passed_surface="request.surface" :passed_indoor="request.indoor"
@@ -56,6 +56,56 @@
             </main>
             <div class="col-span-1"></div>
         </div>
+
+        <!-- Mobile version -->
+        <div class="flex-none md:hidden gap-4 mt-2 mb-2 px-2">
+            <!-- Date, Start time, End time and Search button-->
+            <DateTimeFilters class="flex-none mt-3 mb-1" @changeRequest="changeRequest"
+                :date="request.date" :start="request.start_time" :end="request.end_time"/>
+
+            <!-- Number of clubs -->
+
+            <div class="flex justify-between items-center mb-2 mr-2">
+                <div class="text-dbGray text-md mb-3" v-if="clubs">{{clubs.total}} clubs</div>
+                <div class="text-dbGray text-md mb-3" v-if="!clubs">no clubs</div>
+
+                <button @click="toggleFilters"
+                    class="text-white bg-blue-500 rounded-xl px-6 shadow-md focus:outline-none">
+                    filters
+                </button>
+            </div>
+
+            <!-- Side Filters: Surface, Inside/Outside and Price -->
+            <SideFilters :sport="sport" :passed_surface="request.surface" :passed_indoor="request.indoor"
+                :passed_maxPrice="request.maxPrice" @changeRequest="changeRequest" v-if="showFilters"/>
+
+            <!-- List of clubs -->
+            <div v-if="clubs">
+                <div :key="club.id" v-for="club in clubs.data">
+                    <ClubCard :id="club.id" />
+                </div>
+            </div>
+
+            <!-- Pages -->
+            <div class="flex flex-row my-4">
+                <div class="flex-grow"></div>
+                <div class="flex flex-row text-lg" v-if="clubs && clubs.last_page > 1">
+                    <div :key="index" v-for="(page, index) in clubs.links" class="mx-3">
+                        <Button :text="'prev'" v-if="page.label == 'prev' && page.url"
+                            :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
+
+                        <Button :text="page.label" v-if="page.label != 'prev' && page.label != 'next'"
+                            :textStyle="page.label == clubs.current_page ? 'text-white h-7 w-7 rounded-full bg-dashBtnBlue' : 'text-gray-400 hover:text-white'"
+                            @btn-click="changePage(page.url)"/>
+
+                        <Button :text="'next'" v-if="page.label == 'next' && page.url"
+                            :textStyle="'text-gray-400 hover:text-white'" @btn-click="changePage(page.url)"/>
+                    </div>
+                </div>
+                <div class="flex-grow"></div>
+            </div>
+            <div class="col-span-1"></div>
+        </div>
     </div>
 </template>
 
@@ -89,7 +139,8 @@ export default {
                 surface: [],
                 indoor: null,
                 maxPrice: 0
-            }
+            },
+            showFilters: false,
         };
     },
     computed: mapGetters('clubs',['clubs']),
@@ -141,6 +192,9 @@ export default {
             sessionStorage.setItem('search', JSON.stringify(this.request))
 
             await this.getClubs(this.request)
+        },
+        toggleFilters() {
+            this.showFilters = !this.showFilters
         }
     },
     watch: {

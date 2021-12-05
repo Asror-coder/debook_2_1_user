@@ -77,7 +77,7 @@ Route::prefix('/services')->group(function() {
     Route::get('/surfaces/{sport}', [ServiceController::class, 'getSurfaces']);
 });
 
-//Clubs information
+//Clubs
 Route::prefix('/clubs')->group(function() {
     Route::get('/search', [ClubsController::class, 'getClubs']);
     Route::get('/search/like/{name}', [ClubsController::class, 'searchClubName']);
@@ -88,7 +88,7 @@ Route::prefix('/clubs')->group(function() {
     Route::get('/club/{id}/search/info', [ClubsController::class, 'getSearchClubInfo']);
 });
 
-//Venue information
+//Venue
 Route::prefix('/venue')->group(function() {
     Route::get('/{id}/checkavailability', [VenueController::class, 'checkAvailability']);
     Route::get('/{id}', [VenueController::class, 'show']);
@@ -96,7 +96,7 @@ Route::prefix('/venue')->group(function() {
     Route::get('{id}/price/calculate', [VenuePriceController::class, 'calculatePrice']);
 });
 
-//Booking information
+//Booking
 Route::middleware('auth:sanctum')->prefix('/booking')->group(function() {
     Route::get('/show/{id}', [BookingController::class, 'show']);
     Route::put('/cancel/{id}', [BookingController::class, 'cancel']);

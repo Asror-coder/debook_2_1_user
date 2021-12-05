@@ -75,6 +75,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Login',
@@ -222,29 +274,292 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "grid grid-cols-4 gap-4 bg-cover",
-      staticStyle: {
-        "background-image":
-          "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')"
-      }
-    },
-    [
-      _c("div", { staticClass: "col-span-1" }),
-      _vm._v(" "),
-      _vm.translation
-        ? _c("main", { staticClass: "col-span-2 flex justify-center my-28" }, [
-            _c(
-              "div",
-              { staticClass: "flex flex-col w-10/12 bg-white p-6 shadow-xl" },
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "hidden md:grid grid-cols-4 gap-4 bg-cover",
+        staticStyle: {
+          "background-image":
+            "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-span-1" }),
+        _vm._v(" "),
+        _vm.translation
+          ? _c(
+              "main",
+              { staticClass: "col-span-2 flex justify-center my-28" },
               [
-                _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
-                  _vm._v(_vm._s(_vm.translation.auth.login.title))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-full text-center mb-2" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "flex flex-col w-10/12 bg-white p-6 shadow-xl"
+                  },
+                  [
+                    _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
+                      _vm._v(_vm._s(_vm.translation.auth.login.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-full text-center mb-2" }, [
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.messageError,
+                              expression: "messageError"
+                            }
+                          ],
+                          staticClass: "text-red-600"
+                        },
+                        [_vm._v(_vm._s(_vm.messageError))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        staticClass: "mx-10",
+                        attrs: { action: "" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.login($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.emailError,
+                                expression: "emailError"
+                              }
+                            ],
+                            staticClass: "text-red-600"
+                          },
+                          [_vm._v(_vm._s(_vm.emailError))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mb-4" }, [
+                          _c(
+                            "label",
+                            { staticClass: "sr-only", attrs: { for: "email" } },
+                            [_vm._v("Email")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email"
+                              }
+                            ],
+                            staticClass:
+                              "bg-gray-200 border-none p-2 w-full focus:outline-none",
+                            attrs: {
+                              type: "text",
+                              name: "email",
+                              id: "email",
+                              placeholder: _vm.translation.auth.email
+                            },
+                            domProps: { value: _vm.form.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "email", $event.target.value)
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.pwdError,
+                                expression: "pwdError"
+                              }
+                            ],
+                            staticClass: "text-red-600"
+                          },
+                          [_vm._v(_vm._s(_vm.pwdError))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mb-4" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "sr-only",
+                              attrs: { for: "password" }
+                            },
+                            [_vm._v("Password")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.password,
+                                expression: "form.password"
+                              }
+                            ],
+                            staticClass:
+                              "bg-gray-200 border-none p-2 w-full focus:outline-none",
+                            attrs: {
+                              type: "password",
+                              name: "password",
+                              id: "password",
+                              placeholder: _vm.translation.auth.login.password
+                            },
+                            domProps: { value: _vm.form.password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "password",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-blue-500 text-white px-6 py-2 w-full font-medium focus:outline-none",
+                              attrs: { type: "submit" }
+                            },
+                            [_vm._v(_vm._s(_vm.translation.auth.login.btn))]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-row mt-5" }, [
+                      _c(
+                        "div",
+                        { staticClass: "flex-none" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "p-3 hover:text-blue-700",
+                              attrs: { to: "/newpassword/request" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.translation.auth.login.forgotPwd)
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-grow" }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "flex-none" },
+                        [
+                          _c("span", { staticClass: "text-gray-600" }, [
+                            _vm._v(_vm._s(_vm.translation.auth.login.notMemder))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "p-3 hover:text-blue-700",
+                              attrs: { to: "/register" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.translation.auth.login.register)
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-span-1" })
+      ]
+    ),
+    _vm._v(" "),
+    _vm.translation
+      ? _c(
+          "div",
+          {
+            staticClass: "md:hidden bg-cover py-20 px-3",
+            staticStyle: {
+              "background-image":
+                "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')"
+            }
+          },
+          [
+            _c("div", { staticClass: "bg-white rounded-lg shadow-xl p-2" }, [
+              _c("div", { staticClass: "text-2xl text-center pb-5" }, [
+                _vm._v(_vm._s(_vm.translation.auth.login.title))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-full text-center mb-2" }, [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.messageError,
+                        expression: "messageError"
+                      }
+                    ],
+                    staticClass: "text-red-600"
+                  },
+                  [_vm._v(_vm._s(_vm.messageError))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.login($event)
+                    }
+                  }
+                },
+                [
                   _c(
                     "div",
                     {
@@ -252,194 +567,164 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.messageError,
-                          expression: "messageError"
+                          value: _vm.emailError,
+                          expression: "emailError"
                         }
                       ],
                       staticClass: "text-red-600"
                     },
-                    [_vm._v(_vm._s(_vm.messageError))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "mx-10",
-                    attrs: { action: "" },
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.login($event)
-                      }
-                    }
-                  },
-                  [
+                    [_vm._v(_vm._s(_vm.emailError))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-4" }, [
                     _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.emailError,
-                            expression: "emailError"
-                          }
-                        ],
-                        staticClass: "text-red-600"
-                      },
-                      [_vm._v(_vm._s(_vm.emailError))]
+                      "label",
+                      { staticClass: "sr-only", attrs: { for: "email" } },
+                      [_vm._v("Email")]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "mb-4" }, [
-                      _c(
-                        "label",
-                        { staticClass: "sr-only", attrs: { for: "email" } },
-                        [_vm._v("Email")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.email,
-                            expression: "form.email"
-                          }
-                        ],
-                        staticClass:
-                          "bg-gray-200 border-none p-2 w-full focus:outline-none",
-                        attrs: {
-                          type: "text",
-                          name: "email",
-                          id: "email",
-                          placeholder: _vm.translation.auth.email
-                        },
-                        domProps: { value: _vm.form.email },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "email", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.pwdError,
-                            expression: "pwdError"
-                          }
-                        ],
-                        staticClass: "text-red-600"
-                      },
-                      [_vm._v(_vm._s(_vm.pwdError))]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-4" }, [
-                      _c(
-                        "label",
-                        { staticClass: "sr-only", attrs: { for: "password" } },
-                        [_vm._v("Password")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.password,
-                            expression: "form.password"
-                          }
-                        ],
-                        staticClass:
-                          "bg-gray-200 border-none p-2 w-full focus:outline-none",
-                        attrs: {
-                          type: "password",
-                          name: "password",
-                          id: "password",
-                          placeholder: _vm.translation.auth.login.password
-                        },
-                        domProps: { value: _vm.form.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "password", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c(
-                        "button",
+                    _c("input", {
+                      directives: [
                         {
-                          staticClass:
-                            "bg-blue-500 text-white px-6 py-2 w-full font-medium focus:outline-none",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v(_vm._s(_vm.translation.auth.login.btn))]
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-row mt-5" }, [
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.email,
+                          expression: "form.email"
+                        }
+                      ],
+                      staticClass:
+                        "bg-gray-200 border-none p-2 w-full focus:outline-none",
+                      attrs: {
+                        type: "text",
+                        name: "email",
+                        id: "email",
+                        placeholder: _vm.translation.auth.email
+                      },
+                      domProps: { value: _vm.form.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "email", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "flex-none" },
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.pwdError,
+                          expression: "pwdError"
+                        }
+                      ],
+                      staticClass: "text-red-600"
+                    },
+                    [_vm._v(_vm._s(_vm.pwdError))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-4" }, [
+                    _c(
+                      "label",
+                      { staticClass: "sr-only", attrs: { for: "password" } },
+                      [_vm._v("Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.password,
+                          expression: "form.password"
+                        }
+                      ],
+                      staticClass:
+                        "bg-gray-200 border-none p-2 w-full focus:outline-none",
+                      attrs: {
+                        type: "password",
+                        name: "password",
+                        id: "password",
+                        placeholder: _vm.translation.auth.login.password
+                      },
+                      domProps: { value: _vm.form.password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "password", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-blue-500 rounded-lg shadow-lg text-white px-6 py-2 w-full font-medium",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v(_vm._s(_vm.translation.auth.login.btn))]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "flex justify-between items-center mt-3" },
+                [
+                  _c(
+                    "button",
+                    { staticClass: "text-blue-900" },
                     [
                       _c(
                         "router-link",
-                        {
-                          staticClass: "p-3 hover:text-blue-700",
-                          attrs: { to: "/newpassword/request" }
-                        },
-                        [_vm._v(_vm._s(_vm.translation.auth.login.forgotPwd))]
+                        { attrs: { to: "/newpassword/request" } },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.translation.auth.forgot.forgotPwd) +
+                              "\n                    "
+                          )
+                        ]
                       )
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "flex-grow" }),
-                  _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "flex-none" },
+                    "button",
+                    {
+                      staticClass:
+                        "bg-green-500 rounded-lg shadow-lg text-white py-1 px-4"
+                    },
                     [
-                      _c("span", { staticClass: "text-gray-600" }, [
-                        _vm._v(_vm._s(_vm.translation.auth.login.notMemder))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "p-3 hover:text-blue-700",
-                          attrs: { to: "/register" }
-                        },
-                        [_vm._v(_vm._s(_vm.translation.auth.login.register))]
-                      )
+                      _c("router-link", { attrs: { to: "/register" } }, [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.translation.auth.login.register) +
+                            "\n                    "
+                        )
+                      ])
                     ],
                     1
                   )
-                ])
-              ]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-span-1" })
-    ]
-  )
+                ]
+              )
+            ])
+          ]
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

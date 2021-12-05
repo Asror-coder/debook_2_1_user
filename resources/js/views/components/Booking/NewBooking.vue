@@ -1,11 +1,88 @@
 <template>
-    <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-1"></div>
-        <main class="col-span-2 my-5" v-if="translation">
-            <div class="flex flex-row">
-                <div class="flex-none text-dbGray text-2xl font-bold">{{ translation.booking.bookPage.title }}</div>
-                <div class="flex-grow"></div>
-                <button class="flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600"
+    <div>
+        <div class="hidden md:grid grid-cols-4 gap-4">
+            <div class="col-span-1"></div>
+            <main class="col-span-2 my-5" v-if="translation">
+                <div class="flex flex-row">
+                    <div class="flex-none text-dbGray text-2xl font-bold">{{ translation.booking.bookPage.title }}</div>
+                    <div class="flex-grow"></div>
+                    <button class="flex-none h-12 bg-green-500 text-white px-8 focus:outline-none hover:bg-green-600"
+                        @click="book" v-show="isAvailable && allowDateTime()"> {{ translation.booking.bookPage.checkOut }} </button>
+                </div>
+
+                <div v-if="!isAvailable" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
+                    {{ translation.booking.bookPage.notAvail }}
+                </div>
+
+                <div v-if="!allowDateTime()" class="p-2 mb-2 bg-red-200 border-red-500 rounded-lg mt-2">
+                    {{ translation.booking.bookPage.late }}
+                </div>
+
+                <div v-else-if="isAvailable">
+                    <div class="grid grid-cols-2 gap-4 my-4">
+                        <div class="bg-white p-3" v-if="currentUser">
+                            <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_you }}</div>
+
+                            <div class="grid grid-cols-3">
+                                <div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.name }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.email }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.phone }}:</div>
+                                </div>
+                                <div class="col-span-2">
+                                    <div> {{currentUser.name}} {{currentUser.lastname}} </div>
+                                    <div> {{currentUser.email}} </div>
+                                    <div> {{currentUser.phone}} </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3">
+                            <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
+                            <div class="grid grid-cols-3">
+                                <div>
+                                    <div class="font-bold text-gray-500 mr-2">Club:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">Sport:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}:</div>
+                                    <div class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}:</div>
+                                </div>
+                                <div class="col-span-2">
+                                    <div> {{venue.clubName}} </div>
+                                    <div> {{venue.phone}} </div>
+                                    <div> {{venue.sport_type}} </div>
+                                    <div>
+                                        {{venue.venueName}} ({{venue.surface}},
+                                        <span v-if="venue.indoor == 1">{{ translation.booking.indoor }}</span>
+                                        <span v-if="venue.indoor == 0">{{ translation.booking.outdoor }}</span>)
+                                    </div>
+                                    <div> {{changeDateFormat(clubSearch.date)}} </div>
+                                    <div>
+                                        {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
+                                    </div>
+                                    <div>€{{price}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3">
+                        <div class="text-lg font-bold text-gray-600 mb-3">{{ translation.booking.payment }}</div>
+                        <div>{{ translation.booking.bookPage.infoIdeal }}</div>
+                        <div>{{ translation.booking.bookPage.infoCheckout }}</div>
+                    </div>
+                </div>
+            </main>
+            <div class="col-span-1"></div>
+        </div>
+
+        <!-- Mobile version -->
+        <div class="md:hidden px-3" v-if="translation">
+            <div class="flex justify-between items-center my-3">
+                <div class="lex-none text-2xl text-white font-bold">{{ translation.booking.bookPage.title }}</div>
+                <button class="flex-none h-8 bg-green-500 text-white px-8 focus:outline-none rounded-lg"
                     @click="book" v-show="isAvailable && allowDateTime()"> {{ translation.booking.bookPage.checkOut }} </button>
             </div>
 
@@ -18,63 +95,60 @@
             </div>
 
             <div v-else-if="isAvailable">
-                <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-white p-3" v-if="currentUser">
-                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_you }}</div>
+                <div class="bg-white p-3 my-3 rounded-lg" v-if="currentUser">
+                    <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_you }}</div>
 
-                        <div class="grid grid-cols-3">
-                            <div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.name }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.email }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.phone }}:</div>
-                            </div>
-                            <div class="col-span-2">
-                                <div> {{currentUser.name}} {{currentUser.lastname}} </div>
-                                <div> {{currentUser.email}} </div>
-                                <div> {{currentUser.phone}} </div>
-                            </div>
+                    <div class="grid grid-cols-3">
+                        <div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.name }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.email }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.dashboard.phone }}:</div>
                         </div>
-                    </div>
-
-                    <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
-                        <div class="grid grid-cols-3">
-                            <div>
-                                <div class="font-bold text-gray-500 mr-2">Club:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">Sport:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}:</div>
-                                <div class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}:</div>
-                            </div>
-                            <div class="col-span-2">
-                                <div> {{venue.clubName}} </div>
-                                <div> {{venue.phone}} </div>
-                                <div> {{venue.sport_type}} </div>
-                                <div>
-                                    {{venue.venueName}} ({{venue.surface}},
-                                    <span v-if="venue.indoor == 1">{{ translation.booking.indoor }}</span>
-                                    <span v-if="venue.indoor == 0">{{ translation.booking.outdoor }}</span>)
-                                </div>
-                                <div> {{changeDateFormat(clubSearch.date)}} </div>
-                                <div>
-                                    {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
-                                </div>
-                                <div>€{{price}}</div>
-                            </div>
+                        <div class="col-span-2">
+                            <div> {{currentUser.name}} {{currentUser.lastname}} </div>
+                            <div> {{currentUser.email}} </div>
+                            <div> {{currentUser.phone}} </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-3">
+                <div class="bg-white p-3 my-3 rounded-lg">
+                    <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
+                    <div class="grid grid-cols-3">
+                        <div>
+                            <div class="font-bold text-gray-500 mr-2">Club:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">Sport:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}:</div>
+                            <div class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}:</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div> {{venue.clubName}} </div>
+                            <div> {{venue.phone}} </div>
+                            <div> {{venue.sport_type}} </div>
+                            <div>
+                                {{venue.venueName}} ({{venue.surface}},
+                                <span v-if="venue.indoor == 1">{{ translation.booking.indoor }}</span>
+                                <span v-if="venue.indoor == 0">{{ translation.booking.outdoor }}</span>)
+                            </div>
+                            <div> {{changeDateFormat(clubSearch.date)}} </div>
+                            <div>
+                                {{changeTimeFormat(clubSearch.start_time)}} - {{changeTimeFormat(clubSearch.end_time)}}
+                            </div>
+                            <div>€{{price}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 my-3 rounded-lg">
                     <div class="text-lg font-bold text-gray-600 mb-3">{{ translation.booking.payment }}</div>
                     <div>{{ translation.booking.bookPage.infoIdeal }}</div>
                     <div>{{ translation.booking.bookPage.infoCheckout }}</div>
                 </div>
             </div>
-        </main>
-        <div class="col-span-1"></div>
+        </div>
     </div>
 </template>
 

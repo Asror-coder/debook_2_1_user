@@ -13,13 +13,15 @@ import { mapActions } from 'vuex'
 // import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import VueCarousel from 'vue-carousel';
+
 // library.add(faHatWizard)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 import globalGetters from './globalGetters';
 
-Vue.use(VueRouter).use(globalGetters)
+Vue.use(VueRouter).use(globalGetters).use(VueCarousel);
 
 const app = new Vue({
     el: '#app',
@@ -46,5 +48,5 @@ const app = new Vue({
             return Promise.reject(error)
           }
         )
-      },
+    },
 });

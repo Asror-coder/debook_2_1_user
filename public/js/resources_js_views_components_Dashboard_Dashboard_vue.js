@@ -87,6 +87,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -169,6 +226,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/views/components/Dashboard/components/Button.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -333,6 +446,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -656,13 +788,187 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.translation
-    ? _c("div", { staticClass: "grid grid-cols-4 gap-4" }, [
-        _c("main", { staticClass: "col-span-2 col-start-2" }, [
-          _c("div", { staticClass: "grid grid-cols-7 my-3" }, [
-            _vm._m(0),
+  return _c("div", [
+    _vm.translation
+      ? _c("div", { staticClass: "hidden md:grid grid-cols-4 gap-4" }, [
+          _c("main", { staticClass: "col-span-2 col-start-2" }, [
+            _c("div", { staticClass: "grid grid-cols-7 my-3" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-span-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "text-2xl text-white font-bold ml-2" },
+                  [
+                    _vm._v(
+                      _vm._s(_vm.currentUser.name) +
+                        " " +
+                        _vm._s(_vm.currentUser.lastname)
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "flex flex-row bg-gray-700 bg-opacity-80 shadow-lg rounded-2xl p-2 mt-1"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        class: !_vm.showPassed
+                          ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                          : "dash-btn",
+                        on: { click: _vm.toggleShowPassed }
+                      },
+                      [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.translation.dashboard.upcomming) +
+                            " "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        class: _vm.showPassed
+                          ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                          : "dash-btn",
+                        on: { click: _vm.toggleShowPassed }
+                      },
+                      [
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.dashboard.passed) + " "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex-grow" }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "dash-btn",
+                        on: { click: _vm.toggleShowProfile }
+                      },
+                      [
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.dashboard.profile) + " "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "dash-btn",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.logout($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          " " + _vm._s(_vm.translation.dashboard.logout) + " "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-span-6" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showProfile,
+                    expression: "showProfile"
+                  }
+                ]
+              },
+              [_c("Profile")],
+              1
+            ),
+            _vm._v(" "),
+            !_vm.showPassed
+              ? _c("div", [
+                  _c("div", { staticClass: "text-xl text-dbGray font-bold" }, [
+                    _vm._v(" " + _vm._s(_vm.translation.dashboard.upcomming))
+                  ]),
+                  _vm._v(" "),
+                  this.activeBookings.length > 0
+                    ? _c(
+                        "div",
+                        [
+                          _c("Bookings", {
+                            attrs: {
+                              bookings: _vm.activeBookings,
+                              pages: _vm.activeBookingsPage
+                            },
+                            on: { changePage: _vm.changeActiveBookings }
+                          })
+                        ],
+                        1
+                      )
+                    : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.translation.dashboard.no_bookings) +
+                            " "
+                        )
+                      ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showPassed
+              ? _c("div", [
+                  _c("div", { staticClass: "text-xl text-dbGray font-bold" }, [
+                    _vm._v(_vm._s(_vm.translation.dashboard.passed))
+                  ]),
+                  _vm._v(" "),
+                  this.notActiveBookings
+                    ? _c(
+                        "div",
+                        [
+                          _c("Bookings", {
+                            attrs: {
+                              bookings: _vm.notActiveBookings,
+                              pages: _vm.notActiveBookingsPage
+                            },
+                            on: { changePage: _vm.changeNotActiveBookings }
+                          })
+                        ],
+                        1
+                      )
+                    : _c("div", { staticClass: "text-lg text-gray-500" }, [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.translation.dashboard.no_bookings) +
+                            " "
+                        )
+                      ])
+                ])
+              : _vm._e()
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.translation
+      ? _c("div", { staticClass: "md:hidden px-2" }, [
+          _c("div", { staticClass: "grid grid-cols-4 my-3" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-span-3" }, [
               _c("div", { staticClass: "text-2xl text-white font-bold ml-2" }, [
                 _vm._v(
                   _vm._s(_vm.currentUser.name) +
@@ -675,45 +981,14 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "flex flex-row bg-gray-700 bg-opacity-80 shadow-lg rounded-2xl p-2 mt-1"
+                    "flex items-center justify-between px-6 py-2 mt-1"
                 },
                 [
                   _c(
                     "button",
                     {
-                      class: !_vm.showPassed
-                        ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
-                        : "dash-btn",
-                      on: { click: _vm.toggleShowPassed }
-                    },
-                    [
-                      _vm._v(
-                        " " + _vm._s(_vm.translation.dashboard.upcomming) + " "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      class: _vm.showPassed
-                        ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
-                        : "dash-btn",
-                      on: { click: _vm.toggleShowPassed }
-                    },
-                    [
-                      _vm._v(
-                        " " + _vm._s(_vm.translation.dashboard.passed) + " "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex-grow" }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "dash-btn",
+                      staticClass:
+                        "text-white bg-gray-700 px-8 rounded-xl bg-opacity-80 shadow-lg focus:outline-none",
                       on: { click: _vm.toggleShowProfile }
                     },
                     [
@@ -726,7 +1001,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "dash-btn",
+                      staticClass: "text-dbGray focus:outline-none",
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -759,6 +1034,41 @@ var render = function() {
             },
             [_c("Profile")],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex justify-around bg-gray-700 bg-opacity-80 shadow-lg rounded-2xl p-2 mt-1"
+            },
+            [
+              _c(
+                "button",
+                {
+                  class: !_vm.showPassed
+                    ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                    : "dash-btn",
+                  on: { click: _vm.toggleShowPassed }
+                },
+                [
+                  _vm._v(
+                    " " + _vm._s(_vm.translation.dashboard.upcomming) + " "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  class: _vm.showPassed
+                    ? "flex-none text-white rounded-full hover:text-white focus:outline-none px-3 bg-dashBtnBlue"
+                    : "dash-btn",
+                  on: { click: _vm.toggleShowPassed }
+                },
+                [_vm._v(" " + _vm._s(_vm.translation.dashboard.passed) + " ")]
+              )
+            ]
           ),
           _vm._v(" "),
           !_vm.showPassed
@@ -821,8 +1131,8 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      ])
-    : _vm._e()
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -830,6 +1140,20 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex justify-center" }, [
+      _c("img", {
+        staticClass: "h-20 rounded-3xl",
+        attrs: {
+          src:
+            "https://debook.s3.eu-west-1.amazonaws.com/site_images/default.png"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-center items-center" }, [
       _c("img", {
         staticClass: "h-20 rounded-3xl",
         attrs: {
@@ -861,15 +1185,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2 bg-white"
-    },
-    [
-      _c("div", [
-        _c("div", { staticClass: "flex flex-row" }, [
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "hidden md:grid grid-cols-2 gap-2 p-3 rounded-lg shadow-lg my-2 bg-white"
+      },
+      [
+        _c("div", [
+          _c("div", { staticClass: "flex flex-row" }, [
+            _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
+              _vm._v(_vm._s(_vm.service.sport_type))
+            ]),
+            _vm._v(" "),
+            _vm.bookingDetails.status_id == 1
+              ? _c("div", { staticClass: "px-3 text-green-600" }, [
+                  _vm._v(_vm._s(_vm.translation.booking.status.active))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.bookingDetails.status_id == 4 ||
+            _vm.bookingDetails.status_id == 7
+              ? _c("div", { staticClass: "px-3 rounded-lg text-red-600" }, [
+                  _vm._v(_vm._s(_vm.translation.booking.status.canceled))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-grow" }),
+            _vm._v(" "),
+            _vm.bookingDetails.status_id == 1
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "hover:text-red-700 mr-3",
+                    on: { click: _vm.cancel }
+                  },
+                  [_vm._v(_vm._s(_vm.translation.booking.cancelPage.cancel))]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
+            ]),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.venue.name) +
+                " (" +
+                _vm._s(_vm.service.surface) +
+                ",\n                "
+            ),
+            _vm.service.indoor == 1
+              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.service.indoor == 0
+              ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
+              : _vm._e(),
+            _vm._v(")\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
+            ]),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.changeDateFormat(_vm.bookingDetails.date)) +
+                "\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
+            ]),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.start_time)) +
+                " - " +
+                _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.end_time)) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "bg-gray-100 p-3 rounded-lg shadow-lg" }, [
+          _c(
+            "div",
+            { staticClass: "flex flex-row" },
+            [
+              _c("div", { staticClass: "text-lg font-bold text-gray-700" }, [
+                _vm._v(_vm._s(_vm.clubDetails.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex-grow" }),
+              _vm._v(" "),
+              this.venue.partner_id
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "flex-none text-xl text-blue-600 hover:text-blue-900 focus:outline-none",
+                      attrs: {
+                        to: {
+                          name: "Club",
+                          params: { clubId: this.venue.partner_id }
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.translation.clubs.more))]
+                  )
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
+            ]),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.clubDetails.phone) +
+                "\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.address) + ": ")
+            ]),
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.clubAddress.city) +
+                ", " +
+                _vm._s(_vm.clubAddress.street) +
+                ", " +
+                _vm._s(_vm.clubAddress.house_num) +
+                "-" +
+                _vm._s(_vm.clubAddress.house_add) +
+                "\n            "
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "md:hidden p-3 rounded-lg shadow-lg my-3 bg-white" },
+      [
+        _c("div", { staticClass: "flex items-center" }, [
           _c("div", { staticClass: "text-lg font-bold text-gray-600" }, [
             _vm._v(_vm._s(_vm.service.sport_type))
           ]),
@@ -900,111 +1369,126 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
-          ]),
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.venue.name) +
-              " (" +
-              _vm._s(_vm.service.surface) +
-              ",\n            "
-          ),
-          _vm.service.indoor == 1
-            ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.service.indoor == 0
-            ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
-            : _vm._e(),
-          _vm._v(")\n        ")
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
-          ]),
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.changeDateFormat(_vm.bookingDetails.date)) +
-              "\n        "
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
-          ]),
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.start_time)) +
-              " - " +
-              _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.end_time)) +
-              "\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "bg-gray-100 p-3 rounded-lg shadow-lg" }, [
-        _c(
-          "div",
-          { staticClass: "flex flex-row" },
-          [
-            _c("div", { staticClass: "text-lg font-bold text-gray-700" }, [
-              _vm._v(_vm._s(_vm.clubDetails.name))
+        _c("div", { staticClass: "grid grid-cols-4 gap-3" }, [
+          _c("div", [
+            _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.venue) + ": ")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex-grow" }),
+            _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.date) + ": ")
+            ]),
             _vm._v(" "),
-            this.venue.partner_id
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "flex-none text-xl text-blue-600 hover:text-blue-900 focus:outline-none",
-                    attrs: {
-                      to: {
-                        name: "Club",
-                        params: { clubId: this.venue.partner_id }
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.translation.clubs.more))]
-                )
-              : _vm._e()
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
+            _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+              _vm._v(_vm._s(_vm.translation.booking.time) + ": ")
+            ])
           ]),
-          _vm._v(
-            "\n            " + _vm._s(_vm.clubDetails.phone) + "\n        "
-          )
+          _vm._v(" "),
+          _c("div", { staticClass: "col-span-3" }, [
+            _c("div", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.venue.name) +
+                  " (" +
+                  _vm._s(_vm.service.surface) +
+                  ",\n                    "
+              ),
+              _vm.service.indoor == 1
+                ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.indoor))])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.service.indoor == 0
+                ? _c("span", [_vm._v(_vm._s(_vm.translation.booking.outdoor))])
+                : _vm._e(),
+              _vm._v(")\n                ")
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v(
+                " " +
+                  _vm._s(_vm.changeDateFormat(_vm.bookingDetails.date)) +
+                  " "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v(
+                " " +
+                  _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.start_time)) +
+                  " - " +
+                  _vm._s(_vm.changeTimeFormat(_vm.bookingDetails.end_time)) +
+                  " "
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "font-bold text-gray-500 mr-2" }, [
-            _vm._v(_vm._s(_vm.translation.booking.address) + ": ")
-          ]),
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.clubAddress.city) +
-              ", " +
-              _vm._s(_vm.clubAddress.street) +
-              ", " +
-              _vm._s(_vm.clubAddress.house_num) +
-              "-" +
-              _vm._s(_vm.clubAddress.house_add) +
-              "\n        "
-          )
-        ])
-      ])
-    ]
-  )
+        _c(
+          "div",
+          { staticClass: "bg-gray-200 mt-2 p-3 rounded-lg shadow-xl" },
+          [
+            _c(
+              "div",
+              { staticClass: "flex justify-between items-center" },
+              [
+                _c("div", { staticClass: "text-lg font-bold text-gray-700" }, [
+                  _vm._v(_vm._s(_vm.clubDetails.name))
+                ]),
+                _vm._v(" "),
+                this.venue.partner_id
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "flex-none text-xl text-blue-600 hover:text-blue-900 focus:outline-none",
+                        attrs: {
+                          to: {
+                            name: "Club",
+                            params: { clubId: this.venue.partner_id }
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.translation.clubs.more))]
+                    )
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "grid grid-cols-3 gap-2" }, [
+              _c("div", [
+                _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(_vm._s(_vm.translation.booking.phone) + ": ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-gray-500 mr-2" }, [
+                  _vm._v(_vm._s(_vm.translation.booking.address) + ": ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-span-2" }, [
+                _c("div", [_vm._v(" " + _vm._s(_vm.clubDetails.phone) + " ")]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.clubAddress.city) +
+                      ", " +
+                      _vm._s(_vm.clubAddress.street) +
+                      ", " +
+                      _vm._s(_vm.clubAddress.house_num) +
+                      "-" +
+                      _vm._s(_vm.clubAddress.house_add) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1132,37 +1616,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "rounded-lg mb-4 p-2 shadow-lg bg-white grid grid-cols-4" },
-    [
-      _c("div", { staticClass: "text-xl font-bold text-gray-500" }, [
-        _vm._v(_vm._s(_vm.translation.dashboard.about_you))
-      ]),
-      _vm._v(" "),
-      _c("div", {}, [
-        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.name))]),
-        _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.email))]),
-        _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.phone))])
-      ]),
-      _vm._v(" "),
-      _c("div", {}, [
-        _c("div", [
-          _vm._v(
-            _vm._s(_vm.currentUser.name) +
-              " " +
-              _vm._s(_vm.currentUser.lastname)
-          )
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "rounded-lg mb-4 p-2 shadow-lg bg-white hidden md:grid grid-cols-4"
+      },
+      [
+        _c("div", { staticClass: "text-xl font-bold text-gray-500" }, [
+          _vm._v(_vm._s(_vm.translation.dashboard.about_you))
         ]),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.currentUser.email))]),
+        _c("div", [
+          _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.name))]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.email))]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.phone))])
+        ]),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.currentUser.phone))])
-      ])
-    ]
-  )
+        _c("div", [
+          _c("div", [
+            _vm._v(
+              _vm._s(_vm.currentUser.name) +
+                " " +
+                _vm._s(_vm.currentUser.lastname)
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.currentUser.email))]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.currentUser.phone))])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "md:hidden rounded-lg mb-4 p-2 shadow-lg bg-white" },
+      [
+        _c("div", { staticClass: "text-xl font-bold text-gray-500" }, [
+          _vm._v(_vm._s(_vm.translation.dashboard.about_you))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex" }, [
+          _c("div", [
+            _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.name))]),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.email))]),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.translation.dashboard.phone))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ml-6" }, [
+            _c("div", [
+              _vm._v(
+                _vm._s(_vm.currentUser.name) +
+                  " " +
+                  _vm._s(_vm.currentUser.lastname)
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.currentUser.email))]),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.currentUser.phone))])
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,62 +1,121 @@
 <template>
-    <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-1"></div>
-        <main class="col-span-2 my-5" v-if="translation">
-            <div class="text-2xl text-white font-bold">{{ translation.booking.bookSuccess.title }}</div>
-            <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
-            <div class="grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-white p-3" v-if="booking">
-                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Club: </span>
-                            {{booking.clubName}}
+    <div>
+        <div class="hidden md:grid grid-cols-4 gap-4">
+            <div class="col-span-1"></div>
+            <main class="col-span-2 my-5" v-if="translation">
+                <div class="text-2xl text-white font-bold">{{ translation.booking.bookSuccess.title }}</div>
+                <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
+                <div class="grid grid-cols-2 gap-4 my-4">
+                        <div class="bg-white p-3" v-if="booking">
+                            <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">Club: </span>
+                                {{booking.clubName}}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}: </span>
+                                {{booking.phone}}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">Sport: </span>
+                                {{booking.sport}}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}: </span>
+                                {{booking.venueName}} ({{booking.surface}},
+                                <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
+                                <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}: </span>
+                                {{changeDateFormat(booking.date)}}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}: </span>
+                                {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}: </span>
+                                €{{booking.price}}
+                            </div>
                         </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}: </span>
-                            {{booking.phone}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">Sport: </span>
-                            {{booking.sport}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}: </span>
-                            {{booking.venueName}} ({{booking.surface}},
-                            <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
-                            <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}: </span>
-                            {{changeDateFormat(booking.date)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}: </span>
-                            {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}: </span>
-                            €{{booking.price}}
-                        </div>
-                    </div>
 
-                    <div class="bg-white p-3">
-                        <div class="text-lg font-bold text-gray-600">{{ translation.booking.bookSuccess.rules }}</div>
-                        <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.time }}: </span>
-                            {{ translation.booking.bookSuccess.timeRule }}
-                        </div>
-                        <div class="mb-2">
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.equipment }}: </span>
-                            {{ translation.booking.bookSuccess.equipmentRule }}
-                        </div>
-                        <div>
-                            <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.fun }}: </span>
-                            {{ translation.booking.bookSuccess.funRule }}
+                        <div class="bg-white p-3">
+                            <div class="text-lg font-bold text-gray-600">{{ translation.booking.bookSuccess.rules }}</div>
+                            <div class="mb-2">
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.time }}: </span>
+                                {{ translation.booking.bookSuccess.timeRule }}
+                            </div>
+                            <div class="mb-2">
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.equipment }}: </span>
+                                {{ translation.booking.bookSuccess.equipmentRule }}
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.fun }}: </span>
+                                {{ translation.booking.bookSuccess.funRule }}
+                            </div>
                         </div>
                     </div>
+            </main>
+            <div class="col-span-1"></div>
+        </div>
+
+        <!-- Mobile version -->
+        <div class="md:hidden px-3" v-if="translation">
+            <div class="text-2xl text-white font-bold mt-5">{{ translation.booking.bookSuccess.title }}</div>
+
+            <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
+
+            <div class="bg-white p-3 my-3 rounded-lg" v-if="booking">
+                <div class="text-lg font-bold text-gray-600">{{ translation.booking.about_booking }}</div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">Club: </span>
+                    {{booking.clubName}}
                 </div>
-        </main>
-        <div class="col-span-1"></div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.phone }}: </span>
+                    {{booking.phone}}
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">Sport: </span>
+                    {{booking.sport}}
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.venue }}: </span>
+                    {{booking.venueName}} ({{booking.surface}},
+                    <span v-if="booking.indoor == 1">{{ translation.booking.indoor }}</span>
+                    <span v-if="booking.indoor == 0">{{ translation.booking.outdoor }}</span>)
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.date }}: </span>
+                    {{changeDateFormat(booking.date)}}
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.time }}: </span>
+                    {{changeTimeFormat(booking.start_time)}} - {{changeTimeFormat(booking.end_time)}}
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.price }}: </span>
+                    €{{booking.price}}
+                </div>
+            </div>
+
+            <div class="bg-white p-3 my-3 rounded-lg">
+                <div class="text-lg font-bold text-gray-600">{{ translation.booking.bookSuccess.rules }}</div>
+                <div class="mb-2">
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.time }}: </span>
+                    {{ translation.booking.bookSuccess.timeRule }}
+                </div>
+                <div class="mb-2">
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.equipment }}: </span>
+                    {{ translation.booking.bookSuccess.equipmentRule }}
+                </div>
+                <div>
+                    <span class="font-bold text-gray-500 mr-2">{{ translation.booking.bookSuccess.fun }}: </span>
+                    {{ translation.booking.bookSuccess.funRule }}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

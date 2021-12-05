@@ -29,6 +29,7 @@ return [
     ],
 
     'forgot' => [
+        'forgotPwd' => 'Forgot password',
         'requestTitle' => 'Reset your password',
         'requestInfo' => 'Please enter your email address where a link to reset your password will be sent.',
         'send' => 'Send request',
@@ -43,7 +44,7 @@ return [
     'register' => [
         'title' => 'Create new account',
         'btn' => 'Register',
-        'please' => 'Please fill all fields.',
+        'please' => 'Please fill in all fields.',
         'first' => 'Your first name',
         'last' => 'Your last name',
         'phone' => 'Your phone number',

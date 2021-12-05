@@ -20,4 +20,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  corePlugins: {
+   appearance: false,
+  }
 }

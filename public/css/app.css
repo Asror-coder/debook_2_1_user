@@ -10107,12 +10107,6 @@ video {
   list-style-type: decimal;
 }
 
-.appearance-none {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-
 .auto-cols-auto {
   grid-auto-columns: auto;
 }
@@ -32836,6 +32830,10 @@ video {
   outline-offset: 2px;
 }
 
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -42301,12 +42299,6 @@ video {
 
   .sm\:list-decimal {
     list-style-type: decimal;
-  }
-
-  .sm\:appearance-none {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
   }
 
   .sm\:auto-cols-auto {
@@ -74410,12 +74402,6 @@ video {
     list-style-type: decimal;
   }
 
-  .md\:appearance-none {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-  }
-
   .md\:auto-cols-auto {
     grid-auto-columns: auto;
   }
@@ -106515,12 +106501,6 @@ video {
 
   .lg\:list-decimal {
     list-style-type: decimal;
-  }
-
-  .lg\:appearance-none {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
   }
 
   .lg\:auto-cols-auto {
@@ -138624,12 +138604,6 @@ video {
     list-style-type: decimal;
   }
 
-  .xl\:appearance-none {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-  }
-
   .xl\:auto-cols-auto {
     grid-auto-columns: auto;
   }
@@ -170729,12 +170703,6 @@ video {
 
   .\32xl\:list-decimal {
     list-style-type: decimal;
-  }
-
-  .\32xl\:appearance-none {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
   }
 
   .\32xl\:auto-cols-auto {

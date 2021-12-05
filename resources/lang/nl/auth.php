@@ -29,6 +29,7 @@ return [
     ],
 
     'forgot' => [
+        'forgotPwd' => 'Wachtwoord vergeten',
         'requestTitle' => 'Stel je wachtwoord opnieuw in',
         'requestInfo' => 'Voer uw e-mailadres in waar een link om uw wachtwoord opnieuw in te stellen zal worden verzonden.',
         'send' => 'Verzend verzoek',

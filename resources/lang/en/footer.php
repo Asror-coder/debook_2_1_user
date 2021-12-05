@@ -2,7 +2,7 @@
 
 return [
 
-    'contacts' => 'Sports',
+    'contacts' => 'Contacts',
     'who' => 'Who are we?',
     'about_us' => 'About us',
     'for_clubs' => 'For clubs',

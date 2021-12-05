@@ -3,7 +3,7 @@
         <!-- <div class="text-gray-500 text-xl">Wanna play sports?</div> -->
         <span class="text-center text-red-700" v-if="message">{{message}}</span>
         <form @submit.prevent="searchVenue">
-            <div class="flex flex-row">
+            <div class="hidden md:flex flex-row">
 
                 <div class="flex-none">
                     <label for="sport_type">{{ translation.home_search.sport }}:</label>
@@ -49,6 +49,58 @@
                 <div class="flex-none">
                     <button class="bg-dashBtnBlue border-none text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg"
                     type="submit" placeholder="Search">{{ translation.home_search.search }}</button>
+                </div>
+            </div>
+
+            <!-- Mobile version -->
+            <div class="md:hidden">
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <!-- <label for="sport_type">{{ translation.home_search.sport }}:</label> -->
+                        <select name="sport_type" id="sport_type" placeholder="Sport" v-model="form.sport_type"
+                            class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full">
+                            <option value="" disabled selected hidden>{{ translation.home_search.choose_sport }}</option>
+                            <option :key="sport.sport_type" v-for="sport in sports">
+                                {{ sport.sport_type }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <!-- <label for="name">{{ translation.home_search.date }}: </label> -->
+                        <input type="date" name="date" placeholder="date" v-model="form.date"
+                            class="border-2 border-gray-400 shadow-2xl p-1 focus:outline-none w-full">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 mt-1">
+                    <div>
+                        <!-- <label for="cars">{{ translation.home_search.time }}:</label> -->
+                        <select name="start-time" v-model="form.start_time"
+                        class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full">
+                            <option value="" disabled selected hidden>{{ translation.clubs.start }}</option>
+                            <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
+                                {{ openTime.time }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <select name="end-time" v-model="form.end_time"
+                        class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full">
+                            <option value="" disabled selected hidden>{{ translation.clubs.end }}</option>
+                            <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
+                                {{ openTime.time }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button class="bg-dashBtnBlue border-dashBtnBlue border-2 w-full
+                            text-white text-lg py-1 px-5 focus:outline-none hover:shadow-lg"
+                        type="submit" placeholder="Search">{{ translation.home_search.search }}</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -107,8 +159,7 @@ export default {
             await axios.get(`/api/clubs/club/${this.clubId}/opentime`).then((response)=>{
                 if(response.data.length > 0) this.generateOpenTime(response.data[0], response.data[1])
             }).catch((error) => {
-                this.errors = error.response.data.errors;
-                this.message = error.response.data.message;
+                console.log(error.response.data.message);
             })
         },
         generateOpenTime(start,end) {

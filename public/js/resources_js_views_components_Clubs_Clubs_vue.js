@@ -92,6 +92,56 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -120,7 +170,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         surface: [],
         indoor: null,
         maxPrice: 0
-      }
+      },
+      showFilters: false
     };
   },
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)('clubs', ['clubs']),
@@ -215,6 +266,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee3);
       }))();
+    },
+    toggleFilters: function toggleFilters() {
+      this.showFilters = !this.showFilters;
     }
   }),
   watch: {
@@ -242,6 +296,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -401,6 +473,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'DateTimeFilters',
   props: {
@@ -479,6 +614,102 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1040,7 +1271,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex-none grid grid-cols-4 gap-4 mt-3 mb-6" },
+            {
+              staticClass:
+                "flex-none hidden md:grid grid-cols-4 gap-4 mt-3 mb-6"
+            },
             [
               _c(
                 "div",
@@ -1190,6 +1424,147 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-span-1" })
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex-none md:hidden gap-4 mt-2 mb-2 px-2" },
+            [
+              _c("DateTimeFilters", {
+                staticClass: "flex-none mt-3 mb-1",
+                attrs: {
+                  date: _vm.request.date,
+                  start: _vm.request.start_time,
+                  end: _vm.request.end_time
+                },
+                on: { changeRequest: _vm.changeRequest }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "flex justify-between items-center mb-2 mr-2" },
+                [
+                  _vm.clubs
+                    ? _c("div", { staticClass: "text-dbGray text-md mb-3" }, [
+                        _vm._v(_vm._s(_vm.clubs.total) + " clubs")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.clubs
+                    ? _c("div", { staticClass: "text-dbGray text-md mb-3" }, [
+                        _vm._v("no clubs")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "text-white bg-blue-500 rounded-xl px-6 shadow-md focus:outline-none",
+                      on: { click: _vm.toggleFilters }
+                    },
+                    [_vm._v("\n                filters\n            ")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.showFilters
+                ? _c("SideFilters", {
+                    attrs: {
+                      sport: _vm.sport,
+                      passed_surface: _vm.request.surface,
+                      passed_indoor: _vm.request.indoor,
+                      passed_maxPrice: _vm.request.maxPrice
+                    },
+                    on: { changeRequest: _vm.changeRequest }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.clubs
+                ? _c(
+                    "div",
+                    _vm._l(_vm.clubs.data, function(club) {
+                      return _c(
+                        "div",
+                        { key: club.id },
+                        [_c("ClubCard", { attrs: { id: club.id } })],
+                        1
+                      )
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex flex-row my-4" }, [
+                _c("div", { staticClass: "flex-grow" }),
+                _vm._v(" "),
+                _vm.clubs && _vm.clubs.last_page > 1
+                  ? _c(
+                      "div",
+                      { staticClass: "flex flex-row text-lg" },
+                      _vm._l(_vm.clubs.links, function(page, index) {
+                        return _c(
+                          "div",
+                          { key: index, staticClass: "mx-3" },
+                          [
+                            page.label == "prev" && page.url
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: "prev",
+                                    textStyle: "text-gray-400 hover:text-white"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changePage(page.url)
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            page.label != "prev" && page.label != "next"
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: page.label,
+                                    textStyle:
+                                      page.label == _vm.clubs.current_page
+                                        ? "text-white h-7 w-7 rounded-full bg-dashBtnBlue"
+                                        : "text-gray-400 hover:text-white"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changePage(page.url)
+                                    }
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            page.label == "next" && page.url
+                              ? _c("Button", {
+                                  attrs: {
+                                    text: "next",
+                                    textStyle: "text-gray-400 hover:text-white"
+                                  },
+                                  on: {
+                                    "btn-click": function($event) {
+                                      return _vm.changePage(page.url)
+                                    }
+                                  }
+                                })
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex-grow" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-span-1" })
+            ],
+            1
           )
         ],
         1
@@ -1218,55 +1593,120 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.club
-    ? _c(
-        "div",
-        { staticClass: "p-3 rounded-lg grid grid-cols-2 bg-white mb-2" },
-        [
-          _c("div", {
-            staticClass: "h-48 rounded-lg shadow-2xl bg-cover mr-3",
-            style: _vm.makeUrl()
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex flex-col" }, [
-            _c("div", { staticClass: "text-3xl" }, [
-              _vm._v(_vm._s(_vm.club.name))
-            ]),
+  return _c("div", [
+    _vm.club
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "p-3 rounded-lg hidden md:grid grid-cols-2 bg-white mb-2"
+          },
+          [
+            _c("div", {
+              staticClass: "h-48 rounded-lg shadow-2xl bg-cover mr-3",
+              style: _vm.makeUrl()
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "text-gray-400" }, [
-              _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
-              _vm._v(_vm._s(_vm.club.city))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex-grow" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex" }, [
-              _c("div", { staticClass: "flex-none flex" }, [
-                _c("span", { staticClass: "text-xl mt-1 mr-2 text-gray-600" }, [
-                  _vm._v(_vm._s(_vm.translation.clubs.from))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-2xl" }, [
-                  _vm._v(" €" + _vm._s(_vm.club.price.toFixed(2)))
-                ])
+            _c("div", { staticClass: "flex flex-col" }, [
+              _c("div", { staticClass: "text-3xl" }, [
+                _vm._v(_vm._s(_vm.club.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-gray-400" }, [
+                _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
+                _vm._v(_vm._s(_vm.club.city))
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex-grow" }),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none",
-                  on: { click: _vm.goToClubPage }
-                },
-                [_vm._v(_vm._s(_vm.translation.clubs.more))]
-              )
+              _c("div", { staticClass: "flex" }, [
+                _c("div", { staticClass: "flex-none flex" }, [
+                  _c(
+                    "span",
+                    { staticClass: "text-xl mt-1 mr-2 text-gray-600" },
+                    [_vm._v(_vm._s(_vm.translation.clubs.from))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-2xl" }, [
+                    _vm._v(" €" + _vm._s(_vm.club.price.toFixed(2)))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex-grow" }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none",
+                    on: { click: _vm.goToClubPage }
+                  },
+                  [_vm._v(_vm._s(_vm.translation.clubs.more))]
+                )
+              ])
             ])
-          ])
-        ]
-      )
-    : _vm._e()
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.club
+      ? _c(
+          "div",
+          {
+            staticClass: "rounded-lg md:hidden bg-white mb-2",
+            on: { click: _vm.goToClubPage }
+          },
+          [
+            _c("div", {
+              staticClass: "h-48 rounded-t-lg shadow-2xl bg-cover",
+              style: _vm.makeUrl()
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex items-center justify-between p-2" },
+              [
+                _c("div", { staticClass: "text-3xl" }, [
+                  _vm._v(_vm._s(_vm.club.name))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-gray-400" }, [
+                  _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
+                  _vm._v(_vm._s(_vm.club.city))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-between items-center p-2" },
+              [
+                _c("div", { staticClass: "flex" }, [
+                  _c(
+                    "span",
+                    { staticClass: "text-xl mt-1 mr-2 text-gray-600" },
+                    [_vm._v(_vm._s(_vm.translation.clubs.from))]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-2xl" }, [
+                    _vm._v(" €" + _vm._s(_vm.club.price.toFixed(2)))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "text-2xl text-blue-600 hover:text-blue-900  focus:outline-none"
+                  },
+                  [_vm._v(_vm._s(_vm.translation.clubs.more))]
+                )
+              ]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1293,7 +1733,6 @@ var render = function() {
   return _c(
     "form",
     {
-      attrs: { action: "" },
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -1302,7 +1741,7 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "flex flex-row" }, [
+      _c("div", { staticClass: "hidden md:flex flex-row" }, [
         _c("div", { staticClass: "flex-none" }, [
           _c("input", {
             directives: [
@@ -1510,6 +1949,227 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "md:hidden flex items-center" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.date,
+              expression: "form.date"
+            }
+          ],
+          staticClass: "bg-gray-100 focus:outline-none",
+          attrs: { type: "date", name: "date", placeholder: "Date" },
+          domProps: { value: _vm.form.date },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "date", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.start_time,
+                expression: "form.start_time"
+              }
+            ],
+            staticClass: "bg-gray-100 ml-1 p-1 focus:outline-none",
+            attrs: { name: "start-time" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "start_time",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c(
+              "option",
+              { attrs: { value: "", disabled: "", selected: "", hidden: "" } },
+              [_vm._v(_vm._s(_vm.translation.clubs.start))]
+            ),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "05" } }, [_vm._v("05:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "06" } }, [_vm._v("06:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "07" } }, [_vm._v("07:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "08" } }, [_vm._v("08:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09" } }, [_vm._v("09:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "10" } }, [_vm._v("10:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "11" } }, [_vm._v("11:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "12" } }, [_vm._v("12:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "13" } }, [_vm._v("13:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14" } }, [_vm._v("14:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "15" } }, [_vm._v("15:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "16" } }, [_vm._v("16:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "17" } }, [_vm._v("17:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "18" } }, [_vm._v("18:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "19" } }, [_vm._v("19:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "20" } }, [_vm._v("20:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "21" } }, [_vm._v("21:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "22" } }, [_vm._v("22:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "23" } }, [_vm._v("23:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "24" } }, [_vm._v("00:00")])
+          ]
+        ),
+        _vm._v(" "),
+        _c("label", { staticClass: "text-white", attrs: { for: "time" } }, [
+          _vm._v("-")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.end_time,
+                expression: "form.end_time"
+              }
+            ],
+            staticClass: "bg-gray-100 p-1 focus:outline-none",
+            attrs: { name: "end-time" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "end_time",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c(
+              "option",
+              { attrs: { value: "", disabled: "", selected: "", hidden: "" } },
+              [_vm._v(_vm._s(_vm.translation.clubs.end))]
+            ),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "05" } }, [_vm._v("05:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "06" } }, [_vm._v("06:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "07" } }, [_vm._v("07:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "08" } }, [_vm._v("08:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09" } }, [_vm._v("09:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "10" } }, [_vm._v("10:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "11" } }, [_vm._v("11:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "12" } }, [_vm._v("12:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "13" } }, [_vm._v("13:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14" } }, [_vm._v("14:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "15" } }, [_vm._v("15:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "16" } }, [_vm._v("16:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "17" } }, [_vm._v("17:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "18" } }, [_vm._v("18:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "19" } }, [_vm._v("19:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "20" } }, [_vm._v("20:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "21" } }, [_vm._v("21:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "22" } }, [_vm._v("22:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "23" } }, [_vm._v("23:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "24" } }, [_vm._v("00:00")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "text-blue-500 focus:outline-none ml-1",
+            attrs: { type: "submit" }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "h-8 w-8",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  stroke: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round",
+                    "stroke-width": "2",
+                    d:
+                      "M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _vm.message
         ? _c("div", { staticClass: "text-center text-red-700" }, [
             _vm._v(_vm._s(_vm.message))
@@ -1540,324 +2200,851 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-row" }, [
-    _c("div", { staticClass: "flex-grow" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex flex-col mr-10 mt-5" }, [
-      _c("div", [
-        _c("div", { staticClass: "text-white" }, [
-          _vm._v(_vm._s(_vm.translation.clubs.surface) + ": ")
+  return _c("div", [
+    _c("div", { staticClass: "hidden md:flex flex-row" }, [
+      _c("div", { staticClass: "flex-grow" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex flex-col mr-10 mt-5" }, [
+        _c("div", [
+          _c("div", { staticClass: "text-white" }, [
+            _vm._v(_vm._s(_vm.translation.clubs.surface) + ": ")
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
+          _vm._v(" "),
+          _vm.sport == "tennis"
+            ? _c("div", { staticClass: "flex flex-col ml-3" }, [
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "carpet", value: "carpet" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "carpet") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "carpet",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "carpet" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.carpet))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "clay", value: "clay" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "clay") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "clay",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "clay" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.clay))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "acrylic",
+                      value: "acrylic"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "acrylic") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "acrylic",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "acrylic" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.acrylic))]
+                  )
+                ])
+              ])
+            : _vm.sport == "padel"
+            ? _c("div", { staticClass: "flex flex-col ml-3" }, [
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "concrete",
+                      value: "concrete"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "concrete") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "concrete",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "concrete" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.padel.concrete))]
+                  )
+                ])
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
-        _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
-        _vm._v(" "),
-        _vm.sport == "tennis"
-          ? _c("div", { staticClass: "flex flex-col ml-3" }, [
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.surface,
-                      expression: "form.surface"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: "carpet", value: "carpet" },
-                  domProps: {
-                    checked: Array.isArray(_vm.form.surface)
-                      ? _vm._i(_vm.form.surface, "carpet") > -1
-                      : _vm.form.surface
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = _vm.form.surface,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = "carpet",
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "surface",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "surface", $$c)
-                        }
-                      },
-                      _vm.changeRequest
-                    ]
+        _c("div", { staticClass: "mt-5" }, [
+          _c("div", { staticClass: "text-white" }, [
+            _vm._v(
+              _vm._s(_vm.translation.clubs.indoor) +
+                "/" +
+                _vm._s(_vm.translation.clubs.outdoor) +
+                ": "
+            )
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ml-3", on: { change: _vm.changeRequest } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "text-white", attrs: { for: "carpet" } },
-                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.carpet))]
-                )
+                ],
+                attrs: { type: "radio", value: "1" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "1") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "1")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "1" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.indoor))
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.surface,
-                      expression: "form.surface"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: "clay", value: "clay" },
-                  domProps: {
-                    checked: Array.isArray(_vm.form.surface)
-                      ? _vm._i(_vm.form.surface, "clay") > -1
-                      : _vm.form.surface
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = _vm.form.surface,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = "clay",
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "surface",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "surface", $$c)
-                        }
-                      },
-                      _vm.changeRequest
-                    ]
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "text-white", attrs: { for: "clay" } },
-                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.clay))]
-                )
+                ],
+                attrs: { type: "radio", value: "0" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "0") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "0")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.outdoor))
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.surface,
-                      expression: "form.surface"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: "acrylic", value: "acrylic" },
-                  domProps: {
-                    checked: Array.isArray(_vm.form.surface)
-                      ? _vm._i(_vm.form.surface, "acrylic") > -1
-                      : _vm.form.surface
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = _vm.form.surface,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = "acrylic",
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "surface",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "surface", $$c)
-                        }
-                      },
-                      _vm.changeRequest
-                    ]
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "text-white", attrs: { for: "acrylic" } },
-                  [_vm._v(_vm._s(_vm.translation.clubs.tennis.acrylic))]
-                )
-              ])
-            ])
-          : _vm.sport == "padel"
-          ? _c("div", { staticClass: "flex flex-col ml-3" }, [
-              _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.surface,
-                      expression: "form.surface"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "concrete",
-                    value: "concrete"
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.form.surface)
-                      ? _vm._i(_vm.form.surface, "concrete") > -1
-                      : _vm.form.surface
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = _vm.form.surface,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = "concrete",
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "surface",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "surface", $$c)
-                        }
-                      },
-                      _vm.changeRequest
-                    ]
+                ],
+                attrs: { type: "radio", value: "null" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "null") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "null")
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "text-white", attrs: { for: "concrete" } },
-                  [_vm._v(_vm._s(_vm.translation.clubs.padel.concrete))]
-                )
-              ])
-            ])
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mt-5" }, [
-        _c("div", { staticClass: "text-white" }, [
-          _vm._v(
-            _vm._s(_vm.translation.clubs.indoor) +
-              "/" +
-              _vm._s(_vm.translation.clubs.outdoor) +
-              ": "
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "text-white", attrs: { for: "null" } },
+                [_vm._v(_vm._s(_vm.translation.clubs.d_matter))]
+              ),
+              _vm._v(" "),
+              _c("br")
+            ]
           )
         ]),
         _vm._v(" "),
-        _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
+        _c("div", { staticClass: "mt-5" }, [
+          _c("div", { staticClass: "text-white" }, [
+            _vm._v(
+              "Max " +
+                _vm._s(_vm.translation.clubs.price) +
+                "(per " +
+                _vm._s(_vm.translation.clubs.hour) +
+                "): "
+            )
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ml-3", on: { change: _vm.changeRequest } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "20" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "20") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "20")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "20" } }, [
+                _vm._v("€20")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "25" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "25") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "25")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "25" } }, [
+                _vm._v("€25")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "30" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "30") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "30")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "30" } }, [
+                _vm._v("€30")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "35" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "35") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "35")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "35" } }, [
+                _vm._v("€35")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "40" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "40") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "40")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "40" } }, [
+                _vm._v("€40")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "50" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "50") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "50")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "50" } }, [
+                _vm._v("€50")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "0" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "0") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "0")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.d_matter))
+              ]),
+              _vm._v(" "),
+              _c("br")
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "md:hidden" }, [
+      _c("div", { staticClass: "grid grid-cols-2 gap-2" }, [
+        _c("div", [
+          _c("div", { staticClass: "text-white" }, [
+            _vm._v(_vm._s(_vm.translation.clubs.surface) + ": ")
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
+          _vm._v(" "),
+          _vm.sport == "tennis"
+            ? _c("div", { staticClass: "flex flex-col ml-3" }, [
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "carpet", value: "carpet" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "carpet") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "carpet",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "carpet" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.carpet))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "clay", value: "clay" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "clay") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "clay",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "clay" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.clay))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "acrylic",
+                      value: "acrylic"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "acrylic") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "acrylic",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "acrylic" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.tennis.acrylic))]
+                  )
+                ])
+              ])
+            : _vm.sport == "padel"
+            ? _c("div", { staticClass: "flex flex-col ml-3" }, [
+                _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.surface,
+                        expression: "form.surface"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "concrete",
+                      value: "concrete"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.surface)
+                        ? _vm._i(_vm.form.surface, "concrete") > -1
+                        : _vm.form.surface
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.form.surface,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "concrete",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.form, "surface", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.form,
+                                  "surface",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.form, "surface", $$c)
+                          }
+                        },
+                        _vm.changeRequest
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "text-white", attrs: { for: "concrete" } },
+                    [_vm._v(_vm._s(_vm.translation.clubs.padel.concrete))]
+                  )
+                ])
+              ])
+            : _vm._e()
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ml-3", on: { change: _vm.changeRequest } }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.indoor,
-                expression: "form.indoor"
-              }
-            ],
-            attrs: { type: "radio", value: "1" },
-            domProps: { checked: _vm._q(_vm.form.indoor, "1") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "indoor", "1")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "1" } }, [
-            _vm._v(_vm._s(_vm.translation.clubs.indoor))
+        _c("div", [
+          _c("div", { staticClass: "text-white" }, [
+            _vm._v(
+              _vm._s(_vm.translation.clubs.indoor) +
+                "/" +
+                _vm._s(_vm.translation.clubs.outdoor) +
+                ": "
+            )
           ]),
           _vm._v(" "),
-          _c("br"),
+          _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.indoor,
-                expression: "form.indoor"
-              }
-            ],
-            attrs: { type: "radio", value: "0" },
-            domProps: { checked: _vm._q(_vm.form.indoor, "0") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "indoor", "0")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
-            _vm._v(_vm._s(_vm.translation.clubs.outdoor))
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.indoor,
-                expression: "form.indoor"
-              }
-            ],
-            attrs: { type: "radio", value: "null" },
-            domProps: { checked: _vm._q(_vm.form.indoor, "null") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "indoor", "null")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "null" } }, [
-            _vm._v(_vm._s(_vm.translation.clubs.d_matter))
-          ]),
-          _vm._v(" "),
-          _c("br")
+          _c(
+            "div",
+            { staticClass: "ml-3", on: { change: _vm.changeRequest } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
+                  }
+                ],
+                attrs: { type: "radio", value: "1" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "1") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "1")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "1" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.indoor))
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
+                  }
+                ],
+                attrs: { type: "radio", value: "0" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "0") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "0")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.outdoor))
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.indoor,
+                    expression: "form.indoor"
+                  }
+                ],
+                attrs: { type: "radio", value: "null" },
+                domProps: { checked: _vm._q(_vm.form.indoor, "null") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "indoor", "null")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "text-white", attrs: { for: "null" } },
+                [_vm._v(_vm._s(_vm.translation.clubs.d_matter))]
+              ),
+              _vm._v(" "),
+              _c("br")
+            ]
+          )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "mt-5" }, [
+      _c("div", { staticClass: "my-4" }, [
         _c("div", { staticClass: "text-white" }, [
           _vm._v(
             "Max " +
@@ -1870,175 +3057,182 @@ var render = function() {
         _vm._v(" "),
         _c("hr", { staticClass: " border-gray-200 border-opacity-60 mb-1" }),
         _vm._v(" "),
-        _c("div", { staticClass: "ml-3", on: { change: _vm.changeRequest } }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "20" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "20") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "20")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "20" } }, [
-            _vm._v("€20")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "25" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "25") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "25")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "25" } }, [
-            _vm._v("€25")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "30" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "30") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "30")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "30" } }, [
-            _vm._v("€30")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "35" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "35") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "35")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "35" } }, [
-            _vm._v("€35")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "40" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "40") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "40")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "40" } }, [
-            _vm._v("€40")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "50" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "50") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "50")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "50" } }, [
-            _vm._v("€50")
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.maxPrice,
-                expression: "form.maxPrice"
-              }
-            ],
-            attrs: { type: "radio", value: "0" },
-            domProps: { checked: _vm._q(_vm.form.maxPrice, "0") },
-            on: {
-              change: function($event) {
-                return _vm.$set(_vm.form, "maxPrice", "0")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
-            _vm._v(_vm._s(_vm.translation.clubs.d_matter))
-          ]),
-          _vm._v(" "),
-          _c("br")
-        ])
+        _c(
+          "div",
+          {
+            staticClass: "flex items-center justify-around",
+            on: { change: _vm.changeRequest }
+          },
+          [
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "20" } }, [
+                _vm._v("€20")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "20" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "20") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "20")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "25" } }, [
+                _vm._v("€25")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "25" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "25") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "25")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "30" } }, [
+                _vm._v("€30")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "30" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "30") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "30")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "35" } }, [
+                _vm._v("€35")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "35" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "35") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "35")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "40" } }, [
+                _vm._v("€40")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "40" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "40") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "40")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "50" } }, [
+                _vm._v("€50")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "50" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "50") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "50")
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-col items-center" }, [
+              _c("label", { staticClass: "text-white", attrs: { for: "0" } }, [
+                _vm._v(_vm._s(_vm.translation.clubs.d_matter))
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.maxPrice,
+                    expression: "form.maxPrice"
+                  }
+                ],
+                attrs: { type: "radio", value: "0" },
+                domProps: { checked: _vm._q(_vm.form.maxPrice, "0") },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.form, "maxPrice", "0")
+                  }
+                }
+              })
+            ])
+          ]
+        )
       ])
     ])
   ])
