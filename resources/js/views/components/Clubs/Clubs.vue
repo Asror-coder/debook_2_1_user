@@ -3,14 +3,14 @@
         <!-- Top of the page: Image Background, Sport and Location -->
         <TopFilters :passed_sport="sport" :passed_city="request.city" @changeRequest="changeRequest"/>
 
-        <div class="flex-none hidden md:grid grid-cols-4 gap-4 mt-3 mb-6">
+        <div class="flex-none hidden md:grid md:grid-cols-4 gap-4 mt-3 mb-6">
              <!-- Side Filters: Surface, Inside/Outside and Price -->
             <div class="col-span-1">
                 <SideFilters :sport="sport" :passed_surface="request.surface" :passed_indoor="request.indoor"
                     :passed_maxPrice="request.maxPrice" @changeRequest="changeRequest"/>
             </div>
 
-            <main class="col-span-2">
+            <main class="col-span-2 2xl:px-16">
                 <!-- Date, Start time, End time and Search button-->
                 <div class="flex flex-row mt-3 mb-1">
                     <DateTimeFilters class="flex-none" @changeRequest="changeRequest"

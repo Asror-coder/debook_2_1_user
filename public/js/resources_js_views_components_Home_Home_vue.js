@@ -664,7 +664,7 @@ var render = function() {
     _c(
       "main",
       {
-        staticClass: "hidden md:grid grid-cols-4 gap-4 bg-cover",
+        staticClass: "hidden md:grid md:grid-cols-4 gap-4 bg-cover",
         staticStyle: {
           "background-image":
             "url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')"
@@ -675,7 +675,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-span-2 flex justify-center" },
+          { staticClass: "col-span-2 flex justify-center 2xl:p-14" },
           [
             _c("SearchForm", {
               staticClass: "my-24",

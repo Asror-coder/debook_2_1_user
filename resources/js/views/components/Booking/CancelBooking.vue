@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4" v-if="translation">
-            <main class="col-span-2 col-start-2 mt-4">
+            <main class="col-span-2 col-start-2 mt-4 2xl:px-20">
                 <div class="flex flex-row">
                     <div class="flex-none text-2xl text-white font-bold">{{ translation.booking.cancelPage.title }}</div>
                     <div class="flex-grow"></div>

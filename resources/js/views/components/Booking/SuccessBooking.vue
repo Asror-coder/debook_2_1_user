@@ -2,7 +2,7 @@
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4">
             <div class="col-span-1"></div>
-            <main class="col-span-2 my-5" v-if="translation">
+            <main class="col-span-2 my-5 2xl:px-20" v-if="translation">
                 <div class="text-2xl text-white font-bold">{{ translation.booking.bookSuccess.title }}</div>
                 <div class="text text-dbGray">{{ translation.booking.bookSuccess.infoDash }}</div>
                 <div class="grid grid-cols-2 gap-4 my-4">

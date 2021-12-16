@@ -2,7 +2,7 @@
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/login-bg.jpeg')">
             <div class="col-span-1"></div>
-            <main class="col-span-2 flex justify-center my-28" v-if="translation">
+            <main class="col-span-2 flex justify-center my-28 2xl:px-20" v-if="translation">
                 <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">
                     <h1 class="text-2xl text-center pb-5">{{ translation.auth.login.title }}</h1>
 

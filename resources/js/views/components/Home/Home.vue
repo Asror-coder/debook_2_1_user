@@ -1,8 +1,8 @@
 <template>
     <div>
-        <main class="hidden md:grid grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')">
+        <main class="hidden md:grid md:grid-cols-4 gap-4 bg-cover" style="background-image: url('https://debook.s3.eu-west-1.amazonaws.com/site_images/main-page.jpg')">
             <div class="col-span-1"></div>
-            <div class="col-span-2 flex justify-center">
+            <div class="col-span-2 flex justify-center 2xl:p-14">
                 <SearchForm class="my-24" @searchClubs="search"/>
             </div>
             <div class="col-span-1"></div>

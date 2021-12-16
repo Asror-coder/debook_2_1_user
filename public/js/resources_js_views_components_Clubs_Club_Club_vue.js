@@ -1608,7 +1608,7 @@ var render = function() {
                   expression: "showClubInfo"
                 }
               ],
-              staticClass: "col-span-3"
+              staticClass: "col-span-3 2xl:px-20"
             },
             [
               _c(

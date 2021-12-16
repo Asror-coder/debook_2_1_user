@@ -290,7 +290,7 @@ var render = function() {
         _vm.translation
           ? _c(
               "main",
-              { staticClass: "col-span-2 flex justify-center my-28" },
+              { staticClass: "col-span-2 flex justify-center my-28 2xl:px-20" },
               [
                 _c(
                   "div",

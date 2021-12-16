@@ -791,7 +791,7 @@ var render = function() {
   return _c("div", [
     _vm.translation
       ? _c("div", { staticClass: "hidden md:grid grid-cols-4 gap-4" }, [
-          _c("main", { staticClass: "col-span-2 col-start-2" }, [
+          _c("main", { staticClass: "col-span-2 col-start-2 2xl:px-16" }, [
             _c("div", { staticClass: "grid grid-cols-7 my-3" }, [
               _vm._m(0),
               _vm._v(" "),

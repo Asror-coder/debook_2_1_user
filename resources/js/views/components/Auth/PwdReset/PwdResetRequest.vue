@@ -2,7 +2,7 @@
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4">
             <div class="col-span-1"></div>
-            <main class="col-span-2 flex justify-center mt-16" v-if="translation">
+            <main class="col-span-2 flex justify-center mt-16 2xl:px-20" v-if="translation">
                 <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">
                     <h1 class="text-2xl text-center pb-5">{{ translation.auth.forgot.requestTitle }}</h1>
                     <div class="text-gray-600 mx-5 mb-2 text-center">{{ translation.auth.forgot.requestInfo }}</div>

@@ -2,7 +2,7 @@
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4">
             <div class="col-span-1"></div>
-            <main class="col-span-2 my-5" v-if="translation">
+            <main class="col-span-2 my-5 2xl:px-20" v-if="translation">
                 <div class="flex flex-row">
                     <div class="flex-none text-dbGray text-2xl font-bold">{{ translation.booking.bookPage.title }}</div>
                     <div class="flex-grow"></div>

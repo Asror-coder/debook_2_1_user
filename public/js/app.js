@@ -26146,7 +26146,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "absolute bg-gray-100 w-2/3 inset-y-0 left-0 transition-all duration-700 overflow-hidden",
+              "fixed bg-gray-100 w-2/3 inset-y-0 left-0 transition-all duration-700 overflow-hidden",
             class: [_vm.showMenu ? "max-w-lg" : "max-w-0"]
           },
           [

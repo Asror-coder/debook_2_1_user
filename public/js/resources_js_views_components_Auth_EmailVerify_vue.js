@@ -116,7 +116,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.translation
-    ? _c("main", { staticClass: "grid grid-cols-4" }, [
+    ? _c("main", { staticClass: "grid grid-cols-4 2xl:px-20" }, [
         _c(
           "div",
           { staticClass: "col-start-2 col-span-2 mt-10 p-2 bg-white" },

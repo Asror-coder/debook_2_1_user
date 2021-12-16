@@ -105,9 +105,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-center mt-10 text-white text-2xl" }, [
-    _vm._v("This page was not found!")
-  ])
+  return _c(
+    "div",
+    { staticClass: "text-center mt-10 text-white text-2xl 2xl:px-20" },
+    [_vm._v("This page was not found!")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

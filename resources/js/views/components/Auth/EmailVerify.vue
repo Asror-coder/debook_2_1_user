@@ -1,5 +1,5 @@
 <template>
-    <main class="grid grid-cols-4" v-if="translation">
+    <main class="grid grid-cols-4 2xl:px-20" v-if="translation">
         <div class="col-start-2 col-span-2 mt-10 p-2 bg-white">
             <div class="text-center text-2xl">
                 {{ translation.auth.register.verify }}

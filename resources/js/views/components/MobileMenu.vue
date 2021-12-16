@@ -1,7 +1,7 @@
 <template>
     <div v-if="translation">
         <div :class="[showMenu ? 'max-w-lg' : 'max-w-0']"
-            class="absolute bg-gray-100 w-2/3 inset-y-0 left-0 transition-all duration-700 overflow-hidden">
+            class="fixed bg-gray-100 w-2/3 inset-y-0 left-0 transition-all duration-700 overflow-hidden">
 
             <div class="flex mt-4 mx-4">
                 <div class="text-4xl text-dbGray">{{ translation.header.sports }}</div>

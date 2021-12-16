@@ -238,7 +238,7 @@ var render = function() {
       _c("div", { staticClass: "col-span-1" }),
       _vm._v(" "),
       _vm.translation
-        ? _c("main", { staticClass: "col-span-2 my-5" }, [
+        ? _c("main", { staticClass: "col-span-2 my-5 2xl:px-20" }, [
             _c("div", { staticClass: "text-2xl text-white font-bold" }, [
               _vm._v(_vm._s(_vm.translation.booking.cancelSuccess.title))
             ]),

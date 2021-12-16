@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="hidden md:grid grid-cols-4 gap-4" v-if="translation">
-            <main class="col-span-2 col-start-2">
+            <main class="col-span-2 col-start-2 2xl:px-16">
 
                                                 <!-- Dashboard header -->
                 <div class="grid grid-cols-7 my-3">

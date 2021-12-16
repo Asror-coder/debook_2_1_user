@@ -2,7 +2,7 @@
     <div>
         <div class="hidden md:grid grid-cols-5" v-if="translation">
             <div class="col-span-1"></div>
-            <main class="col-span-3" v-show="showClubInfo">
+            <main class="col-span-3 2xl:px-20" v-show="showClubInfo">
                 <!-- Name and Short Information -->
                 <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 my-4">
                     <div class="text-white text-4xl" style="text-shadow: 2px 2px 4px #222121">{{ clubDetails.name }}</div>

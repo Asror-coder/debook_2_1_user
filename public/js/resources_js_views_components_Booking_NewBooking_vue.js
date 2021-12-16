@@ -400,7 +400,7 @@ var render = function() {
       _c("div", { staticClass: "col-span-1" }),
       _vm._v(" "),
       _vm.translation
-        ? _c("main", { staticClass: "col-span-2 my-5" }, [
+        ? _c("main", { staticClass: "col-span-2 my-5 2xl:px-20" }, [
             _c("div", { staticClass: "flex flex-row" }, [
               _c(
                 "div",

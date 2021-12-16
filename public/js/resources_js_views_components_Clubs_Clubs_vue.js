@@ -1273,7 +1273,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "flex-none hidden md:grid grid-cols-4 gap-4 mt-3 mb-6"
+                "flex-none hidden md:grid md:grid-cols-4 gap-4 mt-3 mb-6"
             },
             [
               _c(
@@ -1293,7 +1293,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("main", { staticClass: "col-span-2" }, [
+              _c("main", { staticClass: "col-span-2 2xl:px-16" }, [
                 _c(
                   "div",
                   { staticClass: "flex flex-row mt-3 mb-1" },
