@@ -16,12 +16,12 @@
                     <DateTimeFilters class="flex-none" @changeRequest="changeRequest"
                         :date="request.date" :start="request.start_time" :end="request.end_time"/>
 
-                    <div class="flex-grow"></div>
+                    <!-- <div class="flex-grow"></div>
 
                     <div class="flex-none">
                         <button class="bg-blue-500 text-white px-6 py-2 w-full rounded-xl font-medium focus:outline-none"
                             type="submit">{{ translation.clubs.map }}</button>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Number of clubs -->

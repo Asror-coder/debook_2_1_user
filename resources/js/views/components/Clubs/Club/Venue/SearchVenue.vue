@@ -6,7 +6,7 @@
             <div class="hidden md:flex flex-row">
 
                 <div class="flex-none">
-                    <label for="sport_type">{{ translation.home_search.sport }}:</label>
+                    <!-- <label for="sport_type">{{ translation.home_search.sport }}:</label> -->
                     <select name="sport_type" id="sport_type" placeholder="Sport"
                     class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none" v-model="form.sport_type">
                         <option value="" disabled selected hidden>{{ translation.home_search.choose_sport }}</option>
@@ -41,6 +41,16 @@
                         <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                             {{ openTime.time }}
                         </option>
+                    </select>
+                </div>
+
+                <div @change="setDuration">
+                    <select name="duration" v-model="duration"
+                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 ml-4 focus:outline-none" >
+                        <option value="" disabled selected hidden>Duration</option>
+                        <option value="1">1 hour</option>
+                        <option value="2">2 hours</option>
+                        <option value="3">3 hours</option>
                     </select>
                 </div>
 
@@ -86,13 +96,23 @@
                         </select>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <select name="end-time" v-model="form.end_time"
                         class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full">
                             <option value="" disabled selected hidden>{{ translation.clubs.end }}</option>
                             <option :value="openTime.value" :key="openTime.value" v-for="openTime in openTimes">
                                 {{ openTime.time }}
                             </option>
+                        </select>
+                    </div> -->
+
+                    <div @change="setDuration">
+                        <select name="duration" v-model="duration"
+                        class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full" >
+                            <option value="" disabled selected hidden>Duration</option>
+                            <option value="1">1 hour</option>
+                            <option value="2">2 hours</option>
+                            <option value="3">3 hours</option>
                         </select>
                     </div>
 
@@ -123,6 +143,7 @@ export default {
                 end_time: '',
                 surface: ''
             },
+            duration: '',
             sports: [],
             openTimes: [],
             message: null,
@@ -171,7 +192,10 @@ export default {
             }
         },
         changeTimeFormat(time) {
-            if (time.toString().length > 1) return time+':00'
+            if (time.toString().length > 1) {
+                if (time == 24) return '00:00'
+                else return time+':00'
+            }
             else return '0'+time+':00'
         },
         validateDate(formDate) {
@@ -203,12 +227,36 @@ export default {
 
             if(digits[0] == 0) return digits[1]
             else return time
+        },
+        setDuration() {
+            this.message = ""
+
+            if (!this.form.start_time)
+                this.message = 'Please, choose start time.'
+            else if ((parseInt(this.form.start_time) + parseInt(this.duration)) > this.openTimes[this.openTimes.length - 1].value)
+                this.message = 'Please, choose another start time or duration.'
+            else
+                this.form.end_time = ('0' + (parseInt(this.form.start_time) + parseInt(this.duration))).slice(-2);
         }
     },
     async created() {
         await this.fetchOpenTime()
         await this.fetchSports()
         this.checkLocalStorage()
+    },
+    watch: {
+        'form.end_time': {
+            immediate: true,
+            handler (newVal, oldVal) {
+                if (this.form.start_time) {
+                    var newDur = parseInt(newVal) - parseInt(this.form.start_time)
+
+                    if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur
+                    else this.duration = ""
+                }
+                else this.duration = ""
+            }
+        }
     }
 };
 </script>

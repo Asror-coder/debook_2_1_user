@@ -528,6 +528,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchVenueForm',
   props: {
@@ -543,6 +563,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         end_time: '',
         surface: ''
       },
+      duration: '',
       sports: [],
       openTimes: [],
       message: null,
@@ -641,7 +662,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     changeTimeFormat: function changeTimeFormat(time) {
-      if (time.toString().length > 1) return time + ':00';else return '0' + time + ':00';
+      if (time.toString().length > 1) {
+        if (time == 24) return '00:00';else return time + ':00';
+      } else return '0' + time + ':00';
     },
     validateDate: function validateDate(formDate) {
       var date = new Date();
@@ -669,6 +692,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return parseInt(iNum, 10);
       });
       if (digits[0] == 0) return digits[1];else return time;
+    },
+    setDuration: function setDuration() {
+      this.message = "";
+      if (!this.form.start_time) this.message = 'Please, choose start time.';else if (parseInt(this.form.start_time) + parseInt(this.duration) > this.openTimes[this.openTimes.length - 1].value) this.message = 'Please, choose another start time or duration.';else this.form.end_time = ('0' + (parseInt(this.form.start_time) + parseInt(this.duration))).slice(-2);
     }
   },
   created: function created() {
@@ -696,6 +723,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee4);
     }))();
+  },
+  watch: {
+    'form.end_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.form.start_time) {
+          var newDur = parseInt(newVal) - parseInt(this.form.start_time);
+          if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
+        } else this.duration = "";
+      }
+    }
   }
 });
 
@@ -2309,10 +2347,6 @@ var render = function() {
       [
         _c("div", { staticClass: "hidden md:flex flex-row" }, [
           _c("div", { staticClass: "flex-none" }, [
-            _c("label", { attrs: { for: "sport_type" } }, [
-              _vm._v(_vm._s(_vm.translation.home_search.sport) + ":")
-            ]),
-            _vm._v(" "),
             _c(
               "select",
               {
@@ -2544,6 +2578,55 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { on: { change: _vm.setDuration } }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.duration,
+                    expression: "duration"
+                  }
+                ],
+                staticClass:
+                  "border-2 border-gray-400 shadow-2xl py-2 px-1 ml-4 focus:outline-none",
+                attrs: { name: "duration" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.duration = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: { value: "", disabled: "", selected: "", hidden: "" }
+                  },
+                  [_vm._v("Duration")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "flex-grow" }),
           _vm._v(" "),
           _c("div", { staticClass: "flex-none" }, [
@@ -2725,7 +2808,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", [
+            _c("div", { on: { change: _vm.setDuration } }, [
               _c(
                 "select",
                 {
@@ -2733,13 +2816,13 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.end_time,
-                      expression: "form.end_time"
+                      value: _vm.duration,
+                      expression: "duration"
                     }
                   ],
                   staticClass:
                     "border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none w-full",
-                  attrs: { name: "end-time" },
+                  attrs: { name: "duration" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -2750,13 +2833,9 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.$set(
-                        _vm.form,
-                        "end_time",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
+                      _vm.duration = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
                     }
                   }
                 },
@@ -2771,27 +2850,15 @@ var render = function() {
                         hidden: ""
                       }
                     },
-                    [_vm._v(_vm._s(_vm.translation.clubs.end))]
+                    [_vm._v("Duration")]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.openTimes, function(openTime) {
-                    return _c(
-                      "option",
-                      {
-                        key: openTime.value,
-                        domProps: { value: openTime.value }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(openTime.time) +
-                            "\n                        "
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+                ]
               )
             ]),
             _vm._v(" "),

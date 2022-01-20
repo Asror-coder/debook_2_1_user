@@ -176,6 +176,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -187,6 +197,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         end_time: '',
         start_time: ''
       },
+      duration: '',
       message: ''
     };
   },
@@ -236,6 +247,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (dateArr[0] == date.getFullYear() && dateArr[1] < date.getMonth() + 1) return false;
       if (dateArr[0] == date.getFullYear() && dateArr[1] == date.getMonth() + 1 && dateArr[2] < date.getDate()) return false;
       return true;
+    },
+    setDuration: function setDuration(hours) {
+      if (!this.form.start_time) this.message = 'Please, choose start time.';else if (parseInt(this.form.start_time) + hours > 24) this.message = 'Please, choose another start time or duration.';else this.form.end_time = ('0' + (parseInt(this.form.start_time) + hours)).slice(-2);
+    }
+  },
+  watch: {
+    'form.end_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.form.start_time) {
+          var newDur = parseInt(newVal) - parseInt(this.form.start_time);
+          if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
+        } else this.duration = "";
+      }
     }
   }
 });
@@ -372,6 +397,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -383,6 +418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         end_time: '',
         start_time: ''
       },
+      duration: '0',
       message: ''
     };
   },
@@ -432,6 +468,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (dateArr[0] == date.getFullYear() && dateArr[1] < date.getMonth() + 1) return false;
       if (dateArr[0] == date.getFullYear() && dateArr[1] == date.getMonth() + 1 && dateArr[2] < date.getDate()) return false;
       return true;
+    },
+    setDuration: function setDuration(hours) {
+      if (!this.form.start_time) this.message = 'Please, choose start time.';else if (parseInt(this.form.start_time) + hours > 24) this.message = 'Please, choose another start time or duration.';else this.form.end_time = ('0' + (parseInt(this.form.start_time) + hours)).slice(-2);
+    }
+  },
+  watch: {
+    'form.end_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.form.start_time) {
+          var newDur = parseInt(newVal) - parseInt(this.form.start_time);
+          if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
+        } else this.duration = "";
+      }
     }
   }
 });
@@ -1137,6 +1187,59 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "grid grid-cols-4 my-4" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "text-xl text-gray-700",
+                    attrs: { for: "duration" }
+                  },
+                  [_vm._v("Duration:")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 1 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(1)
+                      }
+                    }
+                  },
+                  [_vm._v("1 hour")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 2 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(2)
+                      }
+                    }
+                  },
+                  [_vm._v("2 hours")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 3 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(3)
+                      }
+                    }
+                  },
+                  [_vm._v("3 hours")]
+                )
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "mt-4" }, [
                 _c(
                   "button",
@@ -1687,6 +1790,59 @@ var render = function() {
                     ]
                   )
                 ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "grid grid-cols-4 mb-4" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "text-xl text-gray-700",
+                    attrs: { for: "duration" }
+                  },
+                  [_vm._v("Duration:")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 1 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(1)
+                      }
+                    }
+                  },
+                  [_vm._v("1 hour")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 2 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(2)
+                      }
+                    }
+                  },
+                  [_vm._v("2 hours")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "duration-btn",
+                    class: _vm.duration == 3 ? "bg-blue-300 " : "bg-gray-500 ",
+                    on: {
+                      click: function($event) {
+                        return _vm.setDuration(3)
+                      }
+                    }
+                  },
+                  [_vm._v("3 hours")]
+                )
               ]),
               _vm._v(" "),
               _c("div", [

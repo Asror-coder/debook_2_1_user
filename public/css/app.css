@@ -32830,6 +32830,29 @@ video {
   outline-offset: 2px;
 }
 
+.duration-btn {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  text-align: center;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.duration-btn:hover {
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.duration-btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 input[type="search"] {
   -webkit-appearance: none;
 }

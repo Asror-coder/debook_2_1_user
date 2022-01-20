@@ -59,6 +59,16 @@
                 </select>
             </div>
 
+            <div @change="setDuration">
+                <select name="duration" v-model="duration"
+                class="bg-gray-100 ml-2 p-2 focus:outline-none" >
+                    <option value="" disabled selected hidden>Duration</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                </select>
+            </div>
+
             <div class="flex-none">
                 <button class="bg-gray-400 hover:bg-gray-500 text-white ml-3 px-6 py-1 text-lg w-full focus:outline-none"
                 type="submit">{{ translation.clubs.search }}</button>
@@ -95,7 +105,17 @@
                 <option value="24">00:00</option>
             </select>
 
-            <label class="text-white" for="time">-</label>
+            <div @change="setDuration">
+                <select name="duration" v-model="duration"
+                class="bg-gray-100 ml-1 p-1 focus:outline-none" >
+                    <option value="" disabled selected hidden>Duration</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                </select>
+            </div>
+
+            <!-- <label class="text-white" for="time">-</label>
             <select name="end-time" v-model="form.end_time"
             class="bg-gray-100 p-1 focus:outline-none">
                 <option value="" disabled selected hidden>{{ translation.clubs.end }}</option>
@@ -119,7 +139,7 @@
                 <option value="22">22:00</option>
                 <option value="23">23:00</option>
                 <option value="24">00:00</option>
-            </select>
+            </select> -->
 
             <button class="text-blue-500 focus:outline-none ml-1" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,7 +166,8 @@ export default {
                 start_time: this.start,
                 end_time: this.end
             },
-            message: ''
+            message: '',
+            duration: ''
         }
     },
     methods: {
@@ -182,6 +203,14 @@ export default {
             if (dateArr[0] == date.getFullYear() && dateArr[1] == (date.getMonth()+1) && dateArr[2] < date.getDate()) return false
 
             return true
+        },
+        setDuration() {
+            if (!this.form.start_time)
+                this.message = 'Please, choose start time.'
+            else if ((parseInt(this.form.start_time) + parseInt(this.duration)) > 24)
+                this.message = 'Please, choose another start time or duration.'
+            else
+                this.form.end_time = ('0' + (parseInt(this.form.start_time) + parseInt(this.duration))).slice(-2);
         }
     },
     watch: {
@@ -203,6 +232,18 @@ export default {
                 this.form.end_time = newVal
             }
         },
+        'form.end_time': {
+            immediate: true,
+            handler (newVal, oldVal) {
+                if (this.form.start_time) {
+                    var newDur = parseInt(newVal) - parseInt(this.form.start_time)
+
+                    if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur
+                    else this.duration = ""
+                }
+                else this.duration = ""
+            }
+        }
     }
 }
 </script>

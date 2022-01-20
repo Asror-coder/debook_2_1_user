@@ -536,6 +536,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'DateTimeFilters',
   props: {
@@ -550,7 +570,8 @@ __webpack_require__.r(__webpack_exports__);
         start_time: this.start,
         end_time: this.end
       },
-      message: ''
+      message: '',
+      duration: ''
     };
   },
   methods: {
@@ -578,6 +599,9 @@ __webpack_require__.r(__webpack_exports__);
       if (dateArr[0] == date.getFullYear() && dateArr[1] < date.getMonth() + 1) return false;
       if (dateArr[0] == date.getFullYear() && dateArr[1] == date.getMonth() + 1 && dateArr[2] < date.getDate()) return false;
       return true;
+    },
+    setDuration: function setDuration() {
+      if (!this.form.start_time) this.message = 'Please, choose start time.';else if (parseInt(this.form.start_time) + parseInt(this.duration) > 24) this.message = 'Please, choose another start time or duration.';else this.form.end_time = ('0' + (parseInt(this.form.start_time) + parseInt(this.duration))).slice(-2);
     }
   },
   watch: {
@@ -597,6 +621,15 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true,
       handler: function handler(newVal, oldVal) {
         this.form.end_time = newVal;
+      }
+    },
+    'form.end_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.form.start_time) {
+          var newDur = parseInt(newVal) - parseInt(this.form.start_time);
+          if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
+        } else this.duration = "";
       }
     }
   }
@@ -1306,21 +1339,7 @@ var render = function() {
                         end: _vm.request.end_time
                       },
                       on: { changeRequest: _vm.changeRequest }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex-grow" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex-none" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "bg-blue-500 text-white px-6 py-2 w-full rounded-xl font-medium focus:outline-none",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v(_vm._s(_vm.translation.clubs.map))]
-                      )
-                    ])
+                    })
                   ],
                   1
                 ),
@@ -1936,6 +1955,54 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
+        _c("div", { on: { change: _vm.setDuration } }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.duration,
+                  expression: "duration"
+                }
+              ],
+              staticClass: "bg-gray-100 ml-2 p-2 focus:outline-none",
+              attrs: { name: "duration" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.duration = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { value: "", disabled: "", selected: "", hidden: "" }
+                },
+                [_vm._v("Duration")]
+              ),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "flex-none" }, [
           _c(
             "button",
@@ -2052,89 +2119,53 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("label", { staticClass: "text-white", attrs: { for: "time" } }, [
-          _vm._v("-")
+        _c("div", { on: { change: _vm.setDuration } }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.duration,
+                  expression: "duration"
+                }
+              ],
+              staticClass: "bg-gray-100 ml-1 p-1 focus:outline-none",
+              attrs: { name: "duration" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.duration = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { value: "", disabled: "", selected: "", hidden: "" }
+                },
+                [_vm._v("Duration")]
+              ),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+            ]
+          )
         ]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.end_time,
-                expression: "form.end_time"
-              }
-            ],
-            staticClass: "bg-gray-100 p-1 focus:outline-none",
-            attrs: { name: "end-time" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "end_time",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _c(
-              "option",
-              { attrs: { value: "", disabled: "", selected: "", hidden: "" } },
-              [_vm._v(_vm._s(_vm.translation.clubs.end))]
-            ),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "05" } }, [_vm._v("05:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "06" } }, [_vm._v("06:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "07" } }, [_vm._v("07:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "08" } }, [_vm._v("08:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "09" } }, [_vm._v("09:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "10" } }, [_vm._v("10:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "11" } }, [_vm._v("11:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "12" } }, [_vm._v("12:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "13" } }, [_vm._v("13:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "14" } }, [_vm._v("14:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "15" } }, [_vm._v("15:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "16" } }, [_vm._v("16:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "17" } }, [_vm._v("17:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "18" } }, [_vm._v("18:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "19" } }, [_vm._v("19:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "20" } }, [_vm._v("20:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "21" } }, [_vm._v("21:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "22" } }, [_vm._v("22:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "23" } }, [_vm._v("23:00")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "24" } }, [_vm._v("00:00")])
-          ]
-        ),
         _vm._v(" "),
         _c(
           "button",

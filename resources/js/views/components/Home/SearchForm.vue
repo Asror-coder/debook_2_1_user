@@ -76,7 +76,7 @@
 
                     <label for="time">-</label>
                     <select name="end-time" v-model="form.end_time"
-                    class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
+                        class="border-2 border-gray-400 shadow-2xl py-2 px-1 focus:outline-none">
                         <option value="" disabled selected hidden>{{ translation.home_search.end }}</option>
                         <option value="05">05:00</option>
                         <option value="06">06:00</option>
@@ -102,6 +102,16 @@
                 </div>
             </div>
 
+            <div class="grid grid-cols-4 mb-4">
+                <label for="duration" class="text-xl text-gray-700">Duration:</label>
+                <div class="duration-btn" :class="duration == 1 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
+                    @click="setDuration(1)">1 hour</div>
+                <div class="duration-btn" :class="duration == 2 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
+                    @click="setDuration(2)">2 hours</div>
+                <div class="duration-btn" :class="duration == 3 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
+                    @click="setDuration(3)">3 hours</div>
+            </div>
+
             <div>
                 <button class="bg-blue-500 text-white px-6 py-2 w-full rounded font-medium focus:outline-none"
                 type="submit">{{ translation.home_search.search }}</button>
@@ -122,6 +132,7 @@ export default {
                 end_time: '',
                 start_time: ''
             },
+            duration: '0',
             message: ''
         }
     },
@@ -167,6 +178,28 @@ export default {
             if (dateArr[0] == date.getFullYear() && dateArr[1] == (date.getMonth()+1) && dateArr[2] < date.getDate()) return false
 
             return true
+        },
+        setDuration(hours) {
+            if (!this.form.start_time)
+                this.message = 'Please, choose start time.'
+            else if ((parseInt(this.form.start_time) + hours) > 24)
+                this.message = 'Please, choose another start time or duration.'
+            else
+                this.form.end_time = ('0' + (parseInt(this.form.start_time) + hours)).slice(-2);
+        }
+    },
+    watch: {
+        'form.end_time': {
+            immediate: true,
+            handler (newVal, oldVal) {
+                if (this.form.start_time) {
+                    var newDur = parseInt(newVal) - parseInt(this.form.start_time)
+
+                    if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur
+                    else this.duration = ""
+                }
+                else this.duration = ""
+            }
         }
     }
 }
