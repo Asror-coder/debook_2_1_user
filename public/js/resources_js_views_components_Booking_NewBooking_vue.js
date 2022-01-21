@@ -248,7 +248,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     allowDateTime: function allowDateTime() {
       var today = new Date();
-      var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + ('0' + today.getDate()).slice(-2);
+      var currentDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
       if (this.clubSearch.date < currentDate) return false;
       if (this.clubSearch.date == currentDate && this.clubSearch.start_time <= today.getHours()) return false;
       return true;
