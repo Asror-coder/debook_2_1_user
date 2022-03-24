@@ -156,6 +156,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -173,6 +226,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       clubDetails: Object,
       clubAddress: Object,
       images: Array,
+      openHours: Object,
       showClubInfo: false,
       searchRequest: Object,
       availableVenues: Array,
@@ -218,6 +272,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this2.clubAddress = response.data[0];
                     _this2.clubDetails = response.data[1];
                     _this2.images = response.data[2];
+                    _this2.openHours = response.data[3];
                     _this2.showClubInfo = true;
                   }
                 })["catch"](function (error) {
@@ -234,27 +289,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     makeBooking: function makeBooking(venue) {
       if (localStorage.getItem('user')) {
-        var booking = {
-          clubName: this.clubDetails.name,
-          clubPhone: this.clubDetails.phone,
-          venueName: venue.name,
-          venueId: venue.venue_id,
-          sport_type: this.searchRequest.sport_type,
-          surface: venue.surface,
-          indoor: venue.indoor,
-          date: this.searchRequest.date,
-          start_time: this.searchRequest.start_time,
-          end_time: this.searchRequest.end_time,
-          price: venue.price
-        }; // sessionStorage.setItem('newBooking', JSON.stringify(booking))
-
         this.$router.push({
           name: 'NewBooking',
           params: {
             venueId: venue.venue_id
           }
         });
-      } else this.showLoginMessage = true;
+      } else {
+        sessionStorage.setItem("back", "d7JD8Hr3Gs");
+        this.$router.push({
+          name: 'Login'
+        });
+        this.showLoginMessage = true;
+      }
+    },
+    changeTimeFormat: function changeTimeFormat($time) {
+      if ($time == 24) $time = 0;
+      if ($time < 10) return '0' + $time + ':00';else if ($time >= 10) return $time + ':00';
     }
   },
   watch: {
@@ -732,6 +783,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var newDur = parseInt(newVal) - parseInt(this.form.start_time);
           if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
         } else this.duration = "";
+      }
+    },
+    'form.start_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.duration) this.setDuration(this.duration);
       }
     }
   }
@@ -1789,17 +1846,158 @@ var render = function() {
                     "w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8"
                 },
                 [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "text-white text-xl",
-                      staticStyle: { "text-shadow": "1px 1px 4px #222121" }
-                    },
-                    [_vm._v(_vm._s(_vm.translation.clubs.about))]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-white my-2" }, [
-                    _vm._v(_vm._s(_vm.clubDetails.description))
+                  _c("div", { staticClass: "grid grid-cols-3 gap-8" }, [
+                    _c("div", { staticClass: "col-span-2" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "text-white text-xl",
+                          staticStyle: { "text-shadow": "1px 1px 4px #222121" }
+                        },
+                        [_vm._v(_vm._s(_vm.translation.clubs.about))]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-white my-2" }, [
+                        _vm._v(_vm._s(_vm.clubDetails.description))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.openHours
+                      ? _c("div", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "text-gray-300 text-xl",
+                              staticStyle: {
+                                "text-shadow": "1px 1px 4px #222121"
+                              }
+                            },
+                            [_vm._v("Open Hours")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "grid grid-cols-2 gap-2  my-2" },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-white" }, [
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_wd
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_wd
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_wd
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_wd
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_wd
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_wd
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_wd
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_wd
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_wd
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_wd
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_we
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_we
+                                        )
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.changeTimeFormat(
+                                        _vm.openHours.start_time_we
+                                      )
+                                    ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.changeTimeFormat(
+                                          _vm.openHours.end_time_we
+                                        )
+                                      )
+                                  )
+                                ])
+                              ])
+                            ]
+                          )
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "grid grid-cols-5" }, [
@@ -2026,7 +2224,142 @@ var render = function() {
                   _vm._v(_vm._s(_vm.clubDetails.description))
                 ]),
                 _vm._v(" "),
-                _c("div", [
+                _vm.openHours
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "text-gray-300 text-xl",
+                          staticStyle: { "text-shadow": "1px 1px 4px #222121" }
+                        },
+                        [_vm._v("Open Hours")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "grid grid-cols-2 gap-2  my-2" },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "text-white" }, [
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_wd
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_wd
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_wd
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_wd
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_wd
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_wd
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_wd
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_wd
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_wd
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_wd
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_we
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_we
+                                    )
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.changeTimeFormat(
+                                    _vm.openHours.start_time_we
+                                  )
+                                ) +
+                                  " - " +
+                                  _vm._s(
+                                    _vm.changeTimeFormat(
+                                      _vm.openHours.end_time_we
+                                    )
+                                  )
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-4" }, [
                   _c("div", { staticClass: "grid grid-cols-3" }, [
                     _c(
                       "div",
@@ -2113,7 +2446,48 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-white" }, [
+      _c("div", [_vm._v("Monday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Tuesday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Wednesday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Thursday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Friday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Saturday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Sunday: ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-white" }, [
+      _c("div", [_vm._v("Monday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Tuesday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Wednesday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Thursday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Friday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Saturday: ")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Sunday: ")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -2615,14 +2989,20 @@ var render = function() {
                   {
                     attrs: { value: "", disabled: "", selected: "", hidden: "" }
                   },
-                  [_vm._v("Duration")]
+                  [_vm._v(_vm._s(_vm.translation.home_search.duration))]
                 ),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+                _c("option", { attrs: { value: "1" } }, [
+                  _vm._v("1 " + _vm._s(_vm.translation.home_search.hour))
+                ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+                _c("option", { attrs: { value: "2" } }, [
+                  _vm._v("2 " + _vm._s(_vm.translation.home_search.hours))
+                ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+                _c("option", { attrs: { value: "3" } }, [
+                  _vm._v("3 " + _vm._s(_vm.translation.home_search.hours))
+                ])
               ]
             )
           ]),
@@ -2850,14 +3230,20 @@ var render = function() {
                         hidden: ""
                       }
                     },
-                    [_vm._v("Duration")]
+                    [_vm._v(_vm._s(_vm.translation.home_search.duration))]
                   ),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+                  _c("option", { attrs: { value: "1" } }, [
+                    _vm._v("1 " + _vm._s(_vm.translation.home_search.hour))
+                  ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+                  _c("option", { attrs: { value: "2" } }, [
+                    _vm._v("2 " + _vm._s(_vm.translation.home_search.hours))
+                  ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+                  _c("option", { attrs: { value: "3" } }, [
+                    _vm._v("3 " + _vm._s(_vm.translation.home_search.hours))
+                  ])
                 ]
               )
             ]),

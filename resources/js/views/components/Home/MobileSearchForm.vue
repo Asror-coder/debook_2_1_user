@@ -93,13 +93,13 @@
             </div>
 
             <div class="grid grid-cols-4 my-4">
-                <label for="duration" class="text-xl text-gray-700">Duration:</label>
+                <label for="duration" class="text-xl text-gray-700">{{ translation.home_search.duration }}:</label>
                 <div class="duration-btn" :class="duration == 1 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
-                    @click="setDuration(1)">1 hour</div>
+                    @click="setDuration(1)">1 {{ translation.home_search.hour }}</div>
                 <div class="duration-btn" :class="duration == 2 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
-                    @click="setDuration(2)">2 hours</div>
+                    @click="setDuration(2)">2 {{ translation.home_search.hours }}</div>
                 <div class="duration-btn" :class="duration == 3 ? 'bg-blue-300 ' : 'bg-gray-500 ' "
-                    @click="setDuration(3)">3 hours</div>
+                    @click="setDuration(3)">3 {{ translation.home_search.hours }}</div>
             </div>
 
             <div class="mt-4">
@@ -189,6 +189,12 @@ export default {
                     else this.duration = ""
                 }
                 else this.duration = ""
+            }
+        },
+        'form.start_time': {
+            immediate: true,
+            handler (newVal, oldVal) {
+                if (this.duration) this.setDuration(this.duration)
             }
         }
     }

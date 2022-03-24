@@ -6,6 +6,10 @@
                 <div class="flex flex-col w-10/12 bg-white p-6 shadow-xl">
                     <h1 class="text-2xl text-center pb-5">{{ translation.auth.login.title }}</h1>
 
+                    <div class="p-2 mb-2 bg-green-200 mt-2 rounded-md"
+                        v-show="showLoginMessage"> {{ translation.auth.login.bookMsg }}
+                    </div>
+
                     <div class="w-full text-center mb-2">
                         <div class="text-red-600" v-show="messageError">{{ messageError }}</div>
                     </div>
@@ -53,6 +57,10 @@
 
             <div class="bg-white rounded-lg shadow-xl p-2">
                 <div class="text-2xl text-center pb-5">{{ translation.auth.login.title }}</div>
+
+                <div class="p-2 mb-2 bg-green-200 mt-2 rounded-md"
+                    v-show="showLoginMessage"> {{ translation.auth.login.bookMsg }}
+                </div>
 
                 <div class="w-full text-center mb-2">
                     <div class="text-red-600" v-show="messageError">{{ messageError }}</div>
@@ -112,7 +120,8 @@ export default {
             },
             emailError: '',
             messageError: '',
-            pwdError: ''
+            pwdError: '',
+            showLoginMessage: false
         }
     },
     computed: mapGetters('user',['loginError']),
@@ -127,7 +136,12 @@ export default {
             await this.loginUser(this.form)
 
             if(!this.loginError) {
-                location.reload()
+                if (sessionStorage.getItem('back') == 'd7JD8Hr3Gs' && sessionStorage.getItem('clubSearch')) {
+                    sessionStorage.removeItem('back')
+                    var clubSearch = JSON.parse(sessionStorage.getItem('clubSearch'))
+                    this.$router.push({ name:'Club', params: {clubId: clubSearch.partnerId}})
+                }
+                else location.reload()
             }
             else {
                 if (this.loginError.response.data.errors) {
@@ -149,6 +163,7 @@ export default {
     },
     created() {
         this.checkUser()
+        if (sessionStorage.getItem('back') == 'd7JD8Hr3Gs') this.showLoginMessage = true
     }
 }
 </script>

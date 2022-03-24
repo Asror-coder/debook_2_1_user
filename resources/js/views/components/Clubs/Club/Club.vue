@@ -36,9 +36,37 @@
                 <!-- About club -->
 
                 <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8">
-                    <div class="text-white text-xl" style="text-shadow: 1px 1px 4px #222121">{{ translation.clubs.about }}</div>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="col-span-2">
+                            <div class="text-white text-xl" style="text-shadow: 1px 1px 4px #222121">{{ translation.clubs.about }}</div>
+                            <div class="text-white my-2">{{ clubDetails.description }}</div>
+                        </div>
 
-                    <div class="text-white my-2">{{ clubDetails.description }}</div>
+                        <div v-if="openHours">
+                            <div class="text-gray-300 text-xl" style="text-shadow: 1px 1px 4px #222121">Open Hours</div>
+                            <div class="grid grid-cols-2 gap-2  my-2">
+                                <div class="text-white">
+                                    <div>Monday: </div>
+                                    <div>Tuesday: </div>
+                                    <div>Wednesday: </div>
+                                    <div>Thursday: </div>
+                                    <div>Friday: </div>
+                                    <div>Saturday: </div>
+                                    <div>Sunday: </div>
+                                </div>
+
+                                <div class="text-white">
+                                    <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_we) }} - {{ changeTimeFormat(openHours.end_time_we) }}</div>
+                                    <div>{{ changeTimeFormat(openHours.start_time_we) }} - {{ changeTimeFormat(openHours.end_time_we) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="grid grid-cols-5">
                         <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
@@ -99,7 +127,32 @@
 
                 <div class="text-white my-2">{{ clubDetails.description }}</div>
 
-                <div>
+                <div v-if="openHours">
+                    <div class="text-gray-300 text-xl" style="text-shadow: 1px 1px 4px #222121">Open Hours</div>
+                    <div class="grid grid-cols-2 gap-2  my-2">
+                        <div class="text-white">
+                            <div>Monday: </div>
+                            <div>Tuesday: </div>
+                            <div>Wednesday: </div>
+                            <div>Thursday: </div>
+                            <div>Friday: </div>
+                            <div>Saturday: </div>
+                            <div>Sunday: </div>
+                        </div>
+
+                        <div class="text-white">
+                            <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_wd) }} - {{ changeTimeFormat(openHours.end_time_wd) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_we) }} - {{ changeTimeFormat(openHours.end_time_we) }}</div>
+                            <div>{{ changeTimeFormat(openHours.start_time_we) }} - {{ changeTimeFormat(openHours.end_time_we) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
                     <div class="grid grid-cols-3">
                         <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
                             <i class="fas fa-map-marker-alt mr-2"></i> {{ translation.booking.address }}:
@@ -150,6 +203,7 @@ export default {
             clubDetails: Object,
             clubAddress: Object,
             images: Array,
+            openHours: Object,
             showClubInfo: false,
 
             searchRequest: Object,
@@ -187,6 +241,7 @@ export default {
                     this.clubAddress = response.data[0];
                     this.clubDetails = response.data[1];
                     this.images = response.data[2]
+                    this.openHours = response.data[3]
                     this.showClubInfo = true;
                 }
             }).catch((error) => {
@@ -195,23 +250,19 @@ export default {
         },
         makeBooking(venue) {
             if (localStorage.getItem('user')) {
-                var booking = {
-                    clubName: this.clubDetails.name,
-                    clubPhone: this.clubDetails.phone,
-                    venueName: venue.name,
-                    venueId: venue.venue_id,
-                    sport_type: this.searchRequest.sport_type,
-                    surface: venue.surface,
-                    indoor: venue.indoor,
-                    date: this.searchRequest.date,
-                    start_time: this.searchRequest.start_time,
-                    end_time: this.searchRequest.end_time,
-                    price: venue.price
-                }
-
-                // sessionStorage.setItem('newBooking', JSON.stringify(booking))
                 this.$router.push({ name:'NewBooking', params: {venueId: venue.venue_id}})
-            } else this.showLoginMessage = true
+            }
+            else {
+                sessionStorage.setItem("back", "d7JD8Hr3Gs")
+                this.$router.push({ name:'Login' })
+                this.showLoginMessage = true
+            }
+        },
+        changeTimeFormat($time) {
+            if ($time == 24) $time = 0;
+
+            if ($time < 10) return '0'+$time+':00';
+            else if ($time >= 10) return $time+':00';
         }
     },
     watch: {

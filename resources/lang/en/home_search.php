@@ -12,5 +12,8 @@ return [
     'time' => 'Time',
     'start' => 'Start',
     'end' => 'End',
-    'search'=> 'Search',
+    'search' => 'Search',
+    'duration' => 'Duration',
+    'hour' => 'hour',
+    'hours' => 'hours'
 ];

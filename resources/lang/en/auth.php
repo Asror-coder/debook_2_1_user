@@ -25,7 +25,8 @@ return [
         'notMemder' => 'Not a member yet?',
         'register' => 'Register here',
         'failed' => 'These credentials do not match our records.',
-        'wrongPwd' => 'The provided password is incorrect.'
+        'wrongPwd' => 'The provided password is incorrect.',
+        'bookMsg' => 'To make bookings you need to login first!'
     ],
 
     'forgot' => [
@@ -50,7 +51,7 @@ return [
         'phone' => 'Your phone number',
         'success' => 'Congtrats, You have successfully registered!',
         'successInfo' => 'You now need to verify your email address by clicking on the verification link that was sent to your email address.',
-        'verify' => 'Congtrats, You have successfully verified your email!',
+        'verify' => 'Congrats, You have successfully verified your email!',
         'verifyInfo' => 'You now can login to your account and enjoy our platform.'
     ]
 ];

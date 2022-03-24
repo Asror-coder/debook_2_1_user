@@ -631,6 +631,12 @@ __webpack_require__.r(__webpack_exports__);
           if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
         } else this.duration = "";
       }
+    },
+    'form.start_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.duration) this.setDuration(this.duration);
+      }
     }
   }
 });
@@ -1618,7 +1624,8 @@ var render = function() {
           "div",
           {
             staticClass:
-              "p-3 rounded-lg hidden md:grid grid-cols-2 bg-white mb-2"
+              "p-3 rounded-lg hidden md:grid grid-cols-2 bg-white mb-2",
+            on: { click: _vm.goToClubPage }
           },
           [
             _c("div", {
@@ -1627,9 +1634,11 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-col" }, [
-              _c("div", { staticClass: "text-3xl" }, [
-                _vm._v(_vm._s(_vm.club.name))
-              ]),
+              _c(
+                "div",
+                { staticClass: "text-3xl cursor-pointer hover:text-gray-600" },
+                [_vm._v(_vm._s(_vm.club.name))]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "text-gray-400" }, [
                 _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
@@ -1654,11 +1663,10 @@ var render = function() {
                 _c("div", { staticClass: "flex-grow" }),
                 _vm._v(" "),
                 _c(
-                  "button",
+                  "div",
                   {
                     staticClass:
-                      "flex-none text-2xl text-blue-600 hover:text-blue-900  focus:outline-none",
-                    on: { click: _vm.goToClubPage }
+                      "flex-none text-2xl text-blue-600 hover:text-blue-900 cursor-pointer focus:outline-none"
                   },
                   [_vm._v(_vm._s(_vm.translation.clubs.more))]
                 )
@@ -1718,7 +1726,11 @@ var render = function() {
                     staticClass:
                       "text-2xl text-blue-600 hover:text-blue-900  focus:outline-none"
                   },
-                  [_vm._v(_vm._s(_vm.translation.clubs.more))]
+                  [
+                    _vm._v(
+                      "\n                " + _vm._s(_vm.translation.clubs.more)
+                    )
+                  ]
                 )
               ]
             )
@@ -1991,14 +2003,20 @@ var render = function() {
                 {
                   attrs: { value: "", disabled: "", selected: "", hidden: "" }
                 },
-                [_vm._v("Duration")]
+                [_vm._v(_vm._s(_vm.translation.home_search.duration))]
               ),
               _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+              _c("option", { attrs: { value: "1" } }, [
+                _vm._v("1 " + _vm._s(_vm.translation.home_search.hour))
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+              _c("option", { attrs: { value: "2" } }, [
+                _vm._v("2 " + _vm._s(_vm.translation.home_search.hours))
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+              _c("option", { attrs: { value: "3" } }, [
+                _vm._v("3 " + _vm._s(_vm.translation.home_search.hours))
+              ])
             ]
           )
         ]),
@@ -2155,14 +2173,20 @@ var render = function() {
                 {
                   attrs: { value: "", disabled: "", selected: "", hidden: "" }
                 },
-                [_vm._v("Duration")]
+                [_vm._v(_vm._s(_vm.translation.home_search.duration))]
               ),
               _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v("1 hour")]),
+              _c("option", { attrs: { value: "1" } }, [
+                _vm._v("1 " + _vm._s(_vm.translation.home_search.hour))
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("2 hours")]),
+              _c("option", { attrs: { value: "2" } }, [
+                _vm._v("2 " + _vm._s(_vm.translation.home_search.hours))
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "3" } }, [_vm._v("3 hours")])
+              _c("option", { attrs: { value: "3" } }, [
+                _vm._v("3 " + _vm._s(_vm.translation.home_search.hours))
+              ])
             ]
           )
         ]),

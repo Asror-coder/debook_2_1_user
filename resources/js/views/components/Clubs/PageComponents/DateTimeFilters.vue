@@ -62,10 +62,10 @@
             <div @change="setDuration">
                 <select name="duration" v-model="duration"
                 class="bg-gray-100 ml-2 p-2 focus:outline-none" >
-                    <option value="" disabled selected hidden>Duration</option>
-                    <option value="1">1 hour</option>
-                    <option value="2">2 hours</option>
-                    <option value="3">3 hours</option>
+                    <option value="" disabled selected hidden>{{ translation.home_search.duration }}</option>
+                    <option value="1">1 {{ translation.home_search.hour }}</option>
+                    <option value="2">2 {{ translation.home_search.hours }}</option>
+                    <option value="3">3 {{ translation.home_search.hours }}</option>
                 </select>
             </div>
 
@@ -108,10 +108,10 @@
             <div @change="setDuration">
                 <select name="duration" v-model="duration"
                 class="bg-gray-100 ml-1 p-1 focus:outline-none" >
-                    <option value="" disabled selected hidden>Duration</option>
-                    <option value="1">1 hour</option>
-                    <option value="2">2 hours</option>
-                    <option value="3">3 hours</option>
+                    <option value="" disabled selected hidden>{{ translation.home_search.duration }}</option>
+                    <option value="1">1 {{ translation.home_search.hour }}</option>
+                    <option value="2">2 {{ translation.home_search.hours }}</option>
+                    <option value="3">3 {{ translation.home_search.hours }}</option>
                 </select>
             </div>
 
@@ -242,6 +242,12 @@ export default {
                     else this.duration = ""
                 }
                 else this.duration = ""
+            }
+        },
+        'form.start_time': {
+            immediate: true,
+            handler (newVal, oldVal) {
+                if (this.duration) this.setDuration(this.duration)
             }
         }
     }

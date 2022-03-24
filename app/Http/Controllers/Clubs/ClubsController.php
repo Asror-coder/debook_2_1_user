@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Clubs;
 
 use App\Http\Controllers\Clubs\Partner\PartnerAddressController;
 use App\Http\Controllers\Clubs\Partner\PartnerDetailsController;
+use App\Http\Controllers\Clubs\Partner\PartnerOpenHoursController;
 use App\Http\Controllers\Clubs\Venue\VenueController;
 use App\Http\Controllers\Clubs\Venue\VenuePriceController;
 use App\Http\Controllers\Controller;
 use App\Models\PartnerAddress;
 use App\Models\PartnerDetails;
+use App\Models\PartnerOpenHours;
 use App\Models\VenuePrice;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -145,10 +147,23 @@ class ClubsController extends Controller
     public function getClub($id) {
         $partnerAddressController = new PartnerAddressController;
         $partnerDetailsController = new PartnerDetailsController;
+        $partnerOpenHoursController = new PartnerOpenHoursController;
 
-        $club[0] = $partnerAddressController->show($id)[0];
-        $club[1] = $partnerDetailsController->show($id)[0];
-        $club[2] = DB::table('club_images')->where('partner_id',$id)->get();
+        if (sizeof($partnerAddressController->show($id)) > 0)
+            $club[0] = $partnerAddressController->show($id)[0];
+        else $club[0] = null;
+
+        if (sizeof($partnerDetailsController->show($id)) > 0)
+            $club[1] = $partnerDetailsController->show($id)[0];
+        else $club[1] = null;
+
+        if (DB::table('club_images')->where('partner_id',$id)->get())
+            $club[2] = DB::table('club_images')->where('partner_id',$id)->get();
+        else $club[2] = null;
+
+        if (sizeof($partnerOpenHoursController->show($id)) > 0)
+            $club[3] = $partnerOpenHoursController->show($id)[0];
+        else $club[3] = null;
 
         return $club;
     }

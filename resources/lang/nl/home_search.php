@@ -12,5 +12,8 @@ return [
     'time' => 'Tijd',
     'start' => 'Begin',
     'end' => 'Einde',
-    'search'=> 'Zoeken',
+    'search' => 'Zoeken',
+    'duration' => 'Looptijd',
+    'hour' => 'uur',
+    'hours' => 'uur'
 ];

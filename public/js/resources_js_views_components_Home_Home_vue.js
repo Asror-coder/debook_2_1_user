@@ -261,6 +261,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
         } else this.duration = "";
       }
+    },
+    'form.start_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.duration) this.setDuration(this.duration);
+      }
     }
   }
 });
@@ -481,6 +487,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var newDur = parseInt(newVal) - parseInt(this.form.start_time);
           if (newDur == 1 || newDur == 2 || newDur == 3) this.duration = newDur;else this.duration = "";
         } else this.duration = "";
+      }
+    },
+    'form.start_time': {
+      immediate: true,
+      handler: function handler(newVal, oldVal) {
+        if (this.duration) this.setDuration(this.duration);
       }
     }
   }
@@ -1194,7 +1206,7 @@ var render = function() {
                     staticClass: "text-xl text-gray-700",
                     attrs: { for: "duration" }
                   },
-                  [_vm._v("Duration:")]
+                  [_vm._v(_vm._s(_vm.translation.home_search.duration) + ":")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1208,7 +1220,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("1 hour")]
+                  [_vm._v("1 " + _vm._s(_vm.translation.home_search.hour))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1222,7 +1234,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("2 hours")]
+                  [_vm._v("2 " + _vm._s(_vm.translation.home_search.hours))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1236,7 +1248,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("3 hours")]
+                  [_vm._v("3 " + _vm._s(_vm.translation.home_search.hours))]
                 )
               ]),
               _vm._v(" "),
@@ -1799,7 +1811,7 @@ var render = function() {
                     staticClass: "text-xl text-gray-700",
                     attrs: { for: "duration" }
                   },
-                  [_vm._v("Duration:")]
+                  [_vm._v(_vm._s(_vm.translation.home_search.duration) + ":")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1813,7 +1825,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("1 hour")]
+                  [_vm._v("1 " + _vm._s(_vm.translation.home_search.hour))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1827,7 +1839,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("2 hours")]
+                  [_vm._v("2 " + _vm._s(_vm.translation.home_search.hours))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1841,7 +1853,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("3 hours")]
+                  [_vm._v("3 " + _vm._s(_vm.translation.home_search.hours))]
                 )
               ]),
               _vm._v(" "),

@@ -24,8 +24,9 @@ return [
         'forgotPwd' => 'Uw wachtwoord vergeten?',
         'notMemder' => 'Ben je nog geen lid?',
         'register' => 'Registreer hier',
-        'failed' => 'These credentials do not match our records.',
-        'wrongPwd' => 'The provided password is incorrect.'
+        'failed' => 'Deze inloggegevens komen niet overeen met onze gegevens.',
+        'wrongPwd' => 'Het opgegeven wachtwoord is onjuist.',
+        'bookMsg' => 'Om te boeken moet je eerst inloggen!'
     ],
 
     'forgot' => [
@@ -50,7 +51,7 @@ return [
         'phone' => 'Jouw telefoon nummer',
         'success' => 'Gefeliciteerd, u bent succesvol geregistreerd!',
         'successInfo' => 'U moet nu uw e-mailadres verifiëren door op de verificatielink te klikken die naar uw e-mailadres is verzonden.',
-        'verify' => 'Congtrats, You have successfully verified your email!',
-        'verifyInfo' => 'You now can login to your account and enjoy our platform.'
+        'verify' => 'Gefeliciteerd, je hebt je e-mailadres met succes geverifieerd!',
+        'verifyInfo' => 'U kunt nu inloggen op uw account en genieten van ons platform.'
     ]
 ];

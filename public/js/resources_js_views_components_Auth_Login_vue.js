@@ -127,6 +127,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Login',
@@ -138,7 +146,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       emailError: '',
       messageError: '',
-      pwdError: ''
+      pwdError: '',
+      showLoginMessage: false
     };
   },
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)('user', ['loginError']),
@@ -147,6 +156,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var clubSearch;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -159,7 +169,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 5:
                 if (!_this.loginError) {
-                  location.reload();
+                  if (sessionStorage.getItem('back') == 'd7JD8Hr3Gs' && sessionStorage.getItem('clubSearch')) {
+                    sessionStorage.removeItem('back');
+                    clubSearch = JSON.parse(sessionStorage.getItem('clubSearch'));
+
+                    _this.$router.push({
+                      name: 'Club',
+                      params: {
+                        clubId: clubSearch.partnerId
+                      }
+                    });
+                  } else location.reload();
                 } else {
                   if (_this.loginError.response.data.errors) {
                     if (_this.loginError.response.data.errors.email) _this.emailError = _this.loginError.response.data.errors.email[0];
@@ -185,6 +205,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   created: function created() {
     this.checkUser();
+    if (sessionStorage.getItem('back') == 'd7JD8Hr3Gs') this.showLoginMessage = true;
   }
 });
 
@@ -301,6 +322,28 @@ var render = function() {
                     _c("h1", { staticClass: "text-2xl text-center pb-5" }, [
                       _vm._v(_vm._s(_vm.translation.auth.login.title))
                     ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showLoginMessage,
+                            expression: "showLoginMessage"
+                          }
+                        ],
+                        staticClass: "p-2 mb-2 bg-green-200 mt-2 rounded-md"
+                      },
+                      [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.translation.auth.login.bookMsg) +
+                            "\n                "
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-full text-center mb-2" }, [
                       _c(
@@ -530,6 +573,28 @@ var render = function() {
               _c("div", { staticClass: "text-2xl text-center pb-5" }, [
                 _vm._v(_vm._s(_vm.translation.auth.login.title))
               ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showLoginMessage,
+                      expression: "showLoginMessage"
+                    }
+                  ],
+                  staticClass: "p-2 mb-2 bg-green-200 mt-2 rounded-md"
+                },
+                [
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.translation.auth.login.bookMsg) +
+                      "\n            "
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "w-full text-center mb-2" }, [
                 _c(
