@@ -242,6 +242,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1972,10 +1994,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              {
-                staticClass:
-                  "w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8"
-              },
+              { staticClass: "w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4" },
               [
                 _c(
                   "div",
@@ -2123,9 +2142,18 @@ var render = function() {
                         ]
                       )
                     ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "mt-4" }, [
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8"
+              },
+              [
+                _c("div", [
                   _c("div", { staticClass: "grid grid-cols-3" }, [
                     _c(
                       "div",
@@ -2203,6 +2231,45 @@ var render = function() {
                       _vm._v(" " + _vm._s(_vm.clubDetails.email) + " ")
                     ])
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-4" }, [
+                  _vm.coordinates.lat
+                    ? _c(
+                        "div",
+                        { staticClass: "grid justify-items-center" },
+                        [
+                          _c(
+                            "GmapMap",
+                            {
+                              staticStyle: { width: "300px", height: "300px" },
+                              attrs: {
+                                center: _vm.coordinates,
+                                zoom: 14,
+                                "map-type-id": "terrain"
+                              }
+                            },
+                            _vm._l(_vm.coordinates, function(m, index) {
+                              return _c("GmapMarker", {
+                                key: index,
+                                attrs: {
+                                  position: _vm.coordinates,
+                                  clickable: true,
+                                  draggable: true
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.center = _vm.coordinates
+                                  }
+                                }
+                              })
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ])
               ]
             )

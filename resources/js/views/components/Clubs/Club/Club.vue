@@ -155,7 +155,7 @@
 
             <!-- About club -->
 
-            <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8">
+            <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4">
                 <div class="text-white text-xl" style="text-shadow: 1px 1px 4px #222121">{{ translation.clubs.about }}</div>
 
                 <div class="text-white my-2">{{ clubDetails.description }}</div>
@@ -184,8 +184,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="mt-4">
+            <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8">
+                <div>
                     <div class="grid grid-cols-3">
                         <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
                             <i class="fas fa-map-marker-alt mr-2"></i> {{ translation.booking.address }}:
@@ -210,6 +212,26 @@
                         </div>
 
                         <div class="text-white ml-2 col-span-2"> {{ clubDetails.email }} </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="mt-4">
+                    <div v-if="coordinates.lat" class="grid justify-items-center">
+                        <GmapMap class=""
+                            :center="coordinates"
+                            :zoom="14"
+                            map-type-id="terrain"
+                            style="width: 300px; height: 300px">
+                            <GmapMarker
+                                :key="index"
+                                v-for="(m, index) in coordinates"
+                                :position="coordinates"
+                                :clickable="true"
+                                :draggable="true"
+                                @click="center=coordinates"
+                            />
+                        </GmapMap>
                     </div>
                 </div>
             </div>
