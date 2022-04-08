@@ -35,13 +35,14 @@
 
                 <!-- About club -->
 
-                <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4 mb-8">
+                <div class="w-full py-3 px-7 bg-dbGray bg-opacity-30 mt-4">
                     <div class="grid grid-cols-3 gap-8">
                         <div class="col-span-2">
                             <div class="text-white text-xl" style="text-shadow: 1px 1px 4px #222121">{{ translation.clubs.about }}</div>
                             <div class="text-white my-2">{{ clubDetails.description }}</div>
                         </div>
 
+                        <!-- Open hours -->
                         <div v-if="openHours">
                             <div class="text-gray-300 text-xl" style="text-shadow: 1px 1px 4px #222121">Open Hours</div>
                             <div class="grid grid-cols-2 gap-2  my-2">
@@ -67,19 +68,51 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="grid grid-cols-5">
-                        <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
-                            <div><i class="fas fa-map-marker-alt mr-2"></i> {{ translation.booking.address }}:</div>
-                            <div><i class="fas fa-phone mr-1"></i> {{ translation.dashboard.phone }}:</div>
-                            <div><i class="fas fa-envelope-open mr-2"></i> {{ translation.dashboard.email }}:</div>
-                        </div>
-                        <div class="col-span-4 text-white">
-                            <div class="text-white ml-2">
-                                {{ clubAddress.street }} {{ clubAddress.house_num }}-{{ clubAddress.house_add }}, {{ clubAddress.city }}, {{ clubAddress.country}}
+                <div class="w-full bg-dbGray bg-opacity-30 mt-4 mb-8">
+                    <div class="grid grid-cols-2">
+                        <div class="py-3 px-7">
+                            <div class="grid grid-cols-3 gap-1">
+                                <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
+                                    <i class="fas fa-map-marker-alt mr-2"></i> {{ translation.booking.address }}:
+                                </div>
+                                <div class="col-span-2 text-white">
+                                    {{ clubAddress.street }} {{ clubAddress.house_num }}-{{ clubAddress.house_add }}, {{ clubAddress.city }}, {{ clubAddress.country}}
+                                </div>
                             </div>
-                            <div class="text-white ml-2">{{ clubDetails.phone }}</div>
-                            <div class="text-white ml-2">{{ clubDetails.email }}</div>
+
+                            <div class="grid grid-cols-3 gap-1">
+                                <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
+                                    <i class="fas fa-phone mr-1"></i> {{ translation.dashboard.phone }}:
+                                </div>
+                                <div class="col-span-2 text-white">{{ clubDetails.phone }}</div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-1">
+                                <div class="text-gray-400 text-md" style="text-shadow: 2px 2px 4px #222121">
+                                    <i class="fas fa-envelope-open mr-2"></i> {{ translation.dashboard.email }}:
+                                </div>
+                                <div class="col-span-2 text-white">{{ clubDetails.email }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Map -->
+                        <div v-if="coordinates.lat" class="justify-self-end p-2">
+                            <GmapMap class=""
+                                :center="coordinates"
+                                :zoom="14"
+                                map-type-id="terrain"
+                                style="width: 420px; height: 300px">
+                                <GmapMarker
+                                    :key="index"
+                                    v-for="(m, index) in coordinates"
+                                    :position="coordinates"
+                                    :clickable="true"
+                                    :draggable="true"
+                                    @click="center=coordinates"
+                                />
+                            </GmapMap>
                         </div>
                     </div>
                 </div>
@@ -201,10 +234,15 @@ export default {
     data() {
         return {
             clubDetails: Object,
-            clubAddress: Object,
             images: Array,
             openHours: Object,
             showClubInfo: false,
+
+            clubAddress: Object,
+            coordinates: {
+                lat: null,
+                lng: null
+            },
 
             searchRequest: Object,
             availableVenues: Array,
@@ -243,6 +281,11 @@ export default {
                     this.images = response.data[2]
                     this.openHours = response.data[3]
                     this.showClubInfo = true;
+
+                    if (this.clubAddress) {
+                        this.coordinates.lat = parseFloat(this.clubAddress.lat)
+                        this.coordinates.lng = parseFloat(this.clubAddress.long)
+                    }
                 }
             }).catch((error) => {
                 this.message = error.response.data.message;

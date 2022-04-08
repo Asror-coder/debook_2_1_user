@@ -9,6 +9,8 @@ import routes from './routes';
 import store from './store'     //vuex
 import { mapActions } from 'vuex'
 
+import * as VueGoogleMaps from 'vue2-google-maps'
+
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -22,6 +24,13 @@ Vue.config.productionTip = false
 import globalGetters from './globalGetters';
 
 Vue.use(VueRouter).use(globalGetters).use(VueCarousel);
+
+Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyBjY6b_Fz7EI3e1fiFgHYb-q1Tf0I7ZCt8',
+    },
+  })
+
 
 const app = new Vue({
     el: '#app',
